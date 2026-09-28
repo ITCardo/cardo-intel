@@ -234,7 +234,7 @@ Return the delta JSON now."""
     # Use streaming for longer outputs
     full_response = ""
     with client.messages.stream(
-        model="claude-opus-4-8",
+        model="claude-sonnet-5-5",
         max_tokens=8000,
         tools=[WEB_SEARCH_TOOL],
         messages=[{"role": "user", "content": prompt}]

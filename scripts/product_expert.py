@@ -143,7 +143,7 @@ Use straight ASCII quotes. Validate the JSON before outputting."""
 
     full_response = ""
     with client.messages.stream(
-        model="claude-opus-4-8",
+        model="claude-sonnet-5-5",
         max_tokens=16000,
         messages=[{"role": "user", "content": prompt}]
     ) as stream:

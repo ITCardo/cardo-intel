@@ -87,7 +87,7 @@ Return ONLY valid JSON with no markdown or explanation."""
 
     full_response = ""
     with client.messages.stream(
-        model="claude-opus-4-8",
+        model="claude-sonnet-5-5",
         max_tokens=4000,
         tools=[WEB_SEARCH_TOOL],
         messages=[{"role": "user", "content": prompt}]
