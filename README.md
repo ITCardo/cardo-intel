@@ -38,7 +38,7 @@ This is an **automated competitive research platform** that:
 ┌─────────────────────────────────────────────────────────────┐
 │ RESEARCH LAYER (Research data in JSON)                      │
 │                                                              │
-│ 4 Brand Research Files (refreshed daily by agents):         │
+│ Brand Research Files (refreshed weekly, per research/brands.json): │
 │ • research/cardo.json      (products, news, social, etc.)  │
 │ • research/sena.json                                        │
 │ • research/asmax.json                                       │
@@ -48,16 +48,12 @@ This is an **automated competitive research platform** that:
 │ • research/gap_analysis.json   (pricing/feature gaps)       │
 │ • research/battles.json        (head-to-head comparisons)   │
 │ • research/product_insights.json (strategic analysis)       │
-│                                                              │
-│ Helper Scripts (optional, for local research):              │
-│ • ig_product_scan.py (scan Instagram for product launches)  │
-│ • apify_scan.py (Apify scraper template)                    │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ### Data Flow
 
-1. **Research agents** (spawned daily or on-demand) gather competitive intelligence
+1. **Research agents** (run weekly via GitHub Actions, or on-demand) gather competitive intelligence
 2. JSON research files are updated with new findings
 3. **build.py** reads all 6 research JSON files
 4. **build.py** embeds data into an HTML template as a JavaScript variable
@@ -145,87 +141,71 @@ Each brand JSON (`cardo.json`, `sena.json`, etc.) contains:
 }
 ```
 
-## Daily Refresh Workflow
+## Weekly Refresh Workflow
 
-The system runs a daily refresh (7:00 AM local, managed by scheduled task):
+The system runs on a GitHub Actions schedule (Mondays at 14:00 UTC, plus a manual "Run workflow" button) — see `.github/workflows/daily-refresh.yml`:
 
-1. **4 Research Agents** run in parallel, each updating one brand JSON:
-   - Scan official product sites for new launches and pricing
-   - Check press coverage (motorcycle magazines, YouTube, blogs)
-   - Scan social media (Instagram, YouTube, Reddit, Facebook groups)
-   - Look for firmware/app updates
-   - Format: `research/{brand}.json`
+1. **determine-brands**: reads `research/brands.json` and builds the list of brands the next job runs against, so adding a new competitor is a config change, never a workflow edit.
 
-2. **Social Media Listener Agent** runs in parallel:
-   - Collects real customer feedback from forums
-   - Appends to `customer_feedback[]` in each brand JSON
-   - Sources: Cardo/Sena/ASMAX/Reso owner Facebook groups + r/motorcyclegear
+2. **research-agents** (one parallel job per brand): each calls Claude with its own server-side web search tool to refresh that brand's product specs, pricing, and recent news from its official site and press coverage. Writes `research/{brand}.json`.
 
-3. **Derived Analysis Update** (manual or auto):
-   - Update `battles.json` if new products or major price changes detected
-   - Update `gap_analysis.json` for pricing/feature gaps
+3. **social-listeners**: two scripts run in sequence —
+   - `social_media_listener.py` collects real public Reddit posts (r/motorcyclegear) via Claude's web search.
+   - `apify_social_listener.py` scrapes real Facebook Group and Instagram posts via Apify actors, then has Claude classify (never invent) sentiment/topic/product for each real post.
+   - Both append to `customer_feedback[]` (and Instagram posts to `social_media.recent_posts[]`) in each brand JSON.
 
-4. **Product Expert Agent** runs after research completes:
-   - Reads ALL research files + battles.json + gap_analysis.json
-   - Regenerates `product_insights.json` from scratch with:
-     - Analyst brief (strategic take)
-     - Executive summary
-     - Market pulse (recent competitive moves)
-     - Product gaps (evidence-grounded, severity-rated)
-     - Strategic recommendations (prioritized by horizon/effort)
-     - Watchlist (key signals to monitor)
-
-5. **Dashboard Build** (build.py):
-   - Python reads all 6 JSON research files
-   - Embeds JSON as a JavaScript variable in the HTML
-   - Validates JavaScript syntax
-   - Outputs `dashboard.html` and `index.html`
-
-6. **Publish to GitHub**:
-   - Git commit with message "Daily data refresh YYYY-MM-DD"
-   - Push to `origin/main` (explicit, not bare push)
-   - GitHub Pages automatically rebuilds and publishes
+4. **publish**: runs after research and social listening complete —
+   - **Product Expert** (`product_expert.py`) reads all research files and regenerates `product_insights.json` from scratch (analyst brief, executive summary, market pulse, gaps, recommendations, watchlist).
+   - **build.py** embeds all research JSON into the HTML template, validates the resulting JavaScript, and writes `dashboard.html` + `index.html`.
+   - Commits and pushes the changes to `main` if anything changed; GitHub Pages then rebuilds and publishes automatically.
 
 ## Files & Directories
 
 ```
 cardo-intel/
 ├── README.md                         # This file
+├── AUTOMATION_SETUP.md               # GitHub Actions secrets/setup reference
 ├── docs/
 │   ├── AGENTS.md                    # Detailed agent descriptions
 │   ├── SETUP.md                     # Installation & local setup
+│   ├── GITHUB_ACTIONS.md            # Workflow reference
 │   └── DATA_SCHEMA.md               # JSON schema reference
 │
-├── build.py                         # (5 min) Build dashboard from JSONs
+├── .github/workflows/
+│   └── daily-refresh.yml            # The weekly GitHub Actions workflow
+│
+├── build.py                         # Build dashboard from JSONs
 ├── dashboard_template.html          # HTML template with embedded JS
 ├── dashboard.html                   # (generated) Final deployed dashboard
 ├── index.html                       # (generated) Same as dashboard.html for GitHub Pages
 │
+├── scripts/
+│   ├── research_agent.py            # Per-brand research (Claude + web search)
+│   ├── social_media_listener.py     # Reddit customer feedback (Claude + web search)
+│   ├── apify_social_listener.py     # Facebook Group + Instagram scraping (Apify) + Claude classification
+│   └── product_expert.py            # Regenerates product_insights.json
+│
 ├── research/
+│   ├── brands.json                  # Brand/site config — add a competitor here, nothing else
 │   ├── cardo.json                   # Brand research data
 │   ├── sena.json
 │   ├── asmax.json
 │   ├── reso.json
 │   ├── gap_analysis.json            # Pricing & feature gap analysis
 │   ├── battles.json                 # Head-to-head comparisons (16 dimensions)
-│   ├── product_insights.json        # Strategic analysis & recommendations
-│   ├── cardo.md, sena.md, ...       # (optional) Notes/references per brand
+│   └── product_insights.json        # Strategic analysis & recommendations
 │
-├── ig_product_scan.py               # (optional) Instagram scraper for product launches
-├── apify_scan.py                    # (optional) Apify-based scraper template
-│
-└── .gitignore                       # Ignores .firecrawl/, .ig_session.json, etc.
+└── .gitignore
 ```
 
 ## Dependencies
 
-- **Python 3.8+** (for build.py)
+- **Python 3.8+** (for build.py and all research scripts)
+- **`anthropic` Python package** (`pip install anthropic`) — the research agents call the Claude API directly, using Claude's own server-side web search tool for browsing (no Firecrawl or other scraping CLI involved)
+- **`keepa` Python package** (only if Amazon pricing via Keepa is configured — optional, gracefully skipped otherwise)
 - **Node.js** (optional, for `node -c` syntax checking during build)
-- **firecrawl CLI** (for daily research agents to scrape the web)
-- **Claude AI SDK / Agent framework** (for spawning research agents)
-- **GitHub CLI** (`gh` command) (for publishing to GitHub Pages)
 
-No npm packages, no server, no database — the dashboard is a single self-contained HTML file.
+No npm packages, no server, no database, no `gh` CLI — the dashboard is a single self-contained HTML file, and publishing is a plain `git push` to `main` that GitHub Pages picks up automatically. Everything runs inside GitHub Actions' own runners; nothing needs to be installed locally except to develop or test scripts by hand.
 
 ## Quick Start
 
@@ -246,11 +226,13 @@ python3 -m http.server 8000
 # → open http://localhost:8000/dashboard.html
 ```
 
-### To refresh the research daily (automatic via scheduled task):
-```bash
-# Manually trigger the daily refresh (normally runs at 7 AM):
-# Use the Claude Code CLI or dashboard to invoke the scheduled task
-# Or run agents manually (see docs/AGENTS.md for details)
+### To refresh the research (automatic weekly, or on demand):
+```
+# Automatic: runs every Monday at 14:00 UTC via GitHub Actions
+# (see .github/workflows/daily-refresh.yml)
+
+# On demand: GitHub repo → Actions tab → "Weekly Competitive Research Refresh"
+# → "Run workflow"
 ```
 
 ## GitHub Deployment
@@ -292,4 +274,4 @@ When updating research data:
 
 ---
 
-**Last updated:** July 8, 2026 | **Data as of:** July 8, 2026
+**Last updated:** September 28, 2026 | **Repository:** https://github.com/ITCardo/cardo-intel
