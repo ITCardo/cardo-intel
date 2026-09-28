@@ -8,11 +8,99 @@ on:
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
-  weekly-refresh:
+  determine-brands:
+    # Reads research/brands.json so the brand list is config-driven: adding a
+    # new competitor to track is just adding an entry there, never a workflow
+    # edit or a new job below.
+    runs-on: ubuntu-latest
+    outputs:
+      brands: ${{ steps.read.outputs.brands }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Read brand slugs from research/brands.json
+        id: read
+        run: |
+          BRANDS=$(python3 -c "import json; print(json.dumps([b['slug'] for b in json.load(open('research/brands.json'))['brands']]))")
+          echo "brands=$BRANDS" >> "$GITHUB_OUTPUT"
+          echo "Tracking brands: $BRANDS"
+
+  research-agents:
+    needs: determine-brands
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        brand: ${{ fromJson(needs.determine-brands.outputs.brands) }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install anthropic keepa
+      - name: Run ${{ matrix.brand }} research agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
+        run: python scripts/research_agent.py ${{ matrix.brand }}
+      - name: Upload updated research/${{ matrix.brand }}.json
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-${{ matrix.brand }}
+          path: research/${{ matrix.brand }}.json
+
+  social-listeners:
+    needs: [determine-brands, research-agents]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install anthropic
+      - name: Download updated research files from research-agents job
+        uses: actions/download-artifact@v4
+        with:
+          pattern: research-*
+          path: research/_incoming
+          merge-multiple: false
+      - name: Merge downloaded research files into research/
+        run: |
+          for d in research/_incoming/research-*; do
+            slug="${d#research/_incoming/research-}"
+            cp "$d/${slug}.json" "research/${slug}.json"
+          done
+          rm -rf research/_incoming
+      - name: Run Social Media Listener (Reddit)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/social_media_listener.py
+      - name: Run Apify Social Listener (Facebook Groups + Instagram)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          APIFY_API_TOKEN: ${{ secrets.APIFY_API_TOKEN }}
+        run: python scripts/apify_social_listener.py
+      - name: Upload merged research/ directory
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-merged
+          path: research/
+
+  publish:
+    needs: social-listeners
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -31,55 +119,14 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.name "claude-cardo-bot"
+          git config --global user.name "cardo-intel-bot"
           git config --global user.email "bot@cardo-intel.local"
 
-      - name: Run Cardo research agent
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
-        run: |
-          python scripts/research_agent.py cardo
-          echo "✅ Cardo research complete"
-
-      - name: Run Sena research agent
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
-        run: |
-          python scripts/research_agent.py sena
-          echo "✅ Sena research complete"
-
-      - name: Run ASMAX research agent
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
-        run: |
-          python scripts/research_agent.py asmax
-          echo "✅ ASMAX research complete"
-
-      - name: Run Reso research agent
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
-        run: |
-          python scripts/research_agent.py reso
-          echo "✅ Reso research complete"
-
-      - name: Run Social Media Listener agent (Reddit)
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          python scripts/social_media_listener.py
-          echo "✅ Social Media Listener complete"
-
-      - name: Run Apify Social Listener (Facebook Groups + Instagram)
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          APIFY_API_TOKEN: ${{ secrets.APIFY_API_TOKEN }}
-        run: |
-          python scripts/apify_social_listener.py
-          echo "✅ Apify Social Listener complete"
+      - name: Download merged research/ directory
+        uses: actions/download-artifact@v4
+        with:
+          name: research-merged
+          path: research
 
       - name: Run Product Expert agent
         env:
@@ -124,9 +171,9 @@ jobs:
         run: |
           echo "Waiting for GitHub Pages to update..."
           sleep 10
-          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://guywein74.github.io/cardo-intel/)
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://itcardo.github.io/cardo-intel/)
           if [ "$STATUS" = "200" ]; then
-            echo "✅ Dashboard is live at https://guywein74.github.io/cardo-intel/"
+            echo "✅ Dashboard is live at https://itcardo.github.io/cardo-intel/"
           else
             echo "⚠️ Dashboard returned status $STATUS (may still be rebuilding)"
           fi
@@ -145,7 +192,7 @@ jobs:
 
   notify-failure:
     runs-on: ubuntu-latest
-    needs: weekly-refresh
+    needs: [determine-brands, research-agents, social-listeners, publish]
     if: failure()
     steps:
       - name: Log failure

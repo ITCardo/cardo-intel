@@ -11,6 +11,14 @@ from anthropic import Anthropic
 
 client = Anthropic()
 
+WEB_SEARCH_TOOL = {"type": "web_search_20250305", "name": "web_search", "max_uses": 8}
+
+def load_brands() -> list:
+    """Brand slugs + Reddit search terms come from research/brands.json so a
+    new brand is picked up here automatically, no code change needed."""
+    cfg = json.loads(pathlib.Path("research/brands.json").read_text())
+    return cfg["brands"]
+
 def load_brand_json(brand: str) -> dict:
     """Load existing brand research JSON."""
     path = pathlib.Path(f"research/{brand}.json")
@@ -23,11 +31,17 @@ def save_brand_json(brand: str, data: dict) -> None:
     path = pathlib.Path(f"research/{brand}.json")
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False))
 
-def run_social_media_listener() -> dict:
+def run_social_media_listener(brands: list) -> dict:
     """
     Run Social Media Listener agent - gathers customer feedback across all brands.
     Returns dict with feedback arrays to append to each brand JSON.
     """
+
+    search_terms_block = "\n".join(
+        f'- "{b["name"]}" + {", ".join(json.dumps(t) for t in b.get("reddit_terms", []))}'
+        for b in brands
+    )
+    output_shape = ",\n  ".join(f'"{b["slug"]}": [...]' for b in brands)
 
     prompt = """You are a Social Media Listener agent gathering real customer feedback across motorcycle intercom brands.
 
@@ -40,10 +54,7 @@ which uses real Apify scraper actors rather than this model's own recall - do no
 generate Facebook content here, it has no way to verify real posts exist.
 
 SEARCH TERMS:
-- "Cardo" + "Packtalk", "Edge", "Pro", "mesh", "battery", "range", "pairing"
-- "Sena" + "60X", "60S", "Spider", "Wave", "mesh", "warranty"
-- "ASMAX" + "F1", "S1", "Hi Max", "mesh", "price", "value"
-- "Reso" + "Pilot", "DuoSync", "camera", "range"
+""" + search_terms_block + """
 
 CRITICAL RULES:
 1. ONLY REAL POSTS - Never fabricate customer feedback, posts, or URLs
@@ -54,23 +65,20 @@ CRITICAL RULES:
 6. Include real URLs or null if not available
 7. Do NOT duplicate existing posts (check dates)
 
-OUTPUT FORMAT: Return JSON object with keys for each brand:
+OUTPUT FORMAT: Return JSON object with one key per brand slug:
 {
-  "cardo": [
-    {
-      "date": "YYYY-MM-DD",
-      "source": "Reddit",
-      "forum": "r/motorcyclegear",
-      "product": "exact product name or General",
-      "sentiment": "positive|negative|mixed|neutral",
-      "topic": "2-5 word label",
-      "summary": "1-3 sentence real paraphrase",
-      "url": "real URL or null"
-    }
-  ],
-  "sena": [...],
-  "asmax": [...],
-  "reso": [...]
+  """ + output_shape + """
+}
+Each brand's array holds objects shaped like:
+{
+  "date": "YYYY-MM-DD",
+  "source": "Reddit",
+  "forum": "r/motorcyclegear",
+  "product": "exact product name or General",
+  "sentiment": "positive|negative|mixed|neutral",
+  "topic": "2-5 word label",
+  "summary": "1-3 sentence real paraphrase",
+  "url": "real URL or null"
 }
 
 Return ONLY valid JSON with no markdown or explanation."""
@@ -81,6 +89,7 @@ Return ONLY valid JSON with no markdown or explanation."""
     with client.messages.stream(
         model="claude-opus-4-8",
         max_tokens=4000,
+        tools=[WEB_SEARCH_TOOL],
         messages=[{"role": "user", "content": prompt}]
     ) as stream:
         for text in stream.text_stream:
@@ -101,14 +110,14 @@ Return ONLY valid JSON with no markdown or explanation."""
             return feedback_data
         else:
             print("⚠️ No JSON found in response, returning empty feedback")
-            return {"cardo": [], "sena": [], "asmax": [], "reso": []}
+            return {b["slug"]: [] for b in brands}
     except json.JSONDecodeError as e:
         print(f"⚠️ Failed to parse feedback JSON: {e}")
-        return {"cardo": [], "sena": [], "asmax": [], "reso": []}
+        return {b["slug"]: [] for b in brands}
 
-def append_feedback_to_brands(feedback_data: dict) -> None:
+def append_feedback_to_brands(feedback_data: dict, brands: list) -> None:
     """Append new feedback to each brand's JSON."""
-    for brand in ["cardo", "sena", "asmax", "reso"]:
+    for brand in (b["slug"] for b in brands):
         brand_json = load_brand_json(brand)
         new_feedback = feedback_data.get(brand, [])
 
@@ -146,11 +155,13 @@ def main():
     print(f"{'='*60}\n")
 
     try:
+        brands = load_brands()
+
         # Gather feedback
-        feedback_data = run_social_media_listener()
+        feedback_data = run_social_media_listener(brands)
 
         # Append to brand JSONs
-        append_feedback_to_brands(feedback_data)
+        append_feedback_to_brands(feedback_data, brands)
 
         print("\n✅ Social Media Listener completed successfully")
 

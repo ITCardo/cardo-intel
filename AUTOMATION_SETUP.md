@@ -46,7 +46,7 @@ git push origin main
 
 ### Option B: Push via Web Browser
 
-1. Go to https://github.com/guywein74/cardo-intel
+1. Go to https://github.com/ITCardo/cardo-intel
 2. Click **+** button, select "Upload files"
 3. Drag and drop:
    - `.github/workflows/daily-refresh.yml`
@@ -63,7 +63,7 @@ The workflow needs API keys to function.
 
 ### Add Anthropic API Key
 
-1. Go to https://github.com/guywein74/cardo-intel/settings/secrets/actions
+1. Go to https://github.com/ITCardo/cardo-intel/settings/secrets/actions
 2. Click **"New repository secret"**
 3. Name: `ANTHROPIC_API_KEY`
 4. Value: Your Claude API key from https://console.anthropic.com
@@ -82,7 +82,7 @@ The workflow needs API keys to function.
 
 ## Step 3: Enable GitHub Actions (if needed)
 
-1. Go to https://github.com/guywein74/cardo-intel/settings/actions
+1. Go to https://github.com/ITCardo/cardo-intel/settings/actions
 2. Ensure "Allow all actions and reusable workflows" is selected
 3. Click **Save**
 
@@ -92,7 +92,7 @@ The workflow needs API keys to function.
 
 ### Check if workflow is active
 
-1. Go to https://github.com/guywein74/cardo-intel/actions
+1. Go to https://github.com/ITCardo/cardo-intel/actions
 2. Look for **"Daily Competitive Research Refresh"** workflow
 3. If you see it, the workflow is installed! ✅
 
@@ -190,7 +190,7 @@ Every day at 9 AM UTC:
 │     └─ Confirms GitHub Pages is live     │
 │                                          │
 │ Dashboard updated at:                    │
-│ https://guywein74.github.io/cardo-intel/ │
+│ https://itcardo.github.io/cardo-intel/ │
 └─────────────────────────────────────────┘
 ```
 
@@ -240,7 +240,7 @@ Every day at 9 AM UTC:
 3. **Manually trigger first run** to verify it works (Step 4)
 4. **Monitor logs** to see agents in action
 5. **Customize schedule** if needed (e.g., different run time)
-6. **Check dashboard** at https://guywein74.github.io/cardo-intel/ for updates
+6. **Check dashboard** at https://itcardo.github.io/cardo-intel/ for updates
 
 ---
 

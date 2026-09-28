@@ -11,11 +11,15 @@ from anthropic import Anthropic
 
 client = Anthropic()
 
+def load_brand_slugs() -> list:
+    cfg = json.loads(pathlib.Path("research/brands.json").read_text())
+    return [b["slug"] for b in cfg["brands"]]
+
 def load_all_research() -> dict:
     """Load all research files for synthesis."""
     data = {}
 
-    for brand in ["cardo", "sena", "asmax", "reso"]:
+    for brand in load_brand_slugs():
         path = pathlib.Path(f"research/{brand}.json")
         if path.exists():
             data[brand] = json.loads(path.read_text())
@@ -52,10 +56,13 @@ def run_product_expert(all_research: dict) -> dict:
             "latest_feedback": customer_feedback[:3],
         }
 
+    slugs = load_brand_slugs()
     research_summary = {
         brand: brand_summary(brand)
-        for brand in ["cardo", "sena", "asmax", "reso"]
+        for brand in slugs
     }
+    brand_names_cfg = json.loads(pathlib.Path("research/brands.json").read_text())["brands"]
+    brand_names = [b["name"] for b in brand_names_cfg]
 
     prompt = f"""You are an experienced senior product manager analyzing competitive intelligence for Cardo Systems.
 
@@ -64,7 +71,7 @@ TODAY'S DATE: {datetime.now().strftime('%Y-%m-%d')}
 RESEARCH DATA SUMMARY:
 {json.dumps(research_summary, indent=2)}
 
-FULL RESEARCH AVAILABLE: Cardo, Sena, ASMAX, Reso brand data with products, news, press, social, customer feedback
+FULL RESEARCH AVAILABLE: {", ".join(brand_names)} brand data with products, news, press, social, customer feedback
 GAP ANALYSIS AVAILABLE: Strategic gaps identified
 BATTLES AVAILABLE: Head-to-head comparisons
 
@@ -93,7 +100,7 @@ OUTPUT FORMAT: Return ONLY valid JSON (no markdown) with this exact structure:
   "analyst_note": "2-4 sentence opinionated brief",
   "executive_summary": "2-3 paragraphs of strategic analysis",
   "market_pulse": [
-    {{"date": "YYYY-MM-DD", "brand": "Cardo|Sena|ASMAX|Reso", "development": "what happened", "implication": "why it matters"}},
+    {{"date": "YYYY-MM-DD", "brand": "{'|'.join(brand_names)}", "development": "what happened", "implication": "why it matters"}},
     ...
   ],
   "gaps": [

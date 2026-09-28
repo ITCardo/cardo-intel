@@ -6,7 +6,11 @@ from datetime import datetime, timezone
 root = pathlib.Path(__file__).parent
 research = root / "research"
 
-brands = [json.loads((research / f"{n}.json").read_text()) for n in ("cardo", "sena", "asmax", "reso")]
+# Brand list is config-driven (research/brands.json) so adding a new competitor
+# to track never requires touching build.py or any other script.
+brand_slugs = [b["slug"] for b in json.loads((research / "brands.json").read_text())["brands"]]
+brands = [json.loads((research / f"{slug}.json").read_text()) for slug in brand_slugs
+          if (research / f"{slug}.json").exists()]
 gap = json.loads((research / "gap_analysis.json").read_text())
 battles = json.loads((research / "battles.json").read_text())
 insights_path = research / "product_insights.json"

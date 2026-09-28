@@ -357,13 +357,13 @@ claude schedule run daily-competitor-research-refresh
 **Fix:** Let it finish. If it's stuck >10 minutes, kill and rerun.
 
 ### GitHub Pages is stale (live site didn't update)
-**Symptom:** You pushed code but https://guywein74.github.io/cardo-intel/ shows old data
+**Symptom:** You pushed code but https://itcardo.github.io/cardo-intel/ shows old data
 **Root cause:** Often a bare `git push` that accidentally pushed to the wrong branch (e.g., `daily-refresh-2026-07-08` instead of `main`)
 **Fix:**
 1. Verify local branch: `git status` → should show "On branch main"
 2. Verify remote: `git push origin HEAD:main` (explicit target, not bare push)
-3. Check GitHub Pages status: `gh api repos/guywein74/cardo-intel/pages/builds/latest`
-4. Force rebuild if stuck: `gh api repos/guywein74/cardo-intel/pages/builds -X POST`
+3. Check GitHub Pages status: `gh api repos/ITCardo/cardo-intel/pages/builds/latest`
+4. Force rebuild if stuck: `gh api repos/ITCardo/cardo-intel/pages/builds -X POST`
 
 ---
 

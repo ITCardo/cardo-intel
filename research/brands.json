@@ -1,0 +1,55 @@
+{
+  "_comment": "Single source of truth for which competitor brands the pipeline tracks. To add a new brand to scrape: (1) add an entry here, (2) create an empty research/<slug>.json (copy the shape of an existing brand file, or just {}), (3) add its ASINs to research/keepa_asins.json if you want Amazon pricing tracked. No other file needs to change — build.py, the research agents, and the GitHub Actions workflow all read this list dynamically.",
+  "brands": [
+    {
+      "slug": "cardo",
+      "name": "Cardo Systems",
+      "website": "https://cardosystems.com",
+      "instagram": "cardosystems",
+      "facebook": "CardoSystems",
+      "youtube": "@CardoSystemsGlobal",
+      "facebook_groups": [
+        { "url": "https://www.facebook.com/groups/1847605508861922/", "name": "Cardo Systems PackTalk and Edge Community" }
+      ],
+      "reddit_terms": ["Cardo Packtalk", "Cardo Edge", "Cardo mesh battery", "Cardo pairing"]
+    },
+    {
+      "slug": "sena",
+      "name": "Sena",
+      "website": "https://www.sena.com",
+      "instagram": "senabluetooth",
+      "facebook": "SenaBluetooth",
+      "youtube": "@SenaBluetooth",
+      "facebook_groups": [
+        { "url": "https://www.facebook.com/groups/536803186737125/", "name": "Sena Bluetooth Users Group" },
+        { "url": "https://www.facebook.com/groups/860066485997389/", "name": "Sena 60s, 60s EVO, and 60x Users" }
+      ],
+      "reddit_terms": ["Sena 60X", "Sena 60S", "Sena Spider", "Sena Wave mesh", "Sena warranty"]
+    },
+    {
+      "slug": "asmax",
+      "name": "ASMAX",
+      "website": "https://asmaxworld.com",
+      "instagram": "asmaxworld_official",
+      "facebook": "ASMAX",
+      "youtube": "@asmaxworld",
+      "facebook_groups": [
+        { "url": "https://www.facebook.com/groups/1275973273584175/", "name": "Asmax F1 intercom user community" },
+        { "url": "https://www.facebook.com/groups/795939769924022/", "name": "Asmax Intercom Philippines User" }
+      ],
+      "reddit_terms": ["ASMAX F1", "ASMAX S1", "ASMAX Hi Max", "ASMAX mesh", "ASMAX value"]
+    },
+    {
+      "slug": "reso",
+      "name": "Reso",
+      "website": "https://resosport.com",
+      "instagram": "resopilotglobal",
+      "facebook": "Reso",
+      "youtube": "@RESOMoto",
+      "facebook_groups": [
+        { "url": "https://www.facebook.com/groups/1004405754956044/", "name": "Reso Pilot Pro / Neo Group Ph" }
+      ],
+      "reddit_terms": ["Reso Pilot", "Reso DuoSync", "Reso camera", "Reso range"]
+    }
+  ]
+}

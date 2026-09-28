@@ -181,7 +181,7 @@ Each step logs its progress:
 ✅ Commit and push changes
    (Pushed to main branch)
 ✅ Verify deployment
-   ✅ Dashboard is live at https://guywein74.github.io/cardo-intel/
+   ✅ Dashboard is live at https://itcardo.github.io/cardo-intel/
 ```
 
 ### If Run Fails

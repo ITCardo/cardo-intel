@@ -3,7 +3,7 @@
 **Version:** 2.0 (functional & user-experience specification)
 **Date:** July 15, 2026
 **Status:** Draft for review
-**Reference product:** Cardo Competitive Intelligence dashboard (live at guywein74.github.io/cardo-intel)
+**Reference product:** Cardo Competitive Intelligence dashboard (live at itcardo.github.io/cardo-intel)
 
 ---
 

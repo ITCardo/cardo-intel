@@ -23,6 +23,28 @@ from keepa_scan import fetch_brand_pricing  # noqa: E402  (needs sys.path tweak 
 # Initialize Anthropic client
 client = Anthropic()
 
+# Server-side web search tool: without this, the model has no way to actually
+# browse the web and can only report from training data / the existing JSON
+# passed in the prompt. max_uses caps searches per call as a cost guardrail.
+WEB_SEARCH_TOOL = {"type": "web_search_20250305", "name": "web_search", "max_uses": 8}
+
+def load_brand_registry() -> dict:
+    """Load research/brands.json -> {slug: {name, website, handles}}. Adding a
+    new brand to research is just adding an entry there, no code change here."""
+    cfg = json.loads(pathlib.Path("research/brands.json").read_text())
+    return {
+        b["slug"]: {
+            "name": b["name"],
+            "website": b["website"],
+            "handles": {
+                "instagram": b.get("instagram"),
+                "facebook": b.get("facebook"),
+                "youtube": b.get("youtube"),
+            },
+        }
+        for b in cfg["brands"]
+    }
+
 def load_existing_json(brand: str) -> dict:
     """Load existing research JSON for a brand."""
     path = pathlib.Path(f"research/{brand}.json")
@@ -140,52 +162,7 @@ def run_research_agent(brand: str) -> dict:
     Returns the merged, updated research JSON.
     """
     existing_data = load_existing_json(brand)
-
-    # Determine brand-specific details
-    brand_details = {
-        "cardo": {
-            "name": "Cardo Systems",
-            "website": "https://cardosystems.com",
-            "handles": {
-                "instagram": "cardosystems",
-                "facebook": "CardoSystems",
-                "youtube": "@CardoSystemsGlobal",
-                "facebook_group": "Cardo Systems Community"
-            }
-        },
-        "sena": {
-            "name": "Sena",
-            "website": "https://www.sena.com",
-            "handles": {
-                "instagram": "senabluetooth",
-                "facebook": "SenaBluetooth",
-                "youtube": "@SenaBluetooth",
-                "facebook_group": "Sena Bluetooth Users"
-            }
-        },
-        "asmax": {
-            "name": "ASMAX",
-            "website": "https://asmaxworld.com",
-            "handles": {
-                "instagram": "asmaxworld_official",
-                "facebook": "ASMAX",
-                "youtube": "@asmaxworld",
-                "facebook_group": "ASMAX Users"
-            }
-        },
-        "reso": {
-            "name": "Reso",
-            "website": "https://resosport.com",
-            "handles": {
-                "instagram": "resoglobal",
-                "facebook": "Reso",
-                "youtube": "@RESOMoto",
-                "facebook_group": "Reso Community"
-            }
-        }
-    }
-
-    details = brand_details.get(brand, {})
+    details = load_brand_registry().get(brand, {})
     existing_product_names = [p.get("name") for p in existing_data.get("products", [])]
 
     prompt = f"""You are a competitive intelligence analyst researching {details.get('name', brand)}.
@@ -259,6 +236,7 @@ Return the delta JSON now."""
     with client.messages.stream(
         model="claude-opus-4-8",
         max_tokens=8000,
+        tools=[WEB_SEARCH_TOOL],
         messages=[{"role": "user", "content": prompt}]
     ) as stream:
         for text in stream.text_stream:
@@ -329,13 +307,14 @@ def validate_research_data(brand: str, data: dict) -> bool:
         return False
 
 def main():
+    valid_brands = list(load_brand_registry().keys())
     if len(sys.argv) < 2:
-        print("Usage: python research_agent.py <brand> (cardo|sena|asmax|reso)")
+        print(f"Usage: python research_agent.py <brand> ({'|'.join(valid_brands)})")
         sys.exit(1)
 
     brand = sys.argv[1].lower()
-    if brand not in ["cardo", "sena", "asmax", "reso"]:
-        print(f"Invalid brand: {brand}")
+    if brand not in valid_brands:
+        print(f"Invalid brand: {brand}. Valid brands (from research/brands.json): {valid_brands}")
         sys.exit(1)
 
     print(f"\n{'='*60}")

@@ -22,7 +22,7 @@ This guide covers setting up the Cardo competitive intelligence dashboard on you
 
 ### Option A: Clone from GitHub (if already pushed)
 ```bash
-git clone https://github.com/guywein74/cardo-intel.git
+git clone https://github.com/ITCardo/cardo-intel.git
 cd cardo-intel
 ```
 

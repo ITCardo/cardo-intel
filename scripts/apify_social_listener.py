@@ -23,47 +23,19 @@ from anthropic import Anthropic
 client = Anthropic()
 APIFY_TOKEN = os.environ.get("APIFY_API_TOKEN")
 
-# Facebook Groups and Instagram profiles verified real and accessible on 2026-07-09.
-# Add more groups per brand here as they're discovered - the scraper accepts a list.
-BRAND_SOURCES = {
-    "cardo": {
-        "facebook_groups": [
-            {"url": "https://www.facebook.com/groups/1847605508861922/", "name": "Cardo Systems PackTalk and Edge Community"},
-        ],
-        "instagram": "https://www.instagram.com/cardosystems/",
-    },
-    "sena": {
-        "facebook_groups": [
-            {"url": "https://www.facebook.com/groups/536803186737125/", "name": "Sena Bluetooth Users Group"},
-            {"url": "https://www.facebook.com/groups/860066485997389/", "name": "Sena 60s, 60s EVO, and 60x Users"},
-        ],
-        "instagram": "https://www.instagram.com/senabluetooth/",
-    },
-    "asmax": {
-        "facebook_groups": [
-            {"url": "https://www.facebook.com/groups/1275973273584175/", "name": "Asmax F1 intercom user community"},
-            {"url": "https://www.facebook.com/groups/795939769924022/", "name": "Asmax Intercom Philippines User"},
-        ],
-        "instagram": "https://www.instagram.com/asmaxworld_official/",
-    },
-    "reso": {
-        "facebook_groups": [
-            {"url": "https://www.facebook.com/groups/1004405754956044/", "name": "Reso Pilot Pro / Neo Group Ph"},
-        ],
-        # RENAMED (corrected 2026-09-07 by the user, confirmed via direct browser
-        # check): the old handle @resoglobal is dead (confirmed 2026-09-07, both
-        # apify/instagram-scraper and a live browser check returned Instagram's
-        # "page isn't available" error - this explains access failures already
-        # noted in research/reso.json's social_media.instagram.notes on
-        # 2026-08-29/08-31). Reso has moved to @resopilotglobal (bio "RESOPilot" /
-        # "Adventure in Sync", links resopilot.com, matching the brand's current
-        # site branding) - confirmed live: 37 posts, 1,194 followers. Use this
-        # handle going forward; the old @resoglobal URL still appears correctly
-        # in historical recent_news/recent_posts entries dated before the rename
-        # and should stay as-is there (it was accurate when written).
-        "instagram": "https://www.instagram.com/resopilotglobal/",
-    },
-}
+def _load_brand_sources() -> dict:
+    """Build the {slug: {facebook_groups, instagram}} map from research/brands.json
+    so adding a new brand to scrape never requires touching this script."""
+    cfg = json.loads(pathlib.Path("research/brands.json").read_text())
+    return {
+        b["slug"]: {
+            "facebook_groups": b.get("facebook_groups", []),
+            "instagram": f"https://www.instagram.com/{b['instagram']}/" if b.get("instagram") else None,
+        }
+        for b in cfg["brands"]
+    }
+
+BRAND_SOURCES = _load_brand_sources()
 
 # Window wider than the daily cadence so a missed/failed run doesn't create a gap;
 # dedup by URL makes re-scraping the same posts harmless.
@@ -109,6 +81,8 @@ def scrape_facebook_groups(brand: str) -> list:
 
 def scrape_instagram(brand: str) -> list:
     profile_url = BRAND_SOURCES[brand]["instagram"]
+    if not profile_url:
+        return []
     print(f"🔄 Scraping Instagram for {brand.upper()}...")
     items = call_apify_actor(
         "apify/instagram-scraper",
@@ -246,7 +220,7 @@ def main():
         print("❌ APIFY_API_TOKEN not set - skipping (this is a hard requirement, not optional)")
         sys.exit(1)
 
-    for brand in ["cardo", "sena", "asmax", "reso"]:
+    for brand in BRAND_SOURCES:
         try:
             path = pathlib.Path(f"research/{brand}.json")
             data = json.loads(path.read_text())

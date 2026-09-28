@@ -6,3 +6,4 @@ out/
 .env.ig
 apify_scan.py
 .env.keepa
+__pycache__/
