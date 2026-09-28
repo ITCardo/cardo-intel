@@ -12,7 +12,7 @@
     "Battery life": "Rated talk time hours per charge",
     "Charging": "Fast-charge and wireless-charging support",
     "Waterproofing": "Published IP rating (IP67/IPX7 = best)",
-    "Cross-brand pairing": "Bridging/pairing with other brands’ units",
+    "Cross-brand pairing": "Bridging/pairing with other brands' units",
     "Voice / AI": "Voice commands and AI-assistant capability (excludes AI noise-cancellation)",
     "Software & OTA": "Companion app and over-the-air feature updates",
     "Safety features": "Crash detection, SOS/emergency alerts",
@@ -1222,10 +1222,10 @@
               "good",
               "soso"
             ],
-            "note": "Both Cardo and Sena ran Aug 2026 sitewide sales: Freecom 2x dropped to $178.47 street, Spider RT1/ST1 (MSRP $239) dropped to $179.25 — now essentially at price parity despite Spider's mesh capability; Freecom 2x still lacks mesh; APEX launches at $265 MSRP (no street discount confirmed yet)",
+            "note": "Both Cardo and Sena ran Aug 2026 sitewide sales: Freecom 2x dropped to $178.47 street, Spider RT1/ST1 (MSRP $239) dropped to $179.25 — now essentially at price parity despite Spider's mesh capability; Freecom 2x still lacks mesh; APEX launches at $265 MSRP (no street discount confirmed yet) | 2026-09-28: Spider RT1/ST1 Amazon street $226.89",
             "values": [
               "$229.46",
-              "$227.95",
+              "$226.89",
               "$155",
               "$265"
             ]
@@ -1618,9 +1618,9 @@
               "good",
               "soso"
             ],
-            "note": "50R's MSRP is back to $375 after a temporary $339 reading in mid-Aug 2026 was corrected; its Aug 2026 sitewide-sale street price is $281.25. Freecom 4x's own deeper Labor Day discount ($220.47) now undercuts 50R by about $61, reversing the brief 'Sena undercuts Freecom' read. ASMAX F1 Pro remains cheapest overall; new rival APEX PLUS launches at $325, pricier than both",
+            "note": "50R's MSRP is back to $375 after a temporary $339 reading in mid-Aug 2026 was corrected; its Aug 2026 sitewide-sale street price is $281.25. Freecom 4x's own deeper Labor Day discount ($220.47) now undercuts 50R by about $61, reversing the brief 'Sena undercuts Freecom' read. ASMAX F1 Pro remains cheapest overall; new rival APEX PLUS launches at $325, pricier than both | 2026-09-28: Freecom 4x street $283.46",
             "values": [
-              "$277.99",
+              "$283.46",
               "$337.50",
               "$171",
               "$325"
@@ -2072,10 +2072,10 @@
               "soso",
               "soso"
             ],
-            "note": "Neo most expensive mid-mesh; 50S pulled back down to $284.25 street via a sitewide Sena sale (Aug 29 2026), from the $320 recorded on Aug 25 - now again cheaper than Spider X Slim's $299, though still pricier than Reso's $269",
+            "note": "Neo most expensive mid-mesh; 50S pulled back down to $284.25 street via a sitewide Sena sale (Aug 29 2026), from the $320 recorded on Aug 25 - now again cheaper than Spider X Slim's $299, though still pricier than Reso's $269 | 2026-09-28: Neo street $319.99 (Amazon); 50S Amazon street down to $275.05, ~$45 under Neo and within $6 of Reso Pilot Neo",
             "values": [
-              "$322.93",
-              "$320.40",
+              "$319.99",
+              "$275.05",
               "$269",
               "$269",
               "$299"
@@ -2636,15 +2636,15 @@
               "good",
               "good"
             ],
-            "note": "Pro most expensive on market post-2025 hikes; 60S EVO/60X/Reso/ASMAX all undercut, and 60S (Amazon deal price back down to $360 as of Aug 31 2026, after briefly rising to $378 on Aug 29) still undercuts hardest of the Sena trio",
+            "note": "Pro most expensive on market post-2025 hikes; 60S EVO/60X/Reso/ASMAX all undercut, and 60S (Amazon deal price back down to $360 as of Aug 31 2026, after briefly rising to $378 on Aug 29) still undercuts hardest of the Sena trio | 2026-09-28: 60S Amazon street $373.77 (deal smaller), 60X $430.51, F1s $118.99 with coupon",
             "values": [
               "$449.95",
               "$395.95",
               "$459",
-              "$459",
-              "$357.95",
+              "$430.51",
+              "$373.77",
               "$359",
-              "$125.99"
+              "$118.99"
             ]
           }
         ]
@@ -3032,11 +3032,11 @@
               "good",
               "soso"
             ],
-            "note": "F1s cheapest; 60S Amazon deal price back down to $360 as of Aug 31 2026 (after briefly rising to $378 on Aug 29) - undercuts both Edge and Reso by a healthy margin again; Reso $399 DTC",
+            "note": "F1s cheapest; 60S Amazon deal price back down to $360 as of Aug 31 2026 (after briefly rising to $378 on Aug 29) - undercuts both Edge and Reso by a healthy margin again; Reso $399 DTC | 2026-09-28: 60S Amazon street $373.77 (deal narrowed, still ~$22 under Edge); F1s $118.99 with coupon",
             "values": [
               "$395.95",
-              "$357.95",
-              "$125.99",
+              "$373.77",
+              "$118.99",
               "$359"
             ]
           }
@@ -3971,10 +3971,10 @@
               "good",
               "good"
             ],
-            "note": "GTS $1,299 (MSRP raised, launch slipped to late 2026) is ~2x the Sena field; Phantom from $549. Impulse's MSRP corrected to $599 (was mistakenly shown at a stale $479); a sitewide Sena sale (Aug 29 2026) now puts confirmed street prices at $449.25 for Impulse and $314.25 for Surge, both first-time confirmations for these helmets",
+            "note": "GTS $1,299 (MSRP raised, launch slipped to late 2026) is ~2x the Sena field; Phantom from $549. Impulse's MSRP corrected to $599 (was mistakenly shown at a stale $479); a sitewide Sena sale (Aug 29 2026) now puts confirmed street prices at $449.25 for Impulse and $314.25 for Surge, both first-time confirmations for these helmets | 2026-09-28: Specter Amazon street $626.93 (deal ended)",
             "values": [
               "$1299",
-              "$610",
+              "$626.93",
               "$549",
               "$599",
               "$599",
@@ -4253,10 +4253,10 @@
               "soso",
               "good"
             ],
-            "note": "Outlander now $580 street (was $599 MSRP, briefly $565) - about $220 cheaper than Venture's $799.95 MSRP; Dancing the Polka's Aug 2026 review also questioned Venture's value vs a standalone Leatt Moto 8.5 + Packtalk Edge",
+            "note": "Outlander now $580 street (was $599 MSRP, briefly $565) - about $220 cheaper than Venture's $799.95 MSRP; Dancing the Polka's Aug 2026 review also questioned Venture's value vs a standalone Leatt Moto 8.5 + Packtalk Edge | 2026-09-28: Outlander Amazon street $565.00",
             "values": [
               "$799.95",
-              "$577.78"
+              "$565.00"
             ]
           }
         ]

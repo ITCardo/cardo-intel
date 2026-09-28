@@ -209,7 +209,7 @@
     },
     {
       "title": "OTA value delivery",
-      "detail": "Mesh-Boost added 31-rider DMC, Public Mesh, Remote Grouping and VoIP intercom free — strongest post-purchase value story in the market."
+      "detail": "Mesh-Boost added 31-rider DMC, Public Mesh and Remote Grouping free (the promised Cellular Intercom did not ship in the Aug 2026 GA) — strongest post-purchase value story in the market."
     },
     {
       "title": "Safety leadership",
@@ -236,8 +236,8 @@
     },
     {
       "priority": 2,
-      "title": "Answer Wave by naming what already exists",
-      "detail": "Cardo already ships VoIP cellular intercom inside Mesh-Boost. Give it a name, a launch, and app UX parity with Sena Wave's friends-based groups."
+      "title": "Answer Wave: ship or retire the Cellular Intercom promise",
+      "detail": "Cellular Intercom was announced for Mesh-Boost (Nov 2024) but is absent from the 2026-08-17 GA changelog (fw 5.4 / Connect 9.1) on Packtalk. Either ship a named data-network intercom mode with app UX parity with Sena Wave's friends-based groups, or publicly retire the promise. (Corrected 2026-09-28: previously claimed it already shipped.)"
     },
     {
       "priority": 3,
