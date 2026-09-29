@@ -4,17 +4,21 @@ Complete schema documentation for all research JSON files in the Cardo competiti
 
 ## Overview
 
-Six JSON files drive the dashboard:
+`research/brands.json` is the actual source of truth for which brands exist — the table below lists the four it currently defines (cardo, sena, asmax, reso), but adding a brand there automatically adds a new `research/<slug>.json` to this list (see the README's "Adding a new brand" section). These files, plus a few supporting ones, drive the dashboard:
 
-| File | Purpose | Scope | Agent |
+| File | Purpose | Scope | Written by |
 |------|---------|-------|-------|
-| `research/cardo.json` | Cardo Systems competitive data | Brand details, products, news, social | Cardo Research Agent |
-| `research/sena.json` | Sena competitive data | Brand details, products, news, social | Sena Research Agent |
-| `research/asmax.json` | ASMAX competitive data | Brand details, products, news, social | ASMAX Research Agent |
-| `research/reso.json` | Reso competitive data | Brand details, products, news, social | Reso Research Agent |
+| `research/brands.json` | Which brands the pipeline tracks | Slug, name, website, social handles, Facebook groups, Reddit search terms | Manual (config) |
+| `research/cardo.json` | Cardo Systems competitive data | Brand details, products, news, social, firmware, feedback, Amazon pricing | `scripts/research_agent.py cardo` + both social listener scripts |
+| `research/sena.json` | Sena competitive data | Same shape as cardo.json | `scripts/research_agent.py sena` + both social listener scripts |
+| `research/asmax.json` | ASMAX competitive data | Same shape as cardo.json | `scripts/research_agent.py asmax` + both social listener scripts |
+| `research/reso.json` | Reso competitive data | Same shape as cardo.json | `scripts/research_agent.py reso` + both social listener scripts |
+| `research/keepa_asins.json` | Which Amazon ASINs to track, per brand | Config only | Manual (config) |
+| `research/keepa_pricing.json` | Standalone Keepa dump | Optional — only produced if you run `scripts/keepa_scan.py` directly; the automated pipeline writes pricing straight into each brand's `amazon_pricing` key instead | `scripts/keepa_scan.py` (manual/standalone use) |
 | `research/gap_analysis.json` | Cardo's strategic gaps | Feature gaps, pricing gaps, severity | Manual or analyst |
 | `research/battles.json` | Head-to-head comparisons | 16-dimension capability matrix | Manual or analyst |
-| `research/product_insights.json` | Strategic analysis | Market pulse, gaps, recommendations, watchlist | Product Expert Agent |
+| `research/product_insights.json` | Strategic analysis | Market pulse, gaps, recommendations, watchlist | `scripts/product_expert.py` |
+| `research/research_summaries.json` | Human-readable per-brand summary blurbs (mirrors the `.md` notes files) | Free text shown on the dashboard | Manual/analyst |
 
 ---
 
@@ -188,9 +192,27 @@ All four brand files share the same schema. Here's the complete structure:
     "Official Instagram, Facebook, YouTube",
     "r/motorcyclegear subreddit",
     "Motorcycle press (MCN, webBikeWorld, FortNine, Bennetts)"
-  ]
+  ],
+
+  "amazon_pricing": {
+    "fetched_at": "2026-07-13T15:04:57.126245+00:00",
+    "domain": "US",
+    "products": [
+      {
+        "asin": "B09MQ7R1D8",
+        "title": "Cardo Packtalk Pro...",
+        "current": { "amazon": 98.95, "new": 98.95, "buybox": null, "list_price": null },
+        "sales_rank": 733,
+        "rating": 4.5,
+        "review_count": 1203,
+        "keepa_url": "https://keepa.com/#!product/1-B09MQ7R1D8"
+      }
+    ]
+  }
 }
 ```
+
+`amazon_pricing` only appears if `KEEPA_API_KEY` was configured when the research agent last ran for that brand, and only covers ASINs listed for that brand in `research/keepa_asins.json`. If Keepa isn't configured, this key is simply absent or stale (left as whatever it was on the last successful fetch) — `build.py` and the dashboard handle that gracefully.
 
 ### Field Definitions
 
@@ -221,7 +243,8 @@ All four brand files share the same schema. Here's the complete structure:
 | `firmware_updates[]` | object[] | | Firmware/app release history |
 | `current_software` | object | ✓ | Current companion app version |
 | `product_firmware[]` | object[] | | Per-product current firmware state |
-| `customer_feedback[]` | object[] | ✓ | Real customer posts from forums |
+| `customer_feedback[]` | object[] | ✓ | Real customer posts from forums (Reddit, Facebook Group, Instagram) |
+| `amazon_pricing` | object | | Keepa snapshot for this brand's tracked ASINs; absent/stale if `KEEPA_API_KEY` isn't configured |
 
 ### Product Dimensions Object
 
@@ -434,7 +457,7 @@ All JSON files must pass these checks:
 - ✓ Valid JSON (no syntax errors)
 - ✓ No smart quotes (use straight ASCII `"`, not `"` or `"`)
 - ✓ All dates in `YYYY-MM-DD` format
-- ✓ All URLs are real and working (verify via firecrawl or browser)
+- ✓ All URLs are real and working (verify with a browser — there's no scraping-tool-specific verification step)
 - ✓ No hardcoded personal data (API keys, passwords, private emails)
 
 ### Brand JSON Rules
@@ -486,4 +509,4 @@ git commit -m "Daily data refresh $(date +%Y-%m-%d)"
 
 ---
 
-**Last updated:** July 8, 2026
+**Last updated:** September 29, 2026

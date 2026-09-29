@@ -252,13 +252,13 @@ The dashboard is deployed to GitHub Pages automatically when code is pushed to `
 
 3. **AI agents for research** — Claude AI agents gather and synthesize data, reducing manual work while maintaining accuracy through verification.
 
-4. **Daily refresh** — Scheduled task keeps competitive intelligence current without manual intervention.
+4. **Weekly refresh** — GitHub Actions keeps competitive intelligence current without manual intervention.
 
 5. **Emphasis on evidence** — Gaps, recommendations, and insights are grounded in real product specs, customer feedback, and press coverage. No speculation.
 
 ## Limitations & Future Work
 
-- Instagram/Facebook/TikTok data relies on web search and browser verification (these platforms block API access)
+- Facebook Group and Instagram data comes via Apify's hosted scraping actors (`scripts/apify_social_listener.py`), which can still miss member-gated groups or brands with a thin Instagram presence; Reddit is covered separately via Claude's web search
 - Tier-1 press coverage for ASMAX and Reso is minimal (mostly regional outlets)
 - Some Chinese brand websites are paywalled or behind Great Firewall
 - Future: automatic price tracking, warranty claim analysis, retail distribution monitoring

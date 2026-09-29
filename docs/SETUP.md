@@ -4,12 +4,12 @@ This guide covers setting up the Cardo competitive intelligence dashboard on you
 
 ## System Requirements
 
-- **Python 3.8+** (for build.py)
-- **Node.js 12+** (optional, for JavaScript syntax checking)
+- **Python 3.8+** (for `build.py` and all scripts in `scripts/`)
+- **Node.js** (optional — only used to syntax-check the dashboard's embedded JavaScript during build)
 - **Git** (for version control and GitHub integration)
-- **GitHub CLI** (`gh` command) (for publishing to GitHub Pages)
 - **Bash/Zsh** (Unix-like shell)
-- **firecrawl CLI** (for web research agents)
+
+That's it — there's no Firecrawl CLI, no GitHub CLI (`gh`), and no separate "Claude CLI". The research scripts call the Anthropic API directly through the `anthropic` Python package, and publishing is a plain `git push`.
 
 ### Operating Systems Tested
 - macOS 12+ (Monterey or later)
@@ -46,88 +46,52 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
 ### 2b. Install Python dependencies
-The build script (`build.py`) has **no external Python dependencies** beyond the standard library. However, if you're running research agents or scraper scripts locally, install:
+`build.py` itself has **no external dependencies** beyond the standard library. The research scripts need two packages:
 
 ```bash
-# For research agents (if running locally, normally run via Claude)
 pip install --upgrade pip
-# No additional packages needed for build.py itself
-
-# (Optional) If using Instagram scraper locally:
-# pip install instagrapi
+pip install anthropic keepa
 ```
+
+- `anthropic` — used by every script that calls Claude (`research_agent.py`, `social_media_listener.py`, `apify_social_listener.py`, `product_expert.py`)
+- `keepa` — used by `scripts/keepa_scan.py` (imported by `research_agent.py`) to pull Amazon pricing/rank data; only needed if you're using `KEEPA_API_KEY`
+
+`apify_social_listener.py` talks to Apify over plain HTTPS (`urllib.request`) — no Apify SDK required.
 
 ---
 
-## Step 3: Install Firecrawl CLI
+## Step 3: Set Up API Keys
 
-Firecrawl is the web scraping tool used by research agents to gather competitive intelligence.
+Three services are involved. All are read from environment variables — never hardcode a key in a script.
 
-### 3a. Install firecrawl
 ```bash
-# Via npm (Node.js package manager)
-npm install -g @firecrawl/cli
-
-# Or via homebrew (macOS)
-brew install firecrawl-cli
-
-# Verify installation:
-firecrawl --version
+# Add to ~/.bashrc, ~/.zshrc, or a git-ignored .env file:
+export ANTHROPIC_API_KEY="sk-ant-..."     # required — get from https://console.anthropic.com
+export KEEPA_API_KEY="..."                # optional — get from https://keepa.com (account settings → API)
+export APIFY_API_TOKEN="..."              # required by apify_social_listener.py — get from https://console.apify.com (Settings → Integrations)
 ```
 
-### 3b. Authenticate with Firecrawl
-```bash
-# Set your Firecrawl API key (get from firecrawl.dev)
-export FIRECRAWL_API_KEY="your-api-key-here"
-
-# Test authentication:
-firecrawl search "motorcycle intercom" --limit 1
-```
+`ANTHROPIC_API_KEY` is required for every script. `KEEPA_API_KEY` is genuinely optional — Amazon pricing data is simply skipped if it's unset. `APIFY_API_TOKEN` is *not* optional as `apify_social_listener.py` is currently written: it exits with an error if missing (see `docs/AGENTS.md` and `AUTOMATION_SETUP.md` for what that breaks downstream in the GitHub Actions pipeline).
 
 ---
 
-## Step 4: Set Up GitHub Integration (Optional, for publishing)
+## Step 4: Set Up GitHub Integration (for publishing)
 
-### 4a. Install GitHub CLI
-```bash
-# macOS
-brew install gh
-
-# Ubuntu/Debian
-sudo apt-get install gh
-
-# Windows (via scoop)
-scoop install gh
-
-# Verify:
-gh --version
-```
-
-### 4b. Authenticate with GitHub
-```bash
-gh auth login
-# Follow prompts to authorize (browser flow)
-```
-
-### 4c. Create a GitHub repository (if not already done)
+### 4a. Add the GitHub remote (if not already done)
 ```bash
 # From inside your cardo-intel directory
-git remote add origin https://github.com/YOUR_USERNAME/cardo-intel.git
+git remote add origin https://github.com/ITCardo/cardo-intel.git
 git branch -M main
 ```
 
-### 4d. Enable GitHub Pages
+### 4b. Push and enable Pages
 ```bash
-# Push initial commit
 git add .
 git commit -m "Initial commit"
 git push -u origin main
-
-# Enable Pages (via CLI)
-gh repo edit --enable-issues --enable-projects --enable-wiki
-
-# Or manually in GitHub: Settings → Pages → Source = main branch, root folder
 ```
+
+Then in GitHub: **Settings → Pages** → Source = `main` branch, `/ (root)` folder. No CLI step needed — this is a one-time setting in the repo's web UI.
 
 ---
 
@@ -155,69 +119,24 @@ python3 -m http.server 8000
 
 ### 5c. Validate JavaScript (optional, requires Node.js)
 ```bash
-# Extract and validate the embedded JavaScript
-sed -n '/<script>/,/<\/script>/p' dashboard.html | sed '1d;$d' > /tmp/check.js
-node -c /tmp/check.js
-# Output: "No syntax errors detected" (from Node.js)
+python3 scripts/validate_dashboard_js.py
 ```
+This is the same check the GitHub Actions `publish` job runs before committing.
 
 ---
 
-## Step 6: Set Up Claude AI Integration (for agents)
+## Step 6: Run the Research Scripts Locally
 
-Normally, research agents run via Claude Code or a scheduled task. To run them locally:
+With the environment variables from Step 3 set:
 
-### 6a. Install Claude CLI (if not already installed)
 ```bash
-# Via npm
-npm install -g @anthropic-ai/claude
-
-# Verify:
-claude --version
+python scripts/research_agent.py cardo    # repeat for sena, asmax, reso
+python scripts/social_media_listener.py   # Reddit feedback, all brands
+python scripts/apify_social_listener.py   # Facebook Group + Instagram feedback, all brands
+python scripts/product_expert.py          # regenerates product_insights.json
 ```
 
-### 6b. Authenticate with Anthropic
-```bash
-claude auth login
-# Follow prompts to set API key
-```
-
-### 6c. Set up environment variables
-```bash
-# Add to ~/.bashrc or ~/.zshrc or .env file:
-export ANTHROPIC_API_KEY="your-api-key"
-export FIRECRAWL_API_KEY="your-firecrawl-key"
-```
-
----
-
-## Step 7: Optional — Set Up Instagram Scraper
-
-The `ig_product_scan.py` script scans Instagram for product launches (optional, not required for daily refresh).
-
-### 7a. Install instagrapi
-```bash
-pip install instagrapi
-```
-
-### 7b. Set Instagram credentials
-```bash
-# Create .env.ig file (git-ignored)
-echo "IG_USERNAME=your_ig_account" > .env.ig
-echo "IG_PASSWORD=your_ig_password" >> .env.ig
-
-# Make sure .env.ig is in .gitignore (it should be)
-grep ".env.ig" .gitignore  # Should return ".env.ig"
-```
-
-### 7c. Test the scraper
-```bash
-# Load credentials and run a test scan
-source .env.ig
-python3 ig_product_scan.py senabluetooth --count 5
-```
-
-Expected output: List of recent Sena Instagram posts with product mentions.
+See `docs/AGENTS.md` for what each script actually does and what it writes.
 
 ---
 
@@ -234,25 +153,33 @@ cardo-intel/
 ├── index.html                   # (generated) Copy for GitHub Pages
 │
 ├── docs/
-│   ├── SETUP.md                # This file
-│   ├── AGENTS.md               # Agent descriptions
-│   └── DATA_SCHEMA.md          # JSON schema reference
+│   ├── SETUP.md                 # This file
+│   ├── AGENTS.md                 # Script descriptions
+│   ├── GITHUB_ACTIONS.md         # Workflow reference
+│   └── DATA_SCHEMA.md            # JSON schema reference
+│
+├── scripts/
+│   ├── research_agent.py         # Per-brand research (products, news, press, firmware, Keepa pricing)
+│   ├── keepa_scan.py             # Amazon pricing module (imported by research_agent.py; also runnable standalone)
+│   ├── social_media_listener.py  # Reddit customer feedback
+│   ├── apify_social_listener.py  # Facebook Group + Instagram customer feedback (via Apify)
+│   ├── product_expert.py         # Synthesizes product_insights.json
+│   └── validate_dashboard_js.py  # Syntax-checks the dashboard's embedded JS
 │
 ├── research/
-│   ├── cardo.json              # Brand data
+│   ├── brands.json              # Central config: which brands the pipeline tracks
+│   ├── cardo.json               # Brand data (products, news, press, social, firmware, feedback, Amazon pricing)
 │   ├── sena.json
 │   ├── asmax.json
 │   ├── reso.json
+│   ├── keepa_asins.json         # Which Amazon ASINs to track per brand
+│   ├── keepa_pricing.json       # (generated, optional) standalone output if you run keepa_scan.py directly
 │   ├── gap_analysis.json
 │   ├── battles.json
-│   └── product_insights.json
+│   ├── product_insights.json
+│   └── research_summaries.json  # Human-readable per-brand summary blurbs shown on the dashboard
 │
-├── ig_product_scan.py          # Instagram scraper (optional)
-├── apify_scan.py               # Apify scraper (optional)
-├── .env.ig                      # Instagram credentials (git-ignored)
-│
-├── .firecrawl/                 # (generated) Firecrawl cache
-└── venv/                        # (optional) Python virtual environment
+└── .github/workflows/daily-refresh.yml   # The weekly GitHub Actions pipeline
 ```
 
 ---
@@ -261,10 +188,7 @@ cardo-intel/
 
 ### Issue: "Python 3 not found"
 ```bash
-# Verify Python installation:
 python3 --version
-
-# If not installed:
 # macOS: brew install python3
 # Ubuntu: sudo apt-get install python3
 ```
@@ -276,26 +200,15 @@ python3 -c "import json; json.load(open('research/cardo.json'))"
 # This will show the exact line with the error
 ```
 
-### Issue: "firecrawl command not found"
+### Issue: "ModuleNotFoundError: No module named 'anthropic'" (or 'keepa')
 ```bash
-# Verify installation:
-which firecrawl  # Should return path
-
-# If missing, reinstall:
-npm install -g @firecrawl/cli
-
-# Verify API key is set:
-echo $FIRECRAWL_API_KEY  # Should not be empty
+pip install anthropic keepa
 ```
 
-### Issue: "GitHub authentication fails"
+### Issue: "apify_social_listener.py exits immediately"
 ```bash
-# Re-authenticate:
-gh auth logout
-gh auth login
-
-# Verify:
-gh auth status
+# It requires APIFY_API_TOKEN to be set — this is intentional, not a bug:
+echo $APIFY_API_TOKEN   # should not be empty
 ```
 
 ### Issue: "Can't open dashboard.html in browser"
@@ -303,9 +216,6 @@ gh auth status
 # Use an HTTP server instead of file:// (more reliable):
 python3 -m http.server 8000
 # Then open http://localhost:8000/dashboard.html
-
-# Or use python -m http.server on older Python:
-python -m SimpleHTTPServer 8000
 ```
 
 ---
@@ -316,14 +226,12 @@ python -m SimpleHTTPServer 8000
 
 1. **Edit research data**:
    ```bash
-   # Edit one of the brand JSON files
    vim research/cardo.json
    ```
 
 2. **Validate JSON**:
    ```bash
    python3 -c "import json; json.load(open('research/cardo.json'))"
-   # No output = valid; error message = fix it
    ```
 
 3. **Rebuild dashboard**:
@@ -344,50 +252,31 @@ python -m SimpleHTTPServer 8000
    git push origin main
    ```
 
-### Workflow for Running Agents Locally
+### Workflow for Running Scripts Locally Instead of Waiting for the Schedule
 
-1. **Trigger a research agent**:
+1. **Run the scripts you need** (see Step 6 above), which updates `research/*.json`
+2. **Check what changed**:
    ```bash
-   # This is normally done via Claude Code or scheduled task
-   # For manual testing, you'd call the Claude API directly:
-   # (see docs/AGENTS.md for detailed instructions)
+   git status
    ```
-
-2. **Monitor for file changes**:
-   ```bash
-   # After agents update research/*.json files:
-   git status  # Should show modified files
-   ```
-
-3. **Run build pipeline**:
+3. **Rebuild and publish**:
    ```bash
    python3 build.py
-   git add .
-   git commit -m "Daily data refresh $(date +%Y-%m-%d)"
-   git push origin HEAD:main  # Important: explicit target
+   git add research/*.json dashboard.html index.html
+   git commit -m "Manual data refresh $(date +%Y-%m-%d)"
+   git push origin main
    ```
-
-4. **Verify deployment**:
-   ```bash
-   # Check that GitHub Pages picked up the push:
-   gh api repos/YOUR_USERNAME/cardo-intel/commits/main --jq .sha
-   
-   # Should match your local commit:
-   git rev-parse HEAD
-   
-   # Check deployment status:
-   gh api repos/YOUR_USERNAME/cardo-intel/pages/builds/latest \
-     --jq '.commit + " " + .status'
-   ```
+4. **Verify deployment** — GitHub Pages rebuilds automatically from `main`; check https://itcardo.github.io/cardo-intel/ after ~30-60 seconds, and confirm the commit shows up: `git log -1`
 
 ---
 
 ## Performance Notes
 
 - **build.py runtime:** <1 second (simple JSON embedding)
-- **Research agent runtime:** 2-3 minutes per agent (gathering data from web)
-- **Product Expert agent runtime:** 5-8 minutes (synthesizing all data)
-- **Full daily refresh cycle:** ~15-20 minutes (all 6 agents + build + publish)
+- **Research agent runtime:** 2-3 minutes per brand
+- **Social listener runtime:** 3-5 minutes each (Reddit and Apify listeners run separately)
+- **Product Expert runtime:** 2-4 minutes
+- **Full weekly refresh cycle:** ~15-20 minutes end to end (all brands in parallel + both listeners + product expert + build + publish)
 - **GitHub Pages deployment:** 30-60 seconds after push
 - **Dashboard load time:** <2 seconds (single HTML file, self-contained)
 
@@ -396,21 +285,19 @@ python -m SimpleHTTPServer 8000
 ## Security Considerations
 
 1. **API Keys:** Store in environment variables or `.env` files (git-ignored), never in code
-2. **Instagram credentials:** Use a dedicated/throwaway account (instagrapi uses mobile API, against Instagram ToS)
-3. **GitHub token:** Authenticate via `gh auth login` (browser-based, more secure than personal access tokens)
-4. **Firecrawl API key:** Keep in `FIRECRAWL_API_KEY` environment variable
+2. **GitHub Actions secrets:** In production, all three keys (`ANTHROPIC_API_KEY`, `KEEPA_API_KEY`, `APIFY_API_TOKEN`) live as encrypted repository secrets, not local files — see `AUTOMATION_SETUP.md`
+3. **Apify data source:** Facebook Group and Instagram data comes through Apify's hosted scraping actors, not a locally-run scraper — see `docs/AGENTS.md` for the ToS considerations worth flagging to anyone reviewing this pipeline
+4. **GitHub push access:** Whoever holds write access to `main` can trigger a publish; keep collaborator access on the repo limited
 
 ### Recommended .gitignore
 ```
 venv/
 .DS_Store
-.env.ig
-.ig_session.json
-.firecrawl/
+.env
+.env.keepa
 out/
 *.pyc
 __pycache__/
-.env
 ```
 
 ---
@@ -429,27 +316,23 @@ __pycache__/
    ```
 
 3. **Explore the docs:**
-   - `docs/AGENTS.md` — Learn about agents
+   - `docs/AGENTS.md` — Learn about the research scripts
    - `docs/DATA_SCHEMA.md` — Understand JSON structure
+   - `docs/GITHUB_ACTIONS.md` — How the weekly automation works
    - `README.md` — System overview
 
-4. **Set up daily refresh:**
-   - Via Claude Code scheduled tasks (recommended)
-   - Or manually run agents and `build.py` on your own schedule
-
-5. **Deploy to GitHub Pages:**
-   - Push to main branch
-   - GitHub Pages builds automatically
+4. **Set up weekly automation:**
+   - See `AUTOMATION_SETUP.md` for the GitHub Actions secrets and schedule
 
 ---
 
 ## Support & Issues
 
 - **Build.py errors:** Check JSON syntax in `research/*.json`
-- **Agent errors:** See `docs/AGENTS.md` troubleshooting section
+- **Script errors:** See `docs/AGENTS.md` troubleshooting section
 - **GitHub Pages issues:** See `README.md` deployment notes
 - **General questions:** Read through `README.md` and linked docs first
 
 ---
 
-**Last updated:** July 8, 2026
+**Last updated:** September 29, 2026
