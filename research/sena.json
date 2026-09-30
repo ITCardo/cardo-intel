@@ -1470,19 +1470,21 @@
     },
     {
       "name": "APEX",
+      "category": "communicator",
       "usage": "Motorcycle",
       "tier": "mid",
       "msrp_usd": 265,
       "street_price_usd": null,
-      "intercom_tech": "Bluetooth 6.0, 2-way intercom (Universal Intercom, one-button pairing)",
+      "intercom_tech": "Bluetooth 6.0, 2-way intercom (Universal Intercom, one-button Quick Pair)",
       "range_km": 1.6,
       "max_riders": 2,
-      "audio": "2nd Generation 40mm HD speakers, AI-based noise cancellation",
+      "audio": "2nd Generation 40mm HD speakers (9 mm thick), AI-based noise cancellation",
       "talk_time_hours": 20,
       "waterproof": "IPX7",
       "features": [
         "Modular Sandwich Battery System - user-replaceable battery, includes spare battery + dual charging dock",
         "Glove-friendly thumbwheel interface (rotate + press) for volume, music, calls and intercom",
+        "Dedicated Quick Pair button and intercom button",
         "Magnetic helmet mount with interchangeable faceplates (Silver Stone default, Alpine White, Matte Black included)",
         "Wireless charging compatible (Qi-certified chargers)",
         "Integrated FM radio",
@@ -1491,27 +1493,71 @@
         "Limited Lifetime Warranty"
       ],
       "release_year": 2026,
-      "notes": "ADDED 2026-08-17 via mandatory store-us.sena.com/products.json crawl (handle: apex, SKU APEX-01/APEX-01D). Officially unveiled as a preview at EICMA Nov 2025 (positioned then as 'SF successors, replaceable batteries') but only went on sale with a full Sena newsroom launch on Aug 5, 2026 ('Sena Introduces APEX and APEX PLUS, Next Generation Bluetooth Communication Systems Designed for the Modern Rider') - this is the first run that found it purchasable. APEX = 2-way intercom (1:1); the 4-way sibling is sold as a separate SKU, APEX PLUS. VP of Sales Jakub Smykal: 'designed for the rider who values premium features like replaceable batteries and intuitive controls, but doesn't necessarily need the complexity of an advanced system.' Not yet reviewed by MCN/RevZilla/etc. (too new). Dual pack $499.",
+      "notes": "ADDED 2026-08-17 via store-us.sena.com/products.json (handle: apex, SKU APEX-01/APEX-01D). Previewed at EICMA Nov 2025; on-sale launch Aug 5, 2026. APEX = 2-way intercom (1:1); the 4-way sibling is APEX PLUS. VP of Sales Jakub Smykal: 'designed for the rider who values premium features like replaceable batteries and intuitive controls, but doesn't necessarily need the complexity of an advanced system.' Dual pack $499. UPDATE 2026-09-30: Sena's APEX Series spec page now gives the main unit as 85 x 42 x 18 mm, 45 g (weight/dimensions previously null). Visordown's Aug launch coverage lists UK pricing of GBP 199 single / GBP 379 twin and says both units include two 620mAh batteries. Visordown also says the APEX supports Wave Intercom, but Sena's own APEX spec page lists no Wave/Mesh - voip left false pending confirmation. Not yet independently reviewed by MCN/RevZilla etc.",
       "url": "https://store-us.sena.com/products/apex",
       "voip": false,
       "wireless_charging": true,
-      "detachable_battery": true
+      "detachable_battery": true,
+      "dimensions": {
+        "form_factor": {
+          "weight_g": 45,
+          "dimensions_mm": "85 x 42 x 18",
+          "profile": "slim",
+          "aesthetics": "Angular, slim main unit with interchangeable faceplates and a thin replaceable 'sandwich' battery layer"
+        },
+        "ease_of_use": {
+          "controls": "thumbwheel (rotate + press) + Quick Pair button + intercom button",
+          "mount": "magnetic helmet mount; clamp and glued surface plate kits included",
+          "cradle": "magnetic mount",
+          "voice_commands": "enhanced voice commands",
+          "screen": "no",
+          "ota": "OTA via Sena Motorcycles app",
+          "app": "Sena Motorcycles app"
+        },
+        "sound": {
+          "speaker_size_mm": 40,
+          "speaker_brand": "2nd Generation HD speakers (9 mm thick)",
+          "hd": true,
+          "quality_verdict": "Too new for reviewer consensus (on sale Aug 2026)"
+        },
+        "intercom": {
+          "type": "Bluetooth 6.0, 2-way intercom",
+          "range_km": 1.6,
+          "max_riders": 2,
+          "auto_reconnect": null,
+          "wideband_audio": null,
+          "cross_brand": "Universal Intercom (HFP/A2DP/AVRCP) with one-button Quick Pair"
+        },
+        "quality": {
+          "build": "New for 2026; no long-term verdicts yet",
+          "ip_rating": "IPX7",
+          "service_reputation": "Covered by Sena's Limited Lifetime Warranty; ticket-based support",
+          "warranty_years": null
+        },
+        "price": {
+          "msrp_usd": 265,
+          "street_usd": null,
+          "segment_position": "Mid-tier Bluetooth-only unit with replaceable battery and wireless charging; successor to SF-series, sits below the mesh 50/60 series"
+        }
+      }
     },
     {
       "name": "APEX PLUS",
+      "category": "communicator",
       "usage": "Motorcycle",
       "tier": "mid",
       "msrp_usd": 325,
       "street_price_usd": null,
-      "intercom_tech": "Bluetooth 6.0, 4-way intercom (Universal Intercom, one-button pairing)",
+      "intercom_tech": "Bluetooth 6.0, 4-way intercom (Universal Intercom, one-button Quick Pair)",
       "range_km": 1.6,
       "max_riders": 4,
-      "audio": "2nd Generation 40mm HD speakers, AI-based noise cancellation",
+      "audio": "2nd Generation 40mm HD speakers (9 mm thick), AI-based noise cancellation",
       "talk_time_hours": 20,
       "waterproof": "IPX7",
       "features": [
         "Modular Sandwich Battery System - user-replaceable battery, includes spare battery + dual charging dock",
         "Glove-friendly thumbwheel interface (rotate + press) for volume, music, calls and intercom",
+        "Dedicated Quick Pair button and intercom button",
         "Magnetic helmet mount with interchangeable faceplates (Silver Stone default, Alpine White, Matte Black included)",
         "Wireless charging compatible (Qi-certified chargers)",
         "Integrated FM radio",
@@ -1520,11 +1566,53 @@
         "Limited Lifetime Warranty"
       ],
       "release_year": 2026,
-      "notes": "ADDED 2026-08-17 via mandatory store-us.sena.com/products.json crawl (handle: apex, SKU APEX-PLUS-01/APEX-PLUS-01D - shares the same product page/handle as APEX, differentiated by the 'Model' variant option). Launched alongside APEX on Aug 5, 2026 per Sena newsroom. Up-sells the base APEX with 4-way (vs 2-way) intercom capability at the same hardware/feature set otherwise. Not yet reviewed by MCN/RevZilla/etc. (too new). Dual pack $599.",
+      "notes": "ADDED 2026-08-17 via store-us.sena.com/products.json (handle: apex, SKU APEX-PLUS-01/APEX-PLUS-01D - shares the product page with APEX, differentiated by the 'Model' variant). Launched alongside APEX on Aug 5, 2026. Up-sells the base APEX with 4-way (vs 2-way) intercom at otherwise the same hardware/features. Dual pack $599. UPDATE 2026-09-30: Sena's APEX Series spec page gives main unit 85 x 42 x 18 mm, 45 g (previously null). Visordown lists UK pricing of GBP 239 single / GBP 449 twin. Visordown says the series supports Wave Intercom, but Sena's own spec page does not list it - voip left false pending confirmation. Not yet independently reviewed.",
       "url": "https://store-us.sena.com/products/apex",
       "voip": false,
       "wireless_charging": true,
-      "detachable_battery": true
+      "detachable_battery": true,
+      "dimensions": {
+        "form_factor": {
+          "weight_g": 45,
+          "dimensions_mm": "85 x 42 x 18",
+          "profile": "slim",
+          "aesthetics": "Angular, slim main unit (black thumbwheel variant) with interchangeable faceplates and a thin replaceable 'sandwich' battery layer"
+        },
+        "ease_of_use": {
+          "controls": "thumbwheel (rotate + press) + Quick Pair button + intercom button",
+          "mount": "magnetic helmet mount; clamp and glued surface plate kits included",
+          "cradle": "magnetic mount",
+          "voice_commands": "enhanced voice commands",
+          "screen": "no",
+          "ota": "OTA via Sena Motorcycles app",
+          "app": "Sena Motorcycles app"
+        },
+        "sound": {
+          "speaker_size_mm": 40,
+          "speaker_brand": "2nd Generation HD speakers (9 mm thick)",
+          "hd": true,
+          "quality_verdict": "Too new for reviewer consensus (on sale Aug 2026)"
+        },
+        "intercom": {
+          "type": "Bluetooth 6.0, 4-way intercom",
+          "range_km": 1.6,
+          "max_riders": 4,
+          "auto_reconnect": null,
+          "wideband_audio": null,
+          "cross_brand": "Universal Intercom (HFP/A2DP/AVRCP) with one-button Quick Pair"
+        },
+        "quality": {
+          "build": "New for 2026; no long-term verdicts yet",
+          "ip_rating": "IPX7",
+          "service_reputation": "Covered by Sena's Limited Lifetime Warranty; ticket-based support",
+          "warranty_years": null
+        },
+        "price": {
+          "msrp_usd": 325,
+          "street_usd": null,
+          "segment_position": "Mid-tier 4-way Bluetooth unit with replaceable battery and wireless charging; no Mesh, sits below the 50/60 series"
+        }
+      }
     },
     {
       "name": "PRISM 2",
@@ -2421,6 +2509,18 @@
         "platform": "YouTube",
         "summary": "Official @senatechnologies video: \"SENA SPIDER X Slim | Compact Size & Premium Performance\"",
         "url": "https://www.youtube.com/watch?v=QyfkyydCZJs"
+      },
+      {
+        "date": "2026-09-28",
+        "platform": "Instagram",
+        "summary": "One more look back at the GS Trophy.\nTaking on the Classic Enduro Lap, where every section of the course put skill, control and teamwork to the test.\nProud to have SENA along for the ride at the 2026 BMW Motorrad International GS Trophy.\n#bmwmotorrad #makelifearide #gstrophy",
+        "url": "https://www.instagram.com/p/Dd1_ltWjAml/"
+      },
+      {
+        "date": "2026-09-29",
+        "platform": "Instagram",
+        "summary": "Your sign to get the group ride out of the group chat. Which road would everyone agree on? \n \n#Sena #RideConnected #AwakenYourInstinct",
+        "url": "https://www.instagram.com/p/Dd4LaDiOpng/"
       }
     ]
   },
@@ -3579,7 +3679,9 @@
     "https://www.reddit.com/r/motorcyclegear/comments/1uef58i/sena_60s_vs_cardo_packtalk_edge/",
     "https://www.reddit.com/r/motorcyclegear/comments/1rpu36e/sena_srl3_music_interrupting_while_riding/",
     "https://www.reddit.com/r/motorcyclegear/comments/1nhtpow/sena_phantom_full_face_helmet/",
-    "https://www.reddit.com/r/motorcyclegear/comments/1p01z2y/first_full_face_helmet_sena_stryker_has_amazing/"
+    "https://www.reddit.com/r/motorcyclegear/comments/1p01z2y/first_full_face_helmet_sena_stryker_has_amazing/",
+    "https://www.sena.com/en-us/product/apex-series/",
+    "https://www.visordown.com/news/sena-launches-apex-bluetooth-intercoms-replaceable-batteries"
   ],
   "customer_feedback": [
     {
@@ -5271,10 +5373,30 @@
       "topic": "Earbud alternative to intercom",
       "summary": "Rider who disliked a Sena or Cardo plus earplugs setup tried ANC AirPods with a DJI Mic Mini 2 as an intercom alternative, though the mic picked up a lot of noise.",
       "url": "https://www.reddit.com/r/motorcycle/comments/1wlm08r/intercom_alternative_airpods_with_anc_and_dji_mic/"
+    },
+    {
+      "date": "2026-09-28",
+      "source": "Facebook Group",
+      "forum": "Sena 60s, 60s EVO, and 60x Users",
+      "product": "50S",
+      "sentiment": "negative",
+      "topic": "Voice command failure",
+      "summary": "User asks why their 50S does not respond to voice commands.",
+      "url": "https://www.facebook.com/groups/860066485997389/permalink/1478539607483404/"
+    },
+    {
+      "date": "2026-09-28",
+      "source": "Facebook Group",
+      "forum": "Sena 60s, 60s EVO, and 60x Users",
+      "product": "60S",
+      "sentiment": "neutral",
+      "topic": "Optimal settings request",
+      "summary": "User requests a previously shared post about optimal settings for the 60S (HK) version.",
+      "url": "https://www.facebook.com/groups/860066485997389/permalink/1477773254226706/"
     }
   ],
   "amazon_pricing": {
-    "fetched_at": "2026-07-20T15:46:26.467712+00:00",
+    "fetched_at": "2026-09-30T09:54:19.868777+00:00",
     "domain": "US",
     "products": [
       {
@@ -5283,27 +5405,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 272.4,
-          "new": 272.4,
+          "amazon": 260.0,
+          "new": 260.0,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 319.0,
-          "sales_rank": 22298,
+          "sales_rank": 19110,
           "rating": 4.3,
-          "review_count": 366,
+          "review_count": 452,
           "offer_count": 0
         },
         "range_new": {
           "min": 255.0,
           "max": 324.07,
-          "avg": 301.49
+          "avg": 278.9
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 31839,
+        "sales_rank_avg": 23063,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DSLW5WLG"
@@ -5314,27 +5436,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 459.0,
+          "amazon": 558.57,
           "new": 459.0,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 459.0,
-          "sales_rank": 267961,
-          "rating": null,
-          "review_count": -1,
+          "sales_rank": 17597,
+          "rating": 3.9,
+          "review_count": 14,
           "offer_count": 0
         },
         "range_new": {
-          "min": 459.0,
+          "min": 444.34,
           "max": 459.0,
-          "avg": 459.0
+          "avg": 457.94
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 228036,
+        "sales_rank_avg": 68492,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0H6KV44BJ"
@@ -5350,9 +5472,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 299.0,
-          "sales_rank": 611510,
-          "rating": null,
-          "review_count": -1,
+          "sales_rank": 36792,
+          "rating": 4.5,
+          "review_count": 18,
           "offer_count": 0
         },
         "range_new": {
@@ -5365,7 +5487,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 833453,
+        "sales_rank_avg": 309825,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0H5T4K1SY"
@@ -5381,9 +5503,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 189.0,
-          "sales_rank": 398804,
-          "rating": null,
-          "review_count": -1,
+          "sales_rank": 305461,
+          "rating": 4.7,
+          "review_count": 11,
           "offer_count": 0
         },
         "range_new": {
@@ -5396,14 +5518,14 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": -1,
+        "sales_rank_avg": 325434,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0H5TGV8ZC"
       },
       {
         "asin": "B0H42XQ1JY",
-        "title": "Sena Nautitalk Open Bone Conduction Mesh Communication Headset for Marine, IPX5 Water Resistance, Advanced Noise Control, Lightweight",
+        "title": "Sena Nautitalk Open Bone Conduction Mesh Communication Headset for Marine",
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
@@ -5412,29 +5534,29 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 309.0,
-          "sales_rank": -1,
-          "rating": null,
-          "review_count": -1,
+          "sales_rank": 73996,
+          "rating": 3.8,
+          "review_count": 10,
           "offer_count": 0
         },
         "range_new": {
           "min": 309.0,
           "max": 309.0,
-          "avg": 309.0
+          "avg": 308.99
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": -1,
+        "sales_rank_avg": 74991,
         "category": "Car Electronics",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0H42XQ1JY"
       },
       {
         "asin": "B0GWNLHB43",
-        "title": "Sena 60S EVO Motorcycle Bluetooth Communication Headset with Sound by Bose, Mesh 3.0 & Wave Intercom, IPX7 Waterproof, Dual Helmet Clamp Kits, Voice Command, Noise Cancellation",
+        "title": "Sena 60S EVO Motorcycle Bluetooth Communication Headset",
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
@@ -5443,22 +5565,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 459.0,
-          "sales_rank": 76092,
-          "rating": 5.0,
-          "review_count": 3,
+          "sales_rank": 17597,
+          "rating": 4.6,
+          "review_count": 20,
           "offer_count": 0
         },
         "range_new": {
           "min": 459.0,
           "max": 459.0,
-          "avg": 458.99
+          "avg": 459.0
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 219409,
+        "sales_rank_avg": 22655,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GWNLHB43"
@@ -5469,27 +5591,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 360.36,
-          "new": 359.95,
+          "amazon": 349.97,
+          "new": 349.95,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 439.0,
-          "sales_rank": 21686,
+          "sales_rank": 17597,
           "rating": 4.4,
-          "review_count": 370,
+          "review_count": 553,
           "offer_count": 0
         },
         "range_new": {
           "min": 319.95,
           "max": 439.0,
-          "avg": 371.68
+          "avg": 364.04
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 17846,
+        "sales_rank_avg": 17850,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DP1QRFZ7"
@@ -5500,27 +5622,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 252.87,
-          "new": 252.48,
+          "amazon": 320.39,
+          "new": 289.58,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 379.0,
-          "sales_rank": 11511,
-          "rating": 4.5,
-          "review_count": 1675,
+          "sales_rank": 17962,
+          "rating": 4.4,
+          "review_count": 1715,
           "offer_count": 0
         },
         "range_new": {
           "min": 188.33,
           "max": 359.0,
-          "avg": 275.62
+          "avg": 301.61
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 12798,
+        "sales_rank_avg": 23136,
         "category": "Speaker Systems",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09NWJ3XQB"
@@ -5531,27 +5653,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 239.0,
-          "new": 227.61,
+          "amazon": 237.89,
+          "new": 237.89,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 219.0,
-          "sales_rank": 38434,
+          "sales_rank": 36792,
           "rating": 4.3,
-          "review_count": 1264,
+          "review_count": 818,
           "offer_count": 0
         },
         "range_new": {
           "min": 153.05,
           "max": 239.0,
-          "avg": 208.44
+          "avg": 226.71
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 22614,
+        "sales_rank_avg": 46717,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09WTJGWY4"
@@ -5562,27 +5684,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 305.95,
-          "new": 305.95,
+          "amazon": 375.0,
+          "new": 375.0,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 375.0,
-          "sales_rank": 11501,
+          "sales_rank": 17584,
           "rating": 4.3,
-          "review_count": 454,
+          "review_count": 474,
           "offer_count": 0
         },
         "range_new": {
           "min": 237.5,
-          "max": 359.0,
-          "avg": 305.61
+          "max": 375.0,
+          "avg": 348.01
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 12775,
+        "sales_rank_avg": 23161,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09GXCKX55"
@@ -5593,27 +5715,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": null,
-          "new": null,
+          "amazon": 622.8,
+          "new": 610.0,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 649.0,
-          "sales_rank": 344723,
-          "rating": 4.5,
-          "review_count": 7,
+          "sales_rank": 168792,
+          "rating": 3.5,
+          "review_count": 19,
           "offer_count": 0
         },
         "range_new": {
-          "min": 649.0,
+          "min": 599.0,
           "max": 649.0,
-          "avg": 649.0
+          "avg": 626.34
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 177658,
+        "sales_rank_avg": 139631,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GSXBMLJV"
@@ -5625,26 +5747,26 @@
         "manufacturer": "Sena",
         "current": {
           "amazon": 599.0,
-          "new": 599.0,
+          "new": 565.0,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 599.0,
-          "sales_rank": 491512,
-          "rating": 4.7,
-          "review_count": 7,
+          "sales_rank": 515223,
+          "rating": 3.5,
+          "review_count": 15,
           "offer_count": 0
         },
         "range_new": {
-          "min": 599.0,
+          "min": 565.0,
           "max": 599.0,
-          "avg": 598.99
+          "avg": 580.66
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 303811,
+        "sales_rank_avg": 380559,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GWNMGH9W"
@@ -5660,9 +5782,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 549.0,
-          "sales_rank": 37518,
-          "rating": 4.2,
-          "review_count": 61,
+          "sales_rank": 111017,
+          "rating": 4.1,
+          "review_count": 72,
           "offer_count": 0
         },
         "range_new": {
@@ -5675,7 +5797,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 46255,
+        "sales_rank_avg": 62466,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DSZ75N9V"
@@ -5690,23 +5812,23 @@
           "new": 499.0,
           "buybox": null,
           "buybox_seller": null,
-          "list_price": 499.0,
-          "sales_rank": 112693,
-          "rating": 3.4,
-          "review_count": 100,
+          "list_price": 399.0,
+          "sales_rank": 838352,
+          "rating": 3.5,
+          "review_count": 101,
           "offer_count": 0
         },
         "range_new": {
           "min": 249.5,
           "max": 599.0,
-          "avg": 352.49
+          "avg": 438.68
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 111254,
+        "sales_rank_avg": 472574,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09ZQ4NTR5"
@@ -5722,22 +5844,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 229.0,
-          "sales_rank": 71458,
-          "rating": 4.5,
-          "review_count": 65,
+          "sales_rank": 70943,
+          "rating": 4.6,
+          "review_count": 76,
           "offer_count": 0
         },
         "range_new": {
           "min": 194.64,
           "max": 229.0,
-          "avg": 228.65
+          "avg": 228.98
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 108019,
+        "sales_rank_avg": 86423,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CT9SBZ6Y"
@@ -5748,27 +5870,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 199.0,
-          "new": 199.0,
+          "amazon": 192.38,
+          "new": 180.0,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 199.0,
-          "sales_rank": 59507,
-          "rating": 4.6,
-          "review_count": 113,
+          "sales_rank": 46826,
+          "rating": 4.5,
+          "review_count": 134,
           "offer_count": 0
         },
         "range_new": {
           "min": 169.15,
           "max": 199.0,
-          "avg": 199.0
+          "avg": 188.18
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 34681,
+        "sales_rank_avg": 40660,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DLR3JJ6Q"
@@ -5784,22 +5906,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 199.0,
-          "sales_rank": 26883,
-          "rating": 3.9,
-          "review_count": 356,
+          "sales_rank": 37023,
+          "rating": 3.8,
+          "review_count": 375,
           "offer_count": 0
         },
         "range_new": {
           "min": 142.5,
           "max": 318.4,
-          "avg": 198.69
+          "avg": 199.0
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 22118,
+        "sales_rank_avg": 31943,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09QF8473X"
@@ -5810,27 +5932,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 219.0,
-          "new": 219.0,
+          "amazon": 201.67,
+          "new": 180.0,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 219.0,
-          "sales_rank": 34723,
-          "rating": 3.9,
-          "review_count": 380,
+          "sales_rank": 41649,
+          "rating": 4.0,
+          "review_count": 399,
           "offer_count": 0
         },
         "range_new": {
           "min": 159.2,
           "max": 219.0,
-          "avg": 219.0
+          "avg": 197.68
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 28455,
+        "sales_rank_avg": 38820,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09QDNQCHT"
@@ -5841,27 +5963,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 115.23,
+          "amazon": 129.0,
           "new": 104.49,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 129.0,
-          "sales_rank": 136309,
+          "sales_rank": 191061,
           "rating": 4.0,
-          "review_count": 179,
+          "review_count": 177,
           "offer_count": 0
         },
         "range_new": {
           "min": 79.2,
           "max": 144.99,
-          "avg": 104.49
+          "avg": 105.64
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 181764,
+        "sales_rank_avg": 202057,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B08Z2ZLWLJ"
@@ -5877,22 +5999,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 139.0,
-          "sales_rank": 112340,
-          "rating": 4.1,
-          "review_count": 166,
+          "sales_rank": 285164,
+          "rating": 4.0,
+          "review_count": 178,
           "offer_count": 0
         },
         "range_new": {
           "min": 75.7,
           "max": 139.0,
-          "avg": 136.04
+          "avg": 139.0
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 116200,
+        "sales_rank_avg": 130090,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BLD3TGRQ"
@@ -5903,20 +6025,20 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 159.8,
-          "new": 159.79,
+          "amazon": 165.75,
+          "new": 146.37,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 169.0,
           "sales_rank": -1,
           "rating": 4.3,
-          "review_count": 366,
+          "review_count": 452,
           "offer_count": 0
         },
         "range_new": {
           "min": 121.5,
           "max": 176.06,
-          "avg": 162.06
+          "avg": 156.93
         },
         "range_buybox": {
           "min": null,
@@ -5934,27 +6056,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 99.0,
+          "amazon": 98.03,
           "new": 89.0,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 99.0,
-          "sales_rank": 63201,
+          "sales_rank": 83769,
           "rating": 4.1,
-          "review_count": 1101,
+          "review_count": 1124,
           "offer_count": 0
         },
         "range_new": {
           "min": 69.99,
           "max": 150.48,
-          "avg": 87.94
+          "avg": 88.65
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 49575,
+        "sales_rank_avg": 65271,
         "category": "Helmet Accessories",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B092P6N95X"
@@ -5965,27 +6087,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 187.7,
-          "new": 187.7,
+          "amazon": 249.0,
+          "new": 249.0,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 249.0,
-          "sales_rank": 2722361,
+          "sales_rank": 2645113,
           "rating": 4.1,
-          "review_count": 16,
+          "review_count": 17,
           "offer_count": 0
         },
         "range_new": {
-          "min": 187.7,
+          "min": 123.16,
           "max": 249.0,
-          "avg": 214.4
+          "avg": 220.24
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 2526764,
+        "sales_rank_avg": 2427937,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0G1F5X1H6"
@@ -6001,22 +6123,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 159.0,
-          "sales_rank": 106187,
+          "sales_rank": 123617,
           "rating": 4.3,
-          "review_count": 310,
+          "review_count": 319,
           "offer_count": 0
         },
         "range_new": {
           "min": 113.53,
           "max": 272.49,
-          "avg": 153.65
+          "avg": 151.45
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 222307,
+        "sales_rank_avg": 189346,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B08L9V5BHH"
@@ -6027,27 +6149,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 105.67,
-          "new": 105.67,
+          "amazon": 124.56,
+          "new": 124.56,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 129.0,
-          "sales_rank": 136309,
+          "sales_rank": 191061,
           "rating": 4.0,
-          "review_count": 179,
+          "review_count": 177,
           "offer_count": 0
         },
         "range_new": {
           "min": 71.8,
           "max": 129.0,
-          "avg": 114.06
+          "avg": 112.91
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 180614,
+        "sales_rank_avg": 201701,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B08Z2XMBBM"
@@ -6063,22 +6185,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 179.0,
-          "sales_rank": 276882,
+          "sales_rank": 212475,
           "rating": 4.0,
-          "review_count": 13,
+          "review_count": 14,
           "offer_count": 0
         },
         "range_new": {
           "min": 166.29,
           "max": 179.0,
-          "avg": 175.7
+          "avg": 178.77
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 387927,
+        "sales_rank_avg": 387237,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GND1CYGD"
@@ -6089,27 +6211,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 199.0,
-          "new": 168.53,
+          "amazon": 196.85,
+          "new": 196.83,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 199.0,
-          "sales_rank": 60518,
+          "sales_rank": 129982,
           "rating": 4.1,
-          "review_count": 158,
+          "review_count": 164,
           "offer_count": 0
         },
         "range_new": {
           "min": 142.95,
           "max": 224.69,
-          "avg": 177.82
+          "avg": 180.76
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 70421,
+        "sales_rank_avg": 80080,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BMDQ72MQ"
@@ -6120,27 +6242,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 168.99,
-          "new": 168.99,
+          "amazon": 174.44,
+          "new": 174.44,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 199.0,
-          "sales_rank": 36571,
+          "sales_rank": 36770,
           "rating": 3.9,
-          "review_count": 1122,
+          "review_count": 1130,
           "offer_count": 0
         },
         "range_new": {
           "min": 100.0,
           "max": 359.95,
-          "avg": 168.34
+          "avg": 166.72
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 28229,
+        "sales_rank_avg": 32976,
         "category": "Earbud Headphones",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0087NB2OU"
@@ -6156,22 +6278,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 199.0,
-          "sales_rank": 119799,
-          "rating": 3.1,
-          "review_count": 24,
+          "sales_rank": 135300,
+          "rating": 3.2,
+          "review_count": 26,
           "offer_count": 0
         },
         "range_new": {
           "min": 131.38,
           "max": 199.0,
-          "avg": 192.38
+          "avg": 189.91
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 139233,
+        "sales_rank_avg": 156080,
         "category": "Car Electronics",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DJPWDLTL"
@@ -6183,26 +6305,26 @@
         "manufacturer": "Sena",
         "current": {
           "amazon": 229.0,
-          "new": 229.0,
+          "new": 228.98,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 229.0,
-          "sales_rank": 149077,
-          "rating": 4.3,
-          "review_count": 15,
+          "sales_rank": 142665,
+          "rating": 4.4,
+          "review_count": 19,
           "offer_count": 0
         },
         "range_new": {
           "min": 182.8,
           "max": 233.7,
-          "avg": 219.33
+          "avg": 228.98
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 101084,
+        "sales_rank_avg": 110450,
         "category": "Marine Two-Way Radios",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DY2MJ14X"
@@ -6213,20 +6335,20 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 309.0,
-          "new": 309.0,
+          "amazon": 284.28,
+          "new": 284.26,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 309.0,
           "sales_rank": -1,
-          "rating": 3.8,
-          "review_count": 46,
+          "rating": 3.6,
+          "review_count": 20,
           "offer_count": 0
         },
         "range_new": {
           "min": 218.14,
           "max": 399.0,
-          "avg": 298.11
+          "avg": 295.87
         },
         "range_buybox": {
           "min": null,
@@ -6245,26 +6367,26 @@
         "manufacturer": "Sena",
         "current": {
           "amazon": 599.0,
-          "new": 599.0,
+          "new": 598.98,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 699.0,
-          "sales_rank": 95519,
-          "rating": null,
-          "review_count": -1,
+          "sales_rank": 252319,
+          "rating": 5.0,
+          "review_count": 1,
           "offer_count": 0
         },
         "range_new": {
           "min": 515.12,
           "max": 699.0,
-          "avg": 620.31
+          "avg": 627.95
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 210093,
+        "sales_rank_avg": 203837,
         "category": "Marine Two-Way Radios",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D6JJXVLT"
@@ -6276,7 +6398,7 @@
         "manufacturer": "Sena",
         "current": {
           "amazon": 299.0,
-          "new": 299.0,
+          "new": 298.98,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 299.0,
@@ -6286,16 +6408,16 @@
           "offer_count": 0
         },
         "range_new": {
-          "min": 284.23,
+          "min": 280.67,
           "max": 299.0,
-          "avg": 299.0
+          "avg": 298.91
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 87439,
+        "sales_rank_avg": 93186,
         "category": "Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0FZX1DHN4"

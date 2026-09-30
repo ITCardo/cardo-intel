@@ -1449,6 +1449,18 @@
         "platform": "Instagram",
         "summary": "CIMAMotor 2026 recap: new products unveiled and ZXMOTO collaboration.",
         "url": "https://www.instagram.com/p/Ddl4pk-nVP0/"
+      },
+      {
+        "date": "2026-09-30",
+        "platform": "Instagram",
+        "summary": "🏁 ASMAX × DEBISE GIVEAWAY — 5 WINNERS!\n\nWe’re celebrating our partnership with @valentin_debise with ASMAX gear and caps signed by Valentin himself. Thanks for being part of the ride.\n\n🥇 1ST PRIZE (1 winner): ASMAX F1s + a Debise-signed cap\n🥈 2ND PRIZE (1 winner): choose an ASMAX S1, T20 or T40 + a ",
+        "url": "https://www.instagram.com/p/Dd56ZoWm7Di/"
+      },
+      {
+        "date": "2026-09-28",
+        "platform": "Instagram",
+        "summary": "Publication en partenariat avec @asmax_europe 🫶\n\nToi aussi pomper pendant des heures ça te saoule ? ASMAX ! \n\nÇa pompe vite, fort et ça passe nickel dans la petite sacoche. Et le petit écran t'aide à optimiser ta pression pour ta course de quartier, important ça \n\nTu la veux ? Lien en bio ma gueule.",
+        "url": "https://www.instagram.com/p/Dd1XQCdCCgJ/"
       }
     ]
   },
@@ -2890,15 +2902,25 @@
       "topic": "Premium perception",
       "summary": "In a thread on intercoms for four riders, a commenter suggests looking at ASMAX for a more premium intercom.",
       "url": "https://www.reddit.com/r/PHMotorcycles/comments/1wr5i6v/intercom_recommendations_for_4_riders/"
+    },
+    {
+      "date": "2026-09-30",
+      "source": "Facebook Group",
+      "forum": "Asmax Intercom Philippines User",
+      "product": "Future 1 EVA R (Evangelion Racing edition)",
+      "sentiment": "neutral",
+      "topic": "Product for sale",
+      "summary": "A seller in Bacoor, Cavite is offering 2 brandnew ASMAX Future 1 EVA R Mesh Bluetooth helmet intercoms (10 riders, up to 3 km range) for 4.7k.",
+      "url": "https://www.facebook.com/groups/795939769924022/permalink/1078156328369030/"
     }
   ],
   "amazon_pricing": {
-    "fetched_at": "2026-07-20T15:46:30.964499+00:00",
+    "fetched_at": "2026-09-30T09:53:57.906071+00:00",
     "domain": "US",
     "products": [
       {
         "asin": "B0GGZTM2PZ",
-        "title": "ASMAX F1s Motorcycle Bluetooth Headset with Smart Voice Control, 10 Riders Mesh Helmet Communication Systems, ENC/APP FOTA/Audio Multitasking/EQ Modes, 5-Mile Intercom for Snowmobile/ATV/Ski",
+        "title": "ASMAX F1s Motorcycle Bluetooth Headset with Smart Voice Control, 1 Pack",
         "brand": "ASMAX",
         "manufacturer": "Shenzhen Asmax Infinite Technology Co., Ltd",
         "current": {
@@ -2907,53 +2929,53 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 139.99,
-          "sales_rank": 27516,
+          "sales_rank": 26248,
           "rating": 4.4,
-          "review_count": 1228,
+          "review_count": 940,
           "offer_count": 0
         },
         "range_new": {
-          "min": 139.99,
+          "min": 125.29,
           "max": 139.99,
-          "avg": 139.99
+          "avg": 137.67
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 25103,
+        "sales_rank_avg": 20953,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GGZTM2PZ"
       },
       {
         "asin": "B0GGZZH2GS",
-        "title": "ASMAX F1s Motorcycle Bluetooth Headset with Smart Voice Control, 10 Riders Mesh Helmet Communication Systems, ENC/APP FOTA/Audio Multitasking/EQ Modes, 5-Mile Intercom for Snowmobile, 2 Pack",
+        "title": "ASMAX F1s Motorcycle Bluetooth Headset with Smart Voice Control, 2 Pack",
         "brand": "ASMAX",
         "manufacturer": "ASMAX",
         "current": {
           "amazon": null,
-          "new": 219.99,
+          "new": 259.99,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 259.99,
-          "sales_rank": 27570,
+          "sales_rank": 26245,
           "rating": 4.4,
-          "review_count": 1228,
+          "review_count": 941,
           "offer_count": 0
         },
         "range_new": {
           "min": 219.99,
           "max": 259.99,
-          "avg": 259.95
+          "avg": 252.79
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 25336,
+        "sales_rank_avg": 20977,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GGZZH2GS"
@@ -2969,22 +2991,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 249.0,
-          "sales_rank": 27516,
+          "sales_rank": 26248,
           "rating": 4.4,
-          "review_count": 1231,
+          "review_count": 940,
           "offer_count": 0
         },
         "range_new": {
           "min": 103.99,
           "max": 259.0,
-          "avg": 145.0
+          "avg": 145.99
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 25296,
+        "sales_rank_avg": 21036,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D1R1GDYP"
@@ -3000,60 +3022,60 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 429.0,
-          "sales_rank": 27570,
+          "sales_rank": 26248,
           "rating": 4.4,
-          "review_count": 1231,
+          "review_count": 941,
           "offer_count": 0
         },
         "range_new": {
           "min": 190.2,
           "max": 279.99,
-          "avg": 258.11
+          "avg": 263.22
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 25423,
+        "sales_rank_avg": 21033,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D1RG3371"
       },
       {
         "asin": "B0D7P59LHZ",
-        "title": "ASMAX S1 Motorcycle Bluetooth Headset with Smart Voice Control, Mesh Helmet Communication Systems, Noise Cancellation/Waterproof/FM Radio/FOTA Update/EQ Modes, 8 Riders Intercom Fit for ATV, 1 Pack",
+        "title": "ASMAX S1 Motorcycle Bluetooth Headset with Smart Voice Control, 1 Pack",
         "brand": "ASMAX",
         "manufacturer": "ASMAX",
         "current": {
           "amazon": null,
-          "new": 85.99,
+          "new": 83.99,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 89.99,
-          "sales_rank": 13045,
-          "rating": 4.5,
-          "review_count": 1208,
+          "sales_rank": 11331,
+          "rating": 4.4,
+          "review_count": 1098,
           "offer_count": 0
         },
         "range_new": {
           "min": 63.99,
           "max": 109.99,
-          "avg": 82.98
+          "avg": 84.16
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 18206,
+        "sales_rank_avg": 13595,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D7P59LHZ"
       },
       {
         "asin": "B0D7P5MF7C",
-        "title": "ASMAX S1 Motorcycle Bluetooth Headset with Smart Voice Control, Mesh Helmet Communication Systems, Noise Cancellation/Waterproof/FM Radio/FOTA Update/EQ Modes, 8 Riders Intercom Fit for ATV, 2 Pack",
+        "title": "ASMAX S1 Motorcycle Bluetooth Headset with Smart Voice Control, 2 Pack",
         "brand": "ASMAX",
         "manufacturer": "ASMAX",
         "current": {
@@ -3062,9 +3084,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 159.99,
-          "sales_rank": 13056,
-          "rating": 4.5,
-          "review_count": 1208,
+          "sales_rank": 11333,
+          "rating": 4.4,
+          "review_count": 1098,
           "offer_count": 0
         },
         "range_new": {
@@ -3077,7 +3099,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 18196,
+        "sales_rank_avg": 13575,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D7P5MF7C"
