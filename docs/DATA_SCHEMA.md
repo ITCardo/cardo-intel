@@ -509,4 +509,4 @@ git commit -m "Daily data refresh $(date +%Y-%m-%d)"
 
 ---
 
-**Last updated:** September 29, 2026
+**Last updated:** September 30, 2026

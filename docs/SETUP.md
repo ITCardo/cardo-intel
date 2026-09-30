@@ -150,7 +150,7 @@ cardo-intel/
 ├── build.py                     # Build script (main tool)
 ├── dashboard_template.html      # HTML template (do not edit directly)
 ├── dashboard.html               # (generated) Final dashboard
-├── index.html                   # (generated) Copy for GitHub Pages
+├── index.html                   # (generated) Copy deployed alongside dashboard.html
 │
 ├── docs/
 │   ├── SETUP.md                 # This file
@@ -266,7 +266,7 @@ python3 -m http.server 8000
    git commit -m "Manual data refresh $(date +%Y-%m-%d)"
    git push origin main
    ```
-4. **Verify deployment** — GitHub Pages rebuilds automatically from `main`; check https://itcardo.github.io/cardo-intel/ after ~30-60 seconds, and confirm the commit shows up: `git log -1`
+4. **Verify deployment** — a plain local `git push` does **not** trigger the Azure deploy: `.github/workflows/daily-refresh.yml` only runs on its Monday schedule or a manual "Run workflow" click, not on `push`. So after pushing a manual refresh, also trigger the workflow (Actions tab → "Weekly Competitive Research Refresh" → "Run workflow") so its `publish` job's "Deploy to Azure Static Web Apps" step actually runs; then confirm at https://cardo-intel.cardosystems.com/ (sign-in required) after ~30-60 seconds, and check the commit shows up: `git log -1`
 
 ---
 
@@ -277,7 +277,7 @@ python3 -m http.server 8000
 - **Social listener runtime:** 3-5 minutes each (Reddit and Apify listeners run separately)
 - **Product Expert runtime:** 2-4 minutes
 - **Full weekly refresh cycle:** ~15-20 minutes end to end (all brands in parallel + both listeners + product expert + build + publish)
-- **GitHub Pages deployment:** 30-60 seconds after push
+- **Azure Static Web Apps deployment:** 30-60 seconds after the `publish` job's deploy step runs
 - **Dashboard load time:** <2 seconds (single HTML file, self-contained)
 
 ---
@@ -330,9 +330,9 @@ __pycache__/
 
 - **Build.py errors:** Check JSON syntax in `research/*.json`
 - **Script errors:** See `docs/AGENTS.md` troubleshooting section
-- **GitHub Pages issues:** See `README.md` deployment notes
+- **Deployment issues:** See `README.md` deployment notes and `AUTOMATION_SETUP.md`
 - **General questions:** Read through `README.md` and linked docs first
 
 ---
 
-**Last updated:** September 29, 2026
+**Last updated:** September 30, 2026

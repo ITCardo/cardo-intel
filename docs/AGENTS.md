@@ -31,7 +31,7 @@ There's no "agent framework" or CLI here — these are plain Python scripts that
          scripts/product_expert.py  → regenerates product_insights.json
          python build.py            → renders dashboard.html/index.html
          scripts/validate_dashboard_js.py → sanity-checks embedded JS
-         git commit + push          → GitHub Pages picks it up
+         git commit + push          → deploys to Azure Static Web Apps
 ```
 
 ## Individual Script Descriptions
@@ -264,12 +264,13 @@ python build.py
 **Cause:** This is deliberate in the current code — see script #3 above
 **Fix:** Add the `APIFY_API_TOKEN` secret (or, if the intent is genuinely to make Apify optional, that's a code change to `scripts/apify_social_listener.py`, not a config change — see "Adding IP/patent scraping" in the README for the general shape of that kind of work)
 
-### GitHub Pages is stale (live site didn't update)
-**Symptom:** A run succeeded but https://itcardo.github.io/cardo-intel/ shows old data
+### The live site is stale (didn't update)
+**Symptom:** A run succeeded but https://cardo-intel.cardosystems.com/ (sign-in required) shows old data
 **Fix:**
 1. Confirm the `publish` job actually ran (check it wasn't blocked by a failed `social-listeners` job, per above)
-2. Hard-refresh your browser (Cmd+Shift+R) — GitHub Pages itself can take 30-60 seconds to rebuild after a push
-3. Check the Actions log for the "Commit and push changes" step to confirm it pushed to `main`
+2. Confirm the "Deploy to Azure Static Web Apps" step actually ran (not the "skip" no-op — that only happens if `AZURE_STATIC_WEB_APPS_API_TOKEN` is unset)
+3. Hard-refresh your browser (Cmd+Shift+R)
+4. Check the Actions log for the "Commit and push changes" step to confirm it pushed to `main`
 
 ---
 
@@ -305,4 +306,4 @@ python build.py
 
 ---
 
-**Last updated:** September 29, 2026
+**Last updated:** September 30, 2026

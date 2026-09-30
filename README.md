@@ -2,7 +2,7 @@
 
 A comprehensive competitive intelligence system that tracks motorcycle intercom products and strategic positioning across Cardo, Sena, ASMAX, and Reso. Built with Claude AI agents, Python, and a self-contained HTML dashboard.
 
-**Live at:** https://itcardo.github.io/cardo-intel/ — **migration in progress:** this dashboard is moving to Azure Static Web Apps behind Entra ID login (only `cardosystems.com` accounts), replacing public GitHub Pages hosting. See `AUTOMATION_SETUP.md` → "Step 2: Move hosting to Azure Static Web Apps" for the one-time setup and current status. Until that migration's final step (disabling the GitHub Pages source), the URL above still serves the dashboard with no login required.
+**Live at:** https://cardo-intel.cardosystems.com/ — hosted on Azure Static Web Apps behind Microsoft/Entra ID sign-in, restricted to assigned Cardo Systems accounts only. The old public URL (`itcardo.github.io/cardo-intel`) now 302-redirects here automatically (GitHub Pages' built-in custom-domain redirect). GitHub Pages itself is still enabled as a fallback pending final cleanup — see `AUTOMATION_SETUP.md` → "Step 2" for the remaining step (disabling the Pages source) and full setup details.
 
 **Adding a new brand/site to track:** add an entry to `research/brands.json`, create an empty `research/<slug>.json`, and (optionally) list its ASINs in `research/keepa_asins.json` for Amazon pricing. Nothing else needs to change — `build.py`, the research agents, and the GitHub Actions workflow all read the brand list from that config file.
 
@@ -13,7 +13,7 @@ This is an **automated competitive research platform** that:
 1. **Collects intelligence** from product sites, press coverage, social media, and customer forums across 4 motorcycle communicator brands
 2. **Synthesizes insights** using AI agents to identify product gaps, market opportunities, and strategic threats
 3. **Renders a dashboard** as a single self-contained HTML file with 10+ interactive tabs analyzing products, pricing, battles, firmware, customer feedback, and strategic recommendations
-4. **Publishes daily** to GitHub Pages, updating automatically when new competitive moves are detected
+4. **Publishes weekly** to the login-gated dashboard, updating automatically when new competitive moves are detected
 
 ## Architecture Overview
 
@@ -24,7 +24,7 @@ This is an **automated competitive research platform** that:
 │ DASHBOARD LAYER (1 file)                                    │
 │ dashboard.html (generated) — self-contained, no runtime deps│
 │ • 10 interactive tabs (Overview, Products, Battles, etc.)   │
-│ • Renders to GitHub Pages automatically                     │
+│ • Deployed to Azure Static Web Apps, behind Entra ID login   │
 └─────────────────────────────────────────────────────────────┘
          ↑ (fed by build.py)
 ┌─────────────────────────────────────────────────────────────┐
@@ -32,7 +32,7 @@ This is an **automated competitive research platform** that:
 │ build.py — embeds JSON data into HTML template              │
 │ • Reads 6 research JSON files                               │
 │ • Embeds data into dashboard_template.html                  │
-│ • Writes dashboard.html + index.html for GitHub Pages       │
+│ • Writes dashboard.html + index.html for deployment         │
 └─────────────────────────────────────────────────────────────┘
          ↑ (fed by agents)
 ┌─────────────────────────────────────────────────────────────┐
@@ -58,7 +58,7 @@ This is an **automated competitive research platform** that:
 3. **build.py** reads all 6 research JSON files
 4. **build.py** embeds data into an HTML template as a JavaScript variable
 5. The rendered **dashboard.html** is a self-contained file (works from file://, no server needed)
-6. **Git + GitHub Pages** automatically publishes the dashboard to the web
+6. **Git push** triggers the `publish` job's Azure Static Web Apps deploy step, publishing the dashboard behind Entra ID login
 
 ## Dashboard Tabs
 
@@ -157,7 +157,7 @@ The system runs on a GitHub Actions schedule (Mondays at 14:00 UTC, plus a manua
 4. **publish**: runs after research and social listening complete —
    - **Product Expert** (`product_expert.py`) reads all research files and regenerates `product_insights.json` from scratch (analyst brief, executive summary, market pulse, gaps, recommendations, watchlist).
    - **build.py** embeds all research JSON into the HTML template, validates the resulting JavaScript, and writes `dashboard.html` + `index.html`.
-   - Commits and pushes the changes to `main` if anything changed; GitHub Pages then rebuilds and publishes automatically.
+   - Commits and pushes the changes to `main` if anything changed, then deploys the built files to Azure Static Web Apps (behind Entra ID login).
 
 ## Files & Directories
 
@@ -177,7 +177,7 @@ cardo-intel/
 ├── build.py                         # Build dashboard from JSONs
 ├── dashboard_template.html          # HTML template with embedded JS
 ├── dashboard.html                   # (generated) Final deployed dashboard
-├── index.html                       # (generated) Same as dashboard.html for GitHub Pages
+├── index.html                       # (generated) Same as dashboard.html, deployed alongside it
 │
 ├── scripts/
 │   ├── research_agent.py            # Per-brand research (Claude + web search)
@@ -205,7 +205,7 @@ cardo-intel/
 - **`keepa` Python package** (only if Amazon pricing via Keepa is configured — optional, gracefully skipped otherwise)
 - **Node.js** (optional, for `node -c` syntax checking during build)
 
-No npm packages, no server, no database, no `gh` CLI — the dashboard is a single self-contained HTML file, and publishing is a plain `git push` to `main` that GitHub Pages picks up automatically. Everything runs inside GitHub Actions' own runners; nothing needs to be installed locally except to develop or test scripts by hand.
+No npm packages, no server, no database, no `gh` CLI — the dashboard is a single self-contained HTML file, and publishing is a plain `git push` to `main` that the `publish` job's Azure Static Web Apps deploy step picks up automatically. Everything runs inside GitHub Actions' own runners; nothing needs to be installed locally except to develop or test scripts by hand.
 
 ## Quick Start
 
@@ -235,18 +235,19 @@ python3 -m http.server 8000
 # → "Run workflow"
 ```
 
-## GitHub Deployment
+## Deployment
 
-The dashboard is deployed to GitHub Pages automatically when code is pushed to `main`:
+The dashboard is deployed to Azure Static Web Apps automatically when code is pushed to `main`:
 
 1. Repository: https://github.com/ITCardo/cardo-intel
-2. Public URL: https://itcardo.github.io/cardo-intel/
-3. Branch: `main` (GitHub Pages builds from root path)
-4. Built file: `dashboard.html` (renamed to `index.html` as well for serving)
+2. Live URL: https://cardo-intel.cardosystems.com/ (login required — Entra ID, restricted to assigned Cardo Systems accounts)
+3. Source: the `publish` job in `.github/workflows/daily-refresh.yml` stages `index.html`, `dashboard.html`, `login.html`, and `staticwebapp.config.json` into a `site/` folder and deploys it via `Azure/static-web-apps-deploy`
+4. Built files: `dashboard.html` (renamed to `index.html` as well for serving)
+5. Legacy path: `https://itcardo.github.io/cardo-intel/` still exists (GitHub Pages isn't fully disabled yet) but auto-redirects to the URL above — see `AUTOMATION_SETUP.md` for the remaining cleanup step
 
 ## Key Design Decisions
 
-1. **Single HTML file output** — No server, no build process at view time. Works from file://, CDN, GitHub Pages, or embedded in email.
+1. **Single HTML file output** — No server, no build process at view time. Works from file://, CDN, or embedded in email.
 
 2. **JSON-driven** — All data is embedded in the HTML as a single JS variable. Easy to version-control, easy to edit, easy to backup.
 
@@ -274,4 +275,4 @@ When updating research data:
 
 ---
 
-**Last updated:** September 28, 2026 | **Repository:** https://github.com/ITCardo/cardo-intel
+**Last updated:** September 30, 2026 | **Repository:** https://github.com/ITCardo/cardo-intel

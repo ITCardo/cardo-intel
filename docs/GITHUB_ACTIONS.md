@@ -11,7 +11,7 @@ The GitHub Actions workflow (`.github/workflows/daily-refresh.yml` — the filen
 3. **Runs a research agent per brand, in parallel**, calling the Anthropic API directly (via the `anthropic` Python package) with Claude's `web_search` tool — plus the Keepa API for Amazon pricing
 4. **Runs two social listener scripts** — Reddit (via web search) and Facebook Groups/Instagram (via Apify)
 5. **Synthesizes strategic insights**, builds the dashboard, and pushes to `main`
-6. **Publishes to GitHub Pages** automatically (GitHub Pages rebuilds from `main` on every push)
+6. **Deploys to Azure Static Web Apps** automatically (behind Entra ID login, restricted to assigned Cardo Systems accounts)
 
 All logs are visible in the Actions tab. The four jobs run in sequence (`determine-brands` → `research-agents` → `social-listeners` → `publish`), with `research-agents` fanning out one job per brand.
 
@@ -124,7 +124,7 @@ git add research/*.json dashboard.html index.html
 git commit -m "Weekly data refresh $(date +%Y-%m-%d)"
 git push origin HEAD:main
 ```
-GitHub Pages then rebuilds automatically from the new `main` commit.
+Then, still in `publish`, the "Prepare Azure site folder" and "Deploy to Azure Static Web Apps" steps stage `index.html`, `dashboard.html`, `login.html`, and `staticwebapp.config.json` into `site/` and deploy it via `Azure/static-web-apps-deploy`, publishing the new build to `https://cardo-intel.cardosystems.com/`. (GitHub Pages, on the same push, also rebuilds its own copy at `itcardo.github.io/cardo-intel` — that URL now just 302-redirects to the Azure site, and will stop existing once GitHub Pages is disabled per `AUTOMATION_SETUP.md`.)
 
 ---
 
@@ -138,7 +138,7 @@ GitHub Pages then rebuilds automatically from the new `main` commit.
 
 ### Check Logs
 
-Each job/step logs its progress; click into any job for its log. A green checkmark on `publish` is a good sign, but it can still mean thin results if a step found nothing new that week — check https://itcardo.github.io/cardo-intel/ and confirm the "last updated" date, not just the checkmark.
+Each job/step logs its progress; click into any job for its log. A green checkmark on `publish` is a good sign, but it can still mean thin results if a step found nothing new that week — sign in at https://cardo-intel.cardosystems.com/ and confirm the "last updated" date, not just the checkmark.
 
 ### If a Run Fails
 
@@ -214,7 +214,7 @@ Add `SLACK_WEBHOOK` as a GitHub secret, and add this step to the existing `notif
 ### Dashboard not updating
 **Fix:**
 1. Hard refresh browser: Cmd+Shift+R (Mac) or Ctrl+Shift+R (Windows)
-2. Wait 30-60 seconds for GitHub Pages to rebuild
+2. Confirm the "Deploy to Azure Static Web Apps" step in `publish` actually ran (not the "skip" no-op) and succeeded
 3. Verify the commit was pushed: `git log -1` in a local clone should show that week's refresh commit
 
 ---
@@ -269,4 +269,4 @@ If the workflow fails:
 
 ---
 
-**Last updated:** September 29, 2026
+**Last updated:** September 30, 2026
