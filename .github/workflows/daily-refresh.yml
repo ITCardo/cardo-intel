@@ -101,6 +101,11 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      # GitHub Actions doesn't allow the `secrets` context inside a step's
+      # `if:` conditional directly — expose it as a job-level env var instead
+      # and branch on that below (see the three steps that reference it).
+      AZURE_DEPLOY_ENABLED: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN != '' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -171,7 +176,7 @@ jobs:
       # committed to git — see .gitignore) so the Azure deploy below doesn't
       # upload the repo's research data, scripts, or docs alongside the site.
       - name: Prepare Azure site folder
-        if: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN != '' }}
+        if: ${{ env.AZURE_DEPLOY_ENABLED == 'true' }}
         run: |
           mkdir -p site
           cp index.html dashboard.html login.html staticwebapp.config.json site/
@@ -182,7 +187,7 @@ jobs:
       # secret, so it's safe to have merged before the Azure resource is
       # provisioned — see AUTOMATION_SETUP.md for the one-time setup this depends on.
       - name: Deploy to Azure Static Web Apps
-        if: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN != '' }}
+        if: ${{ env.AZURE_DEPLOY_ENABLED == 'true' }}
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
@@ -193,7 +198,7 @@ jobs:
           skip_app_build: true
 
       - name: Skip Azure deploy (secret not configured yet)
-        if: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN == '' }}
+        if: ${{ env.AZURE_DEPLOY_ENABLED == 'false' }}
         run: echo "ℹ️ AZURE_STATIC_WEB_APPS_API_TOKEN not set — skipping Azure deploy. See AUTOMATION_SETUP.md."
 
       - name: Verify deployment
