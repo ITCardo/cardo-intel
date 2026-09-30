@@ -142,7 +142,7 @@ Return ONLY the JSON array, no markdown."""
     print(f"🔄 Classifying {len(trimmed)} real posts for {brand.upper()}...")
     full_response = ""
     with client.messages.stream(
-        model="claude-opus-4-8",
+        model="claude-sonnet-5-5",
         max_tokens=4000,
         messages=[{"role": "user", "content": prompt}],
     ) as stream:
