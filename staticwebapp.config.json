@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/staticwebapp.config.json",
+
+  "auth": {
+    "identityProviders": {
+      "azureActiveDirectory": {
+        "registration": {
+          "openIdIssuer": "https://login.microsoftonline.com/<CARDO_ENTRA_TENANT_ID>/v2.0",
+          "clientIdSettingName": "AZURE_CLIENT_ID",
+          "clientSecretSettingName": "AZURE_CLIENT_SECRET"
+        }
+      }
+    }
+  },
+
+  "routes": [
+    { "route": "/login.html", "allowedRoles": ["anonymous"] },
+    { "route": "/.auth/*", "allowedRoles": ["anonymous"] },
+    { "route": "/*", "allowedRoles": ["authenticated"] }
+  ],
+
+  "responseOverrides": {
+    "401": {
+      "redirect": "/login.html",
+      "statusCode": 302
+    }
+  },
+
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/login.html", "/dashboard.html", "*.{css,js,png,jpg,svg,ico}"]
+  }
+}

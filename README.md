@@ -2,7 +2,7 @@
 
 A comprehensive competitive intelligence system that tracks motorcycle intercom products and strategic positioning across Cardo, Sena, ASMAX, and Reso. Built with Claude AI agents, Python, and a self-contained HTML dashboard.
 
-**Live at:** https://itcardo.github.io/cardo-intel/
+**Live at:** https://itcardo.github.io/cardo-intel/ — **migration in progress:** this dashboard is moving to Azure Static Web Apps behind Entra ID login (only `cardosystems.com` accounts), replacing public GitHub Pages hosting. See `AUTOMATION_SETUP.md` → "Step 2: Move hosting to Azure Static Web Apps" for the one-time setup and current status. Until that migration's final step (disabling the GitHub Pages source), the URL above still serves the dashboard with no login required.
 
 **Adding a new brand/site to track:** add an entry to `research/brands.json`, create an empty `research/<slug>.json`, and (optionally) list its ASINs in `research/keepa_asins.json` for Amazon pricing. Nothing else needs to change — `build.py`, the research agents, and the GitHub Actions workflow all read the brand list from that config file.
 

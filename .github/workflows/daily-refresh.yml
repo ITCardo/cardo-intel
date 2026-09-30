@@ -167,15 +167,44 @@ jobs:
           git push origin HEAD:main
           echo "✅ Changes pushed to GitHub"
 
+      # Stages only the files the public site actually needs into site/ (not
+      # committed to git — see .gitignore) so the Azure deploy below doesn't
+      # upload the repo's research data, scripts, or docs alongside the site.
+      - name: Prepare Azure site folder
+        if: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN != '' }}
+        run: |
+          mkdir -p site
+          cp index.html dashboard.html login.html staticwebapp.config.json site/
+
+      # Deploys the already-built dashboard (index.html/dashboard.html) plus
+      # login.html and staticwebapp.config.json to Azure Static Web Apps. This
+      # step is a no-op until AZURE_STATIC_WEB_APPS_API_TOKEN exists as a repo
+      # secret, so it's safe to have merged before the Azure resource is
+      # provisioned — see AUTOMATION_SETUP.md for the one-time setup this depends on.
+      - name: Deploy to Azure Static Web Apps
+        if: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN != '' }}
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/site"
+          output_location: ""
+          skip_app_build: true
+
+      - name: Skip Azure deploy (secret not configured yet)
+        if: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN == '' }}
+        run: echo "ℹ️ AZURE_STATIC_WEB_APPS_API_TOKEN not set — skipping Azure deploy. See AUTOMATION_SETUP.md."
+
       - name: Verify deployment
         run: |
-          echo "Waiting for GitHub Pages to update..."
+          echo "Waiting for the site to update..."
           sleep 10
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://itcardo.github.io/cardo-intel/)
           if [ "$STATUS" = "200" ]; then
-            echo "✅ Dashboard is live at https://itcardo.github.io/cardo-intel/"
+            echo "ℹ️ GitHub Pages still serving at https://itcardo.github.io/cardo-intel/ (disable this source in repo Settings once Azure is confirmed working, per AUTOMATION_SETUP.md)"
           else
-            echo "⚠️ Dashboard returned status $STATUS (may still be rebuilding)"
+            echo "⚠️ GitHub Pages returned status $STATUS (may still be rebuilding, or already disabled)"
           fi
 
       - name: Summary

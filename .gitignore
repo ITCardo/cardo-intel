@@ -1,9 +1,8 @@
-.firecrawl/
 .claude/
-.ig_session.json
-ig_product_scan.py
 out/
-.env.ig
-apify_scan.py
-.env.keepa
+site/
 __pycache__/
+venv/
+.DS_Store
+.env
+.env.keepa

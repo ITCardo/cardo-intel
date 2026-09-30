@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cardo Competitive Intelligence — Sign in</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --border:#2d3644; --text:#e6edf3; --muted:#8b949e;
+    --cardo:#e6002d;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; display:flex; align-items:center; justify-content:center; min-height:100vh;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(230,0,45,0.12), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:24px;
+  }
+  .card{
+    width:100%; max-width:420px; background:var(--panel); border:1px solid var(--border);
+    border-radius:14px; padding:40px 32px; text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,0.35);
+    position:relative; overflow:hidden;
+  }
+  .card::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:3px; background:var(--cardo);
+  }
+  .brand{
+    display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:28px;
+  }
+  .brand .dot{width:12px;height:12px;border-radius:50%;background:var(--cardo)}
+  .brand span{font-weight:700; font-size:15px; letter-spacing:.02em; color:var(--muted); text-transform:uppercase}
+  h1{font-size:21px; margin:0 0 8px; font-weight:700}
+  h1 .accent{color:var(--cardo)}
+  p.sub{color:var(--muted); font-size:14px; margin:0 0 32px; line-height:1.5}
+  .ms-btn{
+    display:flex; align-items:center; justify-content:center; gap:12px;
+    width:100%; padding:12px 16px; border-radius:8px; border:1px solid #8c8c8c;
+    background:#fff; color:#1b1b1b; font-size:15px; font-weight:600;
+    text-decoration:none; transition:background .15s ease;
+  }
+  .ms-btn:hover{background:#f3f3f3}
+  .ms-btn svg{flex:none}
+  .footnote{margin-top:28px; font-size:12px; color:var(--muted); line-height:1.5}
+  .footnote a{color:inherit}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand"><span class="dot"></span><span>Cardo Systems</span></div>
+    <h1>Competitive Intelligence <span class="accent">Dashboard</span></h1>
+    <p class="sub">Internal use only. Sign in with your Cardo Microsoft account to continue.</p>
+    <a class="ms-btn" href="/.auth/login/aad?post_login_redirect_uri=/">
+      <svg width="20" height="20" viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="9" height="9" fill="#f25022"/>
+        <rect x="11" y="1" width="9" height="9" fill="#7fba00"/>
+        <rect x="1" y="11" width="9" height="9" fill="#00a4ef"/>
+        <rect x="11" y="11" width="9" height="9" fill="#ffb900"/>
+      </svg>
+      Sign in with Microsoft
+    </a>
+    <p class="footnote">Access is limited to Cardo Systems accounts.<br>Trouble signing in? Contact IT.</p>
+  </div>
+</body>
+</html>
