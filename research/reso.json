@@ -10,10 +10,11 @@
   "products": [
     {
       "name": "Reso Pilot Pro",
+      "category": "communicator",
       "tier": "flagship",
       "msrp_usd": 399,
       "street_price_usd": 359,
-      "intercom_tech": "DuoSync dual mesh: hardware mesh + software mesh (IP-based via phone hotspot/cellular), simultaneous with Bluetooth 5.2",
+      "intercom_tech": "DuoSync dual mesh: hardware mesh + software mesh (IP-based via phone hotspot/cellular, with 'dual hotspot' support), simultaneous with Bluetooth 5.2",
       "range_km": 2.5,
       "max_riders": 30,
       "audio": "Self-developed 40mm speakers (optional 45mm 'Audio X' HD speaker upgrade, $69-99); proprietary AI noise reduction claimed effective to 110 mph / 180 kph",
@@ -23,9 +24,11 @@
         "AI noise reduction (self-developed)",
         "'Hey RESO' voice control with continuous listening mode",
         "GNSS module + gyroscope with SOS crash detection and emergency-contact alerts",
-        "Reso Link app: route book, real-time teammate tracking, remote grouping",
+        "Reso Link app: route book, real-time teammate tracking, remote grouping, EQ tuning, one-tap group rejoining, OTA",
         "OTA firmware updates",
         "Music sharing between riders",
+        "Built-in FM radio (Pro only per resopilot.com Neo/Pro FAQ; Neo does not support FM radio)",
+        "Dual hotspot for software mesh (Pro only)",
         "Action camera integration (GoPro, DJI, Insta360) with team-comms audio recorded into footage",
         "Intercom recording",
         "Gyro tap gestures (double-tap to answer calls)",
@@ -36,7 +39,7 @@
       "voip": false,
       "wireless_charging": false,
       "detachable_battery": false,
-      "notes": "Range: 2.5 km point-to-point hardware mesh, 12 km group relay (30 riders), unlimited via software mesh with mobile data. Battery 1950 mAh: 13 h mesh+music, 18 h music only, 33 h power-saving. Warranty 3 years (main unit). Street prices vary widely: $359 on resosport.com, $250 at Motojini, PHP 12,500-13,999 (~USD 220-245) in the Philippines. UPDATE (this refresh, 2026-08-10): the site has migrated from resosport.com (now 301-redirects) to resopilot.com; the canonical product page now shows 'Sold Out' at the unchanged sale/regular prices of $359/$399 -- confirmed via direct scrape. A separate duplicate listing ('RESOPILOT Pro' at /products/test-pro) shows 'Add to cart' at the same $359/$399, likely a staging/migration artifact rather than a real restocked SKU. UPDATE (this refresh, 2026-08-31): the canonical product page is back in stock -- confirmed via raw-HTML check (plain 'Add to cart' button, no disabled attribute, JSON payload shows \"available\":true) -- reversing 'Sold Out' status held since 2026-08-10. Price unchanged at $359 sale / $399 regular. The duplicate test-pro listing remains Sold Out at the same price. UPDATE (this refresh, 2026-09-14): a genuine official Amazon.com listing is now confirmed live (amazon.com/dp/B0H8SDBYB3, brand store 'RESOPILOT') at the same $359.00 price, Prime-eligible/Amazon-fulfilled -- see company.channels for detail; this resolves the long-running uncertainty over Reso's Amazon.com presence. Also newly found: a Singapore retail channel (CandyMotor, candymotorsg.com) sells the Pro at a USD-displayed $240 sale / $328 regular (converted from SGD), and the canonical resopilot.com product page now shows a Judge.me review widget with 10 customer reviews (skewing positive, dated from late July 2026). UPDATE (this refresh, 2026-09-21): resopilot.com prices re-confirmed unchanged ($359 sale / $399 regular); a 2-pack bundle listing ('RESOPilot Pro Motorcycle Helmet Intercom-bundle') is offered at $646 sale / $798 regular (~$323 per unit). UPDATE (this refresh, 2026-09-28): resopilot.com prices unchanged ($359 sale / $399 regular); the 2-pack 'RESOPilot Pro Motorcycle Helmet Intercom-Double Pack' listing is now $679 sale / $798 regular (up from $646 sale at the 2026-09-21 refresh, ~$339.50 per unit). Official Amazon.com listing (amazon.com/dp/B0H8SDBYB3) re-scraped: still $359.00, now showing 4.7 out of 5 stars from 9 ratings. RevZilla's comms category still lists no Reso products.",
+      "notes": "Range: 2.5 km point-to-point hardware mesh, 12 km group relay (30 riders), unlimited via software mesh with mobile data. Battery 1950 mAh: 13 h mesh+music, 18 h music only, 33 h power-saving. Warranty 3 years (main unit). Street prices vary widely: $359 on resopilot.com, $250 at Motojini, PHP 12,500-13,999 (~USD 220-245) in the Philippines, AUD 599 in Australia, ~USD 239 at CandyMotor Singapore. History condensed: site migrated resosport.com -> resopilot.com on 2026-08-10 (canonical page Sold Out 08-10 to 08-29, back in stock 08-31; duplicate 'test-pro' staging listing remains Sold Out); official Amazon.com listing (amazon.com/dp/B0H8SDBYB3, brand store RESOPILOT, model KR700) confirmed 2026-09-14 at $359.00 and showing 4.7/5 from 9 ratings on 2026-09-28; resopilot.com Judge.me widget shows 10 reviews; 2-pack listing was $646 (09-21) then $679 sale / $798 regular (09-28). UPDATE (this refresh, 2026-09-30): resopilot.com Pro page still shows $359 sale / $399 regular. NEW: the official Pro page and FAQ now state the Pro has a built-in FM radio (usable independently) that the Neo lacks, and the Reso Link app listing and site app page cite FM radio and EQ tuning; FM radio had not previously been captured in this dataset's Pro feature list. The page also markets the Pro as the 'World's 1st Intercom with Hardware & Software Mesh' and a 'Dual Hotspot' option exclusive to the Pro. The Amazon.com listing title now advertises 'Cross-Brand Connect' and lists camera compatibility (Bluetooth: Insta360 X2-X6/Ace Pro/Ace Pro 2, GoPro 12, DJI Osmo 360/360 II/Action 6; USB-C: DJI Osmo 360/360 II, Action 3/4/5 Pro/6). A search snippet of the Amazon page on 2026-09-30 showed 'No featured offers available' for the Pro, which could be a transient stock/buy-box state or a scrape artifact; not verified.",
       "usage": "Motorcycle",
       "dimensions": {
         "form_factor": {
@@ -52,7 +55,7 @@
           "voice_commands": "'Hey RESO' wake word with continuous-listening mode for consecutive commands; reviewers rate it fast and accurate, though accidental triggers during normal conversation reported",
           "screen": "no",
           "ota": "OTA firmware updates delivered via Reso Link app",
-          "app": "Reso Link (iOS/Android): route book, live teammate GPS tracking, remote grouping, OTA; reviewers call it versatile and feature-rich"
+          "app": "Reso Link (iOS/Android): route book, live teammate GPS tracking, remote grouping, FM radio and EQ controls, OTA; reviewers call it versatile and feature-rich"
         },
         "sound": {
           "speaker_size_mm": 40,
@@ -66,7 +69,7 @@
           "max_riders": 30,
           "auto_reconnect": true,
           "wideband_audio": null,
-          "cross_brand": "No cross-brand mesh; interoperates with Pilot Neo within the Reso ecosystem; universal Bluetooth pairing to Cardo/Sena not documented anywhere — reviewers describe cross-brand compatibility as limited"
+          "cross_brand": "No native cross-brand mesh documented on Reso's own pages; Amazon.com listing title now advertises 'Cross-Brand Connect' and a Reddit user documented a manual nRF Connect workaround for Sena/Cardo pairing, while a PH Facebook group user reported failing to pair with a Sena 50S via mesh; reviewers describe cross-brand compatibility as limited"
         },
         "quality": {
           "build": "Premium build; magnetic cradle precise; speakers reportedly held up after months of moderate use (TopGear PH long-term)",
@@ -77,7 +80,7 @@
         "price": {
           "msrp_usd": 399,
           "street_usd": 359,
-          "segment_position": "Undercuts Cardo Packtalk Pro (~$459) by ~$100 at US MSRP and by $200+ at SEA street prices (~USD 220-250); priced near Packtalk Edge while carrying a flagship feature set"
+          "segment_position": "Undercuts Cardo Packtalk Pro (~$450-460) by ~$100 at US MSRP and by $200+ at SEA street prices (~USD 220-250); priced near Packtalk Edge (~$395-440) while carrying a flagship feature set"
         }
       },
       "url": "https://resopilot.com/products/resopilot_pro"
@@ -598,6 +601,18 @@
       "headline": "resopilot.com site footer now links a different official Facebook page (facebook.com/profile.php?id=61592132642078) and the renamed YouTube channel (@RESOPilot); resopilot.com prices unchanged (Pro $359/$399, Neo $269/$299, Lite $139/$159) while the Pro Double Pack moved from $646 to $679 sale ($798 regular); Amazon.com storefront prices unchanged; RevZilla still carries no Reso products; Reso Link app still v3.0.3",
       "source": "resopilot.com (direct fetch) / amazon.com / revzilla.com / apps.apple.com",
       "url": "https://resopilot.com/"
+    },
+    {
+      "date": "2026-09-30",
+      "headline": "Amazon.com Pro listing (B0H8SDBYB3) surfaced in a search snippet with 'No featured offers available' in its price summary, unlike the $359.00 price confirmed on 2026-09-28. This could be a transient stock/buy-box state or a scrape artifact and is not verified. resopilot.com prices are unchanged (Pro $359/$399, Neo $269/$299)",
+      "source": "Amazon.com (search snippet) / resopilot.com",
+      "url": "https://www.amazon.com/RESOPILOT-Motorcycle-Intercom-Unlimited-Auto-Switch/dp/B0H8SDBYB3"
+    },
+    {
+      "date": "2026-09-30",
+      "headline": "Bandidos Pitstop (already tracked as a dealer) lists the Reso Pilot Pro in INR (sale 32,999 / regular 33,299), marked backordered. This suggests the retailer serves India, not only the Philippines as previously recorded, and the price matches the resosport.in INR sale price",
+      "source": "bandidospitstop.com (search snippet)",
+      "url": "https://bandidospitstop.com/products/reso-pilot-pro"
     }
   ],
   "social_media": {
@@ -1199,7 +1214,7 @@
     ],
     "awards": [],
     "overall_tone": "Enthusiastic in Philippine/SEA moto media, where Reso is framed as a legitimate 'Cardo killer' value disruptor with DJI pedigree; now also gaining a genuinely enthusiastic wave of Japanese trade/consumer press following Daytona's June 2026 distribution launch (Webike, Bikebros, Response.jp, Motomegane, Dirtbikeplus, autoby.jp, and — found this refresh — WEB Young Machine, a major established Japanese motorcycle magazine) — first time Reso has broken into a major developed-market motorcycle-parts trade press ecosystem. Still effectively invisible in major English-language Western motorcycle press — no reviews or news found from MCN, Cycle World, RideApart, webBikeWorld, Bennetts BikeSocial, RevZilla Common Tread, or Motorcyclist as of July 2026 (this refresh re-checked all of these plus Motorcycle.com and found only unrelated content, e.g. a Facebook comment on an MCN Sena 50S review post where a reader mentions switching to a Reso Pilot Pro -- organic word-of-mouth, not editorial coverage). NEW (2026-07-21): Reso's first documented racing/motorsport sponsorship (QJMOTOR Factory Team, WSBK) signals a marketing push toward performance/track credibility beyond its existing touring/adventure and community-event positioning. This refresh (2026-09-14) again found no new coverage from MCN, Cycle World, RideApart, webBikeWorld, Bennetts BikeSocial, RevZilla Common Tread, FortNine, or Motorcycle.com. The most notable development is operational rather than editorial -- a confirmed, price-matched official Amazon.com storefront ('RESOPILOT' brand store) for Pro/Neo/Lite -- alongside a newly-discovered Singapore retail channel (CandyMotor) and an official TikTok account (@resopilotglobal). The closest thing to a Western editorial lead this cycle is non-editorial: independent US creator Matt Hopkins (@motohop_, Cardo owner) publicly announced (2026-09-09) that he received a Pro unit and intends to test its cross-brand-connectivity, SOS, and tracking claims -- no published verdict yet.",
-    "summary": "All substantive coverage (2025-2026) originates from Philippine outlets (TopGear PH, Zigwheels PH, MotoPinas, Ridebuy, YugaTech) plus niche English-language gear blogs (phtoll, MotoMelody, Throttle&Far), Spanish-language YouTube, and now — since June 2026 — a wave of Japanese trade/consumer motorcycle press (Webike Plus, Bikebros News, Response.jp, Motomegane, Dirtbikeplus, autoby.jp) covering Daytona's official RESO distribution launch in Japan. Verdicts are consistently positive on value, noise reduction, voice control, and battery; consistent caveats are the small installed base and cellular-dependent soft mesh. No awards found. The Daytona deal is the most significant distribution/credibility milestone found to date: Daytona is a major, long-established Japanese motorcycle parts manufacturer/wholesaler, and its endorsement gives Reso a legitimate foothold in a developed market with an established dealer and e-commerce network (daytona.co.jp, Amazon.co.jp, Webike) for the first time outside DTC and SEA dealer channels. Reso also picked up its first India-market brand presence in June 2026 as Official Intercom Partner of World Motorcycle Day India 2026 (a sponsorship/activation, not yet a confirmed retail-distribution deal). NEW (this refresh, July 2026): a follow-up Webike Plus piece (2026-07-01) is explicitly labeled sponsored/PR content from Daytona rather than independent editorial coverage, so it is weighted accordingly; it did surface Reso's official 'UniSync' branding for the Neo's hardware mesh and an unverified '#1 sales for 17 consecutive months' claim for the Pilot Pro. Still no confirmed coverage from major English-language Western outlets (MCN, Cycle World, RideApart, webBikeWorld, Bennetts BikeSocial, RevZilla Common Tread, Motorcyclist, Motorcycle.com) as of 2026-07-10. This refresh (2026-07-27) re-checked the same outlet list plus a general web sweep and again found no new Western editorial coverage and no new press reviews since the 2026-07-20 QJMOTOR/WSBK sponsorship news; the notable new item this cycle is non-press -- discovery of an active, previously-undocumented Vietnam retail channel (Non Tai Dat/Pro Biker Vietnam, Vua2Hand) predating this refresh but newly captured here. This refresh (2026-08-10) found two previously-uncaptured outlets -- Carmudi Philippines (a March 2025 market-entry news piece, neutral tone) and Kadekura, a Japanese comparison site (Aug 2026, balanced Pro-vs-Neo verdict) -- but again no new coverage from major English-language Western outlets. The most significant development this cycle is operational rather than editorial: Reso's US/global DTC site migrated from resosport.com to resopilot.com and both flagship models now show 'Sold Out' on their canonical product pages, while a new India DTC storefront (resosport.in, operated by ALN Auto Pvt Ltd) quietly launched with a 'Launch special' running through August 31, 2026. This refresh (2026-08-17) again found no new coverage from major English-language Western outlets and no new press reviews; the notable development this cycle is again distribution/operational rather than editorial -- discovery of a previously-uncaptured Australian DTC storefront (resoconnect.com.au) and the Reso Pilot Lite's first appearance on the primary US/global store (resopilot.com), both detailed in recent_news. This refresh (2026-08-25) again re-checked MCN, Cycle World, RideApart, webBikeWorld, Bennetts BikeSocial, RevZilla Common Tread, FortNine, and Motorcycle.com and again found no new Western editorial coverage or reviews. The notable developments this cycle are non-press: discovery (via direct YouTube/Instagram scrape) that Reso attended BMW Motorrad Days China 2026 -- its first documented presence at a major OEM-run motorcycle festival -- continued PH expo-circuit activity at Makina Moto Expo 2026 Visayas Leg (Cebu, August 14-16), and the apparent delisting of the Reso Headset accessory from the resopilot.com catalog (404, no longer in collections/all). This refresh (2026-08-31) again re-checked the same Western outlet list (plus RideApart, Cycle World, webBikeWorld, Motorcycle.com, FortNine) via web search and again found no new editorial coverage or reviews; the only notable development this cycle is operational -- the Reso Pilot Pro and Pilot Neo canonical product pages returned to 'Add to cart' status after three weeks Sold Out (see recent_news and company.channels). This refresh (2026-09-14) again re-checked the same Western outlet list via web search and again found no new editorial coverage; the significant developments this cycle are all operational/social rather than editorial -- confirmation of a genuine, price-matched official Amazon.com storefront ('RESOPILOT' brand store) for all three core SKUs (resolving a saga tracked since 2026-07-10), a newly-discovered Singapore retail channel (CandyMotor), a newly-linked official TikTok account (@resopilotglobal), a new Judge.me customer-review widget (10 reviews per SKU) live on all three resopilot.com product pages, and public confirmation from independent US creator Matt Hopkins (@motohop_) that he has a Pro unit in hand for an upcoming Cardo-comparison review (no verdict published yet). No app or firmware update this cycle (Reso Link remains v3.0.3, 2026-07-29)."
+    "summary": "This refresh (2026-09-30) again found no new editorial coverage from MCN, Cycle World, RideApart, webBikeWorld, Bennetts BikeSocial, RevZilla or FortNine. The only RevZilla Reso-adjacent content is unrelated Cardo pages, and no published verdict from Matt Hopkins (@motohop_) was found. The notable changes are product-page details: a newly documented Pro-only FM radio, and Amazon.com listing copy that now advertises 'Cross-Brand Connect'. The resopilot.com app page and Reso Link listings still show v3.0.3, so there is no new app release."
   },
   "sources": [
     "https://resosport.com/pages/contact",
@@ -1320,7 +1335,11 @@
     "https://www.tiktok.com/discover/reso-pilot-pro-review",
     "https://www.tiktok.com/@gixxerjesus/video/7603421261728845070",
     "https://resopilot.com/pages/reso-pilot-pro",
-    "https://www.amazon.com/RESOPILOT-Motorcycle-Intercom-Unlimited-Auto-Switch/dp/B0H8SDBYB3"
+    "https://www.amazon.com/RESOPILOT-Motorcycle-Intercom-Unlimited-Auto-Switch/dp/B0H8SDBYB3",
+    "https://resopilot.com/pages/app-for-android-for-ios",
+    "https://resoconnect.com.au/pages/app-download",
+    "https://bandidospitstop.com/products/reso-pilot-pro",
+    "https://candymotorsg.com/products/reso-pilot-pro-bluetooth-mesh-intercome"
   ],
   "firmware_updates": [
     {
