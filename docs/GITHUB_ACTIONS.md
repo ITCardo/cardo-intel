@@ -124,7 +124,7 @@ git add research/*.json dashboard.html index.html
 git commit -m "Weekly data refresh $(date +%Y-%m-%d)"
 git push origin HEAD:main
 ```
-Then, still in `publish`, the "Prepare Azure site folder" and "Deploy to Azure Static Web Apps" steps stage `index.html`, `dashboard.html`, `login.html`, and `staticwebapp.config.json` into `site/` and deploy it via `Azure/static-web-apps-deploy`, publishing the new build to `https://cardo-intel.cardosystems.com/`. (GitHub Pages, on the same push, also rebuilds its own copy at `itcardo.github.io/cardo-intel` — that URL now just 302-redirects to the Azure site, and will stop existing once GitHub Pages is disabled per `AUTOMATION_SETUP.md`.)
+Then, still in `publish`, the "Prepare Azure site folder" and "Deploy to Azure Static Web Apps" steps stage `index.html`, `dashboard.html`, `login.html`, and `staticwebapp.config.json` into `site/` and deploy it via `Azure/static-web-apps-deploy`, publishing the new build to `https://cardo-intel.cardosystems.com/`. This is the only deploy target — GitHub Pages is disabled (see `AUTOMATION_SETUP.md` → Step 2.9), so the push to `main` no longer publishes anything at `itcardo.github.io/cardo-intel`.
 
 ---
 

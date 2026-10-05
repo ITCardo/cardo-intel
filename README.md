@@ -2,7 +2,7 @@
 
 A comprehensive competitive intelligence system that tracks motorcycle intercom products and strategic positioning across Cardo, Sena, ASMAX, and Reso. Built with Claude AI agents, Python, and a self-contained HTML dashboard.
 
-**Live at:** https://cardo-intel.cardosystems.com/ — hosted on Azure Static Web Apps behind Microsoft/Entra ID sign-in, restricted to assigned Cardo Systems accounts only. The old public URL (`itcardo.github.io/cardo-intel`) now 302-redirects here automatically (GitHub Pages' built-in custom-domain redirect). GitHub Pages itself is still enabled as a fallback pending final cleanup — see `AUTOMATION_SETUP.md` → "Step 2" for the remaining step (disabling the Pages source) and full setup details.
+**Live at:** https://cardo-intel.cardosystems.com/ — hosted on Azure Static Web Apps behind Microsoft/Entra ID sign-in, restricted to assigned Cardo Systems accounts only. The old public URL (`itcardo.github.io/cardo-intel`) is gone: GitHub Pages is disabled and the `CNAME` file removed, so it no longer serves or redirects anywhere. See `AUTOMATION_SETUP.md` → "Step 2" for full setup details.
 
 **Adding a new brand/site to track:** add an entry to `research/brands.json`, create an empty `research/<slug>.json`, and (optionally) list its ASINs in `research/keepa_asins.json` for Amazon pricing. Nothing else needs to change — `build.py`, the research agents, and the GitHub Actions workflow all read the brand list from that config file.
 
@@ -243,7 +243,7 @@ The dashboard is deployed to Azure Static Web Apps automatically when code is pu
 2. Live URL: https://cardo-intel.cardosystems.com/ (login required — Entra ID, restricted to assigned Cardo Systems accounts)
 3. Source: the `publish` job in `.github/workflows/daily-refresh.yml` stages `index.html`, `dashboard.html`, `login.html`, and `staticwebapp.config.json` into a `site/` folder and deploys it via `Azure/static-web-apps-deploy`
 4. Built files: `dashboard.html` (renamed to `index.html` as well for serving)
-5. Legacy path: `https://itcardo.github.io/cardo-intel/` still exists (GitHub Pages isn't fully disabled yet) but auto-redirects to the URL above — see `AUTOMATION_SETUP.md` for the remaining cleanup step
+5. Legacy path: `https://itcardo.github.io/cardo-intel/` no longer exists — GitHub Pages is disabled and there is no redirect to the URL above (see `AUTOMATION_SETUP.md` → Step 2.9)
 
 ## Key Design Decisions
 
