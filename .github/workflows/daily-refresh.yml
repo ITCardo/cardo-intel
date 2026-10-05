@@ -4,7 +4,7 @@ on:
   schedule:
     # Run every Monday at 10:00 AM US Eastern (14:00 UTC during EDT; drifts
     # to 15:00 UTC during EST since GitHub Actions cron doesn't follow DST)
-    - cron: '0 14 * * 1'
+        - cron: '7 14 * * 1'
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
