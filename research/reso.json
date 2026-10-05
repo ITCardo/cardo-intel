@@ -613,6 +613,12 @@
       "headline": "Bandidos Pitstop (already tracked as a dealer) lists the Reso Pilot Pro in INR (sale 32,999 / regular 33,299), marked backordered. This suggests the retailer serves India, not only the Philippines as previously recorded, and the price matches the resosport.in INR sale price",
       "source": "bandidospitstop.com (search snippet)",
       "url": "https://bandidospitstop.com/products/reso-pilot-pro"
+    },
+    {
+      "date": "2026-10-05",
+      "headline": "Official resopilot.com Pro/Neo product pages now carry a model-comparison table showing 'Cross-Brand Connectivity: Yes' for all three models (Pro, Neo, Lite). The same table lists the Neo with a 1950mAh battery and 24 h intercom+music runtime, versus the 1400 mAh figure earlier PH press gave for the Neo. The Amazon.com Neo listing (B0H94D8FQQ, model KR500) also advertises 'Cross-Brand Connect' in its title. Reso's own pages previously documented no native cross-brand mesh, so the claim is new. Independent verification is still thin: a Reddit nRF Connect workaround exists, and a PH Facebook group user reported failing to pair with a Sena 50S via mesh. The Neo battery-capacity discrepancy is unresolved.",
+      "source": "resopilot.com (search-indexed product pages) / Amazon.com (search snippet)",
+      "url": "https://resopilot.com/products/resopilot_neo"
     }
   ],
   "social_media": {
@@ -1045,6 +1051,42 @@
         "platform": "Instagram",
         "summary": "Can you hear me now? 🚁 We tested RESOPilot’s AI Noise Cancellation next to a literal helicopter! Experience crystal clear audio in the loudest environments.\n #RESOPilot #TechTest #MOTOGEAR",
         "url": "https://www.instagram.com/p/Dd2xT50DsUI/"
+      },
+      {
+        "date": "2026-10-02",
+        "platform": "Instagram",
+        "summary": "The ultimate RESOPilot ecosystem! 🔄 See how easy it is to connect your RESOPilot Lite with the Pro and Neo models for seamless group rides. \n#RESOPilot #MeshNetwork",
+        "url": "https://www.instagram.com/p/DeAZyvajPu6/"
+      },
+      {
+        "date": "2026-10-03",
+        "platform": "Instagram",
+        "summary": "Pushing the boundaries of connectivity! 📡 See how RESOPilot Pro’s Hotspot Range Extension keeps you linked up even in dead zones.\n #RESOPilot #RangeExtension",
+        "url": "https://www.instagram.com/p/DeC41FrCN1T/"
+      },
+      {
+        "date": "2026-10-04",
+        "platform": "Instagram",
+        "summary": "Clear, stable, and instant. 🔊 Master the Intercom functions of your RESOPilot Pro and keep the conversation going, mile after mile. \n\n#RESOPilot #MotorcycleIntercom",
+        "url": "https://www.instagram.com/p/DeDiZysCUnH/"
+      },
+      {
+        "date": "2026-10-04",
+        "platform": "Instagram",
+        "summary": "Keep your hands on the bars and eyes on the road. 🗣️ Discover how to use the Intelligent Voice Assistant on your RESOPilot Pro. Ride smart, ride safe. \n#RESOPilot #intercom",
+        "url": "https://www.instagram.com/p/DeFCC-hkkta/"
+      },
+      {
+        "date": "2026-10-04",
+        "platform": "Instagram",
+        "summary": "\"Hey Reso\"🎙️\nSmart tech for every rider. Learn how to activate and command the Smart Voice Assistant on your RESOPilot Lite. \n#RESOPilot #SmartRiding #Intercomsystem",
+        "url": "https://www.instagram.com/p/DeFCMCdALM4/"
+      },
+      {
+        "date": "2026-10-02",
+        "platform": "Instagram",
+        "summary": "A glimpse of RESOPilot in action with our media friends in Colombia! 🇨🇴🏍️\nFrom the open road to every riding moment, experience the ride with RESOPilot.\n#RESOPilot #ColombiaRides #MotorcycleLife #RideTogether",
+        "url": "https://www.instagram.com/p/DeAt86citDB/"
       }
     ]
   },
@@ -1339,7 +1381,8 @@
     "https://resopilot.com/pages/app-for-android-for-ios",
     "https://resoconnect.com.au/pages/app-download",
     "https://bandidospitstop.com/products/reso-pilot-pro",
-    "https://candymotorsg.com/products/reso-pilot-pro-bluetooth-mesh-intercome"
+    "https://candymotorsg.com/products/reso-pilot-pro-bluetooth-mesh-intercome",
+    "https://www.amazon.com/RESOPILOT-Motorcycle-Bluetooth-Intercom-Battery/dp/B0H94D8FQQ"
   ],
   "firmware_updates": [
     {
@@ -1544,7 +1587,7 @@
     "app_ios_version": "3.0.3",
     "app_android_version": "3.0.3",
     "app_last_updated": "2026-07-29",
-    "notes": "Reso ships device firmware as OTA updates delivered through the Reso Link companion app (iOS build 6504927409 on the App Store; Android package com.zowoi.kero.app on Google Play), rather than via a standalone desktop updater. The Reso Link app itself is versioned and its App Store release notes (traceable back to v1.3.1 on 2024-09-25) are the only reliable public changelog; device-level firmware version numbers are not separately disclosed to consumers. Update (this refresh, 2026-07-14): App Store version history shows a new iOS build 3.0.1 released 2026-07-10 (changelog: 'Fixed some minor bugs', no feature changes disclosed); Google Play listing for the Android package (com.zowoi.kero.app, developer 'Reso Pilot', 1K+ installs) shows 'Updated on Jul 12, 2026' but does not expose a version number on its store listing. This refresh (2026-07-27) re-checked the Apple App Store listing and found no version beyond 3.0.1 (still dated Jul 9-10, 2026) -- no new app or firmware release this cycle. This refresh (2026-08-10): App Store version history shows v3.0.3 released 2026-07-29 ('Updated some copy/text', no functional changes disclosed); Google Play listing for com.zowoi.kero.app shows a matching 'Updated on Jul 29, 2026' (exact Android version number not exposed on the store listing, inferred to match iOS). Separately, the resopilot.com/resosport.com DTC site itself (not the app) shows both flagship hardware SKUs as 'Sold Out' as of this refresh -- see company.channels and recent_news for details; this is a storefront/inventory status, not an app or firmware issue. This refresh (2026-08-17): re-checked the Apple App Store listing and Google Play; both still show v3.0.3 (dated 2026-07-29) with no newer release -- no app or firmware update this cycle. This refresh (2026-08-25): re-checked the Apple App Store version-history listing again; still shows v3.0.3 as the current/top version with no newer release since 2026-07-29 -- no app or firmware update this cycle. This refresh (2026-08-29): re-checked the Apple App Store version-history listing again; still shows v3.0.3 (2026-07-29) as current, one month with no newer release -- no app or firmware update this cycle. This refresh (2026-08-31): re-checked again; still v3.0.3 (2026-07-29), no newer release found -- no app or firmware update this cycle. This refresh (2026-09-14): re-checked both the Apple App Store version-history listing and the Google Play listing (com.zowoi.kero.app) directly via scrape; both still show v3.0.3 / 'Updated on Jul 29, 2026' as current -- six weeks with no newer release, no app or firmware update this cycle. This refresh (2026-09-21): App Store version history re-checked; still v3.0.3 (Jul 29) as current -- no newer app or firmware release. This refresh (2026-09-28): App Store version history re-checked; still v3.0.3 (Jul 29) as current -- no newer app or firmware release in two months."
+    "notes": "This refresh (2026-10-05): the Apple App Store version history (US storefront) still lists v3.0.3 (Jul 29) as the newest release, and the resopilot.com app page still shows V3.0.3 for both Android and iOS. No newer app or firmware release has appeared in about 10 weeks."
   },
   "product_firmware": [
     {

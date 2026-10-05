@@ -1461,6 +1461,18 @@
         "platform": "Instagram",
         "summary": "Publication en partenariat avec @asmax_europe 🫶\n\nToi aussi pomper pendant des heures ça te saoule ? ASMAX ! \n\nÇa pompe vite, fort et ça passe nickel dans la petite sacoche. Et le petit écran t'aide à optimiser ta pression pour ta course de quartier, important ça \n\nTu la veux ? Lien en bio ma gueule.",
         "url": "https://www.instagram.com/p/Dd1XQCdCCgJ/"
+      },
+      {
+        "date": "2026-10-02",
+        "platform": "Instagram",
+        "summary": "What’s on your riding wishlist? 🏍️\n\nPrime Big Deal Days are coming to Amazon Oct 6–7, and ASMAX is getting ready to level up your gear. From helmet intercoms to tire inflators and jump starters, we’ve got everything to keep you riding smoothly.\n\nDrop a comment with your top pick and share this post—",
+        "url": "https://www.instagram.com/p/Dd_iUjIm45p/"
+      },
+      {
+        "date": "2026-10-04",
+        "platform": "Instagram",
+        "summary": "🔥 PRIME BIG DEAL DAYS | 6–7 OCTUBRE\nSe vienen ofertas de ASMAX en Amazon 👀\nY por supuesto, mi ASMAX F1, el que utilizo siempre en mis viajes. 🏍️\n📅 6 y 7 de octubre\n🔗 Enlace a mis intercomunicadores ASMAX en el Linktree de mi bio.",
+        "url": "https://www.instagram.com/p/DeEfDnNIRIE/"
       }
     ]
   },
@@ -1577,6 +1589,13 @@
         "date": "2026-09-16",
         "verdict": "Spanish-language full review of the ASMAX F1 posed as 'the most advanced intercom for motorcycles?' (date approximate: shown as '5 days ago'); verdict not assessed -- video content not reviewed.",
         "url": "https://www.youtube.com/watch?v=rQKaod13zyM"
+      },
+      {
+        "outlet": "Peccadille (best motorcycle intercoms for group rides roundup, October 2026 edition)",
+        "date": "2026-09-30",
+        "product": "S1 and F1s",
+        "verdict": "Affiliate-style roundup that lists the ASMAX S1 as 'best for groups that do not share a brand' and the F1s as 'best for battery life on multi-day touring'. Cons listed for the S1: the claimed 5-mile range relies on 5G/CloudTalk rather than radio mesh, CloudTalk needs cellular coverage, and ASMAX Mode needs current firmware and app. Cons listed for the F1s: app volume settings can break in-call audio on some systems, and some riders found voice commands unreliable. Date is approximate (the page showed 'published 5 days ago'). It is a non-tier-1 roundup and not hands-on testing.",
+        "url": "https://peccadille.net/best-motorcycle-intercoms-for-group-rides"
       }
     ],
     "awards": [],
@@ -1658,7 +1677,10 @@
     "https://www.facebook.com/groups/795939769924022/posts/1059375636913766/",
     "https://www.prnasia.com/releases/apac/asmax-at-cimamotor-2026-rethinking-what-a-motorcycle-intercom-should-be-548757.shtml",
     "https://streamlinefeed.co.ke/news/asmax-unveils-screen-equipped-roamx-intercom-and-racing-program-at-cimamotor-2026",
-    "https://www.finanzwire.com/article/asmax-etr-asmax-unveils-roamx-at-cimamotor-2026-cRuxMw7YObD"
+    "https://www.finanzwire.com/article/asmax-etr-asmax-unveils-roamx-at-cimamotor-2026-cRuxMw7YObD",
+    "https://peccadille.net/best-motorcycle-intercoms-for-group-rides",
+    "https://www.prnewswire.com/news/asmax/",
+    "https://macaubusiness.com/asmax-at-cimamotor-2026-rethinking-what-a-motorcycle-intercom-should-be/"
   ],
   "firmware_updates": [
     {
@@ -2915,10 +2937,40 @@
       "topic": "Product for sale",
       "summary": "A seller in Bacoor, Cavite is offering 2 brandnew ASMAX Future 1 EVA R Mesh Bluetooth helmet intercoms (10 riders, up to 3 km range) for 4.7k.",
       "url": "https://www.facebook.com/groups/795939769924022/permalink/1078156328369030/"
+    },
+    {
+      "date": "2026-10-03",
+      "source": "Facebook Group",
+      "forum": "Asmax Intercom Philippines User",
+      "product": "General",
+      "sentiment": "negative",
+      "topic": "LED stays on when off",
+      "summary": "User asks if anyone else has experienced the device's LED light staying on even though the unit is turned off. The specific model is not mentioned in the text.",
+      "url": "https://www.facebook.com/groups/795939769924022/permalink/1081187844732545/"
+    },
+    {
+      "date": "2026-10-02",
+      "source": "Facebook Group",
+      "forum": "Asmax Intercom Philippines User",
+      "product": "General",
+      "sentiment": "neutral",
+      "topic": "Looking to buy, out of stock",
+      "summary": "User asks if anyone in the group is selling this item because it is out of stock on the Sec Orange app. The specific product is not named in the text.",
+      "url": "https://www.facebook.com/groups/795939769924022/permalink/1080847691433227/"
+    },
+    {
+      "date": "2026-10-02",
+      "source": "Facebook Group",
+      "forum": "Asmax Intercom Philippines User",
+      "product": "F1 Pro",
+      "sentiment": "neutral",
+      "topic": "Music sharing during intercom",
+      "summary": "User is planning to buy the F1 Pro for themselves and their riding partner (OBR). They ask whether each rider can play different music while on intercom, or whether the same music can be shared during intercom.",
+      "url": "https://www.facebook.com/groups/795939769924022/permalink/1080710434780286/"
     }
   ],
   "amazon_pricing": {
-    "fetched_at": "2026-09-30T11:07:41.551250+00:00",
+    "fetched_at": "2026-10-05T15:36:08.437905+00:00",
     "domain": "US",
     "products": [
       {
@@ -2932,9 +2984,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 139.99,
-          "sales_rank": 26248,
+          "sales_rank": 20155,
           "rating": 4.4,
-          "review_count": 941,
+          "review_count": 950,
           "offer_count": 0
         },
         "range_new": {
@@ -2947,7 +2999,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 20958,
+        "sales_rank_avg": 21344,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GGZTM2PZ"
@@ -2963,9 +3015,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 259.99,
-          "sales_rank": 26245,
+          "sales_rank": 18891,
           "rating": 4.4,
-          "review_count": 941,
+          "review_count": 950,
           "offer_count": 0
         },
         "range_new": {
@@ -2978,7 +3030,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 20981,
+        "sales_rank_avg": 21361,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GGZZH2GS"
@@ -2994,9 +3046,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 249.0,
-          "sales_rank": 26248,
+          "sales_rank": 20157,
           "rating": 4.4,
-          "review_count": 941,
+          "review_count": 950,
           "offer_count": 0
         },
         "range_new": {
@@ -3009,7 +3061,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 21041,
+        "sales_rank_avg": 21386,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D1R1GDYP"
@@ -3025,22 +3077,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 429.0,
-          "sales_rank": 26248,
+          "sales_rank": 18891,
           "rating": 4.4,
-          "review_count": 941,
+          "review_count": 950,
           "offer_count": 0
         },
         "range_new": {
           "min": 190.2,
           "max": 279.99,
-          "avg": 263.25
+          "avg": 265.9
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 21038,
+        "sales_rank_avg": 21383,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D1RG3371"
@@ -3056,9 +3108,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 89.99,
-          "sales_rank": 11331,
+          "sales_rank": 10772,
           "rating": 4.4,
-          "review_count": 1098,
+          "review_count": 1111,
           "offer_count": 0
         },
         "range_new": {
@@ -3071,7 +3123,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 13593,
+        "sales_rank_avg": 13162,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D7P59LHZ"
@@ -3087,9 +3139,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 159.99,
-          "sales_rank": 11333,
+          "sales_rank": 10771,
           "rating": 4.4,
-          "review_count": 1098,
+          "review_count": 1115,
           "offer_count": 0
         },
         "range_new": {
@@ -3102,7 +3154,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 13573,
+        "sales_rank_avg": 13138,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D7P5MF7C"
