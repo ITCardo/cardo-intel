@@ -84,14 +84,14 @@ git remote add origin https://github.com/ITCardo/cardo-intel.git
 git branch -M main
 ```
 
-### 4b. Push and enable Pages
+### 4b. Push
 ```bash
 git add .
 git commit -m "Initial commit"
 git push -u origin main
 ```
 
-Then in GitHub: **Settings → Pages** → Source = `main` branch, `/ (root)` folder. No CLI step needed — this is a one-time setting in the repo's web UI.
+Do **not** enable GitHub Pages — it would publish the dashboard publicly, without login. The site is hosted only on Azure Static Web Apps behind Entra ID sign-in, deployed by the `publish` job in `.github/workflows/daily-refresh.yml`; see `AUTOMATION_SETUP.md` → Step 2 for the hosting setup.
 
 ---
 
