@@ -619,6 +619,24 @@
       "headline": "Official resopilot.com Pro/Neo product pages now carry a model-comparison table showing 'Cross-Brand Connectivity: Yes' for all three models (Pro, Neo, Lite). The same table lists the Neo with a 1950mAh battery and 24 h intercom+music runtime, versus the 1400 mAh figure earlier PH press gave for the Neo. The Amazon.com Neo listing (B0H94D8FQQ, model KR500) also advertises 'Cross-Brand Connect' in its title. Reso's own pages previously documented no native cross-brand mesh, so the claim is new. Independent verification is still thin: a Reddit nRF Connect workaround exists, and a PH Facebook group user reported failing to pair with a Sena 50S via mesh. The Neo battery-capacity discrepancy is unresolved.",
       "source": "resopilot.com (search-indexed product pages) / Amazon.com (search snippet)",
       "url": "https://resopilot.com/products/resopilot_neo"
+    },
+    {
+      "date": "2026-10-07",
+      "headline": "The Australian storefront (resoconnect.com.au) also markets 'Cross-Brand Connectivity: Yes' for both Pro and Neo, and its Pro page says 'Compatible With Most Other Major Brands'. Pro is AUD $599 and Neo is AUD $499. This is the same cross-brand claim that appeared on resopilot.com and the Amazon.com listing titles on 2026-10-05. The official resopilot.com product-comparison page (resopilot.com/pages/product-comparison) shows the same figures: Pro $359, Neo $269, Lite $139. It lists Lite at 1400mAh / 24 h and Neo at 1950mAh / 24 h. No independent verification of cross-brand mesh pairing was found.",
+      "source": "resoconnect.com.au / resopilot.com (search-indexed pages)",
+      "url": "https://resoconnect.com.au/products/reso-pilot-pro"
+    },
+    {
+      "date": "2026-10-07",
+      "headline": "Additional India reseller found: autonity.in lists the Reso Pilot Pro at Rs 25,899 sale / Rs 33,299 regular, with vendor shown as 'GENERIC'. That is about 21% below the resosport.in and Bandidos Pitstop INR 32,999 price. The listing's description is boilerplate. It is unclear whether this is an authorized dealer or a gray-market seller. This is a search-snippet finding and has not been verified.",
+      "source": "autonity.in (search snippet)",
+      "url": "https://autonity.in/products/reso-pilot-pro"
+    },
+    {
+      "date": "2026-10-07",
+      "headline": "A second Google Play listing, 'Reso Retouch' (com.zowoi.kero.app.retouch), shares the Reso Link app's developer package prefix and description. It is shown as updated Jul 29, 2026. It appears to be a distributor- or regional-branded variant. An Indonesian retailer, Retouch Indonesia (@retouchindonesia), sells the Pilot Pro on TikTok. No new Reso Link version was found; v3.0.3 remains the latest.",
+      "source": "Google Play (search snippet) / TikTok discover feed",
+      "url": "https://play.google.com/store/apps/details?id=com.zowoi.kero.app.retouch&hl=en_US"
     }
   ],
   "social_media": {
@@ -1087,6 +1105,24 @@
         "platform": "Instagram",
         "summary": "A glimpse of RESOPilot in action with our media friends in Colombia! 🇨🇴🏍️\nFrom the open road to every riding moment, experience the ride with RESOPilot.\n#RESOPilot #ColombiaRides #MotorcycleLife #RideTogether",
         "url": "https://www.instagram.com/p/DeAt86citDB/"
+      },
+      {
+        "date": "2026-10-07",
+        "platform": "Instagram",
+        "summary": "Capture every moment of your ride! 📸 Learn how to link your action camera with the RESOPilot Lite to record your live intercom audio. \n#RESOPilot #Motovlog",
+        "url": "https://www.instagram.com/p/DeLS52flUcq/"
+      },
+      {
+        "date": "2026-10-05",
+        "platform": "Instagram",
+        "summary": "Know your gear! 👆 A quick and easy breakdown of all the button functions on the RESOPilot Pro. Mastering your device has never been simpler. \n#RESOPilot #MotoGear #intercomsystem",
+        "url": "https://www.instagram.com/p/DeHuuOyFQUg/"
+      },
+      {
+        "date": "2026-10-06",
+        "platform": "Instagram",
+        "summary": "Unlock the full potential of your device! 📱 Discover how to navigate the RESO LINK App for custom settings, easy pairing, and updates. \n#RESOPilot #Intercomsystem",
+        "url": "https://www.instagram.com/p/DeKbru_FJL7/"
       }
     ]
   },
@@ -1256,7 +1292,7 @@
     ],
     "awards": [],
     "overall_tone": "Enthusiastic in Philippine/SEA moto media, where Reso is framed as a legitimate 'Cardo killer' value disruptor with DJI pedigree; now also gaining a genuinely enthusiastic wave of Japanese trade/consumer press following Daytona's June 2026 distribution launch (Webike, Bikebros, Response.jp, Motomegane, Dirtbikeplus, autoby.jp, and — found this refresh — WEB Young Machine, a major established Japanese motorcycle magazine) — first time Reso has broken into a major developed-market motorcycle-parts trade press ecosystem. Still effectively invisible in major English-language Western motorcycle press — no reviews or news found from MCN, Cycle World, RideApart, webBikeWorld, Bennetts BikeSocial, RevZilla Common Tread, or Motorcyclist as of July 2026 (this refresh re-checked all of these plus Motorcycle.com and found only unrelated content, e.g. a Facebook comment on an MCN Sena 50S review post where a reader mentions switching to a Reso Pilot Pro -- organic word-of-mouth, not editorial coverage). NEW (2026-07-21): Reso's first documented racing/motorsport sponsorship (QJMOTOR Factory Team, WSBK) signals a marketing push toward performance/track credibility beyond its existing touring/adventure and community-event positioning. This refresh (2026-09-14) again found no new coverage from MCN, Cycle World, RideApart, webBikeWorld, Bennetts BikeSocial, RevZilla Common Tread, FortNine, or Motorcycle.com. The most notable development is operational rather than editorial -- a confirmed, price-matched official Amazon.com storefront ('RESOPILOT' brand store) for Pro/Neo/Lite -- alongside a newly-discovered Singapore retail channel (CandyMotor) and an official TikTok account (@resopilotglobal). The closest thing to a Western editorial lead this cycle is non-editorial: independent US creator Matt Hopkins (@motohop_, Cardo owner) publicly announced (2026-09-09) that he received a Pro unit and intends to test its cross-brand-connectivity, SOS, and tracking claims -- no published verdict yet.",
-    "summary": "This refresh (2026-09-30) again found no new editorial coverage from MCN, Cycle World, RideApart, webBikeWorld, Bennetts BikeSocial, RevZilla or FortNine. The only RevZilla Reso-adjacent content is unrelated Cardo pages, and no published verdict from Matt Hopkins (@motohop_) was found. The notable changes are product-page details: a newly documented Pro-only FM radio, and Amazon.com listing copy that now advertises 'Cross-Brand Connect'. The resopilot.com app page and Reso Link listings still show v3.0.3, so there is no new app release."
+    "summary": "This refresh (2026-10-07) again found no new editorial coverage from MCN, Cycle World, RideApart, webBikeWorld, Bennetts BikeSocial, RevZilla or FortNine. No published verdict from Matt Hopkins (@motohop_) was found. Third-party TikTok creator content continues (Indonesian, Thai and Malaysian creators; Retouch Indonesia retailer). The notable change is that the 'Cross-Brand Connectivity: Yes' claim now appears on the Australian store as well as resopilot.com and Amazon.com. It is still unverified by independent testing."
   },
   "sources": [
     "https://resosport.com/pages/contact",
@@ -1382,7 +1418,10 @@
     "https://resoconnect.com.au/pages/app-download",
     "https://bandidospitstop.com/products/reso-pilot-pro",
     "https://candymotorsg.com/products/reso-pilot-pro-bluetooth-mesh-intercome",
-    "https://www.amazon.com/RESOPILOT-Motorcycle-Bluetooth-Intercom-Battery/dp/B0H94D8FQQ"
+    "https://www.amazon.com/RESOPILOT-Motorcycle-Bluetooth-Intercom-Battery/dp/B0H94D8FQQ",
+    "https://resopilot.com/pages/product-comparison",
+    "https://autonity.in/products/reso-pilot-pro",
+    "https://play.google.com/store/apps/details?id=com.zowoi.kero.app.retouch&hl=en_US"
   ],
   "firmware_updates": [
     {

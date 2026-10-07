@@ -1738,6 +1738,12 @@
       "headline": "Trade press clarifies Mesh Boost scope: Private Chat+ and Cellular Intercom, both announced in Nov 2024, are not part of the 2026-08-17 release. Both are still in development with no date given. Harley-Davidson and Schuberth SC-Edge units are due for a separate Mesh Boost release in Q4 2026.",
       "source": "Ultimate Motorcycling / Motorcycle Powersports News",
       "url": "https://ultimatemotorcycling.com/2026/08/20/cardo-mesh-boost-doubles-packtalk-group-size-to-31-riders/"
+    },
+    {
+      "date": "2026-10-06",
+      "headline": "Trade press (Motorcycle.com, Torqued Magazine) carries the Cardo press release for the Rosewood Limited Edition PACKTALK EDGE. The release lists 31-rider 2nd-gen DMC, Air Mount, JBL sound, 13-hour battery and Bluetooth 5.2. It is sold only on the Cardo webstore at $439.95 while supplies last, as part of the October 'Ride Together. Give Together.' campaign supporting the Breast Cancer Research Foundation. This confirms the Rosewood edition's 31-rider DMC spec, which was previously inferred from the Edge platform.",
+      "source": "Motorcycle.com / Torqued Magazine",
+      "url": "https://www.motorcycle.com/bikes/cardo-releases-le-packtalk-edge-to-support-breast-cancer-research-44672476"
     }
   ],
   "social_media": {
@@ -2564,6 +2570,30 @@
         "platform": "Instagram",
         "summary": "Still riding with an older communicator? Time for an upgrade. 👀\n\nWith Cardo Trade-In, you can trade in your old communication system and get up to $115 cash back when you move to a new PACKTALK.\n\nAnd yes, it doesn’t have to be a Cardo unit. 😉\n\nChoose your new PACKTALK, check your trade-in value, sen",
         "url": "https://www.instagram.com/p/DeHOfTeE2d2/"
+      },
+      {
+        "date": "2026-10-05",
+        "platform": "Instagram",
+        "summary": "🔥CARDO FAM🔥\n10% OFF CODE: KAWAMANZXR 👀\n\nCARDO PACKTALK PRO\n\nPremium motorcycle communication with crystal-clear sound, Dynamic Mesh Communication, JBL audio, natural voice control, waterproof design, and up to 15 riders connected. Built for riders who want the ultimate communication and audio experi",
+        "url": "https://www.instagram.com/p/DeIMbFJKfOi/"
+      },
+      {
+        "date": "2026-10-06",
+        "platform": "Instagram",
+        "summary": "Rosewood edition is about more than adding a new color to PACKTALK EDGE. \n\nThroughout Breast Cancer Awareness Month, $20 from every PACKTALK EDGE Rosewood sold will be donated to the Breast Cancer Research Foundation, helping support research toward preventing and curing breast cancer.\n\nThis month, ",
+        "url": "https://www.instagram.com/p/DeJyoj0lcHZ/"
+      },
+      {
+        "date": "2026-10-06",
+        "platform": "Instagram",
+        "summary": "Came for the comms. Stayed for the magnetic ASMR. 🧲🔊🤌\n\nWhy is this click so satisfying? 😲 \n\n@cardosystems",
+        "url": "https://www.instagram.com/p/DeJ4qGSt_RM/"
+      },
+      {
+        "date": "2026-10-07",
+        "platform": "Instagram",
+        "summary": "My Cardo doubles as my training partner 🤩.\n\nThis is one of my favourite uses for my Cardo PackTalk Edge! If you’re the type of person who likes to monitor lap times and really work on shaving seconds off your lap times, you’re going to want to get in on this!\n\nSimply pair your phone with your Cardo,",
+        "url": "https://www.instagram.com/p/DeLR9FEsblQ/"
       }
     ]
   },
@@ -2806,6 +2836,13 @@
         "product": "Packtalk Pro / Edge / Neo (Mesh Boost)",
         "verdict": "Neutral-to-positive explainer of the free Mesh Boost update, with update steps: update the app, sync the unit, then install the firmware; notes older units join Mesh Boost groups but do not gain the features themselves (date approximate, from search-index age)",
         "url": "https://www.mcnews.com.au/cardo-mesh-boost-packtalk-31-riders/"
+      },
+      {
+        "outlet": "TopSpeed",
+        "date": "2026-09-09",
+        "product": "Cardo Trade-In Program (PACKTALK line)",
+        "verdict": "Explainer on the US Trade-In launch (date approximate, from the 'this week' framing at the 2026-09-08 launch). It reports tiered payouts: a Cardo Packtalk returns $130, a Freecom $115, a Spirit or legacy Cardo unit $90 and a competitor's unit $80. The rebate is paid after inspection and cannot be combined with promo codes or affiliate links. Cardo's own trade-in page confirms the $130 (Packtalk) and $115 (Freecom) tiers.",
+        "url": "https://www.topspeed.com/cardo-rolls-out-trade-in-program/"
       }
     ],
     "awards": [
@@ -3470,7 +3507,11 @@
     "https://ultimatemotorcycling.com/2026/08/20/cardo-mesh-boost-doubles-packtalk-group-size-to-31-riders/",
     "https://www.motorcyclepowersportsnews.com/cardo-mesh-boost-packtalk-update/",
     "https://www.motorcycles.news/en/cardo-mesh-boost-update-31-riders/",
-    "https://utvguide.net/cardo-mesh-boost/"
+    "https://utvguide.net/cardo-mesh-boost/",
+    "https://www.motorcycle.com/bikes/cardo-releases-le-packtalk-edge-to-support-breast-cancer-research-44672476",
+    "https://www.torquedmagazine.com/2026/10/05/cardo-announces-rosewood-edge-in-support-on-breast-cancer-research-foundation/",
+    "https://www.topspeed.com/cardo-rolls-out-trade-in-program/",
+    "https://cardosystems.com/pages/trade-in"
   ],
   "customer_feedback": [
     {
@@ -6572,10 +6613,160 @@
       "topic": "Arai helmet compatibility question",
       "summary": "User bought an Arai Regent X that reportedly has good speakers and mics. They ask whether they only need the controller, such as an Edge pak.",
       "url": "https://www.facebook.com/groups/1847605508861922/permalink/4595323347423444/"
+    },
+    {
+      "date": "2026-10-07",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "General",
+      "sentiment": "neutral",
+      "topic": "Special edition compatibility",
+      "summary": "User asks whether the Cardo special edition is compatible with Cardo Bold.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4600362956919483/"
+    },
+    {
+      "date": "2026-10-07",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "Packtalk Edge",
+      "sentiment": "neutral",
+      "topic": "45mm speaker upgrade bundle",
+      "summary": "User with an Edge, whose buddy just got a Packtalk Pro, asks if any second helmet kit comes with the 45mm speakers. They understand they must buy a second helmet kit and the upgrade separately.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4600127160276396/"
+    },
+    {
+      "date": "2026-10-06",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "General",
+      "sentiment": "negative",
+      "topic": "Voice commands not working",
+      "summary": "User can skip tracks by voice but cannot turn the mic off verbally. They ask if a setting needs to be turned on.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4600038753618570/"
+    },
+    {
+      "date": "2026-10-06",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "General",
+      "sentiment": "neutral",
+      "topic": "Sharing music on mesh",
+      "summary": "User asks in Italian how to share music in a mesh group.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4599944290294683/"
+    },
+    {
+      "date": "2026-10-06",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "General",
+      "sentiment": "negative",
+      "topic": "Music lost after refuelling",
+      "summary": "New Cardo user with a BMW R1250RS, RiderNav satnav and phone loses music when stopping to fill up. Music only returns after switching everything off and restarting, and their cheaper unit never did this.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4599898183632627/"
+    },
+    {
+      "date": "2026-10-06",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "General",
+      "sentiment": "negative",
+      "topic": "Cannot answer calls by voice",
+      "summary": "User says the Cardo won't let them answer phone calls by voice command. They can only answer by tapping the satnav screen.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4599828420306270/"
+    },
+    {
+      "date": "2026-10-06",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "General",
+      "sentiment": "negative",
+      "topic": "Mesh members losing audio",
+      "summary": "In their Cardo Mesh Boost group, some members cannot communicate. Sometimes one member suddenly can't hear anyone and nobody can hear them. They ask if others have seen this.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4599776090311503/"
+    },
+    {
+      "date": "2026-10-06",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "General",
+      "sentiment": "neutral",
+      "topic": "Hey Siri hands-free",
+      "summary": "User asks how to get the Cardo to respond to 'Hey Siri' hands-free without pressing the unit.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4599621123660333/"
+    },
+    {
+      "date": "2026-10-06",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "General",
+      "sentiment": "neutral",
+      "topic": "Start/end chat without muting",
+      "summary": "User asks if there is a way other than muting the mic to start and end a chat. On their old Sena they could push a button to do so.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4599604313662014/"
+    },
+    {
+      "date": "2026-10-06",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "General",
+      "sentiment": "negative",
+      "topic": "Music muting during intercom",
+      "summary": "User can't work out how to set the sliders so music mutes when someone speaks on the Mesh intercom, despite trial and error.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4599527950336317/"
+    },
+    {
+      "date": "2026-10-06",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "General",
+      "sentiment": "negative",
+      "topic": "Mesh rider limit",
+      "summary": "User updated to the latest version but the maximum riders per mesh still shows 15. They thought it was up to 30 now.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4599442163678229/"
+    },
+    {
+      "date": "2026-10-05",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "General",
+      "sentiment": "neutral",
+      "topic": "Public mesh greeting",
+      "summary": "User jokingly asks if there's an official greeting for when other public mesh users join the chat. They list greetings they've tried.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4598791957076583/"
+    },
+    {
+      "date": "2026-10-05",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "Packtalk Edge",
+      "sentiment": "neutral",
+      "topic": "Music with public mesh",
+      "summary": "Prospective first-time buyer planning to get the Edge asks if they can listen to music while connected to public mesh. They mainly ride solo with music.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4598767757079003/"
+    },
+    {
+      "date": "2026-10-05",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "Packtalk Pro",
+      "sentiment": "neutral",
+      "topic": "Amazon Music sharing",
+      "summary": "User asks if anyone is sharing Amazon Music across two Packtalk Pro units connected to a 2024 Harley Road Glide.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4598735247082254/"
+    },
+    {
+      "date": "2026-10-05",
+      "source": "Facebook Group",
+      "forum": "Cardo Systems PackTalk and Edge Community",
+      "product": "General",
+      "sentiment": "neutral",
+      "topic": "Sena MeshOn adapter feedback",
+      "summary": "User asks if anyone has bought a Sena MeshOn adapter and can give feedback on it.",
+      "url": "https://www.facebook.com/groups/1847605508861922/permalink/4598539520435160/"
     }
   ],
   "amazon_pricing": {
-    "fetched_at": "2026-10-05T15:37:00.972657+00:00",
+    "fetched_at": "2026-10-07T15:52:41.234326+00:00",
     "domain": "US",
     "products": [
       {
@@ -6584,27 +6775,27 @@
         "brand": "Cardo",
         "manufacturer": "CARDO",
         "current": {
-          "amazon": 98.95,
-          "new": 98.95,
+          "amazon": 84.12,
+          "new": 84.12,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 109.95,
-          "sales_rank": 1245,
+          "sales_rank": 1240,
           "rating": 4.5,
-          "review_count": 4642,
+          "review_count": 4654,
           "offer_count": 0
         },
         "range_new": {
           "min": 59.99,
           "max": 109.95,
-          "avg": 98.64
+          "avg": 98.42
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 910,
+        "sales_rank_avg": 921,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09MQ7R1D8"
@@ -6615,27 +6806,27 @@
         "brand": "Cardo",
         "manufacturer": "CARDO",
         "current": {
-          "amazon": 188.96,
-          "new": 188.96,
+          "amazon": 160.62,
+          "new": 160.62,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 209.95,
-          "sales_rank": 1245,
+          "sales_rank": 1240,
           "rating": 4.5,
-          "review_count": 4642,
+          "review_count": 4654,
           "offer_count": 0
         },
         "range_new": {
           "min": 90.0,
           "max": 198.95,
-          "avg": 188.43
+          "avg": 188.02
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 910,
+        "sales_rank_avg": 921,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09MQ8HT1G"
@@ -6646,27 +6837,27 @@
         "brand": "Cardo",
         "manufacturer": "CARDO",
         "current": {
-          "amazon": 161.96,
-          "new": 161.96,
+          "amazon": 137.67,
+          "new": 137.67,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 179.95,
-          "sales_rank": 1245,
+          "sales_rank": 1240,
           "rating": 4.5,
-          "review_count": 3146,
+          "review_count": 3150,
           "offer_count": 0
         },
         "range_new": {
           "min": 107.97,
           "max": 161.96,
-          "avg": 161.43
+          "avg": 161.14
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 909,
+        "sales_rank_avg": 920,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09MQ8NVXG"
@@ -6677,27 +6868,27 @@
         "brand": "Cardo",
         "manufacturer": "CARDO",
         "current": {
-          "amazon": 305.96,
-          "new": 305.96,
+          "amazon": 260.07,
+          "new": 260.07,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 339.95,
-          "sales_rank": 1245,
+          "sales_rank": 1240,
           "rating": 4.5,
-          "review_count": 3146,
+          "review_count": 3150,
           "offer_count": 0
         },
         "range_new": {
           "min": 173.95,
           "max": 305.96,
-          "avg": 305.21
+          "avg": 304.6
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 910,
+        "sales_rank_avg": 921,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09NF1N197"
@@ -6713,22 +6904,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 254.95,
-          "sales_rank": 17113,
+          "sales_rank": 23499,
           "rating": 4.4,
-          "review_count": 3049,
+          "review_count": 3055,
           "offer_count": 0
         },
         "range_new": {
           "min": 139.96,
           "max": 229.46,
-          "avg": 221.98
+          "avg": 222.55
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 14432,
+        "sales_rank_avg": 14619,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09MQ6TG4Q"
@@ -6744,22 +6935,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 474.95,
-          "sales_rank": 17113,
+          "sales_rank": 23497,
           "rating": 4.4,
-          "review_count": 3049,
+          "review_count": 3055,
           "offer_count": 0
         },
         "range_new": {
           "min": 209.95,
           "max": 427.46,
-          "avg": 411.83
+          "avg": 411.78
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 14483,
+        "sales_rank_avg": 14684,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09MQ7TZ8M"
@@ -6775,22 +6966,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 314.95,
-          "sales_rank": 17526,
+          "sales_rank": 17769,
           "rating": 4.3,
-          "review_count": 2586,
+          "review_count": 2588,
           "offer_count": 0
         },
         "range_new": {
           "min": 174.65,
           "max": 283.46,
-          "avg": 271.89
+          "avg": 271.77
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 13255,
+        "sales_rank_avg": 13400,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09MQ7C185"
@@ -6806,22 +6997,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 579.95,
-          "sales_rank": 17526,
+          "sales_rank": 17765,
           "rating": 4.3,
-          "review_count": 2586,
+          "review_count": 2588,
           "offer_count": 0
         },
         "range_new": {
           "min": 340.0,
           "max": 521.96,
-          "avg": 505.08
+          "avg": 505.13
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 13257,
+        "sales_rank_avg": 13411,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09MQ6NBZH"
@@ -6832,27 +7023,27 @@
         "brand": "Cardo",
         "manufacturer": "CARDO",
         "current": {
-          "amazon": 395.96,
-          "new": 395.96,
+          "amazon": 336.57,
+          "new": 336.57,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 439.95,
-          "sales_rank": 4716,
+          "sales_rank": 5625,
           "rating": 4.5,
-          "review_count": 3443,
+          "review_count": 3446,
           "offer_count": 0
         },
         "range_new": {
           "min": 260.0,
           "max": 395.96,
-          "avg": 393.95
+          "avg": 393.11
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 3776,
+        "sales_rank_avg": 3821,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09W6QMM65"
@@ -6863,27 +7054,27 @@
         "brand": "Cardo",
         "manufacturer": "CARDO",
         "current": {
-          "amazon": 719.96,
-          "new": 719.96,
+          "amazon": 611.97,
+          "new": 611.97,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 799.95,
-          "sales_rank": 4716,
+          "sales_rank": 5625,
           "rating": 4.5,
-          "review_count": 3443,
+          "review_count": 3446,
           "offer_count": 0
         },
         "range_new": {
           "min": 446.58,
           "max": 719.96,
-          "avg": 715.45
+          "avg": 713.97
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 3783,
+        "sales_rank_avg": 3833,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09W6FDNQ2"
@@ -6894,20 +7085,20 @@
         "brand": "Cardo",
         "manufacturer": "Cardo",
         "current": {
-          "amazon": 395.96,
-          "new": 395.96,
+          "amazon": 336.57,
+          "new": 336.57,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 439.95,
           "sales_rank": -1,
-          "rating": 4.6,
-          "review_count": 124,
+          "rating": 4.5,
+          "review_count": 125,
           "offer_count": 0
         },
         "range_new": {
           "min": 265.0,
           "max": 395.96,
-          "avg": 394.44
+          "avg": 393.63
         },
         "range_buybox": {
           "min": null,
@@ -6926,11 +7117,11 @@
         "manufacturer": "Cardo",
         "current": {
           "amazon": 395.96,
-          "new": 395.96,
+          "new": 394.96,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 439.95,
-          "sales_rank": 4700,
+          "sales_rank": 5643,
           "rating": 4.3,
           "review_count": 169,
           "offer_count": 0
@@ -6938,14 +7129,14 @@
         "range_new": {
           "min": 292.46,
           "max": 395.96,
-          "avg": 395.96
+          "avg": 395.95
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 3770,
+        "sales_rank_avg": 3817,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BFC4SPXK"
@@ -6956,12 +7147,12 @@
         "brand": "Cardo",
         "manufacturer": "Cardo",
         "current": {
-          "amazon": 719.96,
-          "new": 719.96,
+          "amazon": 611.97,
+          "new": 611.97,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 799.95,
-          "sales_rank": 4716,
+          "sales_rank": 5625,
           "rating": 4.3,
           "review_count": 169,
           "offer_count": 0
@@ -6969,14 +7160,14 @@
         "range_new": {
           "min": 516.99,
           "max": 719.96,
-          "avg": 717.7
+          "avg": 716.08
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 3781,
+        "sales_rank_avg": 3830,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0C7J2Q9KW"
@@ -6992,22 +7183,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 359.95,
-          "sales_rank": 10814,
+          "sales_rank": 10676,
           "rating": 4.6,
-          "review_count": 1223,
+          "review_count": 1224,
           "offer_count": 0
         },
         "range_new": {
           "min": 239.96,
           "max": 349.95,
-          "avg": 315.12
+          "avg": 315.14
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 7992,
+        "sales_rank_avg": 8087,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BNH2XTKD"
@@ -7023,22 +7214,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 669.95,
-          "sales_rank": 10850,
+          "sales_rank": 10676,
           "rating": 4.6,
-          "review_count": 1223,
+          "review_count": 1224,
           "offer_count": 0
         },
         "range_new": {
           "min": 439.99,
           "max": 649.95,
-          "avg": 585.29
+          "avg": 585.36
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 7986,
+        "sales_rank_avg": 8075,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BNGR4Q7C"
@@ -7054,7 +7245,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 434.95,
-          "sales_rank": 780187,
+          "sales_rank": 363877,
           "rating": 4.3,
           "review_count": 83,
           "offer_count": 0
@@ -7062,14 +7253,14 @@
         "range_new": {
           "min": 319.95,
           "max": 434.95,
-          "avg": 404.94
+          "avg": 405.23
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 411910,
+        "sales_rank_avg": 422040,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK8M9SNJ"
@@ -7080,12 +7271,12 @@
         "brand": "Cardo",
         "manufacturer": "CARDO",
         "current": {
-          "amazon": 449.95,
-          "new": 449.95,
+          "amazon": 382.47,
+          "new": 382.47,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 499.95,
-          "sales_rank": 6790,
+          "sales_rank": 6467,
           "rating": 4.3,
           "review_count": 900,
           "offer_count": 0
@@ -7093,14 +7284,14 @@
         "range_new": {
           "min": 350.0,
           "max": 749.99,
-          "avg": 445.66
+          "avg": 444.73
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 5835,
+        "sales_rank_avg": 5909,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CZS57XYN"
@@ -7116,9 +7307,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 129.95,
-          "sales_rank": 28790,
+          "sales_rank": 30079,
           "rating": 4.7,
-          "review_count": 439,
+          "review_count": 440,
           "offer_count": 0
         },
         "range_new": {
@@ -7131,7 +7322,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 28516,
+        "sales_rank_avg": 28587,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09PJSN61V"
@@ -7147,7 +7338,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 99.95,
-          "sales_rank": 87289,
+          "sales_rank": 161725,
           "rating": 4.6,
           "review_count": 358,
           "offer_count": 0
@@ -7162,7 +7353,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 51310,
+        "sales_rank_avg": 53845,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09PJSYFLG"
@@ -7178,22 +7369,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 54.95,
-          "sales_rank": 137955,
+          "sales_rank": 107707,
           "rating": 4.2,
-          "review_count": 101,
+          "review_count": 102,
           "offer_count": 0
         },
         "range_new": {
           "min": 37.46,
           "max": 61.95,
-          "avg": 54.31
+          "avg": 54.4
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 134925,
+        "sales_rank_avg": 134395,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0B1GNMLF2"
@@ -7204,14 +7395,14 @@
         "brand": "Cardo",
         "manufacturer": "CARDO",
         "current": {
-          "amazon": 99.95,
+          "amazon": 99.48,
           "new": 89.96,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 99.95,
-          "sales_rank": 195265,
+          "sales_rank": 156859,
           "rating": 4.7,
-          "review_count": 1844,
+          "review_count": 1845,
           "offer_count": 0
         },
         "range_new": {
@@ -7224,7 +7415,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 149159,
+        "sales_rank_avg": 152824,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B018XC14BK"
@@ -7240,9 +7431,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 129.95,
-          "sales_rank": 53387,
+          "sales_rank": 39562,
           "rating": 4.7,
-          "review_count": 260,
+          "review_count": 261,
           "offer_count": 0
         },
         "range_new": {
@@ -7255,7 +7446,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 39537,
+        "sales_rank_avg": 39980,
         "category": "Adapters",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09PJSJJVQ"
@@ -7271,7 +7462,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 54.95,
-          "sales_rank": 423395,
+          "sales_rank": 317726,
           "rating": 4.6,
           "review_count": 644,
           "offer_count": 0
@@ -7286,7 +7477,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 330178,
+        "sales_rank_avg": 335465,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B01AXDGWPU"
@@ -7297,27 +7488,27 @@
         "brand": "Cardo",
         "manufacturer": "Cardo",
         "current": {
-          "amazon": 125.96,
-          "new": 125.96,
+          "amazon": 107.07,
+          "new": 107.07,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 139.95,
-          "sales_rank": 7941,
-          "rating": 4.7,
-          "review_count": 959,
+          "sales_rank": 7333,
+          "rating": 4.8,
+          "review_count": 961,
           "offer_count": 0
         },
         "range_new": {
           "min": 91.16,
           "max": 125.96,
-          "avg": 125.6
+          "avg": 125.35
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 6605,
+        "sales_rank_avg": 6642,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0B495VC19"
@@ -7333,9 +7524,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 54.95,
-          "sales_rank": 7915,
+          "sales_rank": 7313,
           "rating": 4.3,
-          "review_count": 68,
+          "review_count": 69,
           "offer_count": 0
         },
         "range_new": {
@@ -7348,7 +7539,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 6602,
+        "sales_rank_avg": 6641,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0B48WXL2C"
@@ -7364,7 +7555,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 74.95,
-          "sales_rank": 50125,
+          "sales_rank": 83825,
           "rating": 4.6,
           "review_count": 169,
           "offer_count": 0
@@ -7372,14 +7563,14 @@
         "range_new": {
           "min": 41.21,
           "max": 88.91,
-          "avg": 68.94
+          "avg": 69.03
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 61289,
+        "sales_rank_avg": 61781,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK8LYPYX"
@@ -7390,12 +7581,12 @@
         "brand": "Cardo",
         "manufacturer": "CARDO",
         "current": {
-          "amazon": 116.96,
-          "new": 116.96,
+          "amazon": null,
+          "new": 129.95,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 129.95,
-          "sales_rank": 25200,
+          "sales_rank": 21847,
           "rating": 4.5,
           "review_count": 184,
           "offer_count": 0
@@ -7403,14 +7594,14 @@
         "range_new": {
           "min": 79.95,
           "max": 136.88,
-          "avg": 111.21
+          "avg": 111.72
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 26863,
+        "sales_rank_avg": 26857,
         "category": "Accessories",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BNGS83GB"
@@ -7426,7 +7617,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 59.95,
-          "sales_rank": 127131,
+          "sales_rank": 179208,
           "rating": 4.0,
           "review_count": 12,
           "offer_count": 0
@@ -7434,14 +7625,14 @@
         "range_new": {
           "min": 43.85,
           "max": 94.46,
-          "avg": 64.8
+          "avg": 64.83
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 270318,
+        "sales_rank_avg": 269118,
         "category": "Component Speakers",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0B48GR6P9"
@@ -7457,7 +7648,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 24.95,
-          "sales_rank": 3585,
+          "sales_rank": 4425,
           "rating": 4.7,
           "review_count": 114,
           "offer_count": 0
@@ -7472,7 +7663,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 3460,
+        "sales_rank_avg": 3488,
         "category": "Windscreens",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0F8P4LS3G"
@@ -7488,7 +7679,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 21.95,
-          "sales_rank": 43579,
+          "sales_rank": 36528,
           "rating": 4.1,
           "review_count": 205,
           "offer_count": 0
@@ -7496,14 +7687,14 @@
         "range_new": {
           "min": 15.96,
           "max": 23.43,
-          "avg": 19.71
+          "avg": 19.72
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 40045,
+        "sales_rank_avg": 40072,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK8MZSKZ"
@@ -7519,22 +7710,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 21.95,
-          "sales_rank": 43440,
+          "sales_rank": 36452,
           "rating": 4.5,
-          "review_count": 191,
+          "review_count": 192,
           "offer_count": 0
         },
         "range_new": {
           "min": 16.46,
           "max": 34.67,
-          "avg": 20.23
+          "avg": 20.18
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 40153,
+        "sales_rank_avg": 40113,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0F1YYRFGD"
@@ -7545,27 +7736,27 @@
         "brand": "Cardo",
         "manufacturer": "Cardo",
         "current": {
-          "amazon": null,
+          "amazon": 98.95,
           "new": 98.95,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 109.95,
-          "sales_rank": 14651,
+          "sales_rank": 16065,
           "rating": 4.4,
-          "review_count": 2260,
+          "review_count": 2261,
           "offer_count": 0
         },
         "range_new": {
           "min": 34.95,
           "max": 114.35,
-          "avg": 96.46
+          "avg": 96.5
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 10068,
+        "sales_rank_avg": 10254,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B07RJTTXBG"
@@ -7581,22 +7772,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": null,
-          "sales_rank": 537528,
-          "rating": 3.6,
-          "review_count": 11,
+          "sales_rank": 129437,
+          "rating": 3.7,
+          "review_count": 12,
           "offer_count": 0
         },
         "range_new": {
           "min": 13.51,
           "max": 30.0,
-          "avg": 25.42
+          "avg": 25.26
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 522490,
+        "sales_rank_avg": 520131,
         "category": "Spikes",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0F1YC74W7"
@@ -7612,7 +7803,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": null,
-          "sales_rank": 1313466,
+          "sales_rank": 1369989,
           "rating": 4.3,
           "review_count": 27,
           "offer_count": 0
@@ -7620,14 +7811,14 @@
         "range_new": {
           "min": 14.99,
           "max": 46.84,
-          "avg": 33.45
+          "avg": 33.53
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 931033,
+        "sales_rank_avg": 936703,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0FB47LJVQ"
@@ -7643,9 +7834,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 21.95,
-          "sales_rank": 4656,
+          "sales_rank": 5252,
           "rating": 4.8,
-          "review_count": 924,
+          "review_count": 927,
           "offer_count": 0
         },
         "range_new": {
@@ -7658,7 +7849,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 3976,
+        "sales_rank_avg": 3998,
         "category": "Helmet Accessories",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CV7WJQD8"
@@ -7669,12 +7860,12 @@
         "brand": "Cardo",
         "manufacturer": "Cardo",
         "current": {
-          "amazon": 476.95,
-          "new": 476.95,
+          "amazon": 450.46,
+          "new": 450.46,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 529.95,
-          "sales_rank": 46957,
+          "sales_rank": 34281,
           "rating": 4.0,
           "review_count": 94,
           "offer_count": 0
@@ -7682,14 +7873,14 @@
         "range_new": {
           "min": 349.99,
           "max": 489.95,
-          "avg": 476.95
+          "avg": 476.62
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 41627,
+        "sales_rank_avg": 41776,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK8N5NR7"
@@ -7700,12 +7891,12 @@
         "brand": "Cardo",
         "manufacturer": "Cardo",
         "current": {
-          "amazon": 899.96,
+          "amazon": 900.26,
           "new": 899.96,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 999.95,
-          "sales_rank": 20830,
+          "sales_rank": 27249,
           "rating": 4.0,
           "review_count": 94,
           "offer_count": 0
@@ -7713,14 +7904,14 @@
         "range_new": {
           "min": 529.95,
           "max": 949.95,
-          "avg": 889.69
+          "avg": 889.7
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 26540,
+        "sales_rank_avg": 26576,
         "category": "Over-Ear Headphones",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DJGJ2WMS"
@@ -7736,7 +7927,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 159.95,
-          "sales_rank": 46957,
+          "sales_rank": 34281,
           "rating": 4.5,
           "review_count": 130,
           "offer_count": 0
@@ -7751,7 +7942,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 41594,
+        "sales_rank_avg": 41724,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK8MWNVW"
@@ -7763,26 +7954,26 @@
         "manufacturer": "CARDO",
         "current": {
           "amazon": null,
-          "new": 269.95,
+          "new": 215.96,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 269.95,
-          "sales_rank": 112080,
+          "sales_rank": 72206,
           "rating": 4.6,
-          "review_count": 285,
+          "review_count": 286,
           "offer_count": 0
         },
         "range_new": {
           "min": 175.0,
           "max": 269.95,
-          "avg": 259.3
+          "avg": 258.68
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 237530,
+        "sales_rank_avg": 233178,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BHTXB3JW"
@@ -7794,26 +7985,26 @@
         "manufacturer": "CARDO",
         "current": {
           "amazon": 269.95,
-          "new": 269.95,
+          "new": 215.96,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 269.95,
-          "sales_rank": 112080,
+          "sales_rank": 72208,
           "rating": 4.6,
-          "review_count": 285,
+          "review_count": 286,
           "offer_count": 0
         },
         "range_new": {
           "min": 180.0,
           "max": 269.95,
-          "avg": 263.62
+          "avg": 262.77
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 238789,
+        "sales_rank_avg": 233723,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BHTTVSSS"
@@ -7825,26 +8016,26 @@
         "manufacturer": "Cardo",
         "current": {
           "amazon": null,
-          "new": 494.95,
+          "new": 395.96,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 494.95,
-          "sales_rank": 123667,
+          "sales_rank": 118497,
           "rating": 4.6,
-          "review_count": 285,
+          "review_count": 286,
           "offer_count": 0
         },
         "range_new": {
           "min": 269.95,
           "max": 494.95,
-          "avg": 489.7
+          "avg": 488.21
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 182284,
+        "sales_rank_avg": 181719,
         "category": "Winter Sports Accessories",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK4VVY6R"
@@ -7856,26 +8047,26 @@
         "manufacturer": "Cardo",
         "current": {
           "amazon": null,
-          "new": 494.95,
+          "new": 395.96,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 494.95,
-          "sales_rank": 112080,
+          "sales_rank": 72206,
           "rating": 4.6,
-          "review_count": 285,
+          "review_count": 286,
           "offer_count": 0
         },
         "range_new": {
           "min": 337.46,
           "max": 494.95,
-          "avg": 479.51
+          "avg": 478.21
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 234287,
+        "sales_rank_avg": 229122,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CPQ7ZFM7"
@@ -7887,11 +8078,11 @@
         "manufacturer": "Cardo",
         "current": {
           "amazon": null,
-          "new": 84.95,
+          "new": 79.96,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 79.95,
-          "sales_rank": 360054,
+          "sales_rank": 227101,
           "rating": 4.6,
           "review_count": 35,
           "offer_count": 0
@@ -7899,14 +8090,14 @@
         "range_new": {
           "min": 59.96,
           "max": 89.95,
-          "avg": 84.95
+          "avg": 84.82
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 392748,
+        "sales_rank_avg": 393591,
         "category": "Skiing",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK51TRR6"

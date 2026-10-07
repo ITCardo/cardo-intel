@@ -2615,6 +2615,12 @@
         "platform": "Instagram",
         "summary": "An unforgettable finish to the CFMOTO MT Challenge Global Final in Spain.\nThree days of adventure, competition and teamwork brought riders from around the world together for the final challenge.\nProud to see SENA along for the journey and part of an event built around staying connected through every",
         "url": "https://www.instagram.com/p/DeAL5eCCAIK/"
+      },
+      {
+        "date": "2026-10-05",
+        "platform": "Instagram",
+        "summary": "Built for the ride. Connected for the journey.\nThe SENA Outrush 2 combines an integrated communication system with a sleek modular helmet design, keeping communication simple without adding extra gear.\nLearn more at sena.com.\n#SENA #SENAOutrush2 #MotorcycleHelmet #RideConnected",
+        "url": "https://www.instagram.com/p/DeH6WGUjSFc/"
       }
     ]
   },
@@ -5550,10 +5556,50 @@
       "topic": "New microphone settings warning",
       "summary": "User notes the 60 EVO has new microphone settings and warns to be careful, since they turned them down and accidentally muted their microphone.",
       "url": "https://www.facebook.com/groups/860066485997389/permalink/1483526816984683/"
+    },
+    {
+      "date": "2026-10-06",
+      "source": "Facebook Group",
+      "forum": "Sena 60s, 60s EVO, and 60x Users",
+      "product": "60S",
+      "sentiment": "positive",
+      "topic": "Warranty replacement service",
+      "summary": "The user thanks two Sena staff members, Mr. Ortiz and Kevin Garcia, for replacing their Sena 60s. They are pleased to now have 2 units that work as designed and praise the exceptional service.",
+      "url": "https://www.facebook.com/groups/860066485997389/permalink/1485737223430309/"
+    },
+    {
+      "date": "2026-10-06",
+      "source": "Facebook Group",
+      "forum": "Sena 60s, 60s EVO, and 60x Users",
+      "product": "60X",
+      "sentiment": "neutral",
+      "topic": "Current quality inquiry",
+      "summary": "The user asks how the 60X performs today, especially regarding hardware and firmware quality. They want to know whether any major issues or bugs remain.",
+      "url": "https://www.facebook.com/groups/860066485997389/permalink/1485569073447124/"
+    },
+    {
+      "date": "2026-10-05",
+      "source": "Facebook Group",
+      "forum": "Sena 60s, 60s EVO, and 60x Users",
+      "product": "60S EVO",
+      "sentiment": "negative",
+      "topic": "Cardo intercom compatibility",
+      "summary": "After upgrading from an older Sena model to the 60S EVO, the user gets static/noise at higher speeds and then dropped connections when connected to a Cardo intercom. They also hear loud static while the Cardo user is on a phone call, and ask if it is a known compatibility issue or if a setting can fix it.",
+      "url": "https://www.facebook.com/groups/860066485997389/permalink/1485128210157877/"
+    },
+    {
+      "date": "2026-10-05",
+      "source": "Facebook Group",
+      "forum": "Sena 60s, 60s EVO, and 60x Users",
+      "product": "60S EVO",
+      "sentiment": "negative",
+      "topic": "Poor battery life",
+      "summary": "The user asks if others have noticed the 60S Evo battery is much worse than the standard 60S and the 50S. They report charging every couple of days once it reaches medium.",
+      "url": "https://www.facebook.com/groups/860066485997389/permalink/1485016376835727/"
     }
   ],
   "amazon_pricing": {
-    "fetched_at": "2026-10-05T15:36:32.653984+00:00",
+    "fetched_at": "2026-10-07T15:52:34.561455+00:00",
     "domain": "US",
     "products": [
       {
@@ -5567,22 +5613,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 319.0,
-          "sales_rank": 17876,
-          "rating": 4.3,
-          "review_count": 458,
+          "sales_rank": 17616,
+          "rating": 4.4,
+          "review_count": 462,
           "offer_count": 0
         },
         "range_new": {
           "min": 255.0,
           "max": 324.07,
-          "avg": 277.08
+          "avg": 276.37
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 22823,
+        "sales_rank_avg": 22703,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DSLW5WLG"
@@ -5593,27 +5639,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 551.93,
+          "amazon": 551.95,
           "new": 537.97,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 459.0,
-          "sales_rank": 22806,
+          "sales_rank": 16424,
           "rating": 3.6,
-          "review_count": 16,
+          "review_count": 17,
           "offer_count": 0
         },
         "range_new": {
           "min": 444.34,
           "max": 543.75,
-          "avg": 461.68
+          "avg": 463.45
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 65279,
+        "sales_rank_avg": 60400,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0H6KV44BJ"
@@ -5629,7 +5675,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 299.0,
-          "sales_rank": 35004,
+          "sales_rank": 33193,
           "rating": 4.5,
           "review_count": 19,
           "offer_count": 0
@@ -5644,7 +5690,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 292400,
+        "sales_rank_avg": 286419,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0H5T4K1SY"
@@ -5660,7 +5706,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 189.0,
-          "sales_rank": 497722,
+          "sales_rank": 259781,
           "rating": 4.7,
           "review_count": 11,
           "offer_count": 0
@@ -5675,7 +5721,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 323999,
+        "sales_rank_avg": 324321,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0H5TGV8ZC"
@@ -5691,7 +5737,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 309.0,
-          "sales_rank": 72128,
+          "sales_rank": 72740,
           "rating": 3.8,
           "review_count": 10,
           "offer_count": 0
@@ -5706,7 +5752,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 74797,
+        "sales_rank_avg": 75336,
         "category": "Car Electronics",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0H42XQ1JY"
@@ -5722,9 +5768,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 459.0,
-          "sales_rank": 22742,
-          "rating": 4.5,
-          "review_count": 22,
+          "sales_rank": 16424,
+          "rating": 4.6,
+          "review_count": 23,
           "offer_count": 0
         },
         "range_new": {
@@ -5737,7 +5783,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 21343,
+        "sales_rank_avg": 20414,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GWNLHB43"
@@ -5748,12 +5794,12 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 358.33,
-          "new": 357.95,
+          "amazon": 349.97,
+          "new": 349.97,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 439.0,
-          "sales_rank": 22806,
+          "sales_rank": 16419,
           "rating": 4.4,
           "review_count": 554,
           "offer_count": 0
@@ -5761,14 +5807,14 @@
         "range_new": {
           "min": 319.95,
           "max": 439.0,
-          "avg": 362.6
+          "avg": 363.19
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 17741,
+        "sales_rank_avg": 17593,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DP1QRFZ7"
@@ -5779,27 +5825,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 329.03,
+          "amazon": 328.03,
           "new": 320.0,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 379.0,
-          "sales_rank": 29417,
+          "sales_rank": 40855,
           "rating": 4.4,
-          "review_count": 1716,
+          "review_count": 1717,
           "offer_count": 0
         },
         "range_new": {
           "min": 188.33,
           "max": 359.0,
-          "avg": 302.59
+          "avg": 303.27
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 23744,
+        "sales_rank_avg": 24134,
         "category": "Speaker Systems",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09NWJ3XQB"
@@ -5815,7 +5861,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 219.0,
-          "sales_rank": 35003,
+          "sales_rank": 33193,
           "rating": 4.3,
           "review_count": 818,
           "offer_count": 0
@@ -5823,14 +5869,14 @@
         "range_new": {
           "min": 153.05,
           "max": 239.0,
-          "avg": 228.51
+          "avg": 229.49
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 46864,
+        "sales_rank_avg": 47049,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09WTJGWY4"
@@ -5846,22 +5892,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 375.0,
-          "sales_rank": 29323,
+          "sales_rank": 40980,
           "rating": 4.3,
-          "review_count": 474,
+          "review_count": 475,
           "offer_count": 0
         },
         "range_new": {
           "min": 237.5,
           "max": 375.0,
-          "avg": 350.45
+          "avg": 352.13
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 23772,
+        "sales_rank_avg": 24201,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09GXCKX55"
@@ -5872,27 +5918,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 627.18,
+          "amazon": 629.36,
           "new": 610.0,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 649.0,
-          "sales_rank": 157357,
-          "rating": 3.5,
-          "review_count": 19,
+          "sales_rank": 87052,
+          "rating": 3.4,
+          "review_count": 20,
           "offer_count": 0
         },
         "range_new": {
           "min": 599.0,
           "max": 649.0,
-          "avg": 623.88
+          "avg": 622.94
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 136152,
+        "sales_rank_avg": 136361,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GSXBMLJV"
@@ -5908,7 +5954,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 599.0,
-          "sales_rank": 314410,
+          "sales_rank": 615663,
           "rating": 3.5,
           "review_count": 15,
           "offer_count": 0
@@ -5916,14 +5962,14 @@
         "range_new": {
           "min": 565.0,
           "max": 599.0,
-          "avg": 579.46
+          "avg": 578.7
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 402958,
+        "sales_rank_avg": 406608,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GWNMGH9W"
@@ -5939,9 +5985,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 549.0,
-          "sales_rank": 101814,
+          "sales_rank": 86861,
           "rating": 4.1,
-          "review_count": 74,
+          "review_count": 75,
           "offer_count": 0
         },
         "range_new": {
@@ -5954,7 +6000,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 65965,
+        "sales_rank_avg": 67142,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DSZ75N9V"
@@ -5970,22 +6016,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 399.0,
-          "sales_rank": 291557,
-          "rating": 3.4,
-          "review_count": 102,
+          "sales_rank": 550272,
+          "rating": 3.5,
+          "review_count": 103,
           "offer_count": 0
         },
         "range_new": {
           "min": 249.5,
           "max": 599.0,
-          "avg": 450.32
+          "avg": 454.78
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 494747,
+        "sales_rank_avg": 500976,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09ZQ4NTR5"
@@ -6001,7 +6047,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 229.0,
-          "sales_rank": 79174,
+          "sales_rank": 99539,
           "rating": 4.6,
           "review_count": 76,
           "offer_count": 0
@@ -6016,7 +6062,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 87312,
+        "sales_rank_avg": 87758,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CT9SBZ6Y"
@@ -6032,7 +6078,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 199.0,
-          "sales_rank": 54393,
+          "sales_rank": 50950,
           "rating": 4.5,
           "review_count": 135,
           "offer_count": 0
@@ -6040,14 +6086,14 @@
         "range_new": {
           "min": 169.15,
           "max": 199.0,
-          "avg": 187.09
+          "avg": 186.77
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 41038,
+        "sales_rank_avg": 41206,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DLR3JJ6Q"
@@ -6063,9 +6109,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 199.0,
-          "sales_rank": 37239,
+          "sales_rank": 61771,
           "rating": 3.8,
-          "review_count": 376,
+          "review_count": 377,
           "offer_count": 0
         },
         "range_new": {
@@ -6078,7 +6124,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 33040,
+        "sales_rank_avg": 33631,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09QF8473X"
@@ -6094,7 +6140,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 219.0,
-          "sales_rank": 29658,
+          "sales_rank": 51353,
           "rating": 4.0,
           "review_count": 400,
           "offer_count": 0
@@ -6102,14 +6148,14 @@
         "range_new": {
           "min": 159.2,
           "max": 219.0,
-          "avg": 195.41
+          "avg": 194.54
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 39217,
+        "sales_rank_avg": 39329,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09QDNQCHT"
@@ -6125,7 +6171,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 129.0,
-          "sales_rank": 381622,
+          "sales_rank": 406189,
           "rating": 4.0,
           "review_count": 177,
           "offer_count": 0
@@ -6140,7 +6186,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 208102,
+        "sales_rank_avg": 213376,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B08Z2ZLWLJ"
@@ -6156,7 +6202,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 139.0,
-          "sales_rank": 333745,
+          "sales_rank": 126757,
           "rating": 4.0,
           "review_count": 179,
           "offer_count": 0
@@ -6171,7 +6217,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 143954,
+        "sales_rank_avg": 147901,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BLD3TGRQ"
@@ -6182,20 +6228,20 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 164.93,
-          "new": 164.93,
+          "amazon": 142.82,
+          "new": 139.95,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 169.0,
           "sales_rank": -1,
-          "rating": 4.3,
-          "review_count": 458,
+          "rating": 4.4,
+          "review_count": 462,
           "offer_count": 0
         },
         "range_new": {
           "min": 121.5,
           "max": 176.06,
-          "avg": 157.44
+          "avg": 157.08
         },
         "range_buybox": {
           "min": null,
@@ -6213,12 +6259,12 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 98.25,
+          "amazon": 99.0,
           "new": 89.0,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 99.0,
-          "sales_rank": 54008,
+          "sales_rank": 84014,
           "rating": 4.1,
           "review_count": 1127,
           "offer_count": 0
@@ -6233,7 +6279,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 68407,
+        "sales_rank_avg": 68907,
         "category": "Helmet Accessories",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B092P6N95X"
@@ -6249,7 +6295,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 249.0,
-          "sales_rank": 2717283,
+          "sales_rank": 2739374,
           "rating": 4.1,
           "review_count": 17,
           "offer_count": 0
@@ -6257,14 +6303,14 @@
         "range_new": {
           "min": 123.16,
           "max": 249.0,
-          "avg": 223.01
+          "avg": 224.08
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 2424173,
+        "sales_rank_avg": 2424695,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0G1F5X1H6"
@@ -6280,7 +6326,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 159.0,
-          "sales_rank": 107074,
+          "sales_rank": 80126,
           "rating": 4.3,
           "review_count": 320,
           "offer_count": 0
@@ -6288,14 +6334,14 @@
         "range_new": {
           "min": 113.53,
           "max": 272.49,
-          "avg": 151.86
+          "avg": 151.98
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 184758,
+        "sales_rank_avg": 181984,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B08L9V5BHH"
@@ -6306,12 +6352,12 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 126.99,
-          "new": 126.99,
+          "amazon": 120.19,
+          "new": 120.19,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 129.0,
-          "sales_rank": 381622,
+          "sales_rank": 405848,
           "rating": 4.0,
           "review_count": 177,
           "offer_count": 0
@@ -6319,14 +6365,14 @@
         "range_new": {
           "min": 71.8,
           "max": 129.0,
-          "avg": 113.83
+          "avg": 114.3
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 207191,
+        "sales_rank_avg": 212768,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B08Z2XMBBM"
@@ -6342,7 +6388,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 179.0,
-          "sales_rank": 533650,
+          "sales_rank": 214760,
           "rating": 4.0,
           "review_count": 14,
           "offer_count": 0
@@ -6350,14 +6396,14 @@
         "range_new": {
           "min": 160.55,
           "max": 179.0,
-          "avg": 178.98
+          "avg": 178.57
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 391915,
+        "sales_rank_avg": 396667,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GND1CYGD"
@@ -6373,7 +6419,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 199.0,
-          "sales_rank": 165118,
+          "sales_rank": 166751,
           "rating": 4.2,
           "review_count": 167,
           "offer_count": 0
@@ -6381,14 +6427,14 @@
         "range_new": {
           "min": 142.95,
           "max": 224.69,
-          "avg": 182.42
+          "avg": 183.05
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 85367,
+        "sales_rank_avg": 87754,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BMDQ72MQ"
@@ -6399,27 +6445,27 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 173.72,
-          "new": 173.72,
+          "amazon": 173.27,
+          "new": 173.27,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 199.0,
-          "sales_rank": 34335,
+          "sales_rank": 34816,
           "rating": 3.9,
-          "review_count": 1130,
+          "review_count": 1131,
           "offer_count": 0
         },
         "range_new": {
           "min": 100.0,
           "max": 359.95,
-          "avg": 166.97
+          "avg": 167.04
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 33099,
+        "sales_rank_avg": 33147,
         "category": "Earbud Headphones",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0087NB2OU"
@@ -6435,7 +6481,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 199.0,
-          "sales_rank": 191604,
+          "sales_rank": 196972,
           "rating": 3.2,
           "review_count": 26,
           "offer_count": 0
@@ -6443,14 +6489,14 @@
         "range_new": {
           "min": 131.38,
           "max": 199.0,
-          "avg": 191.4
+          "avg": 191.79
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 157260,
+        "sales_rank_avg": 159146,
         "category": "Car Electronics",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DJPWDLTL"
@@ -6466,7 +6512,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 229.0,
-          "sales_rank": 134650,
+          "sales_rank": 160669,
           "rating": 4.4,
           "review_count": 19,
           "offer_count": 0
@@ -6481,7 +6527,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 112862,
+        "sales_rank_avg": 113579,
         "category": "Marine Two-Way Radios",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DY2MJ14X"
@@ -6505,7 +6551,7 @@
         "range_new": {
           "min": 218.14,
           "max": 399.0,
-          "avg": 294.73
+          "avg": 294.29
         },
         "range_buybox": {
           "min": null,
@@ -6528,7 +6574,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 699.0,
-          "sales_rank": 281135,
+          "sales_rank": 292640,
           "rating": 5.0,
           "review_count": 1,
           "offer_count": 0
@@ -6543,7 +6589,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 205618,
+        "sales_rank_avg": 205793,
         "category": "Marine Two-Way Radios",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D6JJXVLT"

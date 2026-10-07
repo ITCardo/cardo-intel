@@ -885,6 +885,12 @@
       "headline": "F1/F1s, S1 and Z1 launch on Amazon US and asmaxworld.com, establishing US direct-to-consumer presence at $90-$140 price points",
       "source": "ASMAX DTC",
       "url": "https://www.asmaxworld.com/collections/headsets"
+    },
+    {
+      "date": "2026-10-02",
+      "headline": "ASMAX promotes Amazon Prime Big Deal Days (Oct 6-7, 2026) on Instagram. It says it is 'getting ready' with helmet intercoms, tire inflators and jump starters, and a Spanish creator post on 2026-10-04 repeats the promotion. This is the first ASMAX tie-in to an Amazon sale event in this research. I could not confirm any event-specific deal prices from the search results. The F1s Amazon listing shows the Prime Big Deal Days banner and a '200+ bought in past month' badge, up from '100+' on 2026-09-28.",
+      "source": "Instagram (@asmaxworld_official) / Amazon listing",
+      "url": "https://www.instagram.com/p/Dd_iUjIm45p/"
     }
   ],
   "social_media": {
@@ -1680,7 +1686,10 @@
     "https://www.finanzwire.com/article/asmax-etr-asmax-unveils-roamx-at-cimamotor-2026-cRuxMw7YObD",
     "https://peccadille.net/best-motorcycle-intercoms-for-group-rides",
     "https://www.prnewswire.com/news/asmax/",
-    "https://macaubusiness.com/asmax-at-cimamotor-2026-rethinking-what-a-motorcycle-intercom-should-be/"
+    "https://macaubusiness.com/asmax-at-cimamotor-2026-rethinking-what-a-motorcycle-intercom-should-be/",
+    "https://www.asmaxworld.com/pages/deal",
+    "https://www.asmaxworld.com/pages/asmax-mode",
+    "https://www.amazon.com/ASMAX-F1s-Motorcycle-Communication-Multitasking/dp/B0GGZTM2PZ"
   ],
   "firmware_updates": [
     {
@@ -2967,10 +2976,20 @@
       "topic": "Music sharing during intercom",
       "summary": "User is planning to buy the F1 Pro for themselves and their riding partner (OBR). They ask whether each rider can play different music while on intercom, or whether the same music can be shared during intercom.",
       "url": "https://www.facebook.com/groups/795939769924022/permalink/1080710434780286/"
+    },
+    {
+      "date": "2026-10-07",
+      "source": "Facebook Group",
+      "forum": "Asmax Intercom Philippines User",
+      "product": "General",
+      "sentiment": "neutral",
+      "topic": "Sell or use decision",
+      "summary": "The poster asks whether they should sell or use something (\"Benta ko ba o gamitin?\"). The post is tagged with Marvin Chua MotoVlog hashtags. It names no specific product.",
+      "url": "https://www.facebook.com/groups/795939769924022/permalink/1084759577708705/"
     }
   ],
   "amazon_pricing": {
-    "fetched_at": "2026-10-05T15:36:08.437905+00:00",
+    "fetched_at": "2026-10-07T15:52:35.162954+00:00",
     "domain": "US",
     "products": [
       {
@@ -2984,9 +3003,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 139.99,
-          "sales_rank": 20155,
+          "sales_rank": 23188,
           "rating": 4.4,
-          "review_count": 950,
+          "review_count": 955,
           "offer_count": 0
         },
         "range_new": {
@@ -2999,7 +3018,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 21344,
+        "sales_rank_avg": 21367,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GGZTM2PZ"
@@ -3015,9 +3034,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 259.99,
-          "sales_rank": 18891,
+          "sales_rank": 23188,
           "rating": 4.4,
-          "review_count": 950,
+          "review_count": 955,
           "offer_count": 0
         },
         "range_new": {
@@ -3030,7 +3049,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 21361,
+        "sales_rank_avg": 21381,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GGZZH2GS"
@@ -3046,9 +3065,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 249.0,
-          "sales_rank": 20157,
+          "sales_rank": 23188,
           "rating": 4.4,
-          "review_count": 950,
+          "review_count": 955,
           "offer_count": 0
         },
         "range_new": {
@@ -3061,7 +3080,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 21386,
+        "sales_rank_avg": 21428,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D1R1GDYP"
@@ -3077,22 +3096,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 429.0,
-          "sales_rank": 18891,
+          "sales_rank": 24230,
           "rating": 4.4,
-          "review_count": 950,
+          "review_count": 955,
           "offer_count": 0
         },
         "range_new": {
           "min": 190.2,
           "max": 279.99,
-          "avg": 265.9
+          "avg": 265.99
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 21383,
+        "sales_rank_avg": 21403,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D1RG3371"
@@ -3108,9 +3127,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 89.99,
-          "sales_rank": 10772,
+          "sales_rank": 10608,
           "rating": 4.4,
-          "review_count": 1111,
+          "review_count": 1124,
           "offer_count": 0
         },
         "range_new": {
@@ -3123,7 +3142,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 13162,
+        "sales_rank_avg": 13064,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D7P59LHZ"
@@ -3139,9 +3158,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 159.99,
-          "sales_rank": 10771,
+          "sales_rank": 10907,
           "rating": 4.4,
-          "review_count": 1115,
+          "review_count": 1124,
           "offer_count": 0
         },
         "range_new": {
@@ -3154,7 +3173,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 13138,
+        "sales_rank_avg": 13045,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D7P5MF7C"
