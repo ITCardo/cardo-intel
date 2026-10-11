@@ -9,3 +9,41 @@
 #   family         one of the nine families, for example "Helmet Bluetooth headset and intercom"
 #   type           patent | design | utility_model
 number,title,jurisdiction,filing_date,priority_date,status,family,type
+WO2020105895A1,,WO,,,,,patent
+WO2020141709A1,,WO,,,,,patent
+WO2025211580A1,,WO,,,,,patent
+WO2025211933A1,,WO,,,,,patent
+EP3869838A1,,EP,,,,,patent
+EP3869839A1,,EP,,,,,patent
+EP3869839A4,,EP,,,,,patent
+EP3869839B1,,EP,,,,,patent
+US8688040B2,,US,,,,,patent
+US20150105022A1,,US,,,,,patent
+US20150078724A1,,US,,,,,patent
+US20150248048A1,,US,,,,,patent
+KR101076050B1,,KR,,,,,patent
+KR101080870B1,,KR,,,,,patent
+KR101257924B1,,KR,,,,,patent
+KR101439509B1,,KR,,,,,patent
+KR101514830B1,,KR,,,,,patent
+KR101543770B1,,KR,,,,,patent
+KR101553398B1,,KR,,,,,patent
+KR102079324B1,,KR,,,,,patent
+KR102083564B1,,KR,,,,,patent
+KR102933215B1,,KR,,,,,patent
+KR100418998B1,,KR,,,,,patent
+KR20020011206A,,KR,,,,,patent
+KR20020023076A,,KR,,,,,patent
+KR20020071605A,,KR,,,,,patent
+KR20030032191A,,KR,,,,,patent
+KR20030042219A,,KR,,,,,patent
+KR20050091557A,,KR,,,,,patent
+KR20130031104A,,KR,,,,,patent
+KR20140116837A,,KR,,,,,patent
+KR20140133485A,,KR,,,,,patent
+KR20150043085A,,KR,,,,,patent
+KR20150075342A,,KR,,,,,patent
+KR20150079372A,,KR,,,,,patent
+KR20250147561A,,KR,,,,,patent
+KR200433416Y1,,KR,,,,,utility_model
+# EP3869839C0 is the same patent as EP3869839B1 (unitary-effect copy), so it is not listed separately.

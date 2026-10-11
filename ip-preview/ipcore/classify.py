@@ -110,13 +110,21 @@ def derive_status(rtype: str, stage: str, filing_date: str, events: list[dict] |
     return {"status": "Unknown", "class": "unknown", "estimated": True, "basis": "Kind code not recognised."}
 
 
+def canon_docnum(country: str, digits: str) -> str:
+    """US application publications: 11 digits (2015 0105022) and 10 digits (2015105022) are the same
+    document. Google and Espacenet use the 10-digit form. Returns the 10-digit form."""
+    if country == "US" and re.fullmatch(r"(19|20)\d{2}0\d{6}", digits or ""):
+        return digits[:4] + digits[5:]
+    return digits
+
+
 def norm_number(s: str) -> str:
     """Normalise a patent number string for comparison (no spaces, commas, slashes, dashes, kind code)."""
     t = re.sub(r"[^0-9A-Za-z]", "", s or "").upper()
     m = re.match(r"^([A-Z]{2})(.*)$", t)
     cc, rest = (m.group(1), m.group(2)) if m else ("", t)
     rest = re.sub(r"(?<=\d)[A-Z]\d?$", "", rest)     # trailing kind code, e.g. B2, A1, U
-    return cc + rest
+    return cc + canon_docnum(cc, rest)
 
 
 def numbers_match(a: str, b: str) -> bool:

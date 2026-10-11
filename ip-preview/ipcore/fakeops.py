@@ -84,7 +84,7 @@ class FakeHTTP:
                 if needle.lower() in q:
                     return 200, {"x-throttling-control": "idle (search=green:30)"}, search_response(docs)
             return 404, {}, b'<fault><code>CLIENT.InvalidQuery</code><message>No results found</message></fault>'
-        m = re.match(r"/published-data/(publication|application)/epodoc/([^/]+)/biblio", path)
+        m = re.match(r"/published-data/(publication|application)/(?:epodoc|docdb)/([^/]+)/biblio", path)
         if m:
             table = self.publications if m.group(1) == "publication" else self.applications
             docs = table.get(m.group(2))
@@ -98,3 +98,39 @@ class FakeHTTP:
             ev = self.legal_events.get(m.group(1))
             return (200, {}, legal_response(ev)) if ev else (404, {}, b"<fault/>")
         return 404, {}, b"<fault/>"
+
+
+def bq_row(pn, family, title, assignee, inventor=(), filing=20200101, priority=20190101, pub=20210101, cpc=()):
+    cc, num, kind = pn.split("-")
+    return {"publication_number": pn, "application_number": "", "country_code": cc, "kind_code": kind,
+            "family_id": str(family), "filing_date": filing, "priority_date": priority, "publication_date": pub,
+            "title_en": title, "title_any": title, "assignee": list(assignee), "inventor": list(inventor),
+            "cpc_codes": list(cpc)}
+
+
+class FakeBQRunner:
+    """Stand-in for ipcore.bq.BQRunner. Reads the '-- kind:' marker in the SQL. Rows are INVENTED."""
+
+    def __init__(self, rows, fail_kinds=()):
+        self.rows, self.fail_kinds = rows, set(fail_kinds)
+        self.bytes_total, self.log = 0, []
+
+    def run(self, sql, params):
+        kind = re.match(r"-- kind: (\w+)", sql).group(1)
+        self.log.append((kind, dict(params)))
+        if kind in self.fail_kinds:
+            raise RuntimeError("fake BigQuery failure")
+        self.bytes_total += 10**9
+        out = []
+        for r in self.rows:
+            if kind == "search":
+                comp = [re.sub(r"[^\w]|_", "", a.lower()) for a in r["assignee"]]
+                if any(p in c for p in params["pat"].split("|") for c in comp):
+                    out.append(r)
+            elif kind == "known":
+                if r["publication_number"] in params["ids"] or any(r["publication_number"].startswith(p) for p in params["prefixes"]):
+                    out.append(r)
+            elif kind == "family":
+                if r["family_id"] in params["fams"]:
+                    out.append(r)
+        return out
