@@ -138,7 +138,7 @@ function draw(){
     sel("type",[["","All types"],["patent","Patents"],["design","Designs"],["utility_model","Utility models"],["unverified","Unverified"]])+
     sel("status",[["","All statuses"],["pending","Pending (application)"],["granted","Granted"],["expired","Expired / lapsed"],["unknown","Unknown"]])+
     sel("juris",[["","All jurisdictions"],...jur.map(j=>[j,jurLabel(j)])])+
-    sel("pf",[["","All product families"],...pfs.map(f=>[String(f.id),f.id+" · "+f.name]),["0","(no family yet)"]])+
+    sel("pf",[["","All product families"],...pfs.map(f=>[String(f.id),f.name]),["0","(no family yet)"]])+
     sel("flag",[["","Everything"],["hot","New / changed only"],["new","New only"],["new_kind","New kind of known"],["changed","Changed only"],["not_seen","Not seen"]])+'</div>';
   h+='<div class="legend"><span><i class="sw" style="background:var(--pat)"></i>Patent</span><span><i class="sw" style="background:var(--des)"></i>Design</span><span><i class="sw" style="background:var(--um)"></i>Utility model</span><span><i class="sw" style="background:var(--exp)"></i>Grey: expired or lapsed (estimated unless a legal event is shown)</span></div>';
   h+='<div id="tbl"></div>';
@@ -166,7 +166,7 @@ function rows(){
   const famCount={};b.records.forEach(r=>{if(r.family_id)famCount[r.family_id]=(famCount[r.family_id]||0)+1;});
   const hot=list.filter(isHot), rest=list.filter(r=>!isHot(r));
   list=[...hot,...rest];
-  const H=[["number","Number"],["title","Title"],["jurisdiction","Juris."],["filing_date","Filed"],["priority_date","Earliest priority"],["status","Status"],["topic_id","Product family"],["","Seen by"],["","Flags"]];
+  const H=[["topic_id","Product family"],["number","Number"],["title","Title"],["jurisdiction","Juris."],["filing_date","Filed"],["priority_date","Earliest priority"],["status","Status"],["","Seen by"],["","Flags"]];
   let h='<div class="tw"><table><thead><tr><th data-k="type">Type</th>'+H.map(x=>'<th data-k="'+x[0]+'">'+x[1]+(sort.k===x[0]&&x[0]?(sort.d>0?" ▲":" ▼"):"")+'</th>').join("")+'</tr></thead><tbody>';
   if(!list.length) h+='<tr><td colspan="10" class="empty">No records match. '+(b.records.length?"Change the filters.":"Nothing was returned for this brand in this run. See the diagnostics below.")+'</td></tr>';
   const rowHtml=r=>{
@@ -174,14 +174,14 @@ function rows(){
     const links=(safeUrl(l.google)?'<a href="'+esc(safeUrl(l.google))+'" target="_blank" rel="noopener noreferrer">Google</a> ':'')+(safeUrl(l.espacenet)?'<a href="'+esc(safeUrl(l.espacenet))+'" target="_blank" rel="noopener noreferrer">Espacenet</a>':'');
     const hl=r.flags.changed?" hl-chg":(isHot(r)?" hl-new":"");
     const seen=[...new Set((r.sources||[]).map(x=>x in SRC_LABEL?SRC_LABEL[x]:x).filter(x=>x))];
-    const pf=r.topic_id?'<span title="'+esc(r.topic_note)+'"><b>'+r.topic_id+'</b> · '+esc(r.topic)+'</span>':'<span class="small">not filed yet</span>';
+    const pf=r.topic_id?'<span title="'+esc(r.topic_note)+'"><b>'+esc(r.topic)+'</b></span>':'<span class="small">not filed yet</span>';
     const fam=r.family_id?'<a class="fam" data-fam="'+esc(r.family_id)+'" title="Show only this family">'+esc(r.family_id)+'</a>'+(famCount[r.family_id]>1?' ('+famCount[r.family_id]+' records here)':''):'';
     return '<tr class="r t-'+esc(r.type)+(r.status_class==="expired"?" expired":"")+hl+'"><td>'+esc(TYPE_LABEL[r.type]||r.type)+(r.type_certain?"":' <span class="small" title="Kind code not clearly recognised">?</span>')+'</td>'+
+    '<td>'+pf+'<div class="small">'+(r.family_id?'patent family '+fam:'')+'</div></td>'+
     '<td><b>'+esc(r.number)+'</b><br><span class="small">'+links+'</span></td>'+
     '<td class="title">'+esc(r.title)+'<br><span class="small">'+esc((r.applicants||[]).slice(0,2).join("; "))+'</span></td>'+
     '<td>'+esc(jurLabel(r.jurisdiction))+'</td><td class="nw">'+esc(r.filing_date)+'</td><td class="nw">'+esc(r.priority_date)+'</td>'+
     '<td title="'+esc(r.status_basis)+'">'+esc(r.status)+(r.status_estimated?' <span class="small">(est.)</span>':'')+'</td>'+
-    '<td>'+pf+'<div class="small">'+(r.family_id?'patent family '+fam:'')+'</div></td>'+
     '<td>'+seen.map(x=>'<span class="src-tag">'+esc(x)+'</span>').join("")+'</td>'+
     '<td>'+flagHtml(r)+'</td></tr>';
   };
