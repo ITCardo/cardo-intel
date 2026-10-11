@@ -32,7 +32,7 @@ BigQuery has no legal-status events, so status from BigQuery alone is estimated 
 - **Pass 2** looks up every number on the known list directly.
 - **Pass 3** adds the other members of each legal family, then reads legal events (lapse, withdrawal, refusal).
 - Close names that need a person go to the **review list**. They are never counted as the brand's filings.
-- NEW = number not on the known list (or not in the previous run). CHANGED = status moved forward (Pending > Granted > Expired).
+- NEW = number not on the known list (or not in the previous run). A record with the same number as a known one but another kind code (A1, A4, B1, C0) is labelled "new kind of known patent" instead. CHANGED = status moved forward (Pending > Granted > Expired).
 - A brand with no known list and no previous run is stored quietly as the baseline: nothing is flagged NEW.
 - Type (patent, design, utility model) comes from the kind code. Expired = a lapse/withdrawal/refusal event, or the
   term has passed (20 years patents, 10 years utility models, from the filing date). Term-based expiry is marked "est.".
