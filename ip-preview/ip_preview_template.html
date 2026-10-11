@@ -6,9 +6,9 @@
 <title>IP Watch Preview</title>
 <style>
 :root{--bg:#f6f7f9;--card:#fff;--text:#14171c;--muted:#5b6472;--line:#dfe3e9;--accent:#2563eb;
---pat:#3b82f6;--des:#a855f7;--um:#d97706;--exp:#8a8f98;--new:#16a34a;--chg:#c2410c;--warn:#b45309;--warnbg:#fef3c7}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--card:#171c23;--text:#e8ebf0;--muted:#9aa4b2;--line:#2a313b;--accent:#6ea0ff;--pat:#60a5fa;--des:#c084fc;--um:#fbbf24;--exp:#7b828c;--new:#4ade80;--chg:#fb923c;--warn:#fcd34d;--warnbg:#3a2e0a}}
-:root[data-theme="dark"]{--bg:#0f1318;--card:#171c23;--text:#e8ebf0;--muted:#9aa4b2;--line:#2a313b;--accent:#6ea0ff;--pat:#60a5fa;--des:#c084fc;--um:#fbbf24;--exp:#7b828c;--new:#4ade80;--chg:#fb923c;--warn:#fcd34d;--warnbg:#3a2e0a}
+--pat:#3b82f6;--des:#a855f7;--um:#d97706;--exp:#8a8f98;--new:#16a34a;--newtxt:#fff;--chgtxt:#fff;--chg:#c2410c;--warn:#b45309;--warnbg:#fef3c7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--card:#171c23;--text:#e8ebf0;--muted:#9aa4b2;--line:#2a313b;--accent:#6ea0ff;--pat:#60a5fa;--des:#c084fc;--um:#fbbf24;--exp:#7b828c;--new:#4ade80;--newtxt:#052e16;--chgtxt:#431407;--chg:#fb923c;--warn:#fcd34d;--warnbg:#3a2e0a}}
+:root[data-theme="dark"]{--bg:#0f1318;--card:#171c23;--text:#e8ebf0;--muted:#9aa4b2;--line:#2a313b;--accent:#6ea0ff;--pat:#60a5fa;--des:#c084fc;--um:#fbbf24;--exp:#7b828c;--new:#4ade80;--newtxt:#052e16;--chgtxt:#431407;--chg:#fb923c;--warn:#fcd34d;--warnbg:#3a2e0a}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 .wrap{max-width:1500px;margin:0 auto;padding:16px}
@@ -43,7 +43,19 @@ tr.expired td{color:var(--exp)}tr.expired td a{color:var(--exp)}
 tr.expired .title{text-decoration:line-through;text-decoration-color:var(--line)}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .flag{display:inline-block;font-size:11px;font-weight:700;border-radius:4px;padding:0 6px;margin:0 3px 2px 0;border:1px solid}
-.f-new{color:var(--new)}.f-chg{color:var(--chg)}.f-ns{color:var(--warn)}.f-base{color:var(--muted)}
+.f-new{color:var(--newtxt);background:var(--new);border-color:var(--new)}
+.f-chg{color:var(--chgtxt);background:var(--chg);border-color:var(--chg)}
+.f-ns{color:var(--warn)}.f-base{color:var(--muted)}
+.flag{font-size:12px;padding:1px 8px;letter-spacing:.3px}
+tr.hl-new td{background:color-mix(in srgb,var(--new) 13%,transparent)}
+tr.hl-chg td{background:color-mix(in srgb,var(--chg) 15%,transparent)}
+tr.hl-new td:first-child{box-shadow:inset 6px 0 0 var(--new)}
+tr.hl-chg td:first-child{box-shadow:inset 6px 0 0 var(--chg)}
+tr.hl-new td:first-child,tr.hl-chg td:first-child{border-left-width:5px}
+tr.div td{background:var(--bg);font-weight:700;font-size:12px;letter-spacing:.4px;text-transform:uppercase;padding:9px;color:var(--text);border-bottom:2px solid var(--line)}
+tr.div.d-new td{color:var(--new)}
+a.fam{color:var(--accent);cursor:pointer;border-bottom:1px dotted var(--accent)}
+.stat.hot b{color:var(--new)}.stat.hot{border-color:var(--new)}
 .src-tag{font-size:11px;color:var(--muted);display:inline-block;margin-right:6px}
 .small{font-size:12px;color:var(--muted)}.nw{white-space:nowrap}
 details{margin-top:12px}summary{cursor:pointer;font-weight:600}
@@ -65,10 +77,13 @@ code{background:var(--bg);padding:0 4px;border-radius:4px}
 <script>
 const DATA = /*__DATA__*/null;
 const TYPE_LABEL={patent:"Patent",design:"Design",utility_model:"Utility model",unverified:"Unverified"};
-const SRC_LABEL={"ops-search":"EPO search","ops-lookup":"EPO lookup","ops-family":"EPO family","known-list":"Known list","bq-search":"BigQuery","bq-lookup":"BigQuery lookup","bq-family":"BigQuery family"};
+const SRC_LABEL={"ops-search":"EPO","ops-lookup":"EPO","ops-family":"EPO","known-list":"Known list","bq-search":"Google","bq-lookup":"Google","bq-family":"Google"};
+const JUR={US:"United States",EP:"European Patent Office",WO:"WIPO, international application",CN:"China",JP:"Japan",KR:"South Korea",TW:"Taiwan",HK:"Hong Kong",DE:"Germany",FR:"France",GB:"United Kingdom",IT:"Italy",ES:"Spain",AT:"Austria",CH:"Switzerland",DK:"Denmark",SE:"Sweden",FI:"Finland",NL:"Netherlands",BE:"Belgium",PL:"Poland",PT:"Portugal",IE:"Ireland",NO:"Norway",TR:"Turkey",RU:"Russia",UA:"Ukraine",IL:"Israel",IN:"India",SG:"Singapore",MY:"Malaysia",TH:"Thailand",VN:"Vietnam",ID:"Indonesia",PH:"Philippines",AU:"Australia",NZ:"New Zealand",CA:"Canada",MX:"Mexico",BR:"Brazil",AR:"Argentina",CL:"Chile",ZA:"South Africa",SA:"Saudi Arabia",AE:"United Arab Emirates",EA:"Eurasian Patent Organization"};
+const isHot=r=>!!(r.flags.new||r.flags.changed||r.flags.new_kind);
+const jurLabel=c=>c?(JUR[c]?c+" ("+JUR[c]+")":c):"";
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const safeUrl=u=>/^https:\/\//.test(u||"")?u:"";
-let cur=0, sort={k:"filing_date",d:-1}, F={q:"",type:"",status:"",juris:"",flag:""};
+let cur=0, sort={k:"filing_date",d:-1}, F={q:"",type:"",status:"",juris:"",flag:"",fam:""};
 
 document.getElementById("gen").textContent="Generated "+DATA.generated+" UTC";
 const bn=document.getElementById("banners");
@@ -81,9 +96,9 @@ document.getElementById("sources").innerHTML=DATA.sources.map(s=>
 const tabs=document.getElementById("tabs");
 DATA.brands.forEach((b,i)=>{
   const t=document.createElement("button");t.className="tab";t.setAttribute("role","tab");
-  const n=b.records.filter(r=>r.flags.new).length;
-  t.textContent=b.name+" ("+b.records.length+(n?", "+n+" new":"")+")";
-  t.onclick=()=>{cur=i;F={q:"",type:"",status:"",juris:"",flag:""};draw();};
+  const n=b.records.filter(isHot).length;
+  t.textContent=b.name+" ("+b.records.length+(n?", "+n+" new/changed":"")+")";
+  t.onclick=()=>{cur=i;F={q:"",type:"",status:"",juris:"",flag:"",fam:""};draw();};
   tabs.appendChild(t);
 });
 
@@ -94,8 +109,8 @@ function cmp(a,b,k){
 function flagHtml(r){
   let h="";
   if(r.flags.new) h+='<span class="flag f-new">NEW</span>';
-  if(r.flags.new_kind) h+='<span class="flag f-base" title="Same publication number as a record on the known list, with another kind code">new kind of known patent</span>';
-  if(r.flags.changed) h+='<span class="flag f-chg" title="Status moved">CHANGED: '+esc(r.flags.changed.from)+' → '+esc(r.flags.changed.to)+'</span>';
+  if(r.flags.new_kind) h+='<span class="flag f-new" title="Same publication number as a record on the known list, published with another kind code (for example A1, A4, B1)">NEW KIND</span>';
+  if(r.flags.changed) h+='<span class="flag f-chg" title="The status moved forward since the last run or the known list">CHANGED</span><div class="small">'+esc(r.flags.changed.from)+' → '+esc(r.flags.changed.to)+'</div>';
   if(r.flags.not_seen) h+='<span class="flag f-ns" title="On the known list, but no source returned it in this run">not seen this run</span>';
   if(r.flags.baseline) h+='<span class="flag f-base" title="First run: stored quietly as the baseline">baseline</span>';
   return h;
@@ -106,7 +121,7 @@ function draw(){
   const recs=b.records;
   const cnt=f=>recs.filter(f).length;
   let h='<div class="stats">'+
-   stat(recs.length,"records")+stat(cnt(r=>r.flags.new),"new")+stat(cnt(r=>r.flags.changed),"changed")+
+   stat(recs.length,"records")+stat(cnt(r=>r.flags.new),"new",1)+stat(cnt(r=>r.flags.new_kind),"new kind of known",1)+stat(cnt(r=>r.flags.changed),"changed",1)+
    stat(cnt(r=>r.status_class==="expired"),"expired / lapsed")+stat(cnt(r=>r.flags.not_seen),"not seen")+stat(b.review.length,"to review")+'</div>';
   if(b.baseline_run) h+='<div class="banner">First run for this brand with no known list: all records are stored quietly as the baseline. Nothing is flagged as new until the next run.</div>';
   if(b.coverage){
@@ -119,8 +134,8 @@ function draw(){
   h+='<div class="bar"><input id="q" placeholder="Search title, number, applicant" value="'+esc(F.q)+'">'+
     sel("type",[["","All types"],["patent","Patents"],["design","Designs"],["utility_model","Utility models"],["unverified","Unverified"]])+
     sel("status",[["","All statuses"],["pending","Application"],["granted","Granted"],["expired","Expired / lapsed"],["unknown","Unknown"]])+
-    sel("juris",[["","All jurisdictions"],...jur.map(j=>[j,j])])+
-    sel("flag",[["","Everything"],["new","New only"],["new_kind","New kind of known"],["changed","Changed only"],["not_seen","Not seen"]])+'</div>';
+    sel("juris",[["","All jurisdictions"],...jur.map(j=>[j,jurLabel(j)])])+
+    sel("flag",[["","Everything"],["hot","New / changed only"],["new","New only"],["new_kind","New kind of known"],["changed","Changed only"],["not_seen","Not seen"]])+'</div>';
   h+='<div class="legend"><span><i class="sw" style="background:var(--pat)"></i>Patent</span><span><i class="sw" style="background:var(--des)"></i>Design</span><span><i class="sw" style="background:var(--um)"></i>Utility model</span><span><i class="sw" style="background:var(--exp)"></i>Grey: expired or lapsed (estimated unless a legal event is shown)</span></div>';
   h+='<div id="tbl"></div>';
   h+=reviewHtml(b)+diagHtml(b);
@@ -129,7 +144,7 @@ function draw(){
   ["type","status","juris","flag"].forEach(k=>{const e=document.getElementById("f_"+k);e.onchange=()=>{F[k]=e.value;rows();};});
   rows();
 }
-const stat=(n,l)=>'<div class="stat"><b>'+n+'</b><span>'+l+'</span></div>';
+const stat=(n,l,hot)=>'<div class="stat'+(hot&&n?" hot":"")+'"><b>'+n+'</b><span>'+l+'</span></div>';
 function sel(k,opts){return '<select id="f_'+k+'">'+opts.map(o=>'<option value="'+esc(o[0])+'"'+(F[k]===o[0]?" selected":"")+'>'+esc(o[1])+'</option>').join("")+'</select>';}
 function rows(){
   const b=DATA.brands[cur];
@@ -137,28 +152,42 @@ function rows(){
     if(F.type&&r.type!==F.type)return false;
     if(F.status&&r.status_class!==F.status)return false;
     if(F.juris&&r.jurisdiction!==F.juris)return false;
-    if(F.flag&&!r.flags[F.flag])return false;
-    if(F.q){const s=(r.title+" "+r.number+" "+r.applicants.join(" ")+" "+r.family_id).toLowerCase();if(!s.includes(F.q.toLowerCase()))return false;}
+    if(F.flag==="hot"){if(!isHot(r))return false;}else if(F.flag&&!r.flags[F.flag])return false;
+    if(F.fam&&r.family_id!==F.fam)return false;
+    if(F.q){const s=(r.title+" "+r.number+" "+r.applicants.join(" ")+" "+r.family_id+" "+jurLabel(r.jurisdiction)).toLowerCase();if(!s.includes(F.q.toLowerCase()))return false;}
     return true;
   });
   list.sort((a,b)=>sort.d*cmp(a,b,sort.k));
+  const famCount={};b.records.forEach(r=>{if(r.family_id)famCount[r.family_id]=(famCount[r.family_id]||0)+1;});
+  const hot=list.filter(isHot), rest=list.filter(r=>!isHot(r));
+  list=[...hot,...rest];
   const H=[["number","Number"],["title","Title"],["jurisdiction","Juris."],["filing_date","Filed"],["priority_date","Earliest priority"],["status","Status"],["family_id","Family"],["topic","Topic"],["","Seen by"],["","Flags"]];
   let h='<div class="tw"><table><thead><tr><th data-k="type">Type</th>'+H.map(x=>'<th data-k="'+x[0]+'">'+x[1]+(sort.k===x[0]&&x[0]?(sort.d>0?" ▲":" ▼"):"")+'</th>').join("")+'</tr></thead><tbody>';
   if(!list.length) h+='<tr><td colspan="11" class="empty">No records match. '+(b.records.length?"Change the filters.":"Nothing was returned for this brand in this run. See the diagnostics below.")+'</td></tr>';
-  list.forEach(r=>{
+  const rowHtml=r=>{
     const l=r.links||{};
     const links=(safeUrl(l.google)?'<a href="'+esc(safeUrl(l.google))+'" target="_blank" rel="noopener noreferrer">Google</a> ':'')+(safeUrl(l.espacenet)?'<a href="'+esc(safeUrl(l.espacenet))+'" target="_blank" rel="noopener noreferrer">Espacenet</a>':'');
-    h+='<tr class="r t-'+esc(r.type)+(r.status_class==="expired"?" expired":"")+'"><td>'+esc(TYPE_LABEL[r.type]||r.type)+(r.type_certain?"":' <span class="small" title="Kind code not clearly recognised">?</span>')+'</td>'+
+    const hl=r.flags.changed?" hl-chg":(isHot(r)?" hl-new":"");
+    const seen=[...new Set((r.sources||[]).map(x=>SRC_LABEL[x]||x))];
+    const fam=r.family_id?'<a class="fam" data-fam="'+esc(r.family_id)+'" title="Show only this family">'+esc(r.family_id)+'</a>'+(famCount[r.family_id]>1?'<div class="small">'+famCount[r.family_id]+' records here</div>':''):'';
+    return '<tr class="r t-'+esc(r.type)+(r.status_class==="expired"?" expired":"")+hl+'"><td>'+esc(TYPE_LABEL[r.type]||r.type)+(r.type_certain?"":' <span class="small" title="Kind code not clearly recognised">?</span>')+'</td>'+
     '<td><b>'+esc(r.number)+'</b><br><span class="small">'+links+'</span></td>'+
     '<td class="title">'+esc(r.title)+'<br><span class="small">'+esc((r.applicants||[]).slice(0,2).join("; "))+'</span></td>'+
-    '<td>'+esc(r.jurisdiction)+'</td><td class="nw">'+esc(r.filing_date)+'</td><td class="nw">'+esc(r.priority_date)+'</td>'+
+    '<td>'+esc(jurLabel(r.jurisdiction))+'</td><td class="nw">'+esc(r.filing_date)+'</td><td class="nw">'+esc(r.priority_date)+'</td>'+
     '<td title="'+esc(r.status_basis)+'">'+esc(r.status)+(r.status_estimated?' <span class="small">(est.)</span>':'')+'</td>'+
-    '<td>'+esc(r.family_id)+'</td><td title="'+esc(r.topic_note)+'">'+esc(r.topic)+'</td>'+
-    '<td>'+(r.sources||[]).map(s=>'<span class="src-tag">'+esc(SRC_LABEL[s]||s)+'</span>').join("")+'</td>'+
+    '<td>'+fam+'</td><td title="'+esc(r.topic_note)+'">'+esc(r.topic)+'</td>'+
+    '<td>'+seen.map(x=>'<span class="src-tag">'+esc(x)+'</span>').join("")+'</td>'+
     '<td>'+flagHtml(r)+'</td></tr>';
-  });
+  };
+  if(hot.length){
+    h+='<tr class="div d-new"><td colspan="11">▲ New or changed since the last run ('+hot.length+')</td></tr>'+hot.map(rowHtml).join("");
+    if(rest.length) h+='<tr class="div"><td colspan="11">All other records ('+rest.length+')</td></tr>';
+  }
+  rest.forEach(r=>{h+=rowHtml(r);});
   h+='</tbody></table></div><div class="small" style="margin-top:4px">'+list.length+' of '+b.records.length+' shown</div>';
-  document.getElementById("tbl").innerHTML=h;
+  document.getElementById("tbl").innerHTML=(F.fam?'<div class="small" style="margin:4px 0">Showing only family '+esc(F.fam)+' <a id="famclear" style="cursor:pointer">[show all]</a></div>':'')+h;
+  document.querySelectorAll("#tbl a.fam").forEach(a=>a.onclick=()=>{F.fam=a.dataset.fam;rows();});
+  const fc=document.getElementById("famclear");if(fc)fc.onclick=()=>{F.fam="";rows();};
   document.querySelectorAll("#tbl th[data-k]").forEach(th=>th.onclick=()=>{const k=th.dataset.k;if(!k)return;sort=sort.k===k?{k,d:-sort.d}:{k,d:1};rows();});
 }
 function reviewHtml(b){

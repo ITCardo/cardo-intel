@@ -122,6 +122,7 @@ class BQRunner:
         self.client = client or bigquery.Client(project=project)
         self.max_bytes = max_bytes
         self.bytes_total = 0
+        self.cache_hits = 0
         self.queries = 0
 
     def run(self, sql: str, params: dict) -> list[dict]:
@@ -142,6 +143,8 @@ class BQRunner:
         rows = [dict(r.items()) for r in job.result()]
         self.queries += 1
         self.bytes_total += job.total_bytes_billed or 0
+        if getattr(job, "cache_hit", False):
+            self.cache_hits += 1
         return rows
 
 
@@ -228,4 +231,11 @@ class BQSource:
 
     def stats(self) -> str:
         b = getattr(self.runner, "bytes_total", 0)
-        return f"{self.queries} queries" + (f", about {b / 1e9:.0f} GB billed" if b else "")
+        hits = getattr(self.runner, "cache_hits", 0)
+        if b:
+            tail = f", about {b / 1e9:.0f} GB billed"
+        elif hits and hits >= self.queries:
+            tail = ", all answered from Google's cache (the same query ran within 24 hours): nothing billed"
+        else:
+            tail = ""
+        return f"{self.queries} queries" + tail
