@@ -35,6 +35,9 @@ CJK_LEGAL = (
     "股份有限公司", "有限责任公司", "有限責任公司", "有限公司", "株式会社",
     "株式會社", "주식회사", "(주)", "（株）", "㈱", "㈜",
 )
+# Taiwan adds "mainland company" in front of and "(Mainland China)" behind the name of a mainland company.
+# They say nothing about who the applicant is, so they are removed before comparing.
+CJK_NOISE = ("大陸商", "陸商", "大陆商", "陆商", "中國大陸", "中国大陆")
 LOCATION_TOKENS = {"shenzhen", "hong", "kong", "hongkong", "guangdong", "shanghai", "beijing", "shi"}
 
 _CJK = re.compile(r"[぀-ヿ㐀-䶿一-鿿가-힯]")
@@ -43,7 +46,7 @@ _CJK = re.compile(r"[぀-ヿ㐀-䶿一-鿿가-힯]")
 def _clean(text: str) -> str:
     text = unicodedata.normalize("NFKC", text or "")
     text = re.sub(r"\[[^\]]*\]", " ", text)          # country tags like [US]
-    for w in CJK_LEGAL:
+    for w in CJK_LEGAL + CJK_NOISE:
         text = text.replace(w, " ")
     text = text.replace("&", " and ")
     text = text.casefold()
@@ -166,5 +169,8 @@ def name_cjk_in(name: str, candidate: str) -> bool:
     n = re.sub(r"\s+", "", unicodedata.normalize("NFKC", name))
     for w in CJK_LEGAL:
         n = n.replace(w, "")
-    c = re.sub(r"\s+", "", unicodedata.normalize("NFKC", candidate or ""))
+    c = unicodedata.normalize("NFKC", candidate or "")
+    for w in CJK_NOISE:
+        c = c.replace(w, "")
+    c = re.sub(r"\s+", "", c)
     return bool(n) and n in c
