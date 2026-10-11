@@ -1,0 +1,90 @@
+name: IP Crawler Preview
+
+# Standalone preview. It does not run the main pipeline, does not publish to Azure,
+# does not commit anything to main, and does not touch build.py or dashboard_template.html.
+# Result: an artifact called "ip-preview" (ip_preview.html + ip_results.json), kept 30 days.
+
+on:
+  workflow_dispatch:
+    inputs:
+      brands:
+        description: "Brands to crawl, comma separated (sena,cardo,reso,asmax). Empty = all"
+        required: false
+        default: ""
+      families:
+        description: "Let Claude file NEW records under the nine families (uses ANTHROPIC_API_KEY)"
+        type: boolean
+        default: false
+      demo:
+        description: "Layout demo with invented records (no EPO call)"
+        type: boolean
+        default: false
+  # The EPO asks automatic tools to run 19:00-07:00 GMT or at weekends. Enable when the preview is approved:
+  # schedule:
+  #   - cron: '17 3 * * 6'    # Saturday 03:17 UTC
+
+permissions:
+  contents: read
+  actions: read          # to download the previous run's results (detects NEW and CHANGED)
+
+concurrency:
+  group: ip-crawler-preview
+  cancel-in-progress: false
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      IN_BRANDS: ${{ inputs.brands }}
+      IN_FAMILIES: ${{ inputs.families }}
+      IN_DEMO: ${{ inputs.demo }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pytest anthropic
+
+      - name: Run unit tests
+        run: python -m pytest ip-preview/tests -q
+
+      - name: Download previous results (optional)
+        if: ${{ env.IN_DEMO != 'true' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          id=$(gh run list --workflow ip-crawler-preview.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId' || true)
+          if [ -n "$id" ]; then
+            gh run download "$id" -n ip-preview -D ip-preview/prev || echo "no previous artifact"
+          fi
+
+      - name: Run IP crawler
+        env:
+          EPO_OPS_KEY: ${{ secrets.EPO_OPS_KEY }}
+          EPO_OPS_SECRET: ${{ secrets.EPO_OPS_SECRET }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          args=(--out ip-preview/out)
+          if [ "$IN_DEMO" = "true" ]; then args+=(--demo); fi
+          if [ -n "$IN_BRANDS" ]; then args+=(--brands "$IN_BRANDS"); fi
+          if [ "$IN_FAMILIES" = "true" ]; then args+=(--families); fi
+          if [ -f ip-preview/prev/ip_results.json ]; then args+=(--previous ip-preview/prev/ip_results.json); fi
+          python ip-preview/ip_crawler.py "${args[@]}"
+
+      - name: Upload preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.demo && 'ip-preview-demo' || 'ip-preview' }}
+          path: |
+            ip-preview/out/ip_preview.html
+            ip-preview/out/ip_results.json
+          retention-days: 30

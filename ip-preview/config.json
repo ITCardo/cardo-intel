@@ -1,0 +1,67 @@
+{
+  "_comment": "Standalone IP crawler preview. Not read by build.py or the main workflow. names = approved legal names (searched and matched). suggested_variants = guesses that are searched but only ever shown in the review list until a person moves them to names. exclude = applicant names that belong to other companies. keywords = distinctive words used to propose weak matches for review.",
+  "limits": {
+    "max_results_per_query": 300,
+    "max_lookup_calls": 200,
+    "max_family_calls": 120,
+    "max_legal_calls": 150,
+    "expand_families": true
+  },
+  "topic_cpc_prefixes": ["H04B", "H04R", "H04W", "H04M", "H04L", "H04Q", "A42B", "G08C", "G10L", "H04N"],
+  "families": [
+    {"id": "F1", "name": "Wireless intercom group pairing"},
+    {"id": "F2", "name": "Helmet Bluetooth headset and intercom"},
+    {"id": "F3", "name": "Multitasking Bluetooth headset"},
+    {"id": "F4", "name": "Helmet cameras and mounts"},
+    {"id": "F5", "name": "Safety and industrial helmet headsets"},
+    {"id": "F6", "name": "Portable Bluetooth repeater"},
+    {"id": "F7", "name": "Legacy: remote control over the internet"},
+    {"id": "F8", "name": "Legacy: credit-card terminals and relay"},
+    {"id": "F9", "name": "Legacy: network audio and FM"}
+  ],
+  "brands": [
+    {
+      "slug": "sena",
+      "label": "Sena",
+      "names": [
+        "Sena Technologies, Inc.",
+        "Sena Technologies Co., Ltd.",
+        "SENA Tech Inc",
+        "Sena Tech",
+        "세나테크놀로지",
+        "주식회사 세나테크놀로지"
+      ],
+      "suggested_variants": [],
+      "keywords": ["sena"],
+      "exclude": [],
+      "known_file": "known/sena.csv"
+    },
+    {
+      "slug": "cardo",
+      "label": "Cardo",
+      "names": ["Cardo Systems Ltd.", "Cardo Systems Inc."],
+      "suggested_variants": [],
+      "keywords": ["cardo"],
+      "exclude": []
+    },
+    {
+      "slug": "reso",
+      "label": "Reso",
+      "names": ["Resosport Limited", "Shenzhen Ziwu Chuangxin Technology Co., Ltd."],
+      "suggested_variants": ["Shenzhen Ziwu Innovation Technology Co., Ltd."],
+      "keywords": ["resosport", "ziwu"],
+      "exclude": []
+    },
+    {
+      "slug": "asmax",
+      "label": "ASMAX",
+      "names": [
+        "Shenzhen Asmax Infinite Technology Co., Ltd.",
+        "Hong Kong Yiheng International Technology Co., Limited"
+      ],
+      "suggested_variants": [],
+      "keywords": ["asmax", "yiheng"],
+      "exclude": []
+    }
+  ]
+}

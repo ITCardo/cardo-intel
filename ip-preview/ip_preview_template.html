@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IP Watch Preview</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#14171c;--muted:#5b6472;--line:#dfe3e9;--accent:#2563eb;
+--pat:#3b82f6;--des:#a855f7;--um:#d97706;--exp:#8a8f98;--new:#16a34a;--chg:#c2410c;--warn:#b45309;--warnbg:#fef3c7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1318;--card:#171c23;--text:#e8ebf0;--muted:#9aa4b2;--line:#2a313b;--accent:#6ea0ff;--pat:#60a5fa;--des:#c084fc;--um:#fbbf24;--exp:#7b828c;--new:#4ade80;--chg:#fb923c;--warn:#fcd34d;--warnbg:#3a2e0a}}
+:root[data-theme="dark"]{--bg:#0f1318;--card:#171c23;--text:#e8ebf0;--muted:#9aa4b2;--line:#2a313b;--accent:#6ea0ff;--pat:#60a5fa;--des:#c084fc;--um:#fbbf24;--exp:#7b828c;--new:#4ade80;--chg:#fb923c;--warn:#fcd34d;--warnbg:#3a2e0a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:1500px;margin:0 auto;padding:16px}
+h1{font-size:20px;margin:0}h2{font-size:16px;margin:24px 0 8px}
+.sub{color:var(--muted);font-size:13px;margin-top:2px}
+.banner{background:var(--warnbg);color:var(--warn);border:1px solid var(--warn);border-radius:8px;padding:8px 12px;margin:12px 0;font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.src b{display:block}.src span{color:var(--muted);font-size:12px}
+.pill{display:inline-block;border-radius:999px;padding:1px 8px;font-size:11px;font-weight:600;border:1px solid var(--line)}
+.ok{color:var(--new)}.bad{color:var(--chg)}.mut{color:var(--muted)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:16px 0 10px}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:8px;padding:6px 12px;cursor:pointer;font:inherit}
+.tab[aria-selected="true"]{border-color:var(--accent);color:var(--accent);font-weight:600}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px;min-width:90px}
+.stat b{font-size:18px;display:block}.stat span{font-size:11px;color:var(--muted)}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;align-items:center}
+.bar input,.bar select{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:5px 8px;font:inherit}
+.bar input{min-width:220px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:1100px}
+th,td{padding:7px 9px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);font-size:13px}
+th{position:sticky;top:0;background:var(--card);cursor:pointer;white-space:nowrap;font-size:12px;color:var(--muted);user-select:none}
+tr.r td:first-child{border-left:5px solid var(--pat);padding-left:8px}
+tr.t-design td:first-child{border-left-color:var(--des)}
+tr.t-utility_model td:first-child{border-left-color:var(--um)}
+tr.t-unverified td:first-child{border-left-style:dashed}
+tr.expired td{color:var(--exp)}tr.expired td a{color:var(--exp)}
+tr.expired .title{text-decoration:line-through;text-decoration-color:var(--line)}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.flag{display:inline-block;font-size:11px;font-weight:700;border-radius:4px;padding:0 6px;margin:0 3px 2px 0;border:1px solid}
+.f-new{color:var(--new)}.f-chg{color:var(--chg)}.f-ns{color:var(--warn)}.f-base{color:var(--muted)}
+.src-tag{font-size:11px;color:var(--muted);display:inline-block;margin-right:6px}
+.small{font-size:12px;color:var(--muted)}.nw{white-space:nowrap}
+details{margin-top:12px}summary{cursor:pointer;font-weight:600}
+.empty{padding:20px;text-align:center;color:var(--muted)}
+code{background:var(--bg);padding:0 4px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>IP Watch <span class="pill">preview</span></h1>
+  <div class="sub" id="gen"></div>
+  <div id="banners"></div>
+  <h2>Sources</h2>
+  <div class="grid" id="sources"></div>
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div id="brand"></div>
+  <p class="small">Preview page. It is separate from the main dashboard and is not stored in the repository. Status shown as "estimated" is derived from the kind code or the patent term and must be confirmed in the national register. Nothing on this page is legal advice.</p>
+</div>
+<script>
+const DATA = /*__DATA__*/null;
+const TYPE_LABEL={patent:"Patent",design:"Design",utility_model:"Utility model",unverified:"Unverified"};
+const SRC_LABEL={"ops-search":"EPO search","ops-lookup":"EPO lookup","ops-family":"EPO family","known-list":"Known list"};
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safeUrl=u=>/^https:\/\//.test(u||"")?u:"";
+let cur=0, sort={k:"filing_date",d:-1}, F={q:"",type:"",status:"",juris:"",flag:""};
+
+document.getElementById("gen").textContent="Generated "+DATA.generated+" UTC";
+const bn=document.getElementById("banners");
+if(DATA.demo) bn.innerHTML+='<div class="banner"><b>DEMO DATA.</b> These records are invented to show the layout. They are not real patents.</div>';
+(DATA.notes||[]).forEach(n=>bn.innerHTML+='<div class="banner">'+esc(n)+'</div>');
+
+document.getElementById("sources").innerHTML=DATA.sources.map(s=>
+  '<div class="card src"><b>'+esc(s.name)+' <span class="pill '+(s.state==="read"?"ok":"bad")+'">'+esc(s.label)+'</span></b><span>'+esc(s.detail)+'</span></div>').join("");
+
+const tabs=document.getElementById("tabs");
+DATA.brands.forEach((b,i)=>{
+  const t=document.createElement("button");t.className="tab";t.setAttribute("role","tab");
+  const n=b.records.filter(r=>r.flags.new).length;
+  t.textContent=b.name+" ("+b.records.length+(n?", "+n+" new":"")+")";
+  t.onclick=()=>{cur=i;F={q:"",type:"",status:"",juris:"",flag:""};draw();};
+  tabs.appendChild(t);
+});
+
+function cmp(a,b,k){
+  const x=a[k]||"",y=b[k]||"";
+  return x<y?-1:x>y?1:0;
+}
+function flagHtml(r){
+  let h="";
+  if(r.flags.new) h+='<span class="flag f-new">NEW</span>';
+  if(r.flags.changed) h+='<span class="flag f-chg" title="Status moved">CHANGED: '+esc(r.flags.changed.from)+' → '+esc(r.flags.changed.to)+'</span>';
+  if(r.flags.not_seen) h+='<span class="flag f-ns" title="On the known list, but no source returned it in this run">not seen this run</span>';
+  if(r.flags.baseline) h+='<span class="flag f-base" title="First run: stored quietly as the baseline">baseline</span>';
+  return h;
+}
+function draw(){
+  [...tabs.children].forEach((t,i)=>t.setAttribute("aria-selected",i===cur));
+  const b=DATA.brands[cur];
+  const recs=b.records;
+  const cnt=f=>recs.filter(f).length;
+  let h='<div class="stats">'+
+   stat(recs.length,"records")+stat(cnt(r=>r.flags.new),"new")+stat(cnt(r=>r.flags.changed),"changed")+
+   stat(cnt(r=>r.status_class==="expired"),"expired / lapsed")+stat(cnt(r=>r.flags.not_seen),"not seen")+stat(b.review.length,"to review")+'</div>';
+  if(b.baseline_run) h+='<div class="banner">First run for this brand with no known list: all records are stored quietly as the baseline. Nothing is flagged as new until the next run.</div>';
+  if(b.coverage){
+    const c=b.coverage;
+    h+='<div class="card"><b>Coverage check against the known list:</b> found '+c.found+' of '+c.known_total+
+      ' known records. '+c.new_found+' new record(s) found that are not on the list.'+
+      (c.missing.length?'<details><summary>'+c.missing.length+' known record(s) not returned by any source</summary><div class="small">'+c.missing.map(esc).join(", ")+'</div></details>':'')+'</div>';
+  }
+  const jur=[...new Set(recs.map(r=>r.jurisdiction).filter(Boolean))].sort();
+  h+='<div class="bar"><input id="q" placeholder="Search title, number, applicant" value="'+esc(F.q)+'">'+
+    sel("type",[["","All types"],["patent","Patents"],["design","Designs"],["utility_model","Utility models"],["unverified","Unverified"]])+
+    sel("status",[["","All statuses"],["pending","Application"],["granted","Granted"],["expired","Expired / lapsed"],["unknown","Unknown"]])+
+    sel("juris",[["","All jurisdictions"],...jur.map(j=>[j,j])])+
+    sel("flag",[["","Everything"],["new","New only"],["changed","Changed only"],["not_seen","Not seen"]])+'</div>';
+  h+='<div class="legend"><span><i class="sw" style="background:var(--pat)"></i>Patent</span><span><i class="sw" style="background:var(--des)"></i>Design</span><span><i class="sw" style="background:var(--um)"></i>Utility model</span><span><i class="sw" style="background:var(--exp)"></i>Grey: expired or lapsed (estimated unless a legal event is shown)</span></div>';
+  h+='<div id="tbl"></div>';
+  h+=reviewHtml(b)+diagHtml(b);
+  document.getElementById("brand").innerHTML=h;
+  const q=document.getElementById("q");q.oninput=()=>{F.q=q.value;rows();};
+  ["type","status","juris","flag"].forEach(k=>{const e=document.getElementById("f_"+k);e.onchange=()=>{F[k]=e.value;rows();};});
+  rows();
+}
+const stat=(n,l)=>'<div class="stat"><b>'+n+'</b><span>'+l+'</span></div>';
+function sel(k,opts){return '<select id="f_'+k+'">'+opts.map(o=>'<option value="'+esc(o[0])+'"'+(F[k]===o[0]?" selected":"")+'>'+esc(o[1])+'</option>').join("")+'</select>';}
+function rows(){
+  const b=DATA.brands[cur];
+  let list=b.records.filter(r=>{
+    if(F.type&&r.type!==F.type)return false;
+    if(F.status&&r.status_class!==F.status)return false;
+    if(F.juris&&r.jurisdiction!==F.juris)return false;
+    if(F.flag&&!r.flags[F.flag])return false;
+    if(F.q){const s=(r.title+" "+r.number+" "+r.applicants.join(" ")+" "+r.family_id).toLowerCase();if(!s.includes(F.q.toLowerCase()))return false;}
+    return true;
+  });
+  list.sort((a,b)=>sort.d*cmp(a,b,sort.k));
+  const H=[["number","Number"],["title","Title"],["jurisdiction","Juris."],["filing_date","Filed"],["priority_date","Earliest priority"],["status","Status"],["family_id","Family"],["topic","Topic"],["","Seen by"],["","Flags"]];
+  let h='<div class="tw"><table><thead><tr><th data-k="type">Type</th>'+H.map(x=>'<th data-k="'+x[0]+'">'+x[1]+(sort.k===x[0]&&x[0]?(sort.d>0?" ▲":" ▼"):"")+'</th>').join("")+'</tr></thead><tbody>';
+  if(!list.length) h+='<tr><td colspan="11" class="empty">No records match. '+(b.records.length?"Change the filters.":"Nothing was returned for this brand in this run. See the diagnostics below.")+'</td></tr>';
+  list.forEach(r=>{
+    const l=r.links||{};
+    const links=(safeUrl(l.google)?'<a href="'+esc(safeUrl(l.google))+'" target="_blank" rel="noopener noreferrer">Google</a> ':'')+(safeUrl(l.espacenet)?'<a href="'+esc(safeUrl(l.espacenet))+'" target="_blank" rel="noopener noreferrer">Espacenet</a>':'');
+    h+='<tr class="r t-'+esc(r.type)+(r.status_class==="expired"?" expired":"")+'"><td>'+esc(TYPE_LABEL[r.type]||r.type)+(r.type_certain?"":' <span class="small" title="Kind code not clearly recognised">?</span>')+'</td>'+
+    '<td><b>'+esc(r.number)+'</b><br><span class="small">'+links+'</span></td>'+
+    '<td class="title">'+esc(r.title)+'<br><span class="small">'+esc((r.applicants||[]).slice(0,2).join("; "))+'</span></td>'+
+    '<td>'+esc(r.jurisdiction)+'</td><td class="nw">'+esc(r.filing_date)+'</td><td class="nw">'+esc(r.priority_date)+'</td>'+
+    '<td title="'+esc(r.status_basis)+'">'+esc(r.status)+(r.status_estimated?' <span class="small">(est.)</span>':'')+'</td>'+
+    '<td>'+esc(r.family_id)+'</td><td title="'+esc(r.topic_note)+'">'+esc(r.topic)+'</td>'+
+    '<td>'+(r.sources||[]).map(s=>'<span class="src-tag">'+esc(SRC_LABEL[s]||s)+'</span>').join("")+'</td>'+
+    '<td>'+flagHtml(r)+'</td></tr>';
+  });
+  h+='</tbody></table></div><div class="small" style="margin-top:4px">'+list.length+' of '+b.records.length+' shown</div>';
+  document.getElementById("tbl").innerHTML=h;
+  document.querySelectorAll("#tbl th[data-k]").forEach(th=>th.onclick=()=>{const k=th.dataset.k;if(!k)return;sort=sort.k===k?{k,d:-sort.d}:{k,d:1};rows();});
+}
+function reviewHtml(b){
+  if(!b.review.length) return '<h2>Possible matches to review</h2><div class="card small">None. No close-name candidate is waiting for approval.</div>';
+  let h='<h2>Possible matches to review ('+b.review.length+')</h2><div class="small">These are not counted as this brand\'s filings. To approve one, add the applicant name to <code>names</code> in config.json.</div><div class="tw"><table><thead><tr><th>Number</th><th>Title</th><th>Applicant on the record</th><th>Closest brand name</th><th>Score</th><th>Why it is here</th></tr></thead><tbody>';
+  b.review.forEach(r=>{
+    const l=r.links||{};
+    h+='<tr><td><b>'+esc(r.number)+'</b><br><span class="small">'+(safeUrl(l.google)?'<a href="'+esc(safeUrl(l.google))+'" target="_blank" rel="noopener noreferrer">Google</a> ':'')+(safeUrl(l.espacenet)?'<a href="'+esc(safeUrl(l.espacenet))+'" target="_blank" rel="noopener noreferrer">Espacenet</a>':'')+'</span></td><td>'+esc(r.title)+'</td><td>'+esc(r.applicant||r.applicants.join("; "))+'</td><td>'+esc(r.brand_name)+'</td><td>'+esc(r.score)+'</td><td>'+esc(r.why)+'</td></tr>';
+  });
+  return h+'</tbody></table></div>';
+}
+function diagHtml(b){
+  const d=b.diag;
+  let h='<details><summary>Diagnostics: what was searched and what was dropped</summary><div class="card">';
+  h+='<div class="small">Names used: '+b.names.map(esc).join(" | ")+'</div>';
+  h+='<p><b>Queries</b></p><table style="min-width:0"><thead><tr><th>Query</th><th>Returned</th><th>Total hits</th><th>Error</th></tr></thead><tbody>'+
+    (d.queries.length?d.queries.map(q=>'<tr><td><code>'+esc(q.query)+'</code></td><td>'+q.hits+'</td><td>'+q.total+'</td><td>'+esc(q.error)+'</td></tr>').join(""):'<tr><td colspan="4" class="small">No query was run (EPO not available).</td></tr>')+'</tbody></table>';
+  h+='<p><b>Dropped because the applicant name was not close</b> <span class="small">(top 15; check that nothing real is in here)</span></p>';
+  h+=d.dropped.length?'<div class="small">'+d.dropped.map(x=>esc(x[0])+' ('+x[1]+')').join("; ")+'</div>':'<div class="small">None.</div>';
+  if(d.excluded.length) h+='<p><b>Excluded by the exclusion list</b></p><div class="small">'+d.excluded.map(x=>esc(x[0])+' ('+x[1]+')').join("; ")+'</div>';
+  h+='<p class="small">Extra EPO calls: '+d.lookup_calls+' direct lookups, '+d.family_calls+' family lookups, '+d.legal_calls+' legal-status lookups.</p>';
+  if(d.errors.length) h+='<p class="bad"><b>Errors</b><br>'+d.errors.map(esc).join("<br>")+'</p>';
+  return h+'</div></details>';
+}
+if(DATA.brands.length) draw();
+</script>
+</body>
+</html>
