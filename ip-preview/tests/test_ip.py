@@ -461,3 +461,10 @@ def test_one_family_query_for_all_brands():
     n = len(runner.log)
     members = src.family(["45033260"])                 # served from the cache: no new query
     assert len(runner.log) == n and any(m["doc_number"] == "1" for m in members)
+
+
+def test_taiwan_mainland_company_wrapper_is_ignored():
+    b = BRANDS["asmax"]
+    for cand in ["大陸商深圳市縱貫無限科技有限公司 (中國大陸)", "大陸商深圳市縱貫無限科技有限公司", "大陆商深圳市纵贯无限科技有限公司（中国大陆）"]:
+        assert N.match_name(cand, b["names"], b["keywords"], b["exclude"])["level"] == "match", cand
+    assert "深圳市縱貫無限科技" in bqmod.compact_applicant("大陸商深圳市縱貫無限科技有限公司 (中國大陸)")
