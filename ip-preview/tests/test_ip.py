@@ -313,9 +313,10 @@ def test_bq_ids_and_patterns():
     assert bqmod.bq_id("KR200433416Y1") == ("KR-200433416-Y1", "KR-200433416-")
     assert bqmod.bq_id("EP3869839") == ("", "EP-3869839-")
     assert bqmod.brand_patterns(BRANDS["sena"]) == ["senatech", "세나테크놀로지", "セナテクノロジーズインコーポレイテッド"]
-    assert bqmod.brand_patterns(BRANDS["cardo"]) == ["cardosystem"]
+    cardo = bqmod.brand_patterns(BRANDS["cardo"])
+    assert cardo[:2] == ["cardosystem", "cardointl"] and "卡多通讯系统" in cardo and "кардосистемс" in cardo
     assert set(bqmod.brand_patterns(BRANDS["reso"])) >= {"resosport", "ziwuchuangxin"}
-    assert set(bqmod.brand_patterns(BRANDS["asmax"])) == {"asmaxinfinite", "yiheng"}
+    assert {"asmaxinfinite", "yihengintl"} <= set(bqmod.brand_patterns(BRANDS["asmax"]))
 
 
 def test_bq_row_mapping():
@@ -432,3 +433,31 @@ def test_other_kind_code_of_known_number_is_not_new():
     assert by["EP3869839A1"]["flags"].get("new_kind") and not by["EP3869839A1"]["flags"].get("new")
     assert by["US11889573B2"]["flags"].get("new")
     assert res["coverage"]["new_found"] == 1
+
+
+def test_asmax_has_no_generic_yiheng_pattern_and_chinese_names_match():
+    pats = bqmod.brand_patterns(BRANDS["asmax"])
+    assert "yiheng" not in pats and "asmaxinfinite" in pats
+    assert BRANDS["asmax"]["keywords"] == ["asmax"]
+    b = BRANDS["asmax"]
+    assert N.match_name("深圳市纵贯无限科技有限公司", b["names"], b["keywords"], b["exclude"])["level"] == "match"
+    assert N.match_name("大陸商深圳市縱貫無限科技有限公司 (中國大陸)", b["names"], b["keywords"], b["exclude"])["level"] in ("match", "close")
+    r = BRANDS["reso"]
+    assert N.match_name("深圳市子午创新技术有限公司", r["names"], r["keywords"], r["exclude"])["level"] == "match"
+    c = BRANDS["cardo"]
+    for cand in ["Cardo International GmbH", "卡多通讯系统有限公司", "カード・システムズ・インコーポレーテッド", "카르도 시스템즈, 인코퍼레이티드."]:
+        assert N.match_name(cand, c["names"], c["keywords"], c["exclude"])["level"] in ("match", "close"), cand
+
+
+def test_one_family_query_for_all_brands():
+    rows = [dict(r) for r in SENA_ROWS]
+    rows[0]["family_id"] = "45033260"
+    rows.append(bq_row("EP-1-A1", 45033260, "Member", ["Other Co"], [], 20110101, 20100929))
+    runner = FakeBQRunner(rows)
+    src = bqmod.BQSource(runner)
+    brands = [BRANDS["sena"], BRANDS["cardo"]]
+    src.prefetch(brands)
+    assert [k for k, _ in runner.log].count("family") == 1
+    n = len(runner.log)
+    members = src.family(["45033260"])                 # served from the cache: no new query
+    assert len(runner.log) == n and any(m["doc_number"] == "1" for m in members)

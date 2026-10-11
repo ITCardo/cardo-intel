@@ -85,7 +85,15 @@
       "label": "Cardo",
       "names": [
         "Cardo Systems Ltd.",
-        "Cardo Systems Inc."
+        "Cardo Systems Inc.",
+        "Cardo International GmbH",
+        "卡多通讯系统有限公司",
+        "卡多系统有限公司",
+        "カード・システムズ・リミテッド",
+        "カード・システムズ・インコーポレーテッド",
+        "카르도 시스템즈 리미티드",
+        "카르도 시스템즈 인코퍼레이티드",
+        "Кардо Системс"
       ],
       "suggested_variants": [],
       "keywords": [
@@ -98,7 +106,8 @@
       "label": "Reso",
       "names": [
         "Resosport Limited",
-        "Shenzhen Ziwu Chuangxin Technology Co., Ltd."
+        "Shenzhen Ziwu Chuangxin Technology Co., Ltd.",
+        "深圳市子午创新技术有限公司"
       ],
       "suggested_variants": [
         "Shenzhen Ziwu Innovation Technology Co., Ltd."
@@ -114,12 +123,14 @@
       "label": "ASMAX",
       "names": [
         "Shenzhen Asmax Infinite Technology Co., Ltd.",
-        "Hong Kong Yiheng International Technology Co., Limited"
+        "Hong Kong Yiheng International Technology Co., Limited",
+        "深圳市纵贯无限科技有限公司",
+        "深圳市縱貫無限科技有限公司",
+        "深▲せん▼市縦貫無限科技有限公司"
       ],
       "suggested_variants": [],
       "keywords": [
-        "asmax",
-        "yiheng"
+        "asmax"
       ],
       "exclude": []
     }
