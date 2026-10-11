@@ -48,7 +48,7 @@ def _compact_pattern(name: str) -> str:
     if N.has_cjk(name):
         return "".join(toks)
     out = toks[0]
-    if len(out) < 6 and len(toks) > 1:
+    if len(out) < 8 and len(toks) > 1:
         out += toks[1]
     return re.sub(r"[^\w]", "", out, flags=re.UNICODE).lower()
 
@@ -152,6 +152,8 @@ class BQSource:
         self.cache: list[dict] | None = None
         self.error = ""
         self.queries = 0
+        self.fam_cache: dict[str, list[dict]] = {}
+        self.fam_done: set[str] = set()
 
     def _run(self, kind: str, body: str, params: dict) -> list[dict]:
         sql = f"-- kind: {kind}\nSELECT {COLS}\nFROM {TABLE} p\nWHERE {body}\nLIMIT @lim"
@@ -172,6 +174,26 @@ class BQSource:
         except Exception as exc:  # noqa: BLE001
             self.error = f"{type(exc).__name__}: {exc}"[:300]
             self.cache = []
+            return
+        self._prefetch_families(brands)
+
+    def _prefetch_families(self, brands: list[dict]) -> None:
+        """One family query for every brand together (a BigQuery query is billed by the data it scans,
+        so one query for all brands costs a quarter of one per brand). Families of candidate records
+        that are only excluded names are left out. If this fails, family() asks again on demand."""
+        fids = set()
+        for b in brands:
+            pats, excl = brand_patterns(b), b.get("exclude", [])
+            for r in self.candidates_for(b):
+                real = [a for a in r.get("applicants", [])
+                        if any(p in compact_applicant(a) for p in pats) and not N.is_excluded(a, excl)]
+                if real and r.get("family_id"):
+                    fids.add(r["family_id"])
+        if fids:
+            try:
+                self.family(sorted(fids))
+            except Exception:  # noqa: BLE001 - the per-brand fallback will report the error
+                pass
 
     def candidates_for(self, brand: dict) -> list[dict]:
         pats = brand_patterns(brand)
@@ -192,11 +214,17 @@ class BQSource:
         return [row_to_raw(r) for r in self._run("known", body, {"ids": ids, "prefixes": prefixes})]
 
     def family(self, family_ids: list[str]) -> list[dict]:
-        fams = [f for f in family_ids if f and f != "-1"]
+        fams = sorted({f for f in family_ids if f and f != "-1"})
         if not fams:
             return []
-        body = "p.family_id IN UNNEST(@fams)"
-        return [row_to_raw(r) for r in self._run("family", body, {"fams": fams})]
+        need = [f for f in fams if f not in self.fam_done]
+        if need:
+            body = "p.family_id IN UNNEST(@fams)"
+            for r in self._run("family", body, {"fams": need}):
+                raw = row_to_raw(r)
+                self.fam_cache.setdefault(raw["family_id"], []).append(raw)
+            self.fam_done.update(need)
+        return [r for f in fams for r in self.fam_cache.get(f, [])]
 
     def stats(self) -> str:
         b = getattr(self.runner, "bytes_total", 0)
