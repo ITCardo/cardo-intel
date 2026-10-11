@@ -134,7 +134,7 @@ function draw(){
   const jur=[...new Set(recs.map(r=>r.jurisdiction).filter(Boolean))].sort();
   const used=new Set(recs.map(r=>r.topic_id||0));
   const pfs=(DATA.product_families||[]).filter(f=>used.has(f.id));
-  h+='<div class="bar"><input id="q" placeholder="Search title, number, applicant" value="'+esc(F.q)+'">'+
+  h+='<div class="bar"><input id="q" placeholder="Search number, title, applicant, family" value="'+esc(F.q)+'">'+
     sel("type",[["","All types"],["patent","Patents"],["design","Designs"],["utility_model","Utility models"],["unverified","Unverified"]])+
     sel("status",[["","All statuses"],["pending","Pending (application)"],["granted","Granted"],["expired","Expired / lapsed"],["unknown","Unknown"]])+
     sel("juris",[["","All jurisdictions"],...jur.map(j=>[j,jurLabel(j)])])+
@@ -148,6 +148,8 @@ function draw(){
   ["type","status","juris","pf","flag"].forEach(k=>{const e=document.getElementById("f_"+k);e.onchange=()=>{F[k]=e.value;rows();};});
   rows();
 }
+const pn=n=>String(n||"").replace(/\s+/g,"");
+const sq=t=>String(t).toLowerCase().replace(/[\s,.\/\-]/g,"");
 const stat=(n,l,hot)=>'<div class="stat'+(hot&&n?" hot":"")+'"><b>'+n+'</b><span>'+l+'</span></div>';
 function sel(k,opts){return '<select id="f_'+k+'">'+opts.map(o=>'<option value="'+esc(o[0])+'"'+(F[k]===o[0]?" selected":"")+'>'+esc(o[1])+'</option>').join("")+'</select>';}
 function rows(){
@@ -159,7 +161,7 @@ function rows(){
     if(F.flag==="hot"){if(!isHot(r))return false;}else if(F.flag&&!r.flags[F.flag])return false;
     if(F.pf!==""&&String(r.topic_id||0)!==F.pf)return false;
     if(F.fam&&r.family_id!==F.fam)return false;
-    if(F.q){const s=(r.title+" "+r.number+" "+r.applicants.join(" ")+" "+r.family_id+" "+jurLabel(r.jurisdiction)).toLowerCase();if(!s.includes(F.q.toLowerCase()))return false;}
+    if(F.q){const s=(r.title+" "+r.number+" "+r.applicants.join(" ")+" "+r.family_id+" "+jurLabel(r.jurisdiction)+" "+r.topic).toLowerCase();if(!s.includes(F.q.toLowerCase())&&!sq(s).includes(sq(F.q)))return false;}
     return true;
   });
   list.sort((a,b)=>sort.d*cmp(a,b,sort.k));
@@ -178,7 +180,7 @@ function rows(){
     const fam=r.family_id?'<a class="fam" data-fam="'+esc(r.family_id)+'" title="Show only this family">'+esc(r.family_id)+'</a>'+(famCount[r.family_id]>1?' ('+famCount[r.family_id]+' records here)':''):'';
     return '<tr class="r t-'+esc(r.type)+(r.status_class==="expired"?" expired":"")+hl+'"><td>'+esc(TYPE_LABEL[r.type]||r.type)+(r.type_certain?"":' <span class="small" title="Kind code not clearly recognised">?</span>')+'</td>'+
     '<td>'+pf+'<div class="small">'+(r.family_id?'patent family '+fam:'')+'</div></td>'+
-    '<td><b>'+esc(r.number)+'</b><br><span class="small">'+links+'</span></td>'+
+    '<td><b>'+esc(pn(r.number))+'</b><br><span class="small">'+links+'</span></td>'+
     '<td class="title">'+esc(r.title)+'<br><span class="small">'+esc((r.applicants||[]).slice(0,2).join("; "))+'</span></td>'+
     '<td>'+esc(jurLabel(r.jurisdiction))+'</td><td class="nw">'+esc(r.filing_date)+'</td><td class="nw">'+esc(r.priority_date)+'</td>'+
     '<td title="'+esc(r.status_basis)+'">'+esc(r.status)+(r.status_estimated?' <span class="small">(est.)</span>':'')+'</td>'+
@@ -201,7 +203,7 @@ function reviewHtml(b){
   let h='<h2>Possible matches to review ('+b.review.length+')</h2><div class="small">These are not counted as this brand\'s filings. To approve one, add the applicant name to <code>names</code> in config.json.</div><div class="tw"><table><thead><tr><th>Number</th><th>Title</th><th>Applicant on the record</th><th>Closest brand name</th><th>Score</th><th>Why it is here</th></tr></thead><tbody>';
   b.review.forEach(r=>{
     const l=r.links||{};
-    h+='<tr><td><b>'+esc(r.number)+'</b><br><span class="small">'+(safeUrl(l.google)?'<a href="'+esc(safeUrl(l.google))+'" target="_blank" rel="noopener noreferrer">Google</a> ':'')+(safeUrl(l.espacenet)?'<a href="'+esc(safeUrl(l.espacenet))+'" target="_blank" rel="noopener noreferrer">Espacenet</a>':'')+'</span></td><td>'+esc(r.title)+'</td><td>'+esc(r.applicant||r.applicants.join("; "))+'</td><td>'+esc(r.brand_name)+'</td><td>'+Math.round((+r.score||0)*100)+'%'+'</td><td>'+esc(r.why)+'</td></tr>';
+    h+='<tr><td><b>'+esc(pn(r.number))+'</b><br><span class="small">'+(safeUrl(l.google)?'<a href="'+esc(safeUrl(l.google))+'" target="_blank" rel="noopener noreferrer">Google</a> ':'')+(safeUrl(l.espacenet)?'<a href="'+esc(safeUrl(l.espacenet))+'" target="_blank" rel="noopener noreferrer">Espacenet</a>':'')+'</span></td><td>'+esc(r.title)+'</td><td>'+esc(r.applicant||r.applicants.join("; "))+'</td><td>'+esc(r.brand_name)+'</td><td>'+Math.round((+r.score||0)*100)+'%'+'</td><td>'+esc(r.why)+'</td></tr>';
   });
   return h+'</tbody></table></div>';
 }
