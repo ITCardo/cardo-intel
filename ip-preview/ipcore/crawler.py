@@ -172,11 +172,24 @@ def run_brand(brand: dict, cfg: dict, ops, known_rows: list[dict], previous: dic
     known_state = [{"row": r, "rid": None} for r in known_rows]
     all_recs = lambda: candidates.items()  # noqa: E731
 
+    def _row_kind(number):
+        t = re.sub(r"[^0-9A-Za-z]", "", number or "").upper()
+        m = re.match(r"^[A-Z]{2}\d+([A-Z]\d?)$", t)
+        return m.group(1) if m else ""
+
     def find_for_row(row):
+        """Record for a known number. A kind code in the row (B1, A1 ...) wins; without a match on the
+        kind, another kind code of the same number is used so the row still counts as seen."""
+        want = _row_kind(row["number"])
+        same_number = []
         for rid, raw in all_recs():
-            if C.numbers_match(row["number"], _pub_number(raw)) or C.numbers_match(row["number"], raw.get("app_number", "")):
-                return rid
-        return None
+            if C.numbers_match(row["number"], _pub_number(raw)):
+                if not want or (raw.get("kind") or "").upper() == want:
+                    return rid
+                same_number.append(rid)
+            elif C.numbers_match(row["number"], raw.get("app_number", "")):
+                same_number.append(rid)
+        return same_number[0] if same_number else None
 
     if ops is not None and known_state:
         for ks in known_state:
@@ -344,6 +357,8 @@ def run_brand(brand: dict, cfg: dict, ops, known_rows: list[dict], previous: dic
             old, new = status_class(row.get("status", "")), rec["status_class"]
             if old in _ORDER and new in _ORDER and _ORDER[new] > _ORDER[old]:
                 rec["flags"]["changed"] = {"from": row.get("status", ""), "to": rec["status"]}
+    known_norm = {C.norm_number(ks["row"]["number"]) for ks in known_state if ks["row"].get("number")}
+    known_norm.discard("")
     prev_ids = {r["id"] for r in previous.get("records", [])} if previous else set()
     prev_by_id = {r["id"]: r for r in previous.get("records", [])} if previous else {}
     for rec in records:
@@ -357,6 +372,9 @@ def run_brand(brand: dict, cfg: dict, ops, known_rows: list[dict], previous: dic
             if p and p.get("status_class") in _ORDER and rec["status_class"] in _ORDER \
                     and _ORDER[rec["status_class"]] > _ORDER[p["status_class"]]:
                 rec["flags"]["changed"] = {"from": p["status"], "to": rec["status"]}
+        elif C.norm_number(rec["number"]) in known_norm:
+            # same document number as a known row, only another kind code (A1/A4/B1/C0 ...)
+            rec["flags"]["new_kind"] = True
         elif baseline_run:
             rec["flags"]["baseline"] = True
         else:

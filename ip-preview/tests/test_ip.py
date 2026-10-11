@@ -312,7 +312,7 @@ def test_bq_ids_and_patterns():
     assert bqmod.bq_id("US20150105022A1") == ("US-2015105022-A1", "US-2015105022-")
     assert bqmod.bq_id("KR200433416Y1") == ("KR-200433416-Y1", "KR-200433416-")
     assert bqmod.bq_id("EP3869839") == ("", "EP-3869839-")
-    assert bqmod.brand_patterns(BRANDS["sena"]) == ["senatech", "세나테크놀로지"]
+    assert bqmod.brand_patterns(BRANDS["sena"]) == ["senatech", "세나테크놀로지", "セナテクノロジーズインコーポレイテッド"]
     assert bqmod.brand_patterns(BRANDS["cardo"]) == ["cardosystem"]
     assert set(bqmod.brand_patterns(BRANDS["reso"])) >= {"resosport", "ziwuchuangxin"}
     assert set(bqmod.brand_patterns(BRANDS["asmax"])) == {"asmaxinfinite", "yiheng"}
@@ -412,3 +412,23 @@ def test_cli_demo_has_two_sources(tmp_path):
     assert any(s["name"].startswith("Google BigQuery") and s["state"] == "read" for s in data["sources"])
     both = [r for r in data["brands"][0]["records"] if {"ops-search", "bq-search"} <= set(r["sources"])]
     assert both
+
+
+def test_sena_excludes_and_japanese_name():
+    names, ex = BRANDS["sena"]["names"], BRANDS["sena"]["exclude"]
+    for cand in ["Prosena Technologies B.V.", "Senatech Bilisim Teknoloji Sanayi Ticaret Anonim Sirketi"]:
+        assert N.match_name(cand, names, ["sena"], ex) is None, cand
+    assert N.match_name("Sena Technologies Inc.", names, ["sena"], ex)["level"] == "match"
+    assert N.match_name("セナ  テクノロジーズ  インコーポレイテッド", names, ["sena"], ex)["level"] == "match"
+
+
+def test_other_kind_code_of_known_number_is_not_new():
+    rows = [bq_row("EP-3869839-A1", 69669713, "Pairing", ["Sena Technologies Inc."], [], 20191031, 20181120),
+            bq_row("EP-3869839-B1", 69669713, "Pairing", ["Sena Technologies Inc."], [], 20191031, 20181120),
+            bq_row("US-11889573-B2", 70472194, "Pairing", ["Sena Technologies Inc."], [], 20191031, 20190104)]
+    res, _ = run_sena(rows, [{"number": "EP3869839B1"}])
+    by = {r["id"]: r for r in res["records"]}
+    assert by["EP3869839B1"]["flags"].get("known")
+    assert by["EP3869839A1"]["flags"].get("new_kind") and not by["EP3869839A1"]["flags"].get("new")
+    assert by["US11889573B2"]["flags"].get("new")
+    assert res["coverage"]["new_found"] == 1

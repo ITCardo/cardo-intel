@@ -7,17 +7,55 @@
     "max_legal_calls": 150,
     "expand_families": true
   },
-  "topic_cpc_prefixes": ["H04B", "H04R", "H04W", "H04M", "H04L", "H04Q", "A42B", "G08C", "G10L", "H04N"],
+  "topic_cpc_prefixes": [
+    "H04B",
+    "H04R",
+    "H04W",
+    "H04M",
+    "H04L",
+    "H04Q",
+    "A42B",
+    "G08C",
+    "G10L",
+    "H04N"
+  ],
   "families": [
-    {"id": "F1", "name": "Wireless intercom group pairing"},
-    {"id": "F2", "name": "Helmet Bluetooth headset and intercom"},
-    {"id": "F3", "name": "Multitasking Bluetooth headset"},
-    {"id": "F4", "name": "Helmet cameras and mounts"},
-    {"id": "F5", "name": "Safety and industrial helmet headsets"},
-    {"id": "F6", "name": "Portable Bluetooth repeater"},
-    {"id": "F7", "name": "Legacy: remote control over the internet"},
-    {"id": "F8", "name": "Legacy: credit-card terminals and relay"},
-    {"id": "F9", "name": "Legacy: network audio and FM"}
+    {
+      "id": "F1",
+      "name": "Wireless intercom group pairing"
+    },
+    {
+      "id": "F2",
+      "name": "Helmet Bluetooth headset and intercom"
+    },
+    {
+      "id": "F3",
+      "name": "Multitasking Bluetooth headset"
+    },
+    {
+      "id": "F4",
+      "name": "Helmet cameras and mounts"
+    },
+    {
+      "id": "F5",
+      "name": "Safety and industrial helmet headsets"
+    },
+    {
+      "id": "F6",
+      "name": "Portable Bluetooth repeater"
+    },
+    {
+      "id": "F7",
+      "name": "Legacy: remote control over the internet"
+    },
+    {
+      "id": "F8",
+      "name": "Legacy: credit-card terminals and relay"
+    },
+    {
+      "id": "F9",
+      "name": "Legacy: network audio and FM"
+    }
   ],
   "brands": [
     {
@@ -29,27 +67,46 @@
         "SENA Tech Inc",
         "Sena Tech",
         "세나테크놀로지",
-        "주식회사 세나테크놀로지"
+        "주식회사 세나테크놀로지",
+        "セナ テクノロジーズ インコーポレイテッド"
       ],
       "suggested_variants": [],
-      "keywords": ["sena"],
-      "exclude": [],
+      "keywords": [
+        "sena"
+      ],
+      "exclude": [
+        "Prosena Technologies",
+        "Senatech Bilisim Teknoloji Sanayi Ticaret Anonim Sirketi"
+      ],
       "known_file": "known/sena.csv"
     },
     {
       "slug": "cardo",
       "label": "Cardo",
-      "names": ["Cardo Systems Ltd.", "Cardo Systems Inc."],
+      "names": [
+        "Cardo Systems Ltd.",
+        "Cardo Systems Inc."
+      ],
       "suggested_variants": [],
-      "keywords": ["cardo"],
+      "keywords": [
+        "cardo"
+      ],
       "exclude": []
     },
     {
       "slug": "reso",
       "label": "Reso",
-      "names": ["Resosport Limited", "Shenzhen Ziwu Chuangxin Technology Co., Ltd."],
-      "suggested_variants": ["Shenzhen Ziwu Innovation Technology Co., Ltd."],
-      "keywords": ["resosport", "ziwu"],
+      "names": [
+        "Resosport Limited",
+        "Shenzhen Ziwu Chuangxin Technology Co., Ltd."
+      ],
+      "suggested_variants": [
+        "Shenzhen Ziwu Innovation Technology Co., Ltd."
+      ],
+      "keywords": [
+        "resosport",
+        "ziwu"
+      ],
       "exclude": []
     },
     {
@@ -60,7 +117,10 @@
         "Hong Kong Yiheng International Technology Co., Limited"
       ],
       "suggested_variants": [],
-      "keywords": ["asmax", "yiheng"],
+      "keywords": [
+        "asmax",
+        "yiheng"
+      ],
       "exclude": []
     }
   ]

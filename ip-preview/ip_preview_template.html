@@ -94,6 +94,7 @@ function cmp(a,b,k){
 function flagHtml(r){
   let h="";
   if(r.flags.new) h+='<span class="flag f-new">NEW</span>';
+  if(r.flags.new_kind) h+='<span class="flag f-base" title="Same publication number as a record on the known list, with another kind code">new kind of known patent</span>';
   if(r.flags.changed) h+='<span class="flag f-chg" title="Status moved">CHANGED: '+esc(r.flags.changed.from)+' → '+esc(r.flags.changed.to)+'</span>';
   if(r.flags.not_seen) h+='<span class="flag f-ns" title="On the known list, but no source returned it in this run">not seen this run</span>';
   if(r.flags.baseline) h+='<span class="flag f-base" title="First run: stored quietly as the baseline">baseline</span>';
@@ -119,7 +120,7 @@ function draw(){
     sel("type",[["","All types"],["patent","Patents"],["design","Designs"],["utility_model","Utility models"],["unverified","Unverified"]])+
     sel("status",[["","All statuses"],["pending","Application"],["granted","Granted"],["expired","Expired / lapsed"],["unknown","Unknown"]])+
     sel("juris",[["","All jurisdictions"],...jur.map(j=>[j,j])])+
-    sel("flag",[["","Everything"],["new","New only"],["changed","Changed only"],["not_seen","Not seen"]])+'</div>';
+    sel("flag",[["","Everything"],["new","New only"],["new_kind","New kind of known"],["changed","Changed only"],["not_seen","Not seen"]])+'</div>';
   h+='<div class="legend"><span><i class="sw" style="background:var(--pat)"></i>Patent</span><span><i class="sw" style="background:var(--des)"></i>Design</span><span><i class="sw" style="background:var(--um)"></i>Utility model</span><span><i class="sw" style="background:var(--exp)"></i>Grey: expired or lapsed (estimated unless a legal event is shown)</span></div>';
   h+='<div id="tbl"></div>';
   h+=reviewHtml(b)+diagHtml(b);
