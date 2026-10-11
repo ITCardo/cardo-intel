@@ -134,3 +134,35 @@ class FakeBQRunner:
                 if r["family_id"] in params["fams"]:
                     out.append(r)
         return out
+
+
+class FakeClaude:
+    """Stand-in for anthropic.Anthropic. Files units by keyword. INVENTED behaviour, for --demo and tests only."""
+
+    RULES = [("camera", 4), ("repeater", 6), ("roaming", 3), ("multitask", 3), ("audio relay", 9),
+             ("pairing", 1), ("intercom", 2), ("speaker", 2), ("microphone", 2), ("headset", 2)]
+
+    def __init__(self, new_label_for="visor", new_name="Helmet visors and coatings"):
+        self.new_label_for, self.new_name = new_label_for, new_name
+        self.prompts = []
+        self.messages = self
+
+    def create(self, model, max_tokens, messages):
+        prompt = messages[0]["content"]
+        self.prompts.append(prompt)
+        units = json.loads(prompt.split("Units (JSON):\n", 1)[1].split("\n\nAnswer with JSON", 1)[0])
+        out, new = [], {}
+        for u in units:
+            text = " ".join(u["titles"]).lower()
+            fam = None
+            if self.new_label_for in text:
+                fam, new["N1"] = "new:N1", self.new_name
+            else:
+                for word, fid in self.RULES:
+                    if word in text:
+                        fam = fid
+                        break
+            if fam is not None:
+                out.append({"key": u["key"], "family": fam, "note": "keyword in the title"})
+        body = json.dumps({"assignments": out, "new_families": new})
+        return type("Msg", (), {"content": [type("B", (), {"type": "text", "text": body})()]})()

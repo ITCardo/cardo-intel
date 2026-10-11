@@ -11,7 +11,7 @@ DEMO_BRAND = {
 }
 DEMO_KNOWN = [
     {"number": "US 9,000,111 B2", "title": "Helmet intercom pairing", "jurisdiction": "US", "status": "Pending",
-     "family": "Helmet Bluetooth headset and intercom", "type": "patent"},
+     "family": "2", "type": "patent"},
     {"number": "EP 3000222", "title": "Multitasking headset", "jurisdiction": "EP", "status": "Granted", "type": "patent"},
     {"number": "WO 2015/000333", "title": "Network audio relay", "jurisdiction": "WO", "status": "Granted", "type": "patent"},
 ]
@@ -64,5 +64,6 @@ def demo_bq_runner() -> FakeBQRunner:
         bq_row("EP-3777888-A1", 888, "Helmet camera mount", a, ["Kim, Joon"], 20200815, 20190815, 20210224, ["A42B3/04"]),
         bq_row("KR-20200055555-A", 555, "Helmet speaker pad", ["Demo Helmet Systems Inc"], ["Lee, Sun"], 20200901, 20200901, 20220301, ["H04R1/10"]),
         bq_row("WO-2015000333-A1", 333, "Network audio relay", a, ["Kim, Joon"], 20140501, 20130501, 20150108, ["H04L65/60"]),
+        bq_row("US-9666222-B2", 4242, "Helmet visor with anti-fog coating", a, ["Chan, Mei"], 20210301, 20200301, 20230105, ["A42B3/24"]),
         bq_row("US-7000001-B2", 1, "Unrelated thing", ["Demonstration Foods LLC"], [], 20150101, 20150101, 20160101, []),
     ])

@@ -1,138 +1,163 @@
 {
-  "_comment": "Standalone IP crawler preview. Not read by build.py or the main workflow. names = approved legal names (searched and matched). suggested_variants = guesses that are searched but only ever shown in the review list until a person moves them to names. exclude = applicant names that belong to other companies. keywords = distinctive words used to propose weak matches for review.",
-  "limits": {
-    "max_results_per_query": 300,
-    "max_lookup_calls": 200,
-    "max_family_calls": 120,
-    "max_legal_calls": 150,
-    "expand_families": true
+ "_comment": "Standalone IP crawler preview. Not read by build.py or the main workflow. names = approved legal names (searched and matched). suggested_variants = guesses that are searched but only ever shown in the review list until a person moves them to names. exclude = applicant names that belong to other companies. keywords = distinctive words used to propose weak matches for review.",
+ "limits": {
+  "max_results_per_query": 300,
+  "max_lookup_calls": 200,
+  "max_family_calls": 120,
+  "max_legal_calls": 150,
+  "expand_families": true
+ },
+ "topic_cpc_prefixes": [
+  "H04B",
+  "H04R",
+  "H04W",
+  "H04M",
+  "H04L",
+  "H04Q",
+  "A42B",
+  "G08C",
+  "G10L",
+  "H04N"
+ ],
+ "families": [
+  {
+   "id": 1,
+   "name": "Wireless intercom - group pairing"
   },
-  "topic_cpc_prefixes": [
-    "H04B",
-    "H04R",
-    "H04W",
-    "H04M",
-    "H04L",
-    "H04Q",
-    "A42B",
-    "G08C",
-    "G10L",
-    "H04N"
-  ],
-  "families": [
-    {
-      "id": "F1",
-      "name": "Wireless intercom group pairing"
-    },
-    {
-      "id": "F2",
-      "name": "Helmet Bluetooth headset and intercom"
-    },
-    {
-      "id": "F3",
-      "name": "Multitasking Bluetooth headset"
-    },
-    {
-      "id": "F4",
-      "name": "Helmet cameras and mounts"
-    },
-    {
-      "id": "F5",
-      "name": "Safety and industrial helmet headsets"
-    },
-    {
-      "id": "F6",
-      "name": "Portable Bluetooth repeater"
-    },
-    {
-      "id": "F7",
-      "name": "Legacy: remote control over the internet"
-    },
-    {
-      "id": "F8",
-      "name": "Legacy: credit-card terminals and relay"
-    },
-    {
-      "id": "F9",
-      "name": "Legacy: network audio and FM"
-    }
-  ],
-  "brands": [
-    {
-      "slug": "sena",
-      "label": "Sena",
-      "names": [
-        "Sena Technologies, Inc.",
-        "Sena Technologies Co., Ltd.",
-        "SENA Tech Inc",
-        "Sena Tech",
-        "세나테크놀로지",
-        "주식회사 세나테크놀로지",
-        "セナ テクノロジーズ インコーポレイテッド"
-      ],
-      "suggested_variants": [],
-      "keywords": [
-        "sena"
-      ],
-      "exclude": [
-        "Prosena Technologies",
-        "Senatech Bilisim Teknoloji Sanayi Ticaret Anonim Sirketi"
-      ],
-      "known_file": "known/sena.csv"
-    },
-    {
-      "slug": "cardo",
-      "label": "Cardo",
-      "names": [
-        "Cardo Systems Ltd.",
-        "Cardo Systems Inc.",
-        "Cardo International GmbH",
-        "卡多通讯系统有限公司",
-        "卡多系统有限公司",
-        "カード・システムズ・リミテッド",
-        "カード・システムズ・インコーポレーテッド",
-        "카르도 시스템즈 리미티드",
-        "카르도 시스템즈 인코퍼레이티드",
-        "Кардо Системс"
-      ],
-      "suggested_variants": [],
-      "keywords": [
-        "cardo"
-      ],
-      "exclude": []
-    },
-    {
-      "slug": "reso",
-      "label": "Reso",
-      "names": [
-        "Resosport Limited",
-        "Shenzhen Ziwu Chuangxin Technology Co., Ltd.",
-        "深圳市子午创新技术有限公司"
-      ],
-      "suggested_variants": [
-        "Shenzhen Ziwu Innovation Technology Co., Ltd."
-      ],
-      "keywords": [
-        "resosport",
-        "ziwu"
-      ],
-      "exclude": []
-    },
-    {
-      "slug": "asmax",
-      "label": "ASMAX",
-      "names": [
-        "Shenzhen Asmax Infinite Technology Co., Ltd.",
-        "Hong Kong Yiheng International Technology Co., Limited",
-        "深圳市纵贯无限科技有限公司",
-        "深圳市縱貫無限科技有限公司",
-        "深▲せん▼市縦貫無限科技有限公司"
-      ],
-      "suggested_variants": [],
-      "keywords": [
-        "asmax"
-      ],
-      "exclude": []
-    }
-  ]
+  {
+   "id": 2,
+   "name": "Helmet Bluetooth headset / intercom"
+  },
+  {
+   "id": 3,
+   "name": "Multitasking Bluetooth headset"
+  },
+  {
+   "id": 4,
+   "name": "Helmet camera systems & mounts"
+  },
+  {
+   "id": 5,
+   "name": "Safety / industrial helmet intercom headsets"
+  },
+  {
+   "id": 6,
+   "name": "Portable Bluetooth repeater"
+  },
+  {
+   "id": 7,
+   "name": "Legacy - remote control over internet"
+  },
+  {
+   "id": 8,
+   "name": "Legacy - credit-card terminals / communication relay"
+  },
+  {
+   "id": 9,
+   "name": "Legacy - network audio & FM transmission"
+  }
+ ],
+ "family_seed": {
+  "70472194": 1,
+  "69669713": 1,
+  "45033260": 2,
+  "53791739": 2,
+  "51990455": 2,
+  "52810067": 3,
+  "51759893": 4,
+  "54060851": 4,
+  "53788381": 4,
+  "52454103": 4,
+  "48180467": 6,
+  "97267249": 5,
+  "97267803": 5,
+  "19681222": 7,
+  "29570776": 7,
+  "43651396": 7,
+  "19690069": 8,
+  "29564906": 8,
+  "37273228": 8,
+  "27696664": 9,
+  "41781751": 9
+ },
+ "family_overrides": {},
+ "brands": [
+  {
+   "slug": "sena",
+   "label": "Sena",
+   "names": [
+    "Sena Technologies, Inc.",
+    "Sena Technologies Co., Ltd.",
+    "SENA Tech Inc",
+    "Sena Tech",
+    "세나테크놀로지",
+    "주식회사 세나테크놀로지",
+    "セナ テクノロジーズ インコーポレイテッド"
+   ],
+   "suggested_variants": [],
+   "keywords": [
+    "sena"
+   ],
+   "exclude": [
+    "Prosena Technologies",
+    "Senatech Bilisim Teknoloji Sanayi Ticaret Anonim Sirketi"
+   ],
+   "known_file": "known/sena.csv"
+  },
+  {
+   "slug": "cardo",
+   "label": "Cardo",
+   "names": [
+    "Cardo Systems Ltd.",
+    "Cardo Systems Inc.",
+    "Cardo International GmbH",
+    "卡多通讯系统有限公司",
+    "卡多系统有限公司",
+    "カード・システムズ・リミテッド",
+    "カード・システムズ・インコーポレーテッド",
+    "카르도 시스템즈 리미티드",
+    "카르도 시스템즈 인코퍼레이티드",
+    "Кардо Системс"
+   ],
+   "suggested_variants": [],
+   "keywords": [
+    "cardo"
+   ],
+   "exclude": []
+  },
+  {
+   "slug": "reso",
+   "label": "Reso",
+   "names": [
+    "Resosport Limited",
+    "Shenzhen Ziwu Chuangxin Technology Co., Ltd.",
+    "深圳市子午创新技术有限公司"
+   ],
+   "suggested_variants": [
+    "Shenzhen Ziwu Innovation Technology Co., Ltd."
+   ],
+   "keywords": [
+    "resosport",
+    "ziwu"
+   ],
+   "exclude": []
+  },
+  {
+   "slug": "asmax",
+   "label": "ASMAX",
+   "names": [
+    "Shenzhen Asmax Infinite Technology Co., Ltd.",
+    "Hong Kong Yiheng International Technology Co., Limited",
+    "深圳市纵贯无限科技有限公司",
+    "深圳市縱貫無限科技有限公司",
+    "深▲せん▼市縦貫無限科技有限公司"
+   ],
+   "suggested_variants": [],
+   "keywords": [
+    "asmax"
+   ],
+   "exclude": []
+  }
+ ],
+ "_comment_families": "families: your numbered product families (id, name). New ones are added automatically by Claude and stored in ip_results.json. family_overrides: {patent-family id or publication number: family number}, always wins. family_seed: starting grouping set up from titles, review it."
 }

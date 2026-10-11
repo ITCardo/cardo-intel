@@ -39,6 +39,13 @@ BigQuery has no legal-status events, so status from BigQuery alone is estimated 
 - Every row links to Google Patents and Espacenet for manual cross-checking. The Google Patents website is not scraped
   (its search endpoint is closed to automated access). The Google BigQuery dataset is the official route to the same data.
 
+## Product families (the "Product family" column)
+
+Your own grouping by subject and priority date, numbered 1 to 9 in `config.json` ("families"). It is not the patent family number (that is shown in small text under it).
+Each patent family is decided once, in this order: `family_overrides` in config.json (your correction, always wins) > the `family` column of the known list > the previous run > `family_seed` (starting grouping set up from titles: please review it) > Claude.
+Claude puts a new record into an existing family when it fits. If none fits, it creates the next number and names it; a banner at the top lists it and the new family is stored in `ip_results.json` and reused next run. To keep a new family permanently or rename it, add it to "families" in config.json.
+Only title, applicants and class codes are sent to Claude. Hover a family cell to see who decided it. Without `ANTHROPIC_API_KEY` (or with the `families` input off) records not yet decided stay "not filed yet".
+
 ## Names
 
 Edit `config.json`. `names` are approved and are searched and matched. `suggested_variants` are searched but only ever
