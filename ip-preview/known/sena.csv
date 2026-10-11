@@ -6,7 +6,7 @@
 #   filing_date    YYYY-MM-DD
 #   priority_date  YYYY-MM-DD
 #   status         Pending | Granted | Expired (used to detect CHANGED)
-#   family         one of the nine families, for example "Helmet Bluetooth headset and intercom"
+#   family         product family number (1-9 or a newer one) or its name. Optional: families are also set from config.json and by Claude
 #   type           patent | design | utility_model
 number,title,jurisdiction,filing_date,priority_date,status,family,type
 WO2020105895A1,,WO,,,,,patent

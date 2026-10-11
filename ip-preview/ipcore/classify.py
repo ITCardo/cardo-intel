@@ -105,7 +105,7 @@ def derive_status(rtype: str, stage: str, filing_date: str, events: list[dict] |
         return {"status": "Granted", "class": "granted", "estimated": True,
                 "basis": "From the kind code. Legal status not confirmed by a legal event."}
     if stage == "application":
-        return {"status": "Application published", "class": "pending", "estimated": True,
+        return {"status": "Pending", "class": "pending", "estimated": True,
                 "basis": "From the kind code. Not known whether it was later granted or dropped."}
     return {"status": "Unknown", "class": "unknown", "estimated": True, "basis": "Kind code not recognised."}
 

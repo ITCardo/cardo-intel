@@ -468,3 +468,108 @@ def test_taiwan_mainland_company_wrapper_is_ignored():
     for cand in ["大陸商深圳市縱貫無限科技有限公司 (中國大陸)", "大陸商深圳市縱貫無限科技有限公司", "大陆商深圳市纵贯无限科技有限公司（中国大陆）"]:
         assert N.match_name(cand, b["names"], b["keywords"], b["exclude"])["level"] == "match", cand
     assert "深圳市縱貫無限科技" in bqmod.compact_applicant("大陸商深圳市縱貫無限科技有限公司 (中國大陸)")
+
+
+# ------------------------------------------------------------- product families
+from ipcore import families as FAM  # noqa: E402
+from ipcore.fakeops import FakeClaude  # noqa: E402
+
+
+def _rec(i, fid, title, topic=""):
+    return {"id": i, "number": i, "family_id": fid, "title": title, "cpc": [], "applicants": ["X"],
+            "priority_date": "2020-01-01", "topic": topic, "topic_note": ""}
+
+
+def _brand(*recs, slug="b"):
+    return {"slug": slug, "name": slug, "records": list(recs)}
+
+
+def test_config_has_nine_numbered_families():
+    reg = FAM.build_registry(CFG["families"], None)
+    assert [f["id"] for f in reg] == list(range(1, 10))
+    assert reg[0]["name"] == "Wireless intercom - group pairing"
+    assert reg[8]["name"] == "Legacy - network audio & FM transmission"
+
+
+def test_family_order_override_known_previous_seed_claude():
+    reg = FAM.build_registry(CFG["families"], None)
+    recs = [_rec("a", "F1", "camera thing"), _rec("b", "F2", "camera thing", topic="5"),
+            _rec("c", "F3", "camera thing"), _rec("d", "F4", "camera thing"), _rec("e", "F5", "camera thing")]
+    b = _brand(*recs)
+    out = FAM.assign([b], reg, {"b": {"F3": {"id": 7, "by": "claude", "note": "earlier"}}}, {"F1": 9},
+                     seed={"F4": 6}, client=FakeClaude())
+    got = {r["id"]: (r["topic_id"], r["topic_note"].split(":")[0]) for r in b["records"]}
+    assert got["a"][0] == 9 and got["a"][1] == "Your grouping"          # override beats everything
+    assert got["b"][0] == 5 and got["b"][1] == "Your grouping"          # known list
+    assert got["c"][0] == 7                                              # previous run kept
+    assert got["d"][0] == 6 and got["d"][1].startswith("Starting grouping")
+    assert got["e"][0] == 4 and got["e"][1].startswith("Inferred by Claude")
+    assert out["claude"] == 1 and out["created"] == []
+
+
+def test_new_numbered_family_is_created_and_named_once():
+    reg = FAM.build_registry(CFG["families"], None)
+    b = _brand(_rec("a", "F1", "helmet visor"), _rec("b", "F2", "visor coating"))
+    out = FAM.assign([b], reg, {}, {}, run_date="2026-10-11", client=FakeClaude())
+    assert out["created"] == [10]
+    assert reg[-1] == {"id": 10, "name": "Helmet visors and coatings", "created": "2026-10-11", "by": "claude"}
+    assert [r["topic_id"] for r in b["records"]] == [10, 10]
+    # next run: the registry from the results file brings it back, nothing new is created
+    reg2 = FAM.build_registry(CFG["families"], reg)
+    assert reg2[-1]["id"] == 10
+    b2 = _brand(_rec("a", "F1", "helmet visor"), _rec("c", "F9", "visor shade"))
+    out2 = FAM.assign([b2], reg2, {"b": b["family_map"]}, {}, client=FakeClaude())
+    assert out2["created"] == [] and [r["topic_id"] for r in b2["records"]] == [10, 10]
+
+
+def test_records_of_one_patent_family_share_one_decision():
+    reg = FAM.build_registry(CFG["families"], None)
+    client = FakeClaude()
+    b = _brand(_rec("a", "F1", "camera mount"), _rec("b", "F1", "kamera halter"))
+    FAM.assign([b], reg, {}, {}, client=client)
+    assert [r["topic_id"] for r in b["records"]] == [4, 4]
+    assert len(client.prompts) == 1 and client.prompts[0].count('"key": "F1"') == 1
+
+
+def test_without_claude_unknown_records_stay_unfiled(capsys):
+    reg = FAM.build_registry(CFG["families"], None)
+    b = _brand(_rec("a", "F1", "camera mount"))
+    out = FAM.assign([b], reg, {}, {}, use_claude=False)
+    assert b["records"][0]["topic_id"] == 0 and out["claude"] == 0
+
+
+def test_claude_failure_or_nonsense_never_breaks_the_run():
+    class Broken:
+        class messages:
+            @staticmethod
+            def create(**kw):
+                raise RuntimeError("boom")
+    reg = FAM.build_registry(CFG["families"], None)
+    b = _brand(_rec("a", "F1", "camera mount"))
+    FAM.assign([b], reg, {}, {}, client=Broken())
+    assert b["records"][0]["topic_id"] == 0
+
+
+def test_known_list_accepts_number_or_name():
+    reg = FAM.build_registry(CFG["families"], None)
+    assert FAM._find_family("3", reg) == 3 and FAM._find_family("F3", reg) == 3
+    assert FAM._find_family("Portable Bluetooth repeater", reg) == 6
+    assert FAM._find_family("nonsense", reg) is None
+
+
+def test_every_seed_target_exists():
+    ids = {f["id"] for f in CFG["families"]}
+    assert set(CFG["family_seed"].values()) <= ids
+
+
+def test_pending_wording():
+    assert C.derive_status("patent", "application", "2024-01-01", [])["status"] == "Pending"
+
+
+def test_demo_run_writes_families_and_reuses_them(tmp_path):
+    import ip_crawler
+    ip_crawler.main(["--demo", "--out", str(tmp_path)])
+    d = json.loads((tmp_path / "ip_results.json").read_text(encoding="utf-8"))
+    assert d["new_product_families"] == [10] and d["product_families"][-1]["id"] == 10
+    assert all(r["topic_id"] for r in d["brands"][0]["records"])
+    assert "demo" in d["family_maps"]

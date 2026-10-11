@@ -21,6 +21,7 @@ sys.path.insert(0, str(HERE))
 
 from ipcore import bq as bqmod, crawler, demo, families as fam, render  # noqa: E402
 from ipcore.epo import OPSClient  # noqa: E402
+from ipcore.fakeops import FakeClaude  # noqa: E402
 
 
 def main(argv=None) -> int:
@@ -29,7 +30,7 @@ def main(argv=None) -> int:
     ap.add_argument("--out", default=str(HERE / "out"))
     ap.add_argument("--brands", default="", help="comma separated slugs; default all")
     ap.add_argument("--previous", default="", help="ip_results.json of an earlier run (to detect NEW and CHANGED)")
-    ap.add_argument("--families", action="store_true", help="let Claude file NEW records under the families (needs ANTHROPIC_API_KEY)")
+    ap.add_argument("--families", action="store_true", help="let Claude file records that are not yet in a product family (needs ANTHROPIC_API_KEY). Without it, only your own grouping and earlier decisions are applied")
     ap.add_argument("--demo", action="store_true", help="use invented records, no network")
     ap.add_argument("--no-bigquery", action="store_true", help="skip BigQuery even if configured")
     args = ap.parse_args(argv)
@@ -80,9 +81,15 @@ def main(argv=None) -> int:
         notes.append(wn)
 
     previous_all = {}
+    prev_registry, prev_maps = [], {}
     if args.previous and Path(args.previous).exists():
         try:
             prev = json.loads(Path(args.previous).read_text(encoding="utf-8"))
+            prev_registry = prev.get("product_families", []) or []       # kept even when the run was incomplete
+            prev_maps = dict(prev.get("family_maps") or {})
+            for pb in prev.get("brands", []):
+                if pb.get("family_map") and pb["slug"] not in prev_maps:
+                    prev_maps[pb["slug"]] = pb["family_map"]
             if prev.get("complete"):
                 previous_all = {b["slug"]: b for b in prev.get("brands", [])}
                 print(f"previous results loaded: {len(previous_all)} brand(s)")
@@ -114,13 +121,22 @@ def main(argv=None) -> int:
                    "baseline_run": False, "records": [], "review": [], "coverage": None,
                    "diag": {"queries": [], "dropped": [], "excluded": [], "family_calls": 0, "legal_calls": 0,
                             "lookup_calls": 0, "errors": [f"{type(exc).__name__}: {exc}"]}}
-        if args.families and not args.demo:
-            n = fam.assign_families(res["records"], cfg.get("families", []))
-            print(f"   families assigned: {n}")
         s = res
         print(f"   records={len(s['records'])} new={sum(1 for r in s['records'] if r['flags'].get('new'))} "
               f"review={len(s['review'])} errors={len(s['diag']['errors'])}")
         brands_out.append(res)
+
+    registry = fam.build_registry(cfg.get("families", []), prev_registry)
+    fres = fam.assign(brands_out, registry, prev_maps, cfg.get("family_overrides", {}), seed=cfg.get("family_seed", {}),
+                      client=FakeClaude() if args.demo else None, use_claude=bool(args.families or args.demo))
+    print(f"product families: {len(registry)} defined, {fres['claude']} patent families filed by Claude, "
+          f"{len(fres['created'])} new")
+    if fres["created"]:
+        notes.append("New product families created by Claude this run: " +
+                     "; ".join(f"{f['id']} {f['name']}" for f in registry if f["id"] in fres["created"]) +
+                     ". Check the names. To keep one, add it to \"families\" in config.json; to change a record, use \"family_overrides\".")
+    family_maps = dict(prev_maps)
+    family_maps.update({b["slug"]: b.get("family_map", {}) for b in brands_out})
 
     if ops is not None and not args.demo:
         quota = ", ".join(f"{k}: {v}" for k, v in ops.quota.items()) or "no quota header seen"
@@ -137,7 +153,8 @@ def main(argv=None) -> int:
     complete = bool((ops is not None or bq is not None) and not args.demo and not (ops is not None and ops.blocked)
                     and brands_out and not any(b["diag"]["errors"] for b in brands_out))
     results = {"complete": complete, "generated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M"), "demo": bool(args.demo),
-               "notes": notes, "sources": sources, "brands": brands_out}
+               "notes": notes, "sources": sources, "product_families": registry, "family_maps": family_maps,
+               "new_product_families": fres["created"], "brands": brands_out}
     (out / "ip_results.json").write_text(json.dumps(results, ensure_ascii=False, indent=1), encoding="utf-8")
     (out / "ip_preview.html").write_text(render.render(results), encoding="utf-8")
     print(f"written: {out / 'ip_preview.html'}")

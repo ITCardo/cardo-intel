@@ -12,9 +12,9 @@ on:
         required: false
         default: ""
       families:
-        description: "Let Claude file NEW records under the nine families (uses ANTHROPIC_API_KEY)"
+        description: "Let Claude file records that are not yet in a product family (uses ANTHROPIC_API_KEY)"
         type: boolean
-        default: false
+        default: true
       demo:
         description: "Layout demo with invented records (no EPO call)"
         type: boolean
