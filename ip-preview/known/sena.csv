@@ -1,0 +1,11 @@
+# Known Sena records (the list Yanis tracks by hand). One row per record. Lines starting with # are ignored.
+# Required column: number. Everything else is optional but useful.
+#   number         any common form: US 10,123,456 B2 | US10123456 | WO2019/123456 | EP3456789 | KR 10-2020-0012345
+#   title          short title
+#   jurisdiction   US, EP, WO, KR, CN, JP ...
+#   filing_date    YYYY-MM-DD
+#   priority_date  YYYY-MM-DD
+#   status         Pending | Granted | Expired (used to detect CHANGED)
+#   family         one of the nine families, for example "Helmet Bluetooth headset and intercom"
+#   type           patent | design | utility_model
+number,title,jurisdiction,filing_date,priority_date,status,family,type
