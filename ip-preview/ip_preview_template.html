@@ -65,7 +65,7 @@ code{background:var(--bg);padding:0 4px;border-radius:4px}
 <script>
 const DATA = /*__DATA__*/null;
 const TYPE_LABEL={patent:"Patent",design:"Design",utility_model:"Utility model",unverified:"Unverified"};
-const SRC_LABEL={"ops-search":"EPO search","ops-lookup":"EPO lookup","ops-family":"EPO family","known-list":"Known list"};
+const SRC_LABEL={"ops-search":"EPO search","ops-lookup":"EPO lookup","ops-family":"EPO family","known-list":"Known list","bq-search":"BigQuery","bq-lookup":"BigQuery lookup","bq-family":"BigQuery family"};
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const safeUrl=u=>/^https:\/\//.test(u||"")?u:"";
 let cur=0, sort={k:"filing_date",d:-1}, F={q:"",type:"",status:"",juris:"",flag:""};

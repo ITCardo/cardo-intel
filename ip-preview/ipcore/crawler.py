@@ -42,7 +42,7 @@ _ORDER = {"pending": 1, "granted": 2, "expired": 3}
 
 
 def record_id(country, number, kind) -> str:
-    return f"{country}{number}{kind}"
+    return f"{country}{C.canon_docnum(country, number)}{kind}"
 
 
 # ---------------------------------------------------------------- helpers
@@ -71,13 +71,20 @@ def _topic_hit(rec, prefixes) -> bool:
     return any(c.startswith(tuple(prefixes)) for c in codes) if prefixes else False
 
 
+def _docdb_ref(number: str) -> str:
+    """'US20150105022A1' -> 'US.20150105022.A1' (only when a kind code is present)."""
+    t = re.sub(r"[^0-9A-Za-z]", "", number or "").upper()
+    m = re.match(r"^([A-Z]{2})(\d+)([A-Z]\d?)$", t)
+    return f"{m.group(1)}.{m.group(2)}.{m.group(3)}" if m else ""
+
+
 def _pub_number(rec) -> str:
     return f"{rec['country']}{rec['doc_number']}"
 
 
 # ---------------------------------------------------------------- main per-brand run
 def run_brand(brand: dict, cfg: dict, ops, known_rows: list[dict], previous: dict | None,
-              today: date | None = None, log=print) -> dict:
+              today: date | None = None, log=print, bq=None) -> dict:
     today = today or date.today()
     names = list(brand.get("names", [])) + list(brand.get("approved_aliases", []))
     keywords = brand.get("keywords", [])
@@ -121,6 +128,15 @@ def run_brand(brand: dict, cfg: dict, ops, known_rows: list[dict], previous: dic
             except OPSError as exc:
                 diag["queries"].append({"query": cql, "hits": 0, "total": 0, "error": str(exc)})
                 diag["errors"].append(str(exc))
+
+    if bq is not None:
+        cands = bq.candidates_for(brand)
+        diag["queries"].append({"query": "BigQuery: applicant name search (all brands in one query)",
+                                "hits": len(cands), "total": len(cands), "error": bq.error})
+        if bq.error:
+            diag["errors"].append("BigQuery: " + bq.error)
+        for r in cands:
+            search_hits.add(add_raw(r, "bq-search"))
 
     # ---- name matching ---------------------------------------------------
     accepted: dict[str, dict] = {}
@@ -171,7 +187,14 @@ def run_brand(brand: dict, cfg: dict, ops, known_rows: list[dict], previous: dic
                 break
             try:
                 diag["lookup_calls"] += 1
-                recs = ops.lookup(num, "publication") or ops.lookup(num, "application")
+                recs = ops.lookup(num, "publication")
+                dd = _docdb_ref(ks["row"]["number"])
+                if not recs and dd:           # epodoc form differs for some offices; try docdb CC.number.KIND
+                    diag["lookup_calls"] += 1
+                    recs = ops.lookup(dd, "publication", "docdb")
+                if not recs:
+                    diag["lookup_calls"] += 1
+                    recs = ops.lookup(num, "application")
             except OPSBlocked as exc:
                 diag["errors"].append(str(exc))
                 break
@@ -182,6 +205,21 @@ def run_brand(brand: dict, cfg: dict, ops, known_rows: list[dict], previous: dic
                 rid = add_raw(r, "ops-lookup")
                 accepted.setdefault(rid, {"level": "known", "score": 1.0, "name": "", "applicant": "",
                                           "reason": "On the known list"})
+    if bq is not None and known_state:
+        missing_rows = [ks["row"]["number"] for ks in known_state if not find_for_row(ks["row"])]
+        if missing_rows:
+            try:
+                recs = bq.lookup(missing_rows)
+                diag["queries"].append({"query": f"BigQuery: direct lookup of {len(missing_rows)} known numbers",
+                                        "hits": len(recs), "total": len(recs), "error": ""})
+                for r in recs:
+                    rid = add_raw(r, "bq-lookup")
+                    accepted.setdefault(rid, {"level": "known", "score": 1.0, "name": "", "applicant": "",
+                                              "reason": "On the known list"})
+            except Exception as exc:  # noqa: BLE001 - BigQuery trouble must not stop the run
+                msg = f"{type(exc).__name__}: {exc}"[:300]
+                diag["queries"].append({"query": "BigQuery: direct lookup of known numbers", "hits": 0, "total": 0, "error": msg})
+                diag["errors"].append("BigQuery: " + msg)
     for ks in known_state:
         ks["rid"] = find_for_row(ks["row"])
         if ks["rid"]:
@@ -191,43 +229,54 @@ def run_brand(brand: dict, cfg: dict, ops, known_rows: list[dict], previous: dic
             review.pop(ks["rid"], None)
 
     # ---- pass 3: family members ------------------------------------------
-    if ops is not None and limits.get("expand_families", True):
-        fam_seen, fam_rep = set(), {}
-        for rid in accepted:
+    def absorb_family(members, source, accepted_fams):
+        for r in members:
+            rid = record_id(r["country"], r["doc_number"], r["kind"])
+            if rid in candidates:
+                sources.setdefault(rid, set()).add(source)
+                continue
+            add_raw(r, source)
+            m, excluded = _best_match(r, names, keywords, excludes, suggested)
+            if m and m["level"] in ("match", "close"):
+                accepted[rid] = dict(m, signal="family member")
+            elif r.get("family_id") in accepted_fams and not excluded:
+                accepted[rid] = {"level": "family", "score": 0.0, "name": "",
+                                 "applicant": (r["applicants"] or [""])[0],
+                                 "reason": "Same legal family as an accepted record; the applicant name differs."}
+            elif m:
+                review[rid] = dict(m, why="Family member with a weaker name match.")
+
+    if limits.get("expand_families", True):
+        fam_rep = {}
+        for rid in list(accepted):
             fid = candidates[rid].get("family_id")
             if fid and fid not in fam_rep:
                 fam_rep[fid] = candidates[rid]
         accepted_fams = set(fam_rep)
-        for fid, rep in fam_rep.items():
-            if diag["family_calls"] >= limits.get("max_family_calls", 120):
-                break
-            if fid in fam_seen:
-                continue
-            fam_seen.add(fid)
+        if bq is not None and fam_rep:
             try:
-                diag["family_calls"] += 1
-                members = ops.family(_pub_number(rep))
-            except OPSBlocked as exc:
-                diag["errors"].append(str(exc))
-                break
-            except OPSError as exc:
-                diag["errors"].append(f"family {fid}: {exc}")
-                continue
-            for r in members:
-                rid = record_id(r["country"], r["doc_number"], r["kind"])
-                if rid in candidates:
-                    sources.setdefault(rid, set()).add("ops-family")
+                members = bq.family(list(fam_rep))
+                diag["queries"].append({"query": f"BigQuery: members of {len(fam_rep)} families",
+                                        "hits": len(members), "total": len(members), "error": ""})
+                absorb_family(members, "bq-family", accepted_fams)
+            except Exception as exc:  # noqa: BLE001
+                msg = f"{type(exc).__name__}: {exc}"[:300]
+                diag["queries"].append({"query": "BigQuery: family members", "hits": 0, "total": 0, "error": msg})
+                diag["errors"].append("BigQuery: " + msg)
+        if ops is not None:
+            for fid, rep in fam_rep.items():
+                if diag["family_calls"] >= limits.get("max_family_calls", 120):
+                    break
+                try:
+                    diag["family_calls"] += 1
+                    members = ops.family(_pub_number(rep))
+                except OPSBlocked as exc:
+                    diag["errors"].append(str(exc))
+                    break
+                except OPSError as exc:
+                    diag["errors"].append(f"family {fid}: {exc}")
                     continue
-                add_raw(r, "ops-family")
-                m, excluded = _best_match(r, names, keywords, excludes, suggested)
-                if m and m["level"] in ("match", "close"):
-                    accepted[rid] = dict(m, signal="family member")
-                elif r.get("family_id") in accepted_fams and not excluded:
-                    accepted[rid] = {"level": "family", "score": 0.0, "name": "",
-                                     "applicant": (r["applicants"] or [""])[0],
-                                     "reason": "Same legal family as an accepted record; the applicant name differs."}
-                elif m:
-                    review[rid] = dict(m, why="Family member with a weaker name match.")
+                absorb_family(members, "ops-family", accepted_fams)
 
     # ---- legal events for the records most worth checking ---------------
     legal: dict[str, list] = {}

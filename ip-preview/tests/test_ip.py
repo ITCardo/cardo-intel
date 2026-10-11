@@ -9,9 +9,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from ipcore import classify as C  # noqa: E402
 from ipcore import names as N  # noqa: E402
-from ipcore import crawler, demo, render  # noqa: E402
+from ipcore import bq as bqmod, crawler, demo, render  # noqa: E402
 from ipcore.epo import OPSBlocked, OPSClient, parse_exchange_documents, parse_legal_events  # noqa: E402
-from ipcore.fakeops import FakeHTTP, exchange_doc as D, legal_response, search_response  # noqa: E402
+from ipcore.fakeops import FakeBQRunner, FakeHTTP, bq_row, exchange_doc as D, legal_response, search_response  # noqa: E402
 
 CFG = json.loads((Path(__file__).resolve().parents[1] / "config.json").read_text(encoding="utf-8"))
 BRANDS = {b["slug"]: b for b in CFG["brands"]}
@@ -252,8 +252,13 @@ def test_known_csv_loader(tmp_path):
     assert crawler.load_known(tmp_path / "missing.csv") == []
 
 
-def test_shipped_known_template_is_empty():
-    assert crawler.load_known(Path(__file__).resolve().parents[1] / "known" / "sena.csv") == []
+def test_shipped_sena_known_list():
+    rows = crawler.load_known(Path(__file__).resolve().parents[1] / "known" / "sena.csv")
+    assert len(rows) == 37
+    assert len({C.norm_number(r["number"]) for r in rows}) == 36 or len(rows) == 37   # A1/A4/B1 of one EP share a base
+    types = {r["number"]: r["type"] for r in rows}
+    assert types["KR200433416Y1"] == "utility_model" and types["US8688040B2"] == "patent"
+    assert all(r["jurisdiction"] == r["number"][:2] for r in rows)
 
 
 # ------------------------------------------------------------- rendering
@@ -282,3 +287,128 @@ def test_cli_demo_and_incomplete_previous(tmp_path):
     ip_crawler.main(["--out", str(out2), "--previous", str(out / "ip_results.json"), "--brands", "cardo"])
     d2 = json.loads((out2 / "ip_results.json").read_text(encoding="utf-8"))
     assert any("incomplete" in n for n in d2["notes"]) and any("not set" in n for n in d2["notes"])
+
+
+def test_docdb_fallback_for_known_numbers():
+    doc = D("US", "20150105022", "A1", "5", "Pairing", ["Sena Technologies, Inc."])
+    http = FakeHTTP(publications={"US.20150105022.A1": [doc]})   # epodoc form misses, docdb form hits
+    row = {"number": "US20150105022A1"}
+    res = crawler.run_brand(BRANDS["sena"], CFG, make_client(http), [row], None, today=date(2026, 10, 11))
+    assert res["coverage"]["found"] == 1 and res["records"][0]["id"] == "US2015105022A1"
+    assert crawler._docdb_ref("KR 10-1076050 B1") == "KR.101076050.B1" and crawler._docdb_ref("EP3869839") == ""
+
+
+# ------------------------------------------------------------- BigQuery source
+def test_us_number_formats_are_one_document():
+    assert C.norm_number("US 20150105022 A1") == C.norm_number("US2015105022A1") == "US2015105022"
+    assert C.numbers_match("US20150105022A1", "US2015105022")
+    assert C.numbers_match("US20150078724A1", "US2015078724")
+    assert not C.numbers_match("US20150105022A1", "US2015105023")
+    assert crawler.record_id("US", "20150105022", "A1") == crawler.record_id("US", "2015105022", "A1")
+    assert C.norm_number("US 10,123,456 B2") == "US10123456"          # grants untouched
+
+
+def test_bq_ids_and_patterns():
+    assert bqmod.bq_id("US20150105022A1") == ("US-2015105022-A1", "US-2015105022-")
+    assert bqmod.bq_id("KR200433416Y1") == ("KR-200433416-Y1", "KR-200433416-")
+    assert bqmod.bq_id("EP3869839") == ("", "EP-3869839-")
+    assert bqmod.brand_patterns(BRANDS["sena"]) == ["senatech", "세나테크놀로지"]
+    assert bqmod.brand_patterns(BRANDS["cardo"]) == ["cardosystem"]
+    assert set(bqmod.brand_patterns(BRANDS["reso"])) >= {"resosport", "ziwuchuangxin"}
+    assert set(bqmod.brand_patterns(BRANDS["asmax"])) == {"asmaxinfinite", "yiheng"}
+
+
+def test_bq_row_mapping():
+    r = bqmod.row_to_raw(bq_row("US-2015105022-A1", 5, "Pairing", ["Sena Technologies Inc."], ["Kim, J"],
+                                20141014, 20140901, 20150416, ["H04B1/385", "A42B3/04"]))
+    assert (r["country"], r["doc_number"], r["kind"], r["family_id"]) == ("US", "2015105022", "A1", "5")
+    assert r["filing_date"] == "2014-10-14" and r["priority_dates"] == ["2014-09-01"]
+    assert r["cpc"] == ["H04B 1/385", "A42B 3/04"] and r["applicants"] == ["Sena Technologies Inc."]
+    assert bqmod.row_to_raw(bq_row("KR-1-B1", -1, "t", []))["family_id"] == ""
+
+
+SENA_ROWS = [
+    bq_row("KR-101076050-B1", 45033260, "Helmet for bluetooth headset", ["주식회사 세나테크놀로지"], ["Kim"], 20100929, 20100929),
+    bq_row("US-8688040-B2", 45033260, "Bluetooth headset for helmet", ["Sena Technologies Inc."], ["Kim"], 20101217, 20100929),
+    bq_row("US-2015105022-A1", 7, "Pairing", ["Sena Technologies Inc."], ["Kim"], 20141014, 20141014),
+    bq_row("US-9999999-B2", 99, "Garden chair", ["Sena Furniture Ltd"], [], 20100101, 20100101),
+]
+
+
+def run_sena(rows, known, fail_kinds=(), ops=None):
+    src = bqmod.BQSource(FakeBQRunner(rows, fail_kinds))
+    src.prefetch([BRANDS["sena"]])
+    brand = dict(BRANDS["sena"], exclude=["Sena Furniture"])
+    return crawler.run_brand(brand, CFG, ops, known, None, today=date(2026, 10, 11), bq=src), src
+
+
+def test_bq_only_run_finds_and_matches_known_numbers():
+    known = [{"number": "KR101076050B1"}, {"number": "US8688040B2"}, {"number": "US20150105022A1"}, {"number": "WO2020105895A1"}]
+    res, src = run_sena(SENA_ROWS, known)
+    ids = {r["id"] for r in res["records"]}
+    assert {"KR101076050B1", "US8688040B2", "US2015105022A1"} <= ids
+    assert "US9999999B2" not in ids                                   # other Sena, excluded
+    assert res["coverage"]["found"] == 3 and res["coverage"]["missing"] == ["WO2020105895A1"]
+    assert all("bq-search" in r["sources"] for r in res["records"] if not r["flags"].get("not_seen"))
+    assert not any(r["flags"].get("new") for r in res["records"])
+
+
+def test_bq_known_lookup_and_family_expansion():
+    rows = [dict(r) for r in SENA_ROWS] + [bq_row("WO-2020105895-A1", 69669713, "Wireless intercom", ["Somebody Else GmbH"], [], 20191031, 20181120)]
+    rows[0]["family_id"] = "69669713"
+    known = [{"number": "WO2020105895A1"}]
+    res, src = run_sena(rows, known)
+    by = {r["id"]: r for r in res["records"]}
+    assert "WO2020105895A1" in by and "bq-lookup" in by["WO2020105895A1"]["sources"]
+    # family expansion: a member of an accepted family with a different applicant name is accepted as "family"
+    rows2 = [r for r in SENA_ROWS[:1]] + [bq_row("EP-1-A1", 45033260, "Member", ["Other Co"], [], 20110101, 20100929)]
+    res2, _ = run_sena(rows2, [])
+    by2 = {r["id"]: r for r in res2["records"]}
+    assert by2["EP1A1"]["match"]["level"] == "family" and "bq-family" in by2["EP1A1"]["sources"]
+
+
+def test_bq_failure_does_not_stop_the_run():
+    res, src = run_sena(SENA_ROWS, [], fail_kinds={"search"})
+    assert src.error and res["diag"]["errors"] and res["records"] == []
+    res2, _ = run_sena(SENA_ROWS, [{"number": "KR101076050B1"}], fail_kinds={"known", "family"})
+    assert len(res2["records"]) >= 1 and any("BigQuery" in e for e in res2["diag"]["errors"])
+
+
+def test_ops_and_bq_agree_on_one_record():
+    docs = [D("US", "2015105022", "A1", "7", "Pairing", ["Sena Technologies Inc."], ["Kim"], "20141014", "20150416")]
+    http = FakeHTTP(search={"sena": docs})
+    res, _ = run_sena(SENA_ROWS, [], ops=make_client(http))
+    rec = [r for r in res["records"] if r["id"] == "US2015105022A1"]
+    assert len(rec) == 1 and {"ops-search", "bq-search"} <= set(rec[0]["sources"])
+
+
+def test_bq_runner_refuses_expensive_query():
+    class Job:
+        total_bytes_processed = 900 * 10**9
+        total_bytes_billed = 0
+
+    class Client:
+        def query(self, sql, job_config=None):
+            return Job()
+
+    class FakeLib:
+        class QueryJobConfig:
+            def __init__(self, **kw): pass
+        class ArrayQueryParameter:
+            def __init__(self, *a): pass
+        class ScalarQueryParameter:
+            def __init__(self, *a): pass
+
+    r = bqmod.BQRunner.__new__(bqmod.BQRunner)
+    r._bq, r.client, r.max_bytes, r.bytes_total, r.queries = FakeLib, Client(), 300 * 10**9, 0, 0
+    with pytest.raises(bqmod.BQTooBig):
+        r.run("SELECT 1", {"pat": "x"})
+
+
+def test_cli_demo_has_two_sources(tmp_path):
+    import ip_crawler
+    ip_crawler.main(["--demo", "--out", str(tmp_path)])
+    data = json.loads((tmp_path / "ip_results.json").read_text(encoding="utf-8"))
+    assert any(s["name"].startswith("Google BigQuery") and s["state"] == "read" for s in data["sources"])
+    both = [r for r in data["brands"][0]["records"] if {"ops-search", "bq-search"} <= set(r["sources"])]
+    assert both

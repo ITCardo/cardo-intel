@@ -329,9 +329,9 @@ class OPSClient:
             begin += 100
         return records, total or 0
 
-    def lookup(self, number: str, ref_type: str = "publication") -> list[dict]:
+    def lookup(self, number: str, ref_type: str = "publication", fmt: str = "epodoc") -> list[dict]:
         try:
-            body = self._request(f"/published-data/{ref_type}/epodoc/{quote(number, safe='')}/biblio")
+            body = self._request(f"/published-data/{ref_type}/{fmt}/{quote(number, safe='')}/biblio")
         except OPSNotFound:
             return []
         return parse_exchange_documents(body)

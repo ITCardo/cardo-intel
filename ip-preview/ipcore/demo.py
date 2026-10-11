@@ -1,7 +1,7 @@
 """Demo mode: runs the whole pipeline against invented records. Nothing here is a real patent."""
 from __future__ import annotations
 
-from .fakeops import FakeHTTP, exchange_doc as D
+from .fakeops import FakeBQRunner, FakeHTTP, bq_row, exchange_doc as D
 
 DEMO_BRAND = {
     "slug": "demo", "label": "Demo Helmet Co (invented)",
@@ -55,3 +55,14 @@ def demo_http() -> FakeHTTP:
         legal={"EP2500444": [("PG25", "LAPSED IN A CONTRACTING STATE: NON-PAYMENT OF ANNUAL FEE", "20190301")],
                "US9555777": [("MAINT", "MAINTENANCE FEE PAID", "20240101")]},
     )
+
+
+def demo_bq_runner() -> FakeBQRunner:
+    a = ["Demo Helmet Systems, Inc."]
+    return FakeBQRunner([
+        bq_row("US-9555777-B2", 777, "Group pairing of wireless headsets", a, ["Rivera, Ana", "Kim, Joon"], 20190410, 20180410, 20210720, ["H04W4/80"]),
+        bq_row("EP-3777888-A1", 888, "Helmet camera mount", a, ["Kim, Joon"], 20200815, 20190815, 20210224, ["A42B3/04"]),
+        bq_row("KR-20200055555-A", 555, "Helmet speaker pad", ["Demo Helmet Systems Inc"], ["Lee, Sun"], 20200901, 20200901, 20220301, ["H04R1/10"]),
+        bq_row("WO-2015000333-A1", 333, "Network audio relay", a, ["Kim, Joon"], 20140501, 20130501, 20150108, ["H04L65/60"]),
+        bq_row("US-7000001-B2", 1, "Unrelated thing", ["Demonstration Foods LLC"], [], 20150101, 20150101, 20160101, []),
+    ])

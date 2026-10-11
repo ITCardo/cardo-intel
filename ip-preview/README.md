@@ -15,9 +15,19 @@ does not commit results to `main`.
 Local run: `python ip-preview/ip_crawler.py --demo` (no network) or set the two variables and run it without `--demo`.
 Tests: `python -m pytest ip-preview/tests -q`.
 
+## Second source: Google BigQuery (optional)
+
+Google's public patent dataset (`patents-public-data.patents.publications`) is queried with SQL, an official route with
+no scraping. It is switched on when the repository has the secret `GCP_SA_KEY` (JSON key of a service account with the
+**BigQuery Job User** role) and the repository variable `GCP_PROJECT` (project id). Optional variable `BQ_MAX_GB`
+(default 300): a query that would scan more than this is refused before it runs.
+It takes 3 to 6 queries per run: one applicant-name search for all brands, one lookup of the known numbers, one family
+query per brand. Every row shows which sources saw it, so the two sources cross-check each other.
+BigQuery has no legal-status events, so status from BigQuery alone is estimated from the kind code and the term.
+
 ## What it does
 
-- **Pass 1** searches the EPO (OPS) by applicant name for every name in `config.json`, then compares each applicant
+- **Pass 1** searches the EPO (OPS) and BigQuery by applicant name for every name in `config.json`, then compares each applicant
   string with the brand's names (ignores case, commas, full stops, spacing, Inc/Ltd/Limited; "Technology" = "Tech").
 - **Pass 2** looks up every number on the known list directly.
 - **Pass 3** adds the other members of each legal family, then reads legal events (lapse, withdrawal, refusal).
@@ -26,8 +36,8 @@ Tests: `python -m pytest ip-preview/tests -q`.
 - A brand with no known list and no previous run is stored quietly as the baseline: nothing is flagged NEW.
 - Type (patent, design, utility model) comes from the kind code. Expired = a lapse/withdrawal/refusal event, or the
   term has passed (20 years patents, 10 years utility models, from the filing date). Term-based expiry is marked "est.".
-- Every row links to Google Patents and Espacenet for manual cross-checking. Google Patents is not scraped
-  (its search endpoint is closed to automated access).
+- Every row links to Google Patents and Espacenet for manual cross-checking. The Google Patents website is not scraped
+  (its search endpoint is closed to automated access). The Google BigQuery dataset is the official route to the same data.
 
 ## Names
 
