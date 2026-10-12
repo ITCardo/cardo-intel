@@ -441,11 +441,53 @@ tr.expand td { background: var(--panel-2); font-size: 13px; line-height: 1.6; }
 .gtbl td:nth-child(2) { min-width: 200px; font-weight: 500; }
 .src-note { width: 100%; font-size: 12px; color: var(--muted); }
 
+
+/* ip & patents */
+.ipstrip .ipgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 8px; }
+.ipb { display: block; text-decoration: none; color: var(--color-text); background: var(--panel-2); border-radius: 8px; padding: 10px 12px; min-width: 0; }
+.ipb:hover { background: var(--active); }
+.ipb:focus-visible { outline: 2px solid var(--color-accent); }
+.ipb .t { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 13.5px; font-weight: 500; }
+.ipb .t .c { font-size: 12px; color: var(--muted); font-weight: 400; }
+.ipb .p { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; font-size: 12px; min-height: 20px; align-items: center; }
+.ipflag { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; letter-spacing: .03em; padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
+.ipflag.new { background: color-mix(in srgb, var(--ok) 20%, transparent); color: var(--ok); }
+.ipflag.ch { background: var(--warn-bg); color: var(--warn-text); }
+.ipflag.mute { background: var(--active); color: var(--muted); font-weight: 500; }
+.ipnote { padding: 10px 14px; border-radius: 8px; background: var(--warn-bg); color: var(--warn-text); font-size: 13px; line-height: 1.5; margin-bottom: 10px; }
+.ipk { margin-bottom: 10px; }
+.iptbl td { font-size: 12.5px; line-height: 1.45; }
+.iptbl .num-c { white-space: nowrap; font-weight: 500; }
+.iptbl .ttl { min-width: 200px; max-width: 300px; }
+.iptbl .fam { min-width: 120px; max-width: 170px; }
+.iptbl th, .iptbl td { padding-left: 5px; padding-right: 5px; }
+.iptbl th { letter-spacing: .03em; }
+.iptbl .ttl.exp .tt-main { text-decoration: line-through; color: var(--faint); }
+.iptbl .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.iptbl .nw { white-space: nowrap; }
+.iptbl tr.hot td { background: color-mix(in srgb, var(--ok) 7%, transparent); }
+.iptbl tr.hot.ichg td { background: color-mix(in srgb, var(--warn) 9%, transparent); }
+.iptbl tr.div td { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--panel-2); padding: 6px 8px; }
+.iptbl .links { font-size: 12px; display: flex; gap: 10px; margin-top: 2px; }
+.iptbl .links a, .iptbl .num-c a { color: var(--color-accent-700); text-decoration: none; }
+.iptbl .links a:hover { text-decoration: underline; }
+.ipst-pending { color: var(--warn-text); font-weight: 500; }
+.ipst-granted { color: var(--ok); font-weight: 500; }
+.ipst-expired { color: var(--muted); font-weight: 500; }
+.ipst-unknown { color: var(--muted); }
+.ipseen { display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 4px; background: var(--active); color: var(--muted); margin: 0 4px 2px 0; }
+.ipsrc { margin-top: 16px; border-top: 1px solid var(--color-divider); padding-top: 10px; }
+.ipsrc summary { cursor: pointer; font-size: 13px; color: var(--muted); }
+.ipsrc .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-top: 10px; }
+.ipsrc .c { background: var(--panel-2); border-radius: 8px; padding: 10px 12px; font-size: 12.5px; line-height: 1.5; color: var(--color-neutral-800); }
+.ipsrc .c b { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font-size: 13px; color: var(--color-text); }
+
 /* responsive */
 @media (max-width: 1150px) {
   .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .gap-row, .gap-hd { grid-template-columns: 90px minmax(0, 1fr) 80px minmax(0, 220px) 20px; }
   .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ipstrip .ipgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 900px) {
   :root { --pad: 12px; }
@@ -495,8 +537,10 @@ tr.expand td { background: var(--panel-2); font-size: 13px; line-height: 1.6; }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cols3, .profile { grid-template-columns: minmax(0, 1fr); }
   .glegend { margin-left: 0; }
+  .iptbl .ttl { min-width: 220px; }
 }
 @media (max-width: 520px) {
+  .ipk { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sb-nav a { flex: 1; justify-content: center; padding: 8px 6px; }
   .sb-nav .nl { display: none; }
   .sb-nav .r { margin-left: 4px; }
@@ -538,6 +582,7 @@ const BRANDS = DATA.brands || [];
 const GAP = DATA.gap || {};
 const BAT = {dimensions_legend: {}, ...(DATA.battles || {})}; if (!Array.isArray(BAT.battles)) BAT.battles = [];
 const INS = DATA.insights || null;
+const IP = DATA.ip && Array.isArray(DATA.ip.brands) && DATA.ip.brands.length ? DATA.ip : null;
 const BN = BRANDS.map(b => b.competitor);
 const BRAND_BY = Object.fromEntries(BRANDS.map(b => [b.competitor, b]));
 const esc = s => (s == null ? "" : String(s)).replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
@@ -574,6 +619,7 @@ const ICONS = {
   alert: '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
   activity: '<path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/>',
   building: '<rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/>',
+  shield: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
   swords: '<path d="M14.5 17.5 3 6V3h3l11.5 11.5"/><path d="m13 19 6-6"/><path d="m16 16 4 4"/><path d="m19 21 2-2"/>'
 };
 const icon = (n, s = 16) => `<svg class="ic" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>`;
@@ -749,9 +795,10 @@ const S = {
   gaps: {type: "all", severity: "all", status: "all", baseline: true, expandedId: null, sortKey: "rank", sortDir: 1, evidenceAll: new Set(), openLeads: new Set(), recsAll: true, view: "list", allOpen: false},
   signals: {type: "all", query: "", range: SIG_DEF, brand: null, gap: null, kind: "all", product: "all", sentiment: "all", source: "all", limit: 120},
   brandTab: "compare",
-  brandOpen: new Set()
+  brandOpen: new Set(),
+  ip: {brand: null, family: "all", status: "all", type: "all", hot: false, query: "", sortKey: "filing_date", sortDir: -1, limit: 100}
 };
-const ROUTES = [["brief", "Brief"], ["products", "Products"], ["gaps", "Gaps"], ["signals", "Signals"], ["brands", "Brands"]];
+const ROUTES = [["brief", "Brief"], ["products", "Products"], ["gaps", "Gaps"], ["signals", "Signals"], ["brands", "Brands"], ...(IP ? [["ip", "IP & Patents"]] : [])];
 
 function buildHash() {
   const q = new URLSearchParams();
@@ -772,6 +819,14 @@ function buildHash() {
     if (s.gap) q.set("gap", s.gap);
   } else if (S.route === "brands") {
     path += "/" + slug(S.brandTab);
+  } else if (S.route === "ip") {
+    const s = S.ip;
+    if (s.brand) q.set("brand", s.brand);
+    if (s.hot) q.set("flag", "hot");
+    if (s.status !== "all") q.set("status", s.status);
+    if (s.type !== "all") q.set("type", s.type);
+    if (s.family !== "all") q.set("family", s.family);
+    if (s.query) q.set("q", s.query);
   }
   const qs = q.toString();
   return path + (qs ? "?" + qs : "");
@@ -817,15 +872,25 @@ function applyHash() {
     s.brand = BN.includes(q.get("brand")) ? q.get("brand") : null;
     s.gap = GAP_BY[q.get("gap")] ? q.get("gap") : null;
     s.kind = "all"; s.product = "all"; s.sentiment = "all"; s.source = "all"; s.limit = 120;
+  } else if (S.route === "ip") {
+    const s = S.ip;
+    s.brand = IP_BRANDS.includes(q.get("brand")) ? q.get("brand") : null;
+    if (s.brand) S.brands.add(s.brand);
+    s.hot = q.get("flag") === "hot";
+    s.status = IP_STATUS.some(x => x[0] === q.get("status")) ? q.get("status") : "all";
+    s.type = IP_TYPE[q.get("type")] ? q.get("type") : "all";
+    s.family = q.get("family") || "all";
+    s.query = q.get("q") || "";
+    s.limit = 100;
   } else if (S.route === "brands") {
     const b = path[1] === "compare" ? "compare" : BN.find(x => slug(x) === path[1]); S.brandTab = b || "compare";
   }
 }
 
 /* ================= sidebar ================= */
-const NAV_ICON = {brief: "home", products: "box", gaps: "alert", signals: "activity", brands: "building"};
+const NAV_ICON = {brief: "home", products: "box", gaps: "alert", signals: "activity", brands: "building", ip: "shield"};
 const CRITICAL_N = GAPS.filter(g => g.src === "weekly" && g.severity === "critical").length;
-const NAV_DESC = {brief: "Headline, KPIs and actions", products: "Prices, specs, battles", gaps: "Where Cardo is exposed", signals: "News, press, updates, owners", brands: "Compare brands, profiles"};
+const NAV_DESC = {brief: "Headline, KPIs and actions", products: "Prices, specs, battles", gaps: "Where Cardo is exposed", signals: "News, press, updates, owners", brands: "Compare brands, profiles", ip: "Patents, designs, weekly changes"};
 const PROD_SUB = [["map", "Price map"], ["table", "Table"], ["battles", "Battles"], ["compare", "Compare models"]];
 function renderTop() {
   document.getElementById("navlinks").innerHTML = ROUTES.map(([k, l], i) => `<a href="#/${k}" aria-label="${l}"${S.route === k ? ' aria-current="page"' : ""}>${icon(NAV_ICON[k])}<span class="nl">${l}<small class="nd">${NAV_DESC[k]}</small></span><span class="r">${k === "gaps" && CRITICAL_N ? `<span class="badge" title="${CRITICAL_N} critical gap${CRITICAL_N > 1 ? "s" : ""} this week">${CRITICAL_N}</span>` : ""}<kbd aria-hidden="true">${i + 1}</kbd></span></a>${k === "products" ? `<div class="sb-sub">${PROD_SUB.map(([m, ml]) => `<a href="#/products/${m}"${S.route === "products" && S.products.mode === m ? ' aria-current="page"' : ""}>${ml}</a>`).join("")}</div>` : ""}`).join("");
@@ -911,7 +976,7 @@ addEventListener("keydown", e => {
   if (!CMD.el.hidden) { if (e.key === "Escape") { e.preventDefault(); cmdClose(); } return; }
   if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
   if (e.key === "/") { e.preventDefault(); cmdOpen(); }
-  else if (/^[1-5]$/.test(e.key)) go("#/" + ROUTES[+e.key - 1][0]);
+  else if (/^[1-9]$/.test(e.key) && ROUTES[+e.key - 1]) go("#/" + ROUTES[+e.key - 1][0]);
 });
 
 /* ================= BRIEF ================= */
@@ -995,6 +1060,7 @@ function renderBrief(app) {
     ${B.exec && INS.executive_summary ? `<div class="exec">${linkify(INS.executive_summary)}</div>` : ""}
    </section>
    <div class="kpis">${kpis.map(k => `<div class="kpi"><div class="lbl">${esc(k.l)}</div><div class="v${k.v.length > 9 ? " long" : ""}">${esc(k.v)}</div><div class="n">${esc(k.n)}</div>${k.bar != null ? `<div class="bar" role="img" aria-label="${Math.round(k.bar * 100)}%"><i style="width:${Math.round(k.bar * 100)}%"></i></div>` : ""}</div>`).join("")}</div>
+   ${ipStrip()}
    <div class="brief">
    <div>
     <section class="pnl">
@@ -1642,13 +1708,164 @@ function renderBrands(app) {
   app.querySelectorAll("[data-open]").forEach(t => t.onclick = () => { const k = t.dataset.open; S.brandOpen.has(k) ? S.brandOpen.delete(k) : S.brandOpen.add(k); render(); });
 }
 
+
+/* ================= IP & PATENTS ================= */
+const IP_TYPE = {patent: "Patent", design: "Design", utility_model: "Utility model", unverified: "Unverified"};
+const IP_STATUS = [["pending", "Pending"], ["granted", "Granted"], ["expired", "Expired / lapsed"], ["unknown", "Unknown"]];
+const IP_JUR = {US: "United States", EP: "European Patent Office", WO: "WIPO, international application", CN: "China", JP: "Japan", KR: "South Korea", TW: "Taiwan", HK: "Hong Kong", DE: "Germany", FR: "France", GB: "United Kingdom", IT: "Italy", ES: "Spain", AT: "Austria", CH: "Switzerland", DK: "Denmark", SE: "Sweden", FI: "Finland", NL: "Netherlands", BE: "Belgium", PL: "Poland", PT: "Portugal", IE: "Ireland", NO: "Norway", TR: "Turkey", RU: "Russia", UA: "Ukraine", IL: "Israel", IN: "India", SG: "Singapore", MY: "Malaysia", TH: "Thailand", VN: "Vietnam", ID: "Indonesia", PH: "Philippines", AU: "Australia", NZ: "New Zealand", CA: "Canada", MX: "Mexico", BR: "Brazil", AR: "Argentina", CL: "Chile", ZA: "South Africa", SA: "Saudi Arabia", AE: "United Arab Emirates", EA: "Eurasian Patent Organization"};
+const ipSrc = x => /^ops-/.test(x) ? "EPO" : /^bq-/.test(x) ? "BigQuery" : "";
+const ipNum = n => String(n || "").replace(/\s+/g, "");
+const ipSq = t => String(t || "").toLowerCase().replace(/[\s,.\/\-]/g, "");
+const ipHot = r => !!(r.flags.new || r.flags.changed || r.flags.new_kind);
+const ipHttps = u => /^https:\/\//.test(u || "") ? u : "";
+const IP_BRANDS = IP ? IP.brands.map(b => b.name) : [];
+const IP_FAMILY = Object.fromEntries(((IP && IP.product_families) || []).map(f => [String(f.id), f.name]));
+const IP_RECS = IP ? IP.brands.flatMap(b => (b.records || []).map(r => {
+  const flags = r.flags || {};
+  const hay = [r.number, r.title, (r.applicants || []).join(" "), r.family_id, r.country, IP_JUR[r.jurisdiction], r.topic, r.status].join(" ").toLowerCase();
+  return {...r, flags, _b: b.name, _fam: r.topic_id ? String(r.topic_id) : "0", _hay: hay, _sq: ipSq(hay)};
+})) : [];
+const ipBrandOn = b => !BN.includes(b) || S.brands.has(b);
+function ipFiltered(skip) {
+  const s = S.ip, q = s.query.trim().toLowerCase(), qs = ipSq(q);
+  return IP_RECS.filter(r => ipBrandOn(r._b) && (!s.brand || r._b === s.brand)
+    && (skip === "status" || s.status === "all" || r.status_class === s.status)
+    && (skip === "type" || s.type === "all" || r.type === s.type)
+    && (skip === "family" || s.family === "all" || r._fam === s.family)
+    && (skip === "hot" || !s.hot || ipHot(r))
+    && (!q || r._hay.includes(q) || (qs && r._sq.includes(qs))));
+}
+function ipStrip() {
+  if (!IP) return "";
+  const bs = IP.brands.filter(b => ipBrandOn(b.name));
+  if (!bs.length) return "";
+  const gen = IP.generated ? String(IP.generated).slice(0, 10) : "";
+  const tn = bs.reduce((a, b) => a + (b.summary?.new || 0), 0), tc = bs.reduce((a, b) => a + (b.summary?.changed || 0), 0);
+  const card = b => {
+    const m = b.summary || {total: (b.records || []).length, new: 0, changed: 0};
+    const pills = b.baseline_run ? `<span class="ipflag mute">first run: baseline</span>`
+      : (m.new || m.changed) ? `${m.new ? `<span class="ipflag new">${m.new} new</span>` : ""}${m.changed ? `<span class="ipflag ch">${m.changed} changed</span>` : ""}`
+      : `<span class="muted">No changes this week</span>`;
+    const href = "#/ip?brand=" + encodeURIComponent(b.name) + (!b.baseline_run && (m.new || m.changed) ? "&flag=hot" : "");
+    return `<a class="ipb" href="${href}"><span class="t"><span class="brand">${bm(b.name)}${esc(b.name)}</span><span class="c num">${m.total} records</span></span><span class="p">${pills}</span></a>`;
+  };
+  return `<section class="pnl ipstrip" style="margin-bottom:12px">
+    <div class="sec-head"><h4>Patents and designs · weekly check</h4><a class="more" href="#/ip">${tn || tc ? `${tn} new, ${tc} changed this week` : "Open IP &amp; Patents"} ${icon("arrow", 13)}</a></div>
+    <div class="ipgrid">${bs.map(card).join("")}</div>
+    <div class="xs muted" style="margin-top:8px">Public patent data from the EPO and Google Patents, checked every Saturday${gen ? ` · last check ${esc(gen)}` : ""}. Status marked (est.) is estimated.</div>
+  </section>`;
+}
+function ipFlags(r) {
+  let h = "";
+  if (r.flags.new) h += `<span class="ipflag new">NEW</span> `;
+  if (r.flags.new_kind) h += `<span class="ipflag new" title="Same number as a record we already know, published with another kind code (for example A1, A4, B1)">NEW KIND</span> `;
+  if (r.flags.changed) h += `<span class="ipflag ch" title="The status moved forward since the last check">CHANGED</span>${r.flags.changed.from ? `<div class="sub">${esc(r.flags.changed.from)} → ${esc(r.flags.changed.to)}</div>` : ""}`;
+  if (r.flags.not_seen) h += `<span class="ipflag mute" title="Known from before, but no source returned it this time">not seen</span> `;
+  if (r.flags.baseline) h += `<span class="ipflag mute" title="First check: stored quietly as the starting point">baseline</span>`;
+  return h;
+}
+function ipRow(r, multi) {
+  const l = r.links || {};
+  const links = [[ipHttps(l.google), "Google"], [ipHttps(l.espacenet), "Espacenet"]].filter(x => x[0]).map(([u, t]) => `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${t}</a>`).join("");
+  const seen = [...new Set((r.sources || []).map(ipSrc).filter(Boolean))];
+  const fam = r.topic_id ? `<span title="${esc(r.topic_note || "")}">${esc(r.topic)}</span>` : `<span class="muted">not filed yet</span>`;
+  const jur = r.jurisdiction ? `<span title="${esc(IP_JUR[r.jurisdiction] || r.jurisdiction)}">${esc(r.jurisdiction)}</span>` : "";
+  return `<tr class="${ipHot(r) ? "hot" : ""}${r.flags.changed ? " ichg" : ""}">
+    ${multi ? `<td>${brandLbl(r._b)}</td>` : ""}
+    <td class="nw">${esc(IP_TYPE[r.type] || r.type || "")}${r.type_certain === false ? ` <span class="muted" title="Kind code not clearly recognised">?</span>` : ""}</td>
+    <td class="fam">${fam}</td>
+    <td class="num-c">${esc(ipNum(r.number))}<div class="links">${links}</div></td>
+    <td class="ttl${r.status_class === "expired" ? " exp" : ""}"><span class="tt-main">${esc(r.title)}</span><div class="sub">${esc((r.applicants || []).slice(0, 2).join("; "))}</div></td>
+    <td class="nw">${jur}</td><td class="nw num">${esc(r.filing_date || "")}</td><td class="nw num">${esc(r.priority_date || "")}</td>
+    <td title="${esc(r.status_basis || "")}"><span class="ipst-${esc(r.status_class || "unknown")}">${esc(r.status || "")}</span>${r.status_estimated ? ` <span class="muted">(est.)</span>` : ""}${r.status_note ? `<div class="sub">${esc(r.status_note)}</div>` : ""}</td>
+    <td>${seen.map(x => `<span class="ipseen">${x}</span>`).join("")}</td>
+    <td>${ipFlags(r)}</td></tr>`;
+}
+function renderIP(app) {
+  const s = S.ip;
+  const notes = (IP.notes || []).map(n => `<div class="ipnote">${esc(n)}</div>`).join("");
+  const srcs = (IP.sources || []).length ? `<details class="ipsrc"><summary>Where this data comes from</summary><div class="cards">${IP.sources.map(x => `<div class="c"><b>${esc(x.name)} <span class="tag ${x.state === "read" ? "tag-accent" : "tag-neutral"}">${esc(x.label)}</span></b>${esc(x.detail)}</div>`).join("")}</div></details>` : "";
+  app.innerHTML = `<div class="page"><div class="pnl">
+    <div>
+      <div class="page-head" style="margin-bottom:10px"><h2>IP &amp; Patents</h2><span class="small muted" id="ipCount"></span><span class="spacer"></span>
+        <label class="searchbox">${icon("search")}<span class="sr">Search patents</span><input class="input" type="search" id="ipQ" placeholder="Number, title, applicant, country" value="${esc(s.query)}" style="width:260px"></label></div>
+      ${IP.demo ? `<div class="ipnote"><b>Demo data.</b> These records are invented to show the layout.</div>` : ""}${notes}
+      <div class="kpis ipk" id="ipKpis"></div>
+      <div class="sig-tools" id="ipTools"></div>
+      <div class="tbl-wrap" id="ipTbl"></div>
+      ${srcs}
+    </div></div></div>`;
+  app.querySelector("#ipQ").oninput = e => { s.query = e.target.value; s.limit = 100; renderIPBody(); };
+  renderIPBody();
+}
+function renderIPBody() {
+  const s = S.ip, app = document.getElementById("app");
+  const rows = ipFiltered();
+  const shownBrands = IP_BRANDS.filter(ipBrandOn);
+  /* filters with facet counts */
+  const cStatus = k => ipFiltered("status").filter(r => k === "all" || r.status_class === k).length;
+  const cType = k => ipFiltered("type").filter(r => k === "all" || r.type === k).length;
+  const famBase = ipFiltered("family");
+  const famIds = [...new Set(famBase.map(r => r._fam))].sort((a, b) => (a === "0") - (b === "0") || (+a) - (+b));
+  const hotN = ipFiltered("hot").filter(ipHot).length;
+  const opt = (v, l, c, cur) => `<option value="${esc(v)}"${cur === v ? " selected" : ""}>${esc(l)} (${c})</option>`;
+  /* kpis */
+  const cnt = f => rows.filter(f).length;
+  const kp = (l, v, n) => `<div class="kpi"><div class="lbl">${l}</div><div class="v">${v}</div><div class="n">${n}</div></div>`;
+  document.getElementById("ipKpis").innerHTML =
+    kp("Records", rows.length, "patents, designs and utility models matching the filters") +
+    kp("New since last check", cnt(r => r.flags.new || r.flags.new_kind), "not seen on the previous check") +
+    kp("Changed", cnt(r => r.flags.changed), "status moved forward since last check") +
+    kp("Expired / lapsed", cnt(r => r.status_class === "expired"), "the whole right has ended");
+  /* tools */
+  const brandSeg = shownBrands.length > 1 ? `<span class="seg sm scroll" role="group" aria-label="Brand"><button type="button" data-brand="" aria-pressed="${!s.brand}">All brands</button>${shownBrands.map(b => `<button type="button" data-brand="${esc(b)}" aria-pressed="${s.brand === b}">${bm(b)}${esc(b)}</button>`).join("")}</span>` : "";
+  const tools = document.getElementById("ipTools");
+  tools.innerHTML = brandSeg
+    + `<span class="seg sm" role="group" aria-label="Show"><button type="button" data-hot="0" aria-pressed="${!s.hot}">All records</button><button type="button" data-hot="1" aria-pressed="${s.hot}">New or changed (${hotN})</button></span>`
+    + `<select class="input" id="ipStatus" aria-label="Status">${opt("all", "All statuses", cStatus("all"), s.status)}${IP_STATUS.filter(([k]) => cStatus(k) || s.status === k).map(([k, l]) => opt(k, l, cStatus(k), s.status)).join("")}</select>`
+    + `<select class="input" id="ipType" aria-label="Type">${opt("all", "All types", cType("all"), s.type)}${Object.entries(IP_TYPE).filter(([k]) => cType(k) || s.type === k).map(([k, l]) => opt(k, l, cType(k), s.type)).join("")}</select>`
+    + `<select class="input" id="ipFam" aria-label="Product family">${opt("all", "All product families", famBase.length, s.family)}${famIds.map(id => opt(id, id === "0" ? "Not filed yet" : (IP_FAMILY[id] || "Family " + id), famBase.filter(r => r._fam === id).length, s.family)).join("")}</select>`;
+  document.getElementById("ipCount").textContent = `${rows.length} shown`;
+  /* table */
+  const multi = new Set(rows.map(r => r._b)).size > 1;
+  const cmp = (a, b) => {
+    const k = s.sortKey;
+    if (k === "topic") { const n = r => r.topic_id ? +r.topic_id : 1e9; return n(a) - n(b); }
+    if (k === "_b") return BN.indexOf(a._b) - BN.indexOf(b._b);
+    const x = a[k] || "", y = b[k] || ""; return x < y ? -1 : x > y ? 1 : 0;
+  };
+  const sorted = rows.slice().sort((a, b) => s.sortDir * cmp(a, b));
+  const hot = sorted.filter(ipHot), rest = sorted.filter(r => !ipHot(r));
+  const ordered = [...hot, ...rest], shown = ordered.slice(0, s.limit);
+  const H = [...(multi ? [["_b", "Brand"]] : []), ["type", "Type"], ["topic", "Product family"], ["number", "Number"], ["title", "Title"], ["jurisdiction", "Juris."], ["filing_date", "Filed"], ["priority_date", "Earliest priority"], ["status_class", "Status"], ["", "Seen by"], ["", "Flags"]];
+  const cols = H.length;
+  let body = "";
+  if (!shown.length) body = `<tr><td colspan="${cols}" class="empty">No records match. Change the filters or the search.</td></tr>`;
+  else {
+    const nh = shown.filter(ipHot).length;
+    if (nh) body += `<tr class="div"><td colspan="${cols}">New or changed since the last check (${hot.length})</td></tr>`;
+    shown.forEach((r, i) => { if (nh && i === nh && rest.length) body += `<tr class="div"><td colspan="${cols}">All other records (${rest.length})</td></tr>`; body += ipRow(r, multi); });
+  }
+  document.getElementById("ipTbl").innerHTML = `<table class="table iptbl"><thead><tr>${H.map(([k, l]) => `<th${k && s.sortKey === k ? ` aria-sort="${s.sortDir > 0 ? "ascending" : "descending"}"` : ""}>${k ? `<button type="button" class="th-sort" data-sort="${k}">${l}${s.sortKey === k ? icon(s.sortDir > 0 ? "chevUp" : "chevDown", 12) : ""}</button>` : l}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table>
+    ${ordered.length > s.limit ? `<div style="margin-top:14px"><button type="button" class="btn btn-secondary" id="ipMore">Show ${Math.min(100, ordered.length - s.limit)} more of ${ordered.length - s.limit} remaining</button></div>` : ""}`;
+  /* bindings */
+  const on = (sel, fn) => app.querySelectorAll(sel).forEach(el => el.onclick = () => fn(el));
+  on("[data-hot]", el => { s.hot = el.dataset.hot === "1"; s.limit = 100; renderIPBody(); });
+  const sel = (id, key) => { const e = app.querySelector(id); if (e) e.onchange = () => { s[key] = e.value; s.limit = 100; renderIPBody(); }; };
+  sel("#ipStatus", "status"); sel("#ipType", "type"); sel("#ipFam", "family");
+  on("[data-brand]", el => { s.brand = el.dataset.brand || null; s.limit = 100; renderIPBody(); });
+  on("[data-sort]", el => { const k = el.dataset.sort; s.sortDir = s.sortKey === k ? -s.sortDir : (k === "filing_date" || k === "priority_date" ? -1 : 1); s.sortKey = k; renderIPBody(); });
+  const m = app.querySelector("#ipMore"); if (m) m.onclick = () => { s.limit += 100; renderIPBody(); };
+  syncHash();
+}
+
 /* ================= render ================= */
 function render() {
   hideTT();
   const y = scrollY, fk = focusKey();
   renderTop();
   const app = document.getElementById("app");
-  ({brief: renderBrief, products: renderProducts, gaps: renderGaps, signals: renderSignals, brands: renderBrands})[S.route](app);
+  ({brief: renderBrief, products: renderProducts, gaps: renderGaps, signals: renderSignals, brands: renderBrands, ip: renderIP})[S.route](app);
   syncHash();
   scrollTo(0, y);
   refocus(fk);
