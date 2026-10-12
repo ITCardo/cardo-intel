@@ -334,7 +334,7 @@ def run_brand(brand: dict, cfg: dict, ops, known_rows: list[dict], previous: dic
             "cpc": raw.get("cpc", [])[:6],
             "type": t["type"], "stage": t["stage"], "type_certain": t["certain"],
             "status": st["status"], "status_class": st["class"], "status_estimated": st["estimated"],
-            "status_basis": st["basis"],
+            "status_basis": st["basis"], "status_note": st.get("note", ""),
             "match": m,
             "sources": sorted(sources.get(rid, [])),
             "links": C.links(raw["country"], raw["doc_number"], raw["kind"]),
