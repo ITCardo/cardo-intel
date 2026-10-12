@@ -364,9 +364,11 @@
     },
     {
       "name": "Spider RT1 / ST1",
+      "category": "communicator",
+      "usage": "Motorcycle",
       "tier": "mid",
       "msrp_usd": 239,
-      "street_price_usd": 226.89,
+      "street_price_usd": 230.0,
       "intercom_tech": "Mesh 2.0 only (Bluetooth for phone/music, no Bluetooth intercom)",
       "range_km": 2,
       "max_riders": 24,
@@ -382,7 +384,7 @@
         "App support"
       ],
       "release_year": 2021,
-      "notes": "Affordable mesh-only entry. Talk time up to 20h per official RT1 spec page. Reviews cite good value but wind-noise handling, durability and Android app issues. Successor 'Spider X Slim' with Mesh 3.0 announced at EICMA 2025. PRICE CORRECTED 2026-07-10: msrp_usd/street_price_usd were $199; live store-us.sena.com/products.json crawl (handles spider-rt1-01 and spider-st1-10) shows single-pack price now $239.00 (dual $439.00) - AND all variants of both RT1 and ST1 are marked out of stock (available:false) on Sena's own store as of today, a likely sign the line is being sunset in favor of the Spider X Slim successor. Amazon's Sena storefront still lists Spider RT1 in stock at $239.00 but Spider ST1 at a separate $191.41 deal price (list $219.00) - the two SKUs may be diverging in price/availability across channels; Sena's own store price ($239) used as authoritative msrp here. STOCK UPDATE 2026-07-14: partial restock on store-us.sena.com/products.json - RT1 Single Pack ($239) is back in stock (RT1 Dual still out); ST1 Dual Pack ($439) is back in stock (ST1 Single still out) - no longer a full storewide stock-out as of 2026-07-10, though availability remains split/inconsistent across the two SKUs' pack sizes. PRICE CORRECTED 2026-07-27: street_price_usd was $239; RevZilla's motorcycle-bluetooth-communications listing shows the Spider ST1 variant discounted to $191.20 (RT1 variant still full price at $239.00) - recording the lower ST1 deal price as the current street price per the lowest-listed-price mandate. Amazon storefront check failed (503 blocked) this run so could not cross-verify against Amazon. RevZilla motorcycle-bluetooth-communications category page listed 28 total Sena SKUs as of 2026-07-27 (not previously tracked as a baseline count). PRICE CORRECTED 2026-08-25: street_price_usd was $191.2 (RevZilla ST1 deal from 2026-07-27); that deal has expired - RevZilla now lists both RT1 and ST1 at full price ($239.00, no discount) while the Amazon Sena storefront shows Spider ST1 at a $234.89 deal price (Spider RT1 flat at $239.00) - updated to the lowest confirmed current price across channels. PRICE UPDATE 2026-08-25 (mandatory Amazon storefront crawl): street price moved $191.20 to $234.89, taken from the Spider ST1 single-pack Amazon listing (Spider RT1 single-pack was showing $239.00 flat, i.e. full price, on the same page - the combined entry uses the lower ST1 figure). PRICE CORRECTED 2026-08-29: street_price_usd was $234.89; mandatory store-us.sena.com crawl found a sitewide ~25% off promotion now applied (compare_at $239 matches recorded msrp_usd, no drift), effective price $179.25 single / $329.25 dual - lower than RevZilla's own -20% sale on Spider ST1 ($191.20) - updated to the lower confirmed price. PRICE CORRECTED 2026-09-14: street_price_usd was $179.25 (from the now-expired sitewide Sena-store promotion; Sena's own store is back to $239.00 flat for both RT1 and ST1). Mandatory Amazon Sena storefront re-crawl shows the ST1 Single Pack listed at $227.95 (no visible list-price strikethrough, but below Sena's own $239.00) - used as the new street_price_usd. RevZilla shows both RT1 and ST1 back at full $239.00/$439.00 with no discount. PRICE CORRECTED 2026-09-21: street_price_usd was $227.95; mandatory Amazon Sena storefront crawl now shows $227.89 (ST1 Single Pack listing, no list-price strikethrough; Sena store $239.00 flat) - updated to the lowest confirmed current price. PRICE CORRECTED 2026-09-28: street_price_usd was $227.89; mandatory Amazon Sena storefront crawl shows Spider ST1 single pack at $226.89 (RevZilla RT1 $239.00 flat; Sena store $239/$439, in stock).",
+      "notes": "Affordable mesh-only entry. Talk time up to 20h per official RT1 spec page. Reviews cite good value but wind-noise handling, durability and Android app issues. Successor Spider X Slim (Mesh 3.0) launched 2026-06-25. Sena store MSRP $239 single / $439 dual (raised from $199 in July 2026); stock was split/inconsistent across RT1/ST1 pack sizes in July and both were in stock at the 2026-09-28 check. PRICE CORRECTED 2026-10-12: street_price_usd was $226.89 (2026-09-28 Amazon ST1 single-pack crawl); Keepa/Amazon data fetched 2026-10-12 shows the ST1 single pack at $230.00 (Amazon list reference $219.00; 4.3 stars/819 reviews; range $153.05-$239.00) - updated to the lowest currently confirmed price (RevZilla RT1 was $239.00 flat at last check, not re-verified). Earlier history: RevZilla ST1 deal $191.20 in July (expired), sitewide Sena-store sale $179.25 on 2026-08-29 (expired 2026-09-14), Amazon ST1 $227-235 range Aug-Sep. Firmware v2.5.3 (2026-05-21). Standard 2-year warranty.",
       "dimensions": {
         "form_factor": {
           "weight_g": 65,
@@ -403,7 +405,7 @@
           "speaker_size_mm": 40,
           "speaker_brand": "Sena HD speakers, low-profile bevel (7.2 mm thick)",
           "hd": true,
-          "quality_verdict": "Decent for $199; wind-noise management is the recurring criticism (webBikeWorld, RevZilla owner reviews)"
+          "quality_verdict": "Decent for the price; wind-noise management is the recurring criticism (webBikeWorld, RevZilla owner reviews)"
         },
         "intercom": {
           "type": "Mesh 2.0 only - no Bluetooth intercom (Bluetooth reserved for phone/music)",
@@ -421,8 +423,8 @@
         },
         "price": {
           "msrp_usd": 239,
-          "street_usd": 234.89,
-          "segment_position": "Budget mesh play; undercuts Cardo Packtalk Neo, competes with Packtalk Outdoor-type offers. Price raised from $199 to $239 and now out of stock storewide (2026-07-10 check) - likely being wound down for the Spider X Slim successor"
+          "street_usd": 230.0,
+          "segment_position": "Budget mesh play; undercuts Cardo Packtalk Neo, competes with Packtalk Outdoor-type offers. Price raised from $199 to $239 in July 2026 - being wound down in favor of the Spider X Slim successor"
         }
       },
       "url": "https://store-us.sena.com/products/spider-rt1-01",
@@ -1333,7 +1335,7 @@
       "usage": "Cycling",
       "tier": "mid",
       "msrp_usd": 169.0,
-      "street_price_usd": 139.95,
+      "street_price_usd": 163.78,
       "intercom_tech": "Mesh Intercom 3.0 (virtually unlimited participants, open mesh) + Bluetooth 5.2 (HSP/HFP/A2DP/AVRCP)",
       "range_km": 0.8,
       "max_riders": null,
@@ -1350,7 +1352,7 @@
         "Dual pack available at $319"
       ],
       "release_year": null,
-      "notes": "Purpose-built cycling communicator, not a repurposed moto unit - open-ear design keeps ambient road awareness. STREET PRICE ADDED 2026-07-10: Amazon's official Sena storefront lists a $157.00 deal price (list $169.00). PRICE CORRECTED 2026-08-17: street_price_usd was $157.00; this run's Amazon storefront crawl shows a shallower $167.70 deal - the discount has narrowed but the unit is still listed marginally below the $169.00 MSRP. Also added a new firmware entry this run (v1.5.1, Jul 7 2026) that fixes ABC voice-prompt wording, released just after the v1.5 ABC feature launch already on file. PRICE CORRECTED 2026-08-25: street_price_usd was $167.7; mandatory Amazon Sena storefront re-crawl now shows a lower flat price of $164.67 (no percent-discount badge shown, list $169.00) - updated to the lower confirmed current price. PRICE UPDATE 2026-08-25 (mandatory Amazon storefront crawl): street price moved $167.70 to $164.67 (minor drift, Amazon deal price vs $169 list). PRICE UPDATE 2026-08-31: street_price_usd moved $164.67 to $164.55 per the mandatory Amazon Sena storefront re-crawl (store-us.sena.com itself continues to show BiKom 20 at full $169 with no active discount). PRICE CORRECTED 2026-09-14: street_price_usd was $164.55; mandatory Amazon Sena storefront re-crawl now shows $164.43 - negligible drift, updated for accuracy. PRICE CORRECTED 2026-09-21: street_price_usd was $164.43; mandatory Amazon Sena storefront crawl now shows $139.95 (-17% off $169.00 list, deeper than the prior $164.43) - updated to the lowest confirmed current price.",
+      "notes": "Purpose-built cycling communicator, not a repurposed moto unit - open-ear design keeps ambient road awareness. PRICE CORRECTED 2026-10-12: street_price_usd was $139.95 (2026-09-21 Amazon storefront, -17%); Keepa/Amazon data fetched 2026-10-12 shows the single-pack listing back at $163.78 (list $169.00; 4.3 stars/469 reviews; range $121.50-$176.06), so the deeper September deal appears to have expired - updated. The dual pack lists at $319.00 (Amazon). Sena store was $169 flat at the last check. Earlier history: Amazon deal $157.00 in July, narrowing to ~$164-168 through Aug-Sep, v1.5.1 firmware (2026-07-07) fixed ABC voice prompts.",
       "url": "https://www.sena.com/en-us/product/bikom-20/",
       "voip": false,
       "wireless_charging": false,
@@ -1390,7 +1392,7 @@
       "usage": "Ski, snowboard, sledding, backcountry/winter sports",
       "tier": "mid",
       "msrp_usd": 249.0,
-      "street_price_usd": 249.0,
+      "street_price_usd": 210.8,
       "intercom_tech": "Mesh Intercom 3.0 (open-terrain range, virtually unlimited participants) + Wave Intercom (LTE cellular, virtually unlimited range) + Bluetooth 5.2",
       "range_km": 1.0,
       "max_riders": null,
@@ -1408,7 +1410,7 @@
         "2-year warranty"
       ],
       "release_year": 2025,
-      "notes": "MISSED IN PRIOR RESEARCH - added 2026-07-10 after being spotted live for sale on store-us.sena.com/products.json (SKU SUMMITX-01, in stock) during the mandatory pricing-diff crawl; not previously tracked in products[]. Sena's official press release (sena.com/en-us/stories/news/sena-technologies-introduces-the-summit-x-outdoor-communicator-built-for-snow-ready-for-any-adventure/) dates the launch to November 18, 2025 (EICMA/winter-season timing), so this was available before the file's 2026-06-10 cutoff but had never been captured - a second confirmed miss (after Outforce/Surge) showing the outdoor/non-moto catalog needs the same store-JSON discipline as the smart-helmet line. Notable as Sena's first non-motorcycle product to carry the Wave cellular intercom, extending that differentiator into the outdoor/winter-sports category alongside Cardo's more moto-only Wave-equivalent gap. Firmware user guide on file dated v1.1.0 (2026-01-30). PRICE CORRECTED 2026-07-14: street_price_usd was $249.00 (=MSRP, no discount); Keepa/Amazon pricing data (fetched 2026-07-13) shows Amazon's current lowest new-condition price at $201.31, below MSRP - updated. PRICE CORRECTED 2026-08-25: street_price_usd was $201.31; mandatory Amazon Sena storefront re-crawl shows the flat listed price has returned to the full $249.00 MSRP (no automatic discount), but a clippable Amazon coupon currently brings it to $134.61 - recording the coupon price as street_price_usd since it is a real, currently-available price on the listing, but flagging that it requires the buyer to clip the coupon (not an automatic deal price like other entries in this file). PRICE UPDATE 2026-08-25 (mandatory Amazon storefront crawl): street price moved $201.31 to $249.00 - the discount seen in prior checks has expired and Amazon is now selling at full $249 MSRP. PRICE CORRECTED 2026-08-29: street_price_usd was $249.0; mandatory store-us.sena.com crawl found a sitewide ~25% off promotion now applied (compare_at $249 matches recorded msrp_usd, no drift), effective price $186.75 - updated to this lower confirmed price (Amazon remains at full $249.00, no discount there). PRICE CORRECTED 2026-09-14: street_price_usd was $186.75 (from the now-expired sitewide Sena-store promotion; Sena's own store is back to $249.00 flat with no discount). Mandatory Amazon Sena storefront re-crawl also shows $249.00 flat, no discount found anywhere - street_price_usd reset to match msrp_usd.",
+      "notes": "Added 2026-07-10 after being spotted on store-us.sena.com/products.json (SKU SUMMITX-01); launched Nov 18, 2025 per Sena press release. Sena's first non-motorcycle product with Wave cellular intercom. Firmware v1.2.2 (2026-04-08). PRICE CORRECTED 2026-10-12: street_price_usd was $249.00 (= MSRP, from 2026-09-14 reset); Keepa/Amazon data fetched 2026-10-12 shows a current new price of $210.80 (list $249.00; 4.1 stars/17 reviews; range $123.16-$249.00) - updated. Sena store was $249 flat at the last check. Earlier history: Amazon $201.31 in July, a clippable coupon to $134.61 in late Aug, and a sitewide Sena-store sale at $186.75 on 2026-08-29 that has since expired.",
       "url": "https://store-us.sena.com/products/summit-x-outdoor-communicator-with-wave-and-mesh-intercom",
       "voip": true,
       "wireless_charging": false,
@@ -5626,7 +5628,7 @@
     }
   ],
   "amazon_pricing": {
-    "fetched_at": "2026-10-12T19:45:21.763149+00:00",
+    "fetched_at": "2026-10-12T20:30:44.413709+00:00",
     "domain": "US",
     "products": [
       {
@@ -5648,14 +5650,14 @@
         "range_new": {
           "min": 255.0,
           "max": 324.07,
-          "avg": 275.93
+          "avg": 275.94
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 22364,
+        "sales_rank_avg": 22365,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DSLW5WLG"
@@ -5679,14 +5681,14 @@
         "range_new": {
           "min": 444.34,
           "max": 543.75,
-          "avg": 465.47
+          "avg": 465.5
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 45521,
+        "sales_rank_avg": 45440,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0H6KV44BJ"
@@ -5717,7 +5719,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 271479,
+        "sales_rank_avg": 271400,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0H5T4K1SY"
@@ -5748,7 +5750,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 315405,
+        "sales_rank_avg": 315392,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0H5TGV8ZC"
@@ -5779,7 +5781,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 75339,
+        "sales_rank_avg": 75347,
         "category": "Car Electronics",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0H42XQ1JY"
@@ -5810,7 +5812,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 18171,
+        "sales_rank_avg": 18157,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GWNLHB43"
@@ -5826,7 +5828,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 439.0,
-          "sales_rank": 11480,
+          "sales_rank": 15073,
           "rating": 4.4,
           "review_count": 557,
           "offer_count": 0
@@ -5834,14 +5836,14 @@
         "range_new": {
           "min": 319.95,
           "max": 439.0,
-          "avg": 364.63
+          "avg": 364.64
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 16286,
+        "sales_rank_avg": 16280,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DP1QRFZ7"
@@ -5872,7 +5874,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 25306,
+        "sales_rank_avg": 25322,
         "category": "Speaker Systems",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09NWJ3XQB"
@@ -5883,8 +5885,8 @@
         "brand": "Sena",
         "manufacturer": "Sena",
         "current": {
-          "amazon": 230.0,
-          "new": 230.0,
+          "amazon": 235.99,
+          "new": 235.99,
           "buybox": null,
           "buybox_seller": null,
           "list_price": 219.0,
@@ -5896,14 +5898,14 @@
         "range_new": {
           "min": 153.05,
           "max": 239.0,
-          "avg": 232.15
+          "avg": 232.16
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 46866,
+        "sales_rank_avg": 46872,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09WTJGWY4"
@@ -5927,14 +5929,14 @@
         "range_new": {
           "min": 237.5,
           "max": 375.0,
-          "avg": 358.25
+          "avg": 358.28
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 25431,
+        "sales_rank_avg": 25443,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09GXCKX55"
@@ -5958,14 +5960,14 @@
         "range_new": {
           "min": 599.0,
           "max": 649.0,
-          "avg": 620.51
+          "avg": 620.5
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 136201,
+        "sales_rank_avg": 136197,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GSXBMLJV"
@@ -5989,14 +5991,14 @@
         "range_new": {
           "min": 565.0,
           "max": 599.0,
-          "avg": 576.75
+          "avg": 576.74
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 438208,
+        "sales_rank_avg": 438390,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GWNMGH9W"
@@ -6027,7 +6029,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 69785,
+        "sales_rank_avg": 69806,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DSZ75N9V"
@@ -6051,14 +6053,14 @@
         "range_new": {
           "min": 249.5,
           "max": 599.0,
-          "avg": 466.26
+          "avg": 466.32
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 534345,
+        "sales_rank_avg": 534541,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09ZQ4NTR5"
@@ -6089,7 +6091,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 90941,
+        "sales_rank_avg": 90944,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CT9SBZ6Y"
@@ -6120,7 +6122,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 41573,
+        "sales_rank_avg": 41567,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DLR3JJ6Q"
@@ -6151,7 +6153,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 34802,
+        "sales_rank_avg": 34808,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09QF8473X"
@@ -6167,7 +6169,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 219.0,
-          "sales_rank": 52207,
+          "sales_rank": 64227,
           "rating": 4.0,
           "review_count": 401,
           "offer_count": 0
@@ -6175,14 +6177,14 @@
         "range_new": {
           "min": 159.2,
           "max": 219.0,
-          "avg": 192.3
+          "avg": 192.29
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 40501,
+        "sales_rank_avg": 40508,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09QDNQCHT"
@@ -6213,7 +6215,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 222634,
+        "sales_rank_avg": 222724,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B08Z2ZLWLJ"
@@ -6244,7 +6246,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 146781,
+        "sales_rank_avg": 146791,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BLD3TGRQ"
@@ -6330,14 +6332,14 @@
         "range_new": {
           "min": 123.16,
           "max": 249.0,
-          "avg": 225.5
+          "avg": 225.51
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 2424579,
+        "sales_rank_avg": 2424595,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0G1F5X1H6"
@@ -6361,14 +6363,14 @@
         "range_new": {
           "min": 113.53,
           "max": 272.49,
-          "avg": 152.59
+          "avg": 152.6
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 177919,
+        "sales_rank_avg": 177866,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B08L9V5BHH"
@@ -6392,14 +6394,14 @@
         "range_new": {
           "min": 71.8,
           "max": 129.0,
-          "avg": 115.59
+          "avg": 115.6
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 221672,
+        "sales_rank_avg": 221745,
         "category": "Adult Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B08Z2XMBBM"
@@ -6430,7 +6432,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 400265,
+        "sales_rank_avg": 400379,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GND1CYGD"
@@ -6454,14 +6456,14 @@
         "range_new": {
           "min": 142.95,
           "max": 224.69,
-          "avg": 184.69
+          "avg": 184.7
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 92179,
+        "sales_rank_avg": 92192,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BMDQ72MQ"
@@ -6492,7 +6494,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 34114,
+        "sales_rank_avg": 34120,
         "category": "Earbud Headphones",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0087NB2OU"
@@ -6516,14 +6518,14 @@
         "range_new": {
           "min": 131.38,
           "max": 199.0,
-          "avg": 191.07
+          "avg": 191.06
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 161595,
+        "sales_rank_avg": 161607,
         "category": "Car Electronics",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DJPWDLTL"
@@ -6554,7 +6556,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 116684,
+        "sales_rank_avg": 116737,
         "category": "Marine Two-Way Radios",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DY2MJ14X"
@@ -6616,7 +6618,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 203399,
+        "sales_rank_avg": 203414,
         "category": "Marine Two-Way Radios",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D6JJXVLT"

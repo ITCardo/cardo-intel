@@ -6885,7 +6885,7 @@
     }
   ],
   "amazon_pricing": {
-    "fetched_at": "2026-10-12T19:45:17.633709+00:00",
+    "fetched_at": "2026-10-12T20:30:19.731061+00:00",
     "domain": "US",
     "products": [
       {
@@ -6961,7 +6961,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 179.95,
-          "sales_rank": 832,
+          "sales_rank": 1033,
           "rating": 4.4,
           "review_count": 3163,
           "offer_count": 0
@@ -7038,7 +7038,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 15157,
+        "sales_rank_avg": 15159,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09MQ6TG4Q"
@@ -7069,7 +7069,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 15221,
+        "sales_rank_avg": 15223,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09MQ7TZ8M"
@@ -7093,14 +7093,14 @@
         "range_new": {
           "min": 174.65,
           "max": 283.46,
-          "avg": 271.48
+          "avg": 271.47
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 13923,
+        "sales_rank_avg": 13927,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09MQ7C185"
@@ -7131,7 +7131,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 13977,
+        "sales_rank_avg": 13981,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09MQ6NBZH"
@@ -7147,7 +7147,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 439.95,
-          "sales_rank": 2310,
+          "sales_rank": 3238,
           "rating": 4.5,
           "review_count": 3454,
           "offer_count": 0
@@ -7286,7 +7286,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 3730,
+        "sales_rank_avg": 3729,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0C7J2Q9KW"
@@ -7317,7 +7317,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 8371,
+        "sales_rank_avg": 8372,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BNH2XTKD"
@@ -7348,7 +7348,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 8357,
+        "sales_rank_avg": 8358,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BNGR4Q7C"
@@ -7372,14 +7372,14 @@
         "range_new": {
           "min": 319.95,
           "max": 434.95,
-          "avg": 408.01
+          "avg": 408.03
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 414917,
+        "sales_rank_avg": 414862,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK8M9SNJ"
@@ -7395,7 +7395,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 499.95,
-          "sales_rank": 2891,
+          "sales_rank": 4189,
           "rating": 4.3,
           "review_count": 905,
           "offer_count": 0
@@ -7410,7 +7410,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 5699,
+        "sales_rank_avg": 5698,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CZS57XYN"
@@ -7426,7 +7426,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 129.95,
-          "sales_rank": 52482,
+          "sales_rank": 65677,
           "rating": 4.7,
           "review_count": 443,
           "offer_count": 0
@@ -7441,7 +7441,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 29561,
+        "sales_rank_avg": 29574,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09PJSN61V"
@@ -7472,7 +7472,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 56992,
+        "sales_rank_avg": 57002,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09PJSYFLG"
@@ -7503,7 +7503,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 136464,
+        "sales_rank_avg": 136525,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0B1GNMLF2"
@@ -7527,14 +7527,14 @@
         "range_new": {
           "min": 33.28,
           "max": 149.24,
-          "avg": 89.96
+          "avg": 89.97
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 151233,
+        "sales_rank_avg": 151213,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B018XC14BK"
@@ -7565,7 +7565,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 40619,
+        "sales_rank_avg": 40640,
         "category": "Adapters",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B09PJSJJVQ"
@@ -7581,7 +7581,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 54.95,
-          "sales_rank": 139604,
+          "sales_rank": 139588,
           "rating": 4.6,
           "review_count": 644,
           "offer_count": 0
@@ -7596,7 +7596,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 335192,
+        "sales_rank_avg": 335172,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B01AXDGWPU"
@@ -7612,7 +7612,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 139.95,
-          "sales_rank": 6231,
+          "sales_rank": 6749,
           "rating": 4.8,
           "review_count": 971,
           "offer_count": 0
@@ -7643,7 +7643,7 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 54.95,
-          "sales_rank": 6227,
+          "sales_rank": 6751,
           "rating": 4.3,
           "review_count": 69,
           "offer_count": 0
@@ -7689,7 +7689,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 60748,
+        "sales_rank_avg": 60752,
         "category": "Helmets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK8LYPYX"
@@ -7720,7 +7720,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 27243,
+        "sales_rank_avg": 27242,
         "category": "Accessories",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BNGS83GB"
@@ -7751,7 +7751,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 268666,
+        "sales_rank_avg": 268672,
         "category": "Component Speakers",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0B48GR6P9"
@@ -7813,7 +7813,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 40416,
+        "sales_rank_avg": 40421,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK8MZSKZ"
@@ -7844,7 +7844,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 40407,
+        "sales_rank_avg": 40413,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0F1YYRFGD"
@@ -7875,7 +7875,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 10414,
+        "sales_rank_avg": 10413,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B07RJTTXBG"
@@ -7906,7 +7906,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 502069,
+        "sales_rank_avg": 501986,
         "category": "Spikes",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0F1YC74W7"
@@ -7937,7 +7937,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 947284,
+        "sales_rank_avg": 946949,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0FB47LJVQ"
@@ -7968,7 +7968,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 4126,
+        "sales_rank_avg": 4127,
         "category": "Helmet Accessories",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CV7WJQD8"
@@ -7999,7 +7999,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 41115,
+        "sales_rank_avg": 41112,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK8N5NR7"
@@ -8030,7 +8030,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 25449,
+        "sales_rank_avg": 25448,
         "category": "Over-Ear Headphones",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0DJGJ2WMS"
@@ -8061,7 +8061,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 41032,
+        "sales_rank_avg": 41028,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK8MWNVW"
@@ -8085,14 +8085,14 @@
         "range_new": {
           "min": 175.0,
           "max": 269.95,
-          "avg": 258.41
+          "avg": 258.42
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 222699,
+        "sales_rank_avg": 222658,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BHTXB3JW"
@@ -8123,7 +8123,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 223182,
+        "sales_rank_avg": 223133,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0BHTTVSSS"
@@ -8154,7 +8154,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 174397,
+        "sales_rank_avg": 174385,
         "category": "Winter Sports Accessories",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK4VVY6R"
@@ -8178,14 +8178,14 @@
         "range_new": {
           "min": 337.46,
           "max": 494.95,
-          "avg": 475.67
+          "avg": 475.66
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 218833,
+        "sales_rank_avg": 218783,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CPQ7ZFM7"
@@ -8216,7 +8216,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 384296,
+        "sales_rank_avg": 384302,
         "category": "Skiing",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0CK51TRR6"
