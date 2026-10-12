@@ -46,7 +46,7 @@ def main(argv=None) -> int:
         ops = OPSClient("demo", "demo", http=demo.demo_http(), min_interval=0, sleep=lambda s: None)
         cfg = dict(cfg, brands=[demo.DEMO_BRAND])
         sources.append({"name": "EPO Open Patent Services", "state": "read", "label": "demo",
-                        "detail": "Invented records served from a fake server. No network call."})
+                        "detail": "Invented example records. Nothing was fetched."})
     else:
         key, secret = os.environ.get("EPO_OPS_KEY", ""), os.environ.get("EPO_OPS_SECRET", "")
         if key and secret:
@@ -55,27 +55,27 @@ def main(argv=None) -> int:
             notes.append("EPO_OPS_KEY and EPO_OPS_SECRET are not set, so no patent data was fetched. "
                          "Add both as repository secrets and run the workflow again.")
             sources.append({"name": "EPO Open Patent Services", "state": "off", "label": "no key",
-                            "detail": "Credentials not configured."})
+                            "detail": "Not connected yet. The access keys have not been added."})
     bq = None
     if args.demo:
         bq = bqmod.BQSource(demo.demo_bq_runner())
         sources.append({"name": "Google BigQuery patents", "state": "read", "label": "demo",
-                        "detail": "Invented rows served from a fake runner. No network call."})
+                        "detail": "Invented example records. Nothing was fetched."})
     elif os.environ.get("GCP_PROJECT") and not args.no_bigquery:
         try:
             runner = bqmod.BQRunner(os.environ["GCP_PROJECT"], int(float(os.environ.get("BQ_MAX_GB", "300")) * 10**9))
             bq = bqmod.BQSource(runner)
-            sources.append({"name": "Google BigQuery patents", "state": "read", "label": "read", "detail": ""})
+            sources.append({"name": "Google BigQuery patents", "state": "read", "label": "connected", "detail": ""})
         except Exception as exc:  # noqa: BLE001 - missing library or credentials
             notes.append(f"BigQuery is configured but could not start ({type(exc).__name__}: {str(exc)[:160]}). This run uses the other sources only.")
-            sources.append({"name": "Google BigQuery patents", "state": "off", "label": "not started", "detail": "See the note above."})
+            sources.append({"name": "Google BigQuery patents", "state": "off", "label": "not started", "detail": "Could not connect. See the note above."})
     else:
-        sources.append({"name": "Google BigQuery patents", "state": "off", "label": "not configured",
-                        "detail": "Set the GCP_SA_KEY secret and the GCP_PROJECT variable to turn it on."})
+        sources.append({"name": "Google BigQuery patents", "state": "off", "label": "not connected",
+                        "detail": "Not connected yet. The Google access settings have not been added."})
     sources.append({"name": "Google Patents", "state": "off", "label": "links only",
-                    "detail": "The website's search endpoint is closed to automated access (robots.txt), so it is not scraped. Each row links to its Google Patents page. The official Google data comes through BigQuery."})
+                    "detail": "Each patent has a link to its Google Patents page. Google does not allow automatic reading of the site, so the data comes from Google's database above."})
     sources.append({"name": "Espacenet", "state": "off", "label": "links only",
-                    "detail": "Each row links to Espacenet. The data comes through the EPO service above."})
+                    "detail": "Each patent has a link to its Espacenet page. The data comes from the European Patent Office above."})
     wn = crawler.window_note()
     if wn and not args.demo:
         notes.append(wn)
@@ -142,13 +142,14 @@ def main(argv=None) -> int:
         quota = ", ".join(f"{k}: {v}" for k, v in ops.quota.items()) or "no quota header seen"
         blocked = ops.blocked
         sources[0] = {"name": "EPO Open Patent Services", "state": "off" if blocked else "read",
-                      "label": "blocked" if blocked else "read",
-                      "detail": (blocked or f"{ops.calls} calls. {quota}")}
+                      "label": "blocked" if blocked else "connected",
+                      "detail": (blocked or f"Patent details and legal status from the European Patent Office. {ops.calls} lookups this run."),
+                      "technical": quota}
     if bq is not None and not args.demo:
         for src in sources:
             if src["name"].startswith("Google BigQuery"):
                 src["state"] = "off" if bq.error else "read"
-                src["label"] = "error" if bq.error else "read"
+                src["label"] = "error" if bq.error else "connected"
                 src["detail"] = bq.error or bq.stats()
     complete = bool((ops is not None or bq is not None) and not args.demo and not (ops is not None and ops.blocked)
                     and brands_out and not any(b["diag"]["errors"] for b in brands_out))

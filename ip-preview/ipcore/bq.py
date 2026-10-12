@@ -233,9 +233,9 @@ class BQSource:
         b = getattr(self.runner, "bytes_total", 0)
         hits = getattr(self.runner, "cache_hits", 0)
         if b:
-            tail = f", about {b / 1e9:.0f} GB billed"
+            tail = f" About {b / 1e9:.0f} GB of data was processed."
         elif hits and hits >= self.queries:
-            tail = ", all answered from Google's cache (the same query ran within 24 hours): nothing billed"
+            tail = " Answered from Google's cache, so nothing was processed."
         else:
             tail = ""
-        return f"{self.queries} queries" + tail
+        return "Patent records from Google's public patent database." + tail

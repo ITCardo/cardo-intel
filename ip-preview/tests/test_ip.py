@@ -90,7 +90,7 @@ def test_status_term_and_events():
     assert C.derive_status("patent", "grant", "2015-05-05", [], today)["class"] == "granted"
     assert C.derive_status("utility_model", "grant", "2015-01-01", [], today)["class"] == "expired"
     assert C.derive_status("design", "grant", "1990-01-01", [], today)["class"] == "granted"   # not estimated
-    ev = [{"code": "PG25", "desc": "LAPSED IN A CONTRACTING STATE", "date": "2019-03-01"}]
+    ev = [{"code": "PG25", "desc": "LAPSED DUE TO NON-PAYMENT OF RENEWAL FEE", "date": "2019-03-01"}]
     s = C.derive_status("patent", "grant", "2020-01-01", ev, today)
     assert s["class"] == "expired" and not s["estimated"]
     ev2 = [{"code": "REIN", "desc": "REINSTATEMENT OF RIGHTS AFTER LAPSE", "date": "2019-03-01"}]
@@ -573,3 +573,29 @@ def test_demo_run_writes_families_and_reuses_them(tmp_path):
     assert d["new_product_families"] == [10] and d["product_families"][-1]["id"] == 10
     assert all(r["topic_id"] for r in d["brands"][0]["records"])
     assert "demo" in d["family_maps"]
+
+
+def test_partial_events_do_not_end_the_right():
+    today = date(2026, 10, 11)
+    # lapse in one country only: still granted, with a note
+    ev = [{"code": "PG25", "desc": "LAPSED IN A CONTRACTING STATE [ANNOUNCED VIA POSTGRANT INFORMATION FROM NATIONAL OFFICE TO EPO]", "date": "2024-03-01"}]
+    s = C.derive_status("patent", "grant", "2020-01-01", ev, today)
+    assert s["class"] == "granted" and "some countries" in s["note"]
+    # JP/KR office action is not a final refusal
+    ev = [{"code": "", "desc": "NOTIFICATION OF REASONS FOR REFUSAL (2013-07-09)", "date": "2013-07-09"}]
+    s = C.derive_status("patent", "application", "2020-01-01", ev, today)
+    assert s["class"] == "pending" and "office action" in s["note"]
+    # country-prefixed and partial events
+    for d in ("LT: INVALIDATION OF THE PATENT", "PARTIAL INVALIDATION OF THE PATENT"):
+        s = C.derive_status("patent", "grant", "2020-01-01", [{"desc": d, "date": "2024-01-01"}], today)
+        assert s["class"] == "granted"
+    # terminal events still count
+    for d in ("APPLICATION DEEMED TO BE WITHDRAWN", "DECISION OF REFUSAL", "PATENT REFUSED FOLLOWING EXAMINATION",
+              "WITHDRAWN AFTER PUBLICATION", "LAPSED DUE TO FAILURE TO PAY MAINTENANCE FEE"):
+        s = C.derive_status("patent", "application", "2020-01-01", [{"desc": d, "date": "2024-01-01"}], today)
+        assert s["class"] == "expired", d
+    # a real lapse next to a national one: real lapse wins
+    ev = [{"desc": "LAPSED IN A CONTRACTING STATE", "date": "2024-03-01"},
+          {"desc": "APPLICATION DEEMED TO BE WITHDRAWN", "date": "2024-05-01"}]
+    s = C.derive_status("patent", "application", "2020-01-01", ev, today)
+    assert s["class"] == "expired" and "WITHDRAWN" in s["basis"]

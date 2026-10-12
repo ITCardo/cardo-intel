@@ -65,17 +65,63 @@ def iso(value) -> str:
     return d.isoformat() if d else ""
 
 
+# Events that mention a lapse/refusal word but do NOT end the whole right:
+#  - lapses in some countries only (EP "lapsed in a contracting state", partial invalidation, "LT: ...")
+#  - office actions that start a dialogue (JP/KR "notification of reasons for refusal")
+PARTIAL_WORDS = ("in a contracting state", "contracting state", "partial", "partially",
+                 "reason for refusal", "reasons for refusal", "intention to refuse",
+                 "notice of reasons", "provisional refusal")
+_COUNTRY_PREFIX = re.compile(r"^\s*[A-Z]{2}\s*:")
+
+
+def _is_partial(ev: dict) -> bool:
+    desc = str(ev.get("desc") or "")
+    text = f"{desc} {ev.get('code', '')}".lower()
+    return bool(_COUNTRY_PREFIX.match(desc)) or any(w in text for w in PARTIAL_WORDS)
+
+
 def lapse_event(events: list[dict]) -> dict | None:
-    """First legal event that signals the end of the right (lapse, withdrawal, refusal ...)."""
+    """Latest legal event that signals the end of the whole right (lapse, withdrawal, refusal ...).
+    National/partial lapses and office actions are skipped, see partial_events()."""
     hit = None
     for ev in events or []:
         text = f"{ev.get('desc', '')} {ev.get('code', '')}".lower()
         if any(w in text for w in LAPSE_IGNORE):
             continue
-        if any(w in text for w in LAPSE_WORDS):
+        if any(w in text for w in LAPSE_WORDS) and not _is_partial(ev):
             if hit is None or (ev.get("date") or "") > (hit.get("date") or ""):
                 hit = ev
     return hit
+
+
+def partial_events(events: list[dict]) -> list[dict]:
+    """Lapse-like events that do not end the whole right (shown as a note only)."""
+    out = []
+    for ev in events or []:
+        text = f"{ev.get('desc', '')} {ev.get('code', '')}".lower()
+        if any(w in text for w in LAPSE_IGNORE):
+            continue
+        if any(w in text for w in LAPSE_WORDS) and _is_partial(ev):
+            out.append(ev)
+    return out
+
+
+def partial_note(events: list[dict]) -> str:
+    """Short text for the Status cell, empty when nothing to say."""
+    parts = []
+    for ev in sorted(partial_events(events), key=lambda e: e.get("date") or ""):
+        desc = (ev.get("desc") or ev.get("code") or "").strip()
+        low = desc.lower()
+        if "reason" in low and "refusal" in low or "intention to refuse" in low or "provisional refusal" in low:
+            label = "office action: refusal reasons notified"
+        elif "contracting state" in low or _COUNTRY_PREFIX.match(desc) or "partial" in low:
+            label = "lapsed / invalidated in some countries only"
+        else:
+            label = "partial event"
+        item = label + (f" ({ev['date']})" if ev.get("date") else "")
+        if item not in parts:
+            parts.append(item)
+    return "; ".join(parts[-2:])
 
 
 def add_years(d: date, years: int) -> date:
@@ -87,7 +133,14 @@ def add_years(d: date, years: int) -> date:
 
 def derive_status(rtype: str, stage: str, filing_date: str, events: list[dict] | None,
                   today: date | None = None) -> dict:
-    """Status text, class (pending | granted | expired | unknown), and how it was derived."""
+    """Status text, class (pending | granted | expired | unknown), how it was derived, and a note
+    about partial events (lapse in some countries only, office actions)."""
+    st = _derive(rtype, stage, filing_date, events, today)
+    st["note"] = partial_note(events or [])
+    return st
+
+
+def _derive(rtype, stage, filing_date, events, today):
     today = today or date.today()
     ev = lapse_event(events or [])
     if ev:

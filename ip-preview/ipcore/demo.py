@@ -52,7 +52,8 @@ def demo_http() -> FakeHTTP:
         publications={"EP3000222": [D("EP", "3000222", "B1", "222", "Multitasking headset", a, ["Kim, Joon"],
                                       "20120101", "20150101", [], ["H04M1/60"])]},
         families={"EP3777888": [docs[2], family_member]},
-        legal={"EP2500444": [("PG25", "LAPSED IN A CONTRACTING STATE: NON-PAYMENT OF ANNUAL FEE", "20190301")],
+        legal={"EP2500444": [("PG25", "PATENT LAPSED DUE TO NON-PAYMENT OF RENEWAL FEE", "20190301")],
+               "EP3777888": [("PG25", "LAPSED IN A CONTRACTING STATE", "20250301")],
                "US9555777": [("MAINT", "MAINTENANCE FEE PAID", "20240101")]},
     )
 
