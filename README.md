@@ -80,7 +80,7 @@ This is an **automated competitive research platform** that:
 | **Product Insights** | Strategic analysis, market pulse, recommendations | product_insights.json |
 | **IP & Patents** | Patent records per brand, product family, status, new/changed this week | ip_results.json |
 
-The patent data is already embedded in every build (`DATA.ip`, with per-brand counts of total, new, changed, pending, granted and expired). The **IP & Patents** tab and the weekly new/changed strip on the Overview are added together with the dashboard UI update. Until then the full patent table is available as a standalone page: download the artifact `ip-preview` from the latest **IP Crawler Weekly** run and open `ip_preview.html`.
+The patent data is embedded in every build (`DATA.ip`, with per-brand counts of total, new, changed, pending, granted and expired) and shown in two places in the dashboard: the **IP & Patents** tab (last item in the sidebar, shortcut `6`) and a **Patents and designs · weekly check** strip on the Brief page with the new/changed count per brand. The tab has filters for brand, status, type and product family, a search that ignores spaces in patent numbers, links to Google Patents and Espacenet, and lists new or changed records first. It follows the sidebar brand filter. If `research/ip_results.json` is missing or only demo data, the tab and the strip are hidden. The standalone page is still available as a backup: download the artifact `ip-preview` from the latest **IP Crawler Weekly** run and open `ip_preview.html`.
 
 ## Research Data Schema
 
