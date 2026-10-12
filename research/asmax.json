@@ -289,8 +289,9 @@
     },
     {
       "name": "F1 Pro Max",
+      "category": "communicator",
       "tier": "flagship",
-      "msrp_usd": null,
+      "msrp_usd": 309.0,
       "street_price_usd": 269,
       "intercom_tech": "Mesh + Bluetooth 5.3 dual-chip",
       "range_km": 3,
@@ -307,7 +308,7 @@
       "voip": true,
       "wireless_charging": false,
       "detachable_battery": false,
-      "notes": "Unveiled at EICMA 2025 (Nov 2025) as top of lineup; sold via AliExpress and Asia dealers; no confirmed US MSRP as of Jul 2026. First confirmed street price Jul 2026: RM 1,099 at mytakongracing.com (Malaysia), ~USD 269 at MYR/USD ~4.07. Also listed at R5,900 ZAR (~USD 319, ICASA-approved) via Airborne ADV (South Africa) as of Jul 2026 -- higher than Malaysia due to import costs. IP67 waterproof rating confirmed via SA distributor listing. As of Jul 2026, asmaxconnect.com also lists this exact spec set (BT5.3, 45mm BOX speaker, 1350mAh, 50g, Springlock mount) under the name 'X Pro Max' with an identical tagline, alongside the still-live 'F1 Pro Max' page; chris_asmax posted an Instagram reel captioned 'X pro max' on Jul 2, 2026 -- appears to be parallel OEM/private-label branding rather than a new product.",
+      "notes": "Unveiled at EICMA 2025 (Nov 2025) as top of lineup; sold via AliExpress and Asia dealers. First confirmed street price Jul 2026: RM 1,099 at mytakongracing.com (Malaysia), ~USD 269 at MYR/USD ~4.07. Also R5,900 ZAR (~USD 319, ICASA-approved) via Airborne ADV (South Africa) as of Jul 2026. IP67 confirmed via SA distributor listing. As of Jul 2026, asmaxconnect.com also lists this exact spec set under the name 'X Pro Max' with an identical tagline -- appears to be parallel OEM/private-label branding rather than a new product. NEW 2026-10-12: asmaxworld.com now carries a US-store product page titled 'F1 PRO MAX - In-store Exclusive' (10 Riders Bluetooth Mesh Motorcycle Helmet Intercom) showing a flat regular price of $309.00 USD with no sale price -- the first US list price recorded for this model (previously no US MSRP). The $309 US price is about 15% above the Malaysian street price (~$269) and about 3% below the South African price (~$319). The page's own 'you may also like' widget shows the F1 at $149.99 from a $192.99 list and the S1 at $89.99 from a $121.99 list. The in-store-exclusive naming suggests it is aimed at physical dealers rather than DTC checkout. Not seen on the Amazon US storefront.",
       "dimensions": {
         "form_factor": {
           "weight_g": null,
@@ -345,9 +346,9 @@
           "warranty_years": 2
         },
         "price": {
-          "msrp_usd": null,
+          "msrp_usd": 309.0,
           "street_usd": 269,
-          "segment_position": "Range-topping flagship at ~$269 street (Malaysia dealer, Jul 2026; ~$319 in South Africa) — still well under Cardo/Sena flagship money"
+          "segment_position": "Range-topping flagship: $309 US list on asmaxworld.com (Oct 2026), ~$269 street in Malaysia, ~$319 in South Africa -- still below Cardo/Sena flagship money"
         }
       },
       "url": "https://www.asmaxworld.com/products/f1-pro-max-in-store-exclusive",
@@ -891,6 +892,18 @@
       "headline": "ASMAX promotes Amazon Prime Big Deal Days (Oct 6-7, 2026) on Instagram. It says it is 'getting ready' with helmet intercoms, tire inflators and jump starters, and a Spanish creator post on 2026-10-04 repeats the promotion. This is the first ASMAX tie-in to an Amazon sale event in this research. I could not confirm any event-specific deal prices from the search results. The F1s Amazon listing shows the Prime Big Deal Days banner and a '200+ bought in past month' badge, up from '100+' on 2026-09-28.",
       "source": "Instagram (@asmaxworld_official) / Amazon listing",
       "url": "https://www.instagram.com/p/Dd_iUjIm45p/"
+    },
+    {
+      "date": "2026-10-12",
+      "headline": "asmaxworld.com now lists the F1 Pro Max as an 'In-store Exclusive' at a flat $309.00 USD, the first US list price seen for the model. The F1 page shows $142.99 (list $192.99), with the 2-pack at $263.99. Separately, the Walmart Marketplace 'asmax Store' now shows an S1 1-pack at $85.99 alongside the earlier $79.99 listing, and an F1 listing at $125.99 (was $139.99). The 'sold out' flags on the asmaxworld.com F1/F1s/S1 pages appear to be page-template text, since the same pages show current prices and variant availability.",
+      "source": "asmaxworld.com / Walmart.com marketplace listing",
+      "url": "https://www.asmaxworld.com/products/f1-pro-max-in-store-exclusive"
+    },
+    {
+      "date": "2026-09-29",
+      "headline": "asmaxworld.com blog ('Ride Life Journal') publishes 'Meet ASMAX: Smart Riding Tech Revolutionized', a brand-positioning piece. The site also surfaces an 'ASMAX x ZXMOTO Announce Official Partnership' post, with the date not shown in the snippet. The ZXMOTO tie-up itself was first teased on Instagram on 2026-09-01.",
+      "source": "asmaxworld.com blog",
+      "url": "https://www.asmaxworld.com/"
     }
   ],
   "social_media": {
@@ -1479,6 +1492,24 @@
         "platform": "Instagram",
         "summary": "🔥 PRIME BIG DEAL DAYS | 6–7 OCTUBRE\nSe vienen ofertas de ASMAX en Amazon 👀\nY por supuesto, mi ASMAX F1, el que utilizo siempre en mis viajes. 🏍️\n📅 6 y 7 de octubre\n🔗 Enlace a mis intercomunicadores ASMAX en el Linktree de mi bio.",
         "url": "https://www.instagram.com/p/DeEfDnNIRIE/"
+      },
+      {
+        "date": "2026-10-11",
+        "platform": "Instagram",
+        "summary": "FROM P17 TO P6. NOW, P3. 🏁🔥\n\nWhat a weekend for @valentin_debise !\n\nAfter an impressive recovery in Race 1, Debise fought his way to P3 in Race 2 at Estoril, securing valuable championship points.\n\nThe podium is his. The fight for the title continues.\n\nKeep pushing, Debise. We’re with you every lap.",
+        "url": "https://www.instagram.com/p/DeWz-a8zK76/"
+      },
+      {
+        "date": "2026-10-10",
+        "platform": "Instagram",
+        "summary": "From P17 to P6 at Estoril. 🇵🇹\n\n@valentin_debise gained 11 places in WorldSSP Race 1—a strong recovery.\n\nWe’ll be following every lap tomorrow, Valentin. \n\n#ASMAXWorld #ASMAXAmbassadors #motorsport #worldssp",
+        "url": "https://www.instagram.com/p/DeUN0p7yYYo/"
+      },
+      {
+        "date": "2026-10-10",
+        "platform": "Instagram",
+        "summary": "MILAN, HERE WE COME. 🇮🇹🏍\n\nEICMA 2026 is on the horizon.\n\nMeet ASMAX in Milan, discover what’s next, and experience the future of connected riding.\n\n📅 November 3–8, 2026\n📍 Hall 6 · Booth H08 , Fiera Milano Rho\n\nSee you in Milan. ⚡\n\n#ASMAX #EICMA2026 #Milan #MotorcycleTech #RideConnected",
+        "url": "https://www.instagram.com/p/DeT8MqJI4RE/"
       }
     ]
   },
@@ -1689,7 +1720,11 @@
     "https://macaubusiness.com/asmax-at-cimamotor-2026-rethinking-what-a-motorcycle-intercom-should-be/",
     "https://www.asmaxworld.com/pages/deal",
     "https://www.asmaxworld.com/pages/asmax-mode",
-    "https://www.amazon.com/ASMAX-F1s-Motorcycle-Communication-Multitasking/dp/B0GGZTM2PZ"
+    "https://www.amazon.com/ASMAX-F1s-Motorcycle-Communication-Multitasking/dp/B0GGZTM2PZ",
+    "https://www.asmaxworld.com/products/f1-pro-max-in-store-exclusive",
+    "https://www.asmaxworld.com/products/f1",
+    "https://www.walmart.com/brand/asmax/20025935",
+    "https://businessintelligence.mo/2026/09/21/asmax-at-cimamotor-2026-rethinking-what-a-motorcycle-intercom-should-be/"
   ],
   "firmware_updates": [
     {
@@ -2986,10 +3021,60 @@
       "topic": "Sell or use decision",
       "summary": "The poster asks whether they should sell or use something (\"Benta ko ba o gamitin?\"). The post is tagged with Marvin Chua MotoVlog hashtags. It names no specific product.",
       "url": "https://www.facebook.com/groups/795939769924022/permalink/1084759577708705/"
+    },
+    {
+      "date": "2026-10-12",
+      "source": "Facebook Group",
+      "forum": "Asmax Intercom Philippines User",
+      "product": "F1 Pro",
+      "sentiment": "neutral",
+      "topic": "Used unit for sale",
+      "summary": "Seller is offering an ASMAX F1 Pro intercom for 6.5K, saying it was used only once. The listed location is Cavite.",
+      "url": "https://www.facebook.com/groups/795939769924022/permalink/1089377603913569/"
+    },
+    {
+      "date": "2026-10-10",
+      "source": "Facebook Group",
+      "forum": "Asmax Intercom Philippines User",
+      "product": "S2",
+      "sentiment": "neutral",
+      "topic": "Music sharing while talking",
+      "summary": "User asks whether the ASMAX S2 allows music sharing while talking on the intercom.",
+      "url": "https://www.facebook.com/groups/795939769924022/permalink/1087837457400917/"
+    },
+    {
+      "date": "2026-10-10",
+      "source": "Facebook Group",
+      "forum": "Asmax Intercom Philippines User",
+      "product": "S2",
+      "sentiment": "neutral",
+      "topic": "Music sharing feature question",
+      "summary": "User is planning to buy the ASMAX S2 and asks whether it has music sharing while talking.",
+      "url": "https://www.facebook.com/groups/795939769924022/permalink/1087835294067800/"
+    },
+    {
+      "date": "2026-10-10",
+      "source": "Facebook Group",
+      "forum": "Asmax Intercom Philippines User",
+      "product": "F1 Pro",
+      "sentiment": "negative",
+      "topic": "Incomplete battery charging",
+      "summary": "User says their F1 Pro unit only charges to 60-70% and does not reach a full charge. They ask the group for a remedy.",
+      "url": "https://www.facebook.com/groups/795939769924022/permalink/1087719554079374/"
+    },
+    {
+      "date": "2026-10-10",
+      "source": "Facebook Group",
+      "forum": "Asmax Intercom Philippines User",
+      "product": "Future 1",
+      "sentiment": "neutral",
+      "topic": "Spare parts availability",
+      "summary": "User asks where ASMAX Future 1 spare parts can be bought.",
+      "url": "https://www.facebook.com/groups/795939769924022/permalink/1087353334115996/"
     }
   ],
   "amazon_pricing": {
-    "fetched_at": "2026-10-07T15:52:35.162954+00:00",
+    "fetched_at": "2026-10-12T19:44:57.762690+00:00",
     "domain": "US",
     "products": [
       {
@@ -3003,9 +3088,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 139.99,
-          "sales_rank": 23188,
+          "sales_rank": 15156,
           "rating": 4.4,
-          "review_count": 955,
+          "review_count": 961,
           "offer_count": 0
         },
         "range_new": {
@@ -3018,7 +3103,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 21367,
+        "sales_rank_avg": 20707,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GGZTM2PZ"
@@ -3034,9 +3119,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 259.99,
-          "sales_rank": 23188,
+          "sales_rank": 15156,
           "rating": 4.4,
-          "review_count": 955,
+          "review_count": 961,
           "offer_count": 0
         },
         "range_new": {
@@ -3049,7 +3134,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 21381,
+        "sales_rank_avg": 20678,
         "category": "Bluetooth Headsets",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0GGZZH2GS"
@@ -3065,9 +3150,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 249.0,
-          "sales_rank": 23188,
+          "sales_rank": 19802,
           "rating": 4.4,
-          "review_count": 955,
+          "review_count": 961,
           "offer_count": 0
         },
         "range_new": {
@@ -3080,7 +3165,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 21428,
+        "sales_rank_avg": 20706,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D1R1GDYP"
@@ -3096,9 +3181,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 429.0,
-          "sales_rank": 24230,
+          "sales_rank": 15156,
           "rating": 4.4,
-          "review_count": 955,
+          "review_count": 961,
           "offer_count": 0
         },
         "range_new": {
@@ -3111,7 +3196,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 21403,
+        "sales_rank_avg": 20705,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D1RG3371"
@@ -3127,22 +3212,22 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 89.99,
-          "sales_rank": 10608,
+          "sales_rank": 7001,
           "rating": 4.4,
-          "review_count": 1124,
+          "review_count": 1133,
           "offer_count": 0
         },
         "range_new": {
           "min": 63.99,
           "max": 109.99,
-          "avg": 84.16
+          "avg": 84.17
         },
         "range_buybox": {
           "min": null,
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 13064,
+        "sales_rank_avg": 12397,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D7P59LHZ"
@@ -3158,9 +3243,9 @@
           "buybox": null,
           "buybox_seller": null,
           "list_price": 159.99,
-          "sales_rank": 10907,
+          "sales_rank": 7459,
           "rating": 4.4,
-          "review_count": 1124,
+          "review_count": 1133,
           "offer_count": 0
         },
         "range_new": {
@@ -3173,7 +3258,7 @@
           "max": null,
           "avg": null
         },
-        "sales_rank_avg": 13045,
+        "sales_rank_avg": 12402,
         "category": "Helmet Communication",
         "offers": [],
         "keepa_url": "https://keepa.com/#!product/1-B0D7P5MF7C"

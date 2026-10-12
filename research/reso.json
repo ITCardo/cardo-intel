@@ -1123,6 +1123,54 @@
         "platform": "Instagram",
         "summary": "Unlock the full potential of your device! 📱 Discover how to navigate the RESO LINK App for custom settings, easy pairing, and updates. \n#RESOPilot #Intercomsystem",
         "url": "https://www.instagram.com/p/DeKbru_FJL7/"
+      },
+      {
+        "date": "2026-10-09",
+        "platform": "Instagram",
+        "summary": "𝐓𝐇𝐈𝐍𝐊 𝐘𝐎𝐔𝐑 𝐂𝐔𝐑𝐑𝐄𝐍𝐓 𝐈𝐍𝐓𝐄𝐑𝐂𝐎𝐌 𝐂𝐀𝐍 𝐁𝐄𝐀𝐓 𝐑𝐄𝐒𝐎𝐏𝐢𝐥𝐨𝐭? 𝐏𝐔𝐓 𝐈𝐓 𝐓𝐎 𝐓𝐇𝐄 𝐓𝐄𝐒𝐓.\nFrom BMW Motorrad Days China to QJMOTOR’s WSBK preparations, RESOPilot has already been put to work in real rides and professional team environments. Now we’re opening 𝟏𝟑 𝐓𝐞𝐬𝐭𝐞𝐫 𝐬𝐩𝐨𝐭𝐬 for U.S. riders and crews to see how RESOPilot P",
+        "url": "https://www.instagram.com/p/DeRtmwgjeFo/"
+      },
+      {
+        "date": "2026-10-12",
+        "platform": "Instagram",
+        "summary": "Next stop: Milan. 🇮🇹\n\nRESOPilot is heading to EICMA 2026.\n\nWe're bringing RESOPilot to one of the world's largest motorcycle shows—and showing how it's built for real group rides.\n\nFrom DuoSync Hybrid Mesh and cross-brand connectivity to Camera Audio Sync, we'll be putting the features riders care a",
+        "url": "https://www.instagram.com/p/DeYKAGWI4p1/"
+      },
+      {
+        "date": "2026-10-11",
+        "platform": "Instagram",
+        "summary": "Extreme wind noise? No problem. 🌪️ Watch the RESOPilot AI Noise Cancellation go head-to-head with an industrial leaf blower. The results will shock you! #RESOPilot #NoiseCancellation",
+        "url": "https://www.instagram.com/p/DeVY-YDAfy5/"
+      },
+      {
+        "date": "2026-10-11",
+        "platform": "Instagram",
+        "summary": "The roads we take, the people we ride with, the moments we share.\nReal rides are better when we stay connected.\nRide together with RESOPilot. 🏍️\n#RESOPilot #StayConnected #MotorcycleLife #GroupRide",
+        "url": "https://www.instagram.com/p/DeVbTHUkeCq/"
+      },
+      {
+        "date": "2026-10-10",
+        "platform": "Instagram",
+        "summary": "Extreme wind noise? No problem. 🌪️ Watch the RESOPilot AI Noise Cancellation go head-to-head with an industrial leaf blower. The results will shock you! #RESOPilot #NoiseCancellation",
+        "url": "https://www.instagram.com/p/DeSxqs5Eoms/"
+      },
+      {
+        "date": "2026-10-12",
+        "platform": "Instagram",
+        "summary": "Need tech support? We’ve got you. 💻 Learn how to easily upload system logs via the RESOPilot Pro for rapid troubleshooting. #RESOPilot #CustomerSupport",
+        "url": "https://www.instagram.com/p/DeYBU20jLJu/"
+      },
+      {
+        "date": "2026-10-10",
+        "platform": "Instagram",
+        "summary": "Reso Pilot Pro ile Kesintisiz iletişim\n\n#resosport #intercom #motosikletsürüş #motosiklet",
+        "url": "https://www.instagram.com/p/DeUt8JGtxKI/"
+      },
+      {
+        "date": "2026-10-12",
+        "platform": "Instagram",
+        "summary": "A 30-rider mega pack? Challenge accepted. 😎 Watch RESOPilot handle a massive 30-person Mesh group seamlessly without dropping a single word. #RESOPilot #MegaRide",
+        "url": "https://www.instagram.com/p/DeX8UHWgv5s/"
       }
     ]
   },
@@ -1421,7 +1469,8 @@
     "https://www.amazon.com/RESOPILOT-Motorcycle-Bluetooth-Intercom-Battery/dp/B0H94D8FQQ",
     "https://resopilot.com/pages/product-comparison",
     "https://autonity.in/products/reso-pilot-pro",
-    "https://play.google.com/store/apps/details?id=com.zowoi.kero.app.retouch&hl=en_US"
+    "https://play.google.com/store/apps/details?id=com.zowoi.kero.app.retouch&hl=en_US",
+    "https://apps.apple.com/us/app/reso-link/id6504927409"
   ],
   "firmware_updates": [
     {
@@ -1619,6 +1668,18 @@
       ],
       "url": "https://apps.apple.com/id/app/reso-link/id6504927409",
       "source": "Apple App Store version history (Reso Link app listing); Google Play listing (com.zowoi.kero.app) shows matching 'Updated on Jul 29, 2026'"
+    },
+    {
+      "date": "2026-06-03",
+      "product": "All Reso Pilot series",
+      "type": "app",
+      "version": "2.9.5",
+      "title": "Reso Link app new experience features",
+      "changes": [
+        "Added some new experience features (per App Store release note; no specifics disclosed)"
+      ],
+      "url": "https://apps.apple.com/us/app/reso-link/id6504927409",
+      "source": "Apple App Store version history (Reso Link app listing, US storefront); previously uncaptured intermediate release"
     }
   ],
   "current_software": {
@@ -1626,7 +1687,7 @@
     "app_ios_version": "3.0.3",
     "app_android_version": "3.0.3",
     "app_last_updated": "2026-07-29",
-    "notes": "This refresh (2026-10-05): the Apple App Store version history (US storefront) still lists v3.0.3 (Jul 29) as the newest release, and the resopilot.com app page still shows V3.0.3 for both Android and iOS. No newer app or firmware release has appeared in about 10 weeks."
+    "notes": "This refresh (2026-10-12): the Apple App Store US version history still lists v3.0.3 (Jul 29) as the newest release, so no new app release in about 10 weeks. The history also shows intermediate releases 2.9.1-2.9.5 (Apr 28 - Jun 3, 2026) and 2.7.2/2.7.3 (Oct 2025) that were not previously logged; these have been added to firmware_updates."
   },
   "product_firmware": [
     {
