@@ -6,7 +6,7 @@ This guide covers the automated weekly runs using GitHub Actions.
 
 The GitHub Actions workflow (`.github/workflows/daily-refresh.yml` — the filename is a leftover from an earlier daily schedule; the workflow itself is named "Weekly Competitive Research Refresh") automatically:
 
-1. **Runs weekly, Mondays at 14:00 UTC** (adjustable via cron schedule), plus a manual "Run workflow" button
+1. **Runs weekly, Mondays at 07:00 UTC**, started by the Azure Logic App `logic-cardo-intel-trigger` (the workflow has no cron of its own), plus a manual "Run workflow" button
 2. **Reads the brand list** from `research/brands.json` (currently cardo, sena, asmax, reso — config-driven, no workflow edit needed to add one)
 3. **Runs a research agent per brand, in parallel**, calling the Anthropic API directly (via the `anthropic` Python package) with Claude's `web_search` tool — plus the Keepa API for Amazon pricing
 4. **Runs two social listener scripts** — Reddit (via web search) and Facebook Groups/Instagram (via Apify)
@@ -73,21 +73,12 @@ The workflow file is at: `.github/workflows/daily-refresh.yml`
 Key configuration:
 ```yaml
 on:
-  schedule:
-    - cron: '0 14 * * 1'   # Mondays 14:00 UTC
-  workflow_dispatch:        # Manual trigger also available
+  workflow_dispatch:        # started manually or by the Azure Logic App (no cron here)
 ```
 
-### Cron Schedule Examples
+### Schedule
 
-| Schedule | Cron |
-|----------|------|
-| Weekly, Mondays 14:00 UTC (current) | `0 14 * * 1` |
-| Weekly, Fridays 09:00 UTC | `0 9 * * 5` |
-| Daily 09:00 UTC | `0 9 * * *` |
-| Weekdays 09:00 UTC | `0 9 * * 1-5` |
-
-To change the schedule, edit the `cron:` line in `.github/workflows/daily-refresh.yml`.
+The weekly run is started by the Azure Logic App `logic-cardo-intel-trigger` (Recurrence trigger, Mondays 07:00 UTC, one HTTP call to the GitHub `workflow_dispatch` API). GitHub's own `schedule:` trigger did not fire reliably for this repo, so it is not used. To change the day or time, edit the Recurrence trigger of the Logic App in the Azure portal (times are UTC). The setup, the token it uses and its renewal are described in the README under "How the workflows are started".
 
 ---
 
@@ -162,11 +153,7 @@ To run the workflow without waiting for the schedule:
 ## Customization
 
 ### Change the schedule
-```yaml
-on:
-  schedule:
-    - cron: '0 9 * * 5'  # e.g., Fridays 9 AM UTC instead of Mondays 2 PM UTC
-```
+Edit the Recurrence trigger of the Azure Logic App `logic-cardo-intel-trigger` (Azure portal → Logic app designer). There is no cron in the workflow file.
 
 ### Add a competitor
 Add an entry to `research/brands.json` and create an empty `research/<slug>.json`. No workflow edit needed — `determine-brands` reads that file dynamically and the `research-agents` matrix picks up the new slug automatically. See the README's "Adding a new brand" section for the full steps.
@@ -190,8 +177,8 @@ Add `SLACK_WEBHOOK` as a GitHub secret, and add this step to the existing `notif
 ## Troubleshooting
 
 ### Workflow doesn't run on schedule
-**Cause:** GitHub disables scheduled workflows on repos with no commits in the past 60 days
-**Fix:** Make sure there's activity in the repo; a manual push or run resets the clock
+**Cause:** the Azure Logic App failed to start it: usually the GitHub token in the Logic App expired or lost its "Actions: Read and write" permission
+**Fix:** open the Logic App → Runs history; a 401 or 403 means the token must be renewed (README → "How the workflows are started"). A manual "Run workflow" always works in the meantime
 
 ### "API key not found" / authentication error in logs
 **Fix:**

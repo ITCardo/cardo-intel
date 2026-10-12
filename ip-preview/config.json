@@ -1,5 +1,5 @@
 {
- "_comment": "Standalone IP crawler preview. Not read by build.py or the main workflow. names = approved legal names (searched and matched). suggested_variants = guesses that are searched but only ever shown in the review list until a person moves them to names. exclude = applicant names that belong to other companies. keywords = distinctive words used to propose weak matches for review.",
+ "_comment": "IP crawler configuration (read only by ip-preview/ip_crawler.py; build.py reads its output research/ip_results.json). names = approved legal names (searched and matched). suggested_variants = guesses that are searched but only ever shown in the review list until a person moves them to names. exclude = applicant names that belong to other companies. keywords = distinctive words used to propose weak matches for review.",
  "limits": {
   "max_results_per_query": 300,
   "max_lookup_calls": 200,

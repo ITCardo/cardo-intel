@@ -1,18 +1,21 @@
-# IP crawler preview
+# IP crawler
 
-Standalone preview of the IP watch. It is **not** connected to the main dashboard: it does not change
-`build.py`, `dashboard_template.html`, `research/` or `daily-refresh.yml`, does not deploy to Azure and
-does not commit results to `main`.
+The weekly patent watch for Sena, Cardo, Reso and ASMAX. It runs as the workflow **IP Crawler Weekly**
+(`.github/workflows/ip-crawler.yml`) every Saturday 03:17 UTC, started by the Azure Logic App
+`logic-cardo-intel-ip-trigger`, and saves its result to `research/ip_results.json` on `main`. The Monday refresh
+(`daily-refresh.yml`) builds that file into the dashboard (`DATA.ip`). A run with `demo` or with a brand filter never
+overwrites `research/ip_results.json`, and neither does an incomplete run (EPO blocked, errors).
 
 ## Run it
 
-1. Add two repository secrets (Settings > Secrets and variables > Actions): `EPO_OPS_KEY`, `EPO_OPS_SECRET`
+1. Repository secrets (Settings > Secrets and variables > Actions): `EPO_OPS_KEY`, `EPO_OPS_SECRET`
    (the consumer key and secret from the EPO developer portal).
-2. Paste the known Sena records into `ip-preview/known/sena.csv` (template inside).
-3. Actions > **IP Crawler Preview** > Run workflow. Choose `demo` first to see the layout with invented records.
+2. Known records for a brand can be pasted into `ip-preview/known/<brand>.csv` (template inside); optional.
+3. Actions > **IP Crawler Weekly** > Run workflow. Choose `demo` first to see the layout with invented records.
 4. Open the finished run, download the artifact **ip-preview**, open `ip_preview.html`.
 
 Local run: `python ip-preview/ip_crawler.py --demo` (no network) or set the two variables and run it without `--demo`.
+Pass `--previous research/ip_results.json` to compare with the last saved results.
 Tests: `python -m pytest ip-preview/tests -q`.
 
 ## Second source: Google BigQuery (optional)
@@ -54,8 +57,7 @@ Shenzhen and Hong Kong companies are not in the file yet: add them to `names` on
 
 ## Limits and known gaps
 
-- Written from the OPS 3.2 documentation and tested offline with a fake server. The first real run is the real test.
-  The legal-events parser and the family lookup are the parts most likely to need a small fix.
+- Legal events: only events that end the whole right make a patent "expired". Lapses in some countries only ("lapsed in a contracting state", "LT: ...", partial invalidation) and office actions ("notification of reasons for refusal") are shown as a note under the status instead.
 - EPO fair use: free registered use is up to 4 GB a week, and automatic tools are asked to run 19:00-07:00 GMT or at weekends.
   The page shows a note when a run starts in the busy hours.
 - OPS has the national offices only partly (legal status especially). Status marked "est." must be checked in the national register.
