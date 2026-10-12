@@ -3,7 +3,7 @@ name: Weekly Competitive Research Refresh
 on:
   schedule:
     # Mondays 07:23 UTC
-    - cron: '23 7 * * 1'
+    - cron: '17 7 * * 1'
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
