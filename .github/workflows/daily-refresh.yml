@@ -165,6 +165,9 @@ jobs:
         run: |
           git add research/*.json dashboard.html index.html
           git commit -m "Weekly data refresh $(date +%Y-%m-%d)"
+          # main may have moved while this run was going (a merge, or the Saturday IP crawler commit);
+          # replay our commit on top of it instead of failing with "non-fast-forward".
+          git pull --rebase origin main
           git push origin HEAD:main
           echo "✅ Changes pushed to GitHub"
 
