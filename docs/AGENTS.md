@@ -8,7 +8,7 @@ There's no "agent framework" or CLI here — these are plain Python scripts that
 
 ```
 ┌────────────────────────────────────────────────────────────┐
-│ WEEKLY REFRESH (GitHub Actions, Mondays 14:00 UTC)          │
+│ WEEKLY REFRESH (GitHub Actions, Mondays 07:00 UTC)          │
 └────────────────────────────────────────────────────────────┘
      │
      ├─ JOB 1: determine-brands ───────────────────────────────

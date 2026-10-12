@@ -5,7 +5,7 @@ The automated research workflow already lives on `ITCardo/cardo-intel` (`.github
 ## What's Here
 
 ✅ **GitHub Actions Workflow** — `.github/workflows/daily-refresh.yml`
-- Runs weekly, Mondays at 14:00 UTC (configurable), plus a manual "Run workflow" button
+- Runs weekly, Mondays at 07:00 UTC, started by the Azure Logic App `logic-cardo-intel-trigger` (the workflow itself has no cron; see README → "How the workflows are started"), plus a manual "Run workflow" button
 - Four jobs in sequence: `determine-brands` → `research-agents` (parallel, one per brand) → `social-listeners` → `publish`
 
 ✅ **Python Scripts** — `scripts/` directory
@@ -64,15 +64,7 @@ There is no Firecrawl key — Firecrawl was replaced by Claude's own server-side
 
 ### Change the schedule
 
-Edit `.github/workflows/daily-refresh.yml`:
-
-```yaml
-on:
-  schedule:
-    - cron: '0 14 * * 1'   # Mondays 14:00 UTC — change day/time here
-```
-
-Push the change and it takes effect on the next scheduled run.
+The schedule lives in the Azure Logic App, not in the workflow file. Open `logic-cardo-intel-trigger` (Monday refresh) or `logic-cardo-intel-ip-trigger` (Saturday patent crawler) in the Azure portal → Logic app designer → **Recurrence**, change the day or time (UTC), Save. See README → "How the workflows are started" for the GitHub token the Logic Apps use and when to renew it.
 
 ### Add a competitor
 
@@ -108,6 +100,8 @@ Hard-refresh your browser (Cmd+Shift+R) and wait 30–60 seconds for the Azure d
 The redirect URI used at sign-in doesn't have a matching entry on the Entra app registration. Most often this means you're signing in through a hostname (e.g. a newly added custom domain) that hasn't had its own `.auth/login/aad/callback` redirect URI added yet — see Step 2.8. Add it under App registrations → your app → Authentication → Add URI, keeping the existing one(s) too.
 
 ### No automatic (scheduled) runs happening
+Check the Logic App first: Azure portal → the Logic App → Runs history (a red run means the GitHub token expired or lost its permission; the failure alert should also have emailed). The paragraph below only applies if a `schedule:` trigger is ever added back to a workflow.
+
 GitHub disables scheduled workflows on repos with no commits in 60 days — as long as the repo stays active, this isn't a concern, but it's the first thing to check if the weekly run silently stops firing.
 
 ### Sign-in loops back to the login page, `/.auth/me` always shows `clientPrincipal: null`

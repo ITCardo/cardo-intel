@@ -1,8 +1,13 @@
-name: IP Crawler Preview
+name: IP Crawler Weekly
 
-# Standalone preview. It does not run the main pipeline, does not publish to Azure,
-# does not commit anything to main, and does not touch build.py or dashboard_template.html.
-# Result: an artifact called "ip-preview" (ip_preview.html + ip_results.json), kept 30 days.
+# Weekly patent (IP) watch for Sena, Cardo, Reso and ASMAX.
+# - Triggered every Saturday 03:17 UTC by the Azure Logic App "logic-cardo-intel-ip-trigger"
+#   (workflow_dispatch; GitHub's own cron was unreliable for this repo). The EPO asks automatic
+#   tools to run 19:00-07:00 GMT or at weekends, hence Saturday night.
+# - Saves the result to research/ip_results.json on main. The Monday refresh (daily-refresh.yml)
+#   picks that file up and build.py embeds it into the dashboard.
+# - Also uploads an artifact "ip-preview" (ip_preview.html + ip_results.json) for a quick look.
+# - Runs with the demo switch or with a brand filter never touch research/ip_results.json.
 
 on:
   workflow_dispatch:
@@ -19,16 +24,12 @@ on:
         description: "Layout demo with invented records (no EPO call)"
         type: boolean
         default: false
-  # The EPO asks automatic tools to run 19:00-07:00 GMT or at weekends. Enable when the preview is approved:
-  # schedule:
-  #   - cron: '17 3 * * 6'    # Saturday 03:17 UTC
 
 permissions:
-  contents: read
-  actions: read          # to download the previous run's results (detects NEW and CHANGED)
+  contents: write        # commits research/ip_results.json to main
 
 concurrency:
-  group: ip-crawler-preview
+  group: ip-crawler
   cancel-in-progress: false
 
 jobs:
@@ -64,17 +65,6 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - name: Download previous results (optional)
-        if: ${{ env.IN_DEMO != 'true' }}
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          id=$(gh run list --workflow ip-crawler-preview.yml --status success --limit 1 --json databaseId --jq '.[0].databaseId' || true)
-          if [ -n "$id" ]; then
-            gh run download "$id" -n ip-preview -D ip-preview/prev || echo "no previous artifact"
-          fi
-
       - name: Run IP crawler
         env:
           EPO_OPS_KEY: ${{ secrets.EPO_OPS_KEY }}
@@ -87,8 +77,32 @@ jobs:
           if [ "$IN_DEMO" = "true" ]; then args+=(--demo); fi
           if [ -n "$IN_BRANDS" ]; then args+=(--brands "$IN_BRANDS"); fi
           if [ "$IN_FAMILIES" = "true" ]; then args+=(--families); fi
-          if [ -f ip-preview/prev/ip_results.json ]; then args+=(--previous ip-preview/prev/ip_results.json); fi
+          # last committed results = the "previous run" used to detect NEW and CHANGED
+          if [ -f research/ip_results.json ]; then args+=(--previous research/ip_results.json); fi
           python ip-preview/ip_crawler.py "${args[@]}"
+
+      - name: Save results to research/ip_results.json
+        if: ${{ env.IN_DEMO != 'true' && env.IN_BRANDS == '' && github.ref == 'refs/heads/main' }}
+        run: |
+          python3 - <<'PY'
+          import json, sys
+          d = json.load(open("ip-preview/out/ip_results.json"))
+          if d.get("demo") or not d.get("complete"):
+              print("Run not complete (an error or EPO block): research/ip_results.json is left unchanged.")
+              sys.exit(0)
+          open("research/ip_results.json", "w", encoding="utf-8").write(json.dumps(d, ensure_ascii=False, indent=1))
+          print("research/ip_results.json updated:", ", ".join(f"{b['name']} {len(b['records'])}" for b in d["brands"]))
+          PY
+          git config user.name "cardo-intel-bot"
+          git config user.email "bot@cardo-intel.local"
+          git add research/ip_results.json
+          if git diff --cached --quiet; then
+            echo "No change to commit"
+          else
+            git commit -m "Weekly IP crawler results $(date +%Y-%m-%d)"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
 
       - name: Upload preview
         uses: actions/upload-artifact@v4

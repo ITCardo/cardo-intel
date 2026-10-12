@@ -18,6 +18,35 @@ insights = json.loads(insights_path.read_text()) if insights_path.exists() else 
 summaries_path = research / "research_summaries.json"
 summaries = json.loads(summaries_path.read_text()) if summaries_path.exists() else {}
 
+# IP & patents: written weekly by the IP crawler workflow (.github/workflows/ip-crawler.yml).
+# Optional: if the file is missing, empty or from a demo run, the dashboard simply has no IP data.
+def load_ip(path):
+    if not path.exists():
+        return None
+    try:
+        d = json.loads(path.read_text())
+    except ValueError:
+        print("WARNING: research/ip_results.json is not valid JSON - skipped")
+        return None
+    if d.get("demo") or not d.get("brands"):
+        return None
+    d.pop("family_maps", None)            # crawler bookkeeping, not needed in the page
+    for b in d["brands"]:
+        b.pop("family_map", None)
+        b.pop("diag", None)
+        recs = b.get("records", [])
+        b["summary"] = {
+            "total": len(recs),
+            "new": sum(1 for r in recs if r.get("flags", {}).get("new") or r.get("flags", {}).get("new_kind")),
+            "changed": sum(1 for r in recs if r.get("flags", {}).get("changed")),
+            "pending": sum(1 for r in recs if r.get("status_class") == "pending"),
+            "granted": sum(1 for r in recs if r.get("status_class") == "granted"),
+            "expired": sum(1 for r in recs if r.get("status_class") == "expired"),
+        }
+    return d
+
+ip = load_ip(research / "ip_results.json")
+
 # capability matrix: [status, footnote] where status is y/p/n
 matrix = [
     {"cap": "Mesh group intercom", "Cardo": ["y", "DMC Gen2, 31 riders — review benchmark"], "Sena": ["y", "Mesh 3.0, 24 group / open unlimited"], "ASMAX": ["y", "brand-locked, 8-10 riders"], "Reso": ["y", "30 riders, brand-locked"]},
@@ -36,9 +65,10 @@ matrix = [
     {"cap": "Tier-1 Western press coverage", "Cardo": ["y", "wins most 'best intercom' roundups"], "Sena": ["y", "MCN 4/5, iF Design awards"], "ASMAX": ["n", "regional/PR only"], "Reso": ["n", "SEA outlets only"]},
 ]
 
-data = {"brands": brands, "gap": gap, "battles": battles, "insights": insights, "summaries": summaries, "built_at": datetime.now(timezone.utc).isoformat()}
+data = {"brands": brands, "gap": gap, "battles": battles, "insights": insights, "summaries": summaries, "ip": ip, "built_at": datetime.now(timezone.utc).isoformat()}
 tpl = (root / "dashboard_template.html").read_text()
-out = tpl.replace("/*__DATA__*/", json.dumps(data, ensure_ascii=False))
+# "</" is escaped so a patent title can never close the <script> tag the data sits in
+out = tpl.replace("/*__DATA__*/", json.dumps(data, ensure_ascii=False).replace("</", "<\\/"))
 (root / "dashboard.html").write_text(out)
 (root / "index.html").write_text(out)  # same file at site root for GitHub Pages
-print(f"dashboard.html + index.html written ({len(out):,} bytes)")
+print(f"dashboard.html + index.html written ({len(out):,} bytes)" + (f", IP data: {', '.join(b['name'] + ' ' + str(b['summary']['total']) for b in ip['brands'])}" if ip else ", no IP data"))
