@@ -465,8 +465,11 @@ tr.expand td { background: var(--panel-2); font-size: 13px; line-height: 1.6; }
 .iptbl .ttl.exp .tt-main { text-decoration: line-through; color: var(--faint); }
 .iptbl .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
 .iptbl .nw { white-space: nowrap; }
-.iptbl tr.hot td { background: color-mix(in srgb, var(--ok) 7%, transparent); }
-.iptbl tr.hot.ichg td { background: color-mix(in srgb, var(--warn) 9%, transparent); }
+.iptbl .jur { min-width: 84px; max-width: 120px; }
+.iptbl tr.hot td { background: color-mix(in srgb, var(--ok) 16%, transparent); }
+.iptbl tr.hot td:first-child { box-shadow: inset 3px 0 0 var(--ok); }
+.iptbl tr.hot.ichg td { background: color-mix(in srgb, var(--warn) 14%, transparent); }
+.iptbl tr.hot.ichg td:first-child { box-shadow: inset 3px 0 0 var(--warn); }
 .iptbl tr.div td { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); background: var(--panel-2); padding: 6px 8px; }
 .iptbl .links { font-size: 12px; display: flex; gap: 10px; margin-top: 2px; }
 .iptbl .links a, .iptbl .num-c a { color: var(--color-accent-700); text-decoration: none; }
@@ -1713,7 +1716,7 @@ function renderBrands(app) {
 const IP_TYPE = {patent: "Patent", design: "Design", utility_model: "Utility model", unverified: "Unverified"};
 const IP_STATUS = [["pending", "Pending"], ["granted", "Granted"], ["expired", "Expired / lapsed"], ["unknown", "Unknown"]];
 const IP_JUR = {US: "United States", EP: "European Patent Office", WO: "WIPO, international application", CN: "China", JP: "Japan", KR: "South Korea", TW: "Taiwan", HK: "Hong Kong", DE: "Germany", FR: "France", GB: "United Kingdom", IT: "Italy", ES: "Spain", AT: "Austria", CH: "Switzerland", DK: "Denmark", SE: "Sweden", FI: "Finland", NL: "Netherlands", BE: "Belgium", PL: "Poland", PT: "Portugal", IE: "Ireland", NO: "Norway", TR: "Turkey", RU: "Russia", UA: "Ukraine", IL: "Israel", IN: "India", SG: "Singapore", MY: "Malaysia", TH: "Thailand", VN: "Vietnam", ID: "Indonesia", PH: "Philippines", AU: "Australia", NZ: "New Zealand", CA: "Canada", MX: "Mexico", BR: "Brazil", AR: "Argentina", CL: "Chile", ZA: "South Africa", SA: "Saudi Arabia", AE: "United Arab Emirates", EA: "Eurasian Patent Organization"};
-const ipSrc = x => /^ops-/.test(x) ? "EPO" : /^bq-/.test(x) ? "BigQuery" : "";
+const ipSrc = x => /^ops-/.test(x) ? "EPO" : /^bq-/.test(x) ? "Google" : "";
 const ipNum = n => String(n || "").replace(/\s+/g, "");
 const ipSq = t => String(t || "").toLowerCase().replace(/[\s,.\/\-]/g, "");
 const ipHot = r => !!(r.flags.new || r.flags.changed || r.flags.new_kind);
@@ -1769,14 +1772,14 @@ function ipRow(r, multi) {
   const links = [[ipHttps(l.google), "Google"], [ipHttps(l.espacenet), "Espacenet"]].filter(x => x[0]).map(([u, t]) => `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${t}</a>`).join("");
   const seen = [...new Set((r.sources || []).map(ipSrc).filter(Boolean))];
   const fam = r.topic_id ? `<span title="${esc(r.topic_note || "")}">${esc(r.topic)}</span>` : `<span class="muted">not filed yet</span>`;
-  const jur = r.jurisdiction ? `<span title="${esc(IP_JUR[r.jurisdiction] || r.jurisdiction)}">${esc(r.jurisdiction)}</span>` : "";
+  const jur = r.jurisdiction ? esc(r.jurisdiction) + (IP_JUR[r.jurisdiction] ? ` (${esc(IP_JUR[r.jurisdiction])})` : "") : "";
   return `<tr class="${ipHot(r) ? "hot" : ""}${r.flags.changed ? " ichg" : ""}">
     ${multi ? `<td>${brandLbl(r._b)}</td>` : ""}
     <td class="nw">${esc(IP_TYPE[r.type] || r.type || "")}${r.type_certain === false ? ` <span class="muted" title="Kind code not clearly recognised">?</span>` : ""}</td>
     <td class="fam">${fam}</td>
     <td class="num-c">${esc(ipNum(r.number))}<div class="links">${links}</div></td>
     <td class="ttl${r.status_class === "expired" ? " exp" : ""}"><span class="tt-main">${esc(r.title)}</span><div class="sub">${esc((r.applicants || []).slice(0, 2).join("; "))}</div></td>
-    <td class="nw">${jur}</td><td class="nw num">${esc(r.filing_date || "")}</td><td class="nw num">${esc(r.priority_date || "")}</td>
+    <td class="jur">${jur}</td><td class="nw num">${esc(r.filing_date || "")}</td><td class="nw num">${esc(r.priority_date || "")}</td>
     <td title="${esc(r.status_basis || "")}"><span class="ipst-${esc(r.status_class || "unknown")}">${esc(r.status || "")}</span>${r.status_estimated ? ` <span class="muted">(est.)</span>` : ""}${r.status_note ? `<div class="sub">${esc(r.status_note)}</div>` : ""}</td>
     <td>${seen.map(x => `<span class="ipseen">${x}</span>`).join("")}</td>
     <td>${ipFlags(r)}</td></tr>`;
@@ -1835,16 +1838,19 @@ function renderIPBody() {
     const x = a[k] || "", y = b[k] || ""; return x < y ? -1 : x > y ? 1 : 0;
   };
   const sorted = rows.slice().sort((a, b) => s.sortDir * cmp(a, b));
-  const hot = sorted.filter(ipHot), rest = sorted.filter(r => !ipHot(r));
-  const ordered = [...hot, ...rest], shown = ordered.slice(0, s.limit);
+  const dead = r => r.status_class === "expired";
+  const hot = sorted.filter(ipHot), live = sorted.filter(r => !ipHot(r) && !dead(r)), gone = sorted.filter(r => !ipHot(r) && dead(r));
+  const ordered = [...hot, ...live, ...gone], shown = ordered.slice(0, s.limit);
+  const grp = r => ipHot(r) ? 0 : dead(r) ? 2 : 1;
+  const gLbl = [`New or changed since the last check (${hot.length})`, `${hot.length ? "All other records" : "Active records"} (${live.length})`, `Expired, lapsed or refused (${gone.length})`];
   const H = [...(multi ? [["_b", "Brand"]] : []), ["type", "Type"], ["topic", "Product family"], ["number", "Number"], ["title", "Title"], ["jurisdiction", "Juris."], ["filing_date", "Filed"], ["priority_date", "Earliest priority"], ["status_class", "Status"], ["", "Seen by"], ["", "Flags"]];
   const cols = H.length;
   let body = "";
   if (!shown.length) body = `<tr><td colspan="${cols}" class="empty">No records match. Change the filters or the search.</td></tr>`;
   else {
-    const nh = shown.filter(ipHot).length;
-    if (nh) body += `<tr class="div"><td colspan="${cols}">New or changed since the last check (${hot.length})</td></tr>`;
-    shown.forEach((r, i) => { if (nh && i === nh && rest.length) body += `<tr class="div"><td colspan="${cols}">All other records (${rest.length})</td></tr>`; body += ipRow(r, multi); });
+    const multiGrp = new Set(ordered.map(grp)).size > 1 || hot.length;
+    let last = -1;
+    shown.forEach(r => { const g = grp(r); if (g !== last && (multiGrp || g === 2)) body += `<tr class="div"><td colspan="${cols}">${gLbl[g]}</td></tr>`; last = g; body += ipRow(r, multi); });
   }
   document.getElementById("ipTbl").innerHTML = `<table class="table iptbl"><thead><tr>${H.map(([k, l]) => `<th${k && s.sortKey === k ? ` aria-sort="${s.sortDir > 0 ? "ascending" : "descending"}"` : ""}>${k ? `<button type="button" class="th-sort" data-sort="${k}">${l}${s.sortKey === k ? icon(s.sortDir > 0 ? "chevUp" : "chevDown", 12) : ""}</button>` : l}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table>
     ${ordered.length > s.limit ? `<div style="margin-top:14px"><button type="button" class="btn btn-secondary" id="ipMore">Show ${Math.min(100, ordered.length - s.limit)} more of ${ordered.length - s.limit} remaining</button></div>` : ""}`;
