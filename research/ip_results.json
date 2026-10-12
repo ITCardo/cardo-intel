@@ -1,17 +1,15 @@
 {
  "complete": true,
- "generated": "2026-10-12 12:11",
+ "generated": "2026-10-12 20:29",
  "demo": false,
- "notes": [
-  "This run started inside the EPO's busy hours (07:00 to 19:00 GMT on weekdays). The EPO asks automatic tools to run in the evening or at weekends."
- ],
+ "notes": [],
  "sources": [
   {
    "name": "EPO Open Patent Services",
    "state": "read",
    "label": "connected",
    "detail": "Patent details and legal status from the European Patent Office. 431 lookups this run.",
-   "technical": "x-registeredquotaperweek-used: 29524858, x-individualquotaperhour-used: 14762429"
+   "technical": "x-registeredquotaperweek-used: 44305487, x-individualquotaperhour-used: 14780629"
   },
   {
    "name": "Google Patents",
