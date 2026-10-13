@@ -442,6 +442,22 @@ tr.expand td { background: var(--panel-2); font-size: 13px; line-height: 1.6; }
 .src-note { width: 100%; font-size: 12px; color: var(--muted); }
 
 
+
+/* owner sentiment */
+.osent .leg { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12px; color: var(--muted); }
+.osent .leg i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.os-row { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 14px; padding: 10px 0; align-items: center; }
+.os-row + .os-row { border-top: 1px solid var(--rule); }
+.os-bar { display: flex; height: 16px; border-radius: 4px; overflow: hidden; gap: 1px; background: var(--active); }
+.os-bar a { display: block; min-width: 3px; }
+.os-bar a:hover { filter: brightness(1.25); }
+.os-bar a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+.os-txt { grid-column: 2; font-size: 12px; color: var(--muted); line-height: 1.5; }
+.os-txt b { color: var(--color-text); font-weight: 600; }
+.os-top { grid-column: 2; font-size: 12px; color: var(--muted); }
+.os-top a { color: var(--color-accent-700); text-decoration: none; }
+.os-top a:hover { text-decoration: underline; }
+
 /* ip & patents */
 .ipstrip .ipgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 8px; }
 .ipb { display: block; text-decoration: none; color: var(--color-text); background: var(--panel-2); border-radius: 8px; padding: 10px 12px; min-width: 0; }
@@ -544,6 +560,8 @@ tr.expand td { background: var(--panel-2); font-size: 13px; line-height: 1.6; }
 }
 @media (max-width: 520px) {
   .ipk { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .os-row { grid-template-columns: minmax(0, 1fr); }
+  .os-txt, .os-top { grid-column: 1; }
   .sb-nav a { flex: 1; justify-content: center; padding: 8px 6px; }
   .sb-nav .nl { display: none; }
   .sb-nav .r { margin-left: 4px; }
@@ -820,6 +838,7 @@ function buildHash() {
     if (s.query) q.set("q", s.query);
     if (s.brand) q.set("brand", s.brand);
     if (s.gap) q.set("gap", s.gap);
+    if (s.type === "owners" && s.sentiment !== "all") q.set("sent", s.sentiment);
   } else if (S.route === "brands") {
     path += "/" + slug(S.brandTab);
   } else if (S.route === "ip") {
@@ -874,7 +893,8 @@ function applyHash() {
     s.query = q.get("q") || "";
     s.brand = BN.includes(q.get("brand")) ? q.get("brand") : null;
     s.gap = GAP_BY[q.get("gap")] ? q.get("gap") : null;
-    s.kind = "all"; s.product = "all"; s.sentiment = "all"; s.source = "all"; s.limit = 120;
+    s.kind = "all"; s.product = "all"; s.source = "all"; s.limit = 120;
+    s.sentiment = s.type === "owners" && ["positive", "mixed", "neutral", "negative"].includes(q.get("sent")) ? q.get("sent") : "all";
   } else if (S.route === "ip") {
     const s = S.ip;
     s.brand = IP_BRANDS.includes(q.get("brand")) ? q.get("brand") : null;
@@ -1063,6 +1083,7 @@ function renderBrief(app) {
     ${B.exec && INS.executive_summary ? `<div class="exec">${linkify(INS.executive_summary)}</div>` : ""}
    </section>
    <div class="kpis">${kpis.map(k => `<div class="kpi"><div class="lbl">${esc(k.l)}</div><div class="v${k.v.length > 9 ? " long" : ""}">${esc(k.v)}</div><div class="n">${esc(k.n)}</div>${k.bar != null ? `<div class="bar" role="img" aria-label="${Math.round(k.bar * 100)}%"><i style="width:${Math.round(k.bar * 100)}%"></i></div>` : ""}</div>`).join("")}</div>
+   ${ownerSentBrief()}
    ${ipStrip()}
    <div class="brief">
    <div>
@@ -1503,6 +1524,27 @@ function renderGaps(app) {
 }
 
 /* ================= SIGNALS ================= */
+const OS_ORDER = [["positive", "Positive", "var(--ok)"], ["mixed", "Mixed", "var(--warn)"], ["neutral", "Neutral", "var(--color-neutral-400)"], ["negative", "Negative", "var(--danger)"]];
+/* stacked sentiment bar per brand from owner posts (rows = SIG entries of type "owners") */
+function ownerSentHTML(rows, o = {}) {
+  const brands = BN.filter(b => S.brands.has(b) && (!o.brand || b === o.brand));
+  const line = b => {
+    const items = rows.filter(x => x.brand === b), n = items.length;
+    if (!n) return `<div class="os-row"><span>${brandLbl(b)}</span><span class="muted small">No owner posts in this period</span></div>`;
+    const c = Object.fromEntries(OS_ORDER.map(([k]) => [k, items.filter(x => x.sentiment === k).length]));
+    const pct = k => Math.round(c[k] / n * 100);
+    const href = k => "#/signals?type=owners&brand=" + encodeURIComponent(b) + "&sent=" + k + "&range=" + (o.range || "all");
+    const tc = {};
+    items.forEach(x => { if (x.topic) tc[x.topic] = (tc[x.topic] || 0) + 1; });
+    const top = Object.entries(tc).sort((x, y) => y[1] - x[1]).slice(0, 3);
+    const label = OS_ORDER.map(([k, l]) => `${c[k]} ${l.toLowerCase()}`).join(", ");
+    return `<div class="os-row"><span style="white-space:nowrap">${brandLbl(b)}<span class="muted num" style="margin-left:8px;font-size:12px">${n} posts</span></span>
+      <div class="os-bar" role="img" aria-label="${esc(b)}: ${esc(label)}">${OS_ORDER.map(([k, l, col]) => c[k] ? `<a href="${href(k)}" style="width:${(c[k] / n * 100).toFixed(2)}%;background:${col}" title="${l}: ${c[k]} (${pct(k)}%). Click to read these posts"></a>` : "").join("")}</div>
+      <div class="os-txt">${OS_ORDER.map(([k, l]) => c[k] ? `<span><b>${c[k]}</b> ${l.toLowerCase()} (${pct(k)}%)</span>` : "").filter(Boolean).join(" · ")}</div>
+      ${o.topics && top.length ? `<div class="os-top">Top topics: ${top.map(([t, k]) => `<a href="#/signals?type=owners&brand=${encodeURIComponent(b)}&q=${encodeURIComponent(t)}&range=${o.range || "all"}">${esc(t)}</a> (${k})`).join(", ")}</div>` : ""}</div>`;
+  };
+  return `<div class="osent"><div class="leg" aria-hidden="true">${OS_ORDER.map(([, l, col]) => `<span><i style="background:${col}"></i>${l}</span>`).join("")}</div>${brands.map(line).join("")}</div>`;
+}
 function sigFiltered(opts = {}) {
   const s = S.signals;
   const cut = s.range === "all" ? null : REF_T - (+s.range) * 864e5;
@@ -1520,6 +1562,7 @@ function renderSignals(app) {
       <div class="page-head" style="margin-bottom:10px"><h2>Signals</h2><span class="small muted" id="sCount"></span><span class="spacer"></span>
         <select class="input" id="sRange" aria-label="Date range">${Object.entries(rangeLbl).map(([k, l]) => `<option value="${k}"${s.range === k ? " selected" : ""}>${cap(l)}</option>`).join("")}</select>
         <label class="searchbox">${icon("search")}<span class="sr">Search signals</span><input class="input" type="search" id="sQ" placeholder="Search source, product, keyword" value="${esc(s.query)}" style="width:250px"></label></div>
+      <div id="sSent"></div>
       <div class="sig-tools" id="sTools"></div>
       <div id="sList"></div>
     </div></div></div>`;
@@ -1563,6 +1606,11 @@ function renderSigBody() {
   const toolsEl = document.getElementById("sTools");
   toolsEl.innerHTML = tools; toolsEl.style.display = tools ? "" : "none";
   document.getElementById("sCount").textContent = `${rows.length} shown · ${rangeLbl[s.range]}`;
+  const sent = document.getElementById("sSent");
+  if (s.type === "owners") {
+    const ob = sigFiltered({noQuery: true}).filter(x => x.type === "owners");
+    sent.innerHTML = `<section class="pnl" style="margin-bottom:12px;background:var(--panel-2)"><div class="sec-head"><h4>Owner sentiment by brand · ${rangeLbl[s.range]}</h4><span class="xs muted">Click a bar segment to read those posts</span></div>${ownerSentHTML(ob, {brand: s.brand, topics: true, range: s.range})}</section>`;
+  } else sent.innerHTML = "";
   /* list grouped by day */
   const shown = rows.slice(0, s.limit);
   let html = "", lastDay = null;
@@ -1737,6 +1785,11 @@ function ipFiltered(skip) {
     && (skip === "family" || s.family === "all" || r._fam === s.family)
     && (skip === "hot" || !s.hot || ipHot(r))
     && (!q || r._hay.includes(q) || (qs && r._sq.includes(qs))));
+}
+function ownerSentBrief() {
+  const rows = SIG.filter(x => x.type === "owners" && S.brands.has(x.brand));
+  if (!rows.length) return "";
+  return `<section class="pnl" style="margin-bottom:12px"><div class="sec-head"><h4>Owner sentiment by brand</h4><a class="more" href="#/signals?type=owners&range=all">Read the posts ${icon("arrow", 13)}</a></div>${ownerSentHTML(rows, {})}<div class="xs muted" style="margin-top:6px">All owner posts collected from Reddit and owner Facebook groups. Self-selected forums, so read it as a signal, not a survey.</div></section>`;
 }
 function ipStrip() {
   if (!IP) return "";
