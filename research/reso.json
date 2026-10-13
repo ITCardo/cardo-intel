@@ -678,7 +678,7 @@
       "notes": "UPDATE (this refresh, 2026-09-14): resopilot.com's site footer now links an official TikTok account, @resopilotglobal, for the first time found in this dataset (prior refreshes found no official Reso TikTok account linked from the company site). The account itself could not be scraped (TikTok is unsupported by the scraping tool used) and no follower/bio snippet was found via search this cycle, so followers is left null pending verification. Organic/dealer TikTok traction in SEA remains significant separately from the new official account: PH media account @insidemoto (Pilot Pro unboxing ASMR tagging 'RESO Philippines / RESO Link Ph'), Indonesian helmet retailer @istanahelmetofficial, dedicated TikTok discover pages for 'Reso Pilot Pro', 'Reso Pilot Pro review', and 'Reso Pilot Pro vs ASMAX' comparisons. TikTok chatter also benchmarks Reso against ASMAX, another Chinese challenger brand.",
       "url": "https://www.tiktok.com/@resopilotglobal"
     },
-    "summary": "This refresh (2026-10-12) found no change in official follower counts, which remain unverified. The official @resopilotglobal account keeps a high posting cadence of how-to, noise-test and group-ride demo posts, and it announced an EICMA 2026 (Milan) appearance on 2026-10-12. Third-party TikTok creator and dealer content continues in Malaysia, Indonesia, Thailand and Vietnam, and a US creator, @gixxerjesus, posted a 'switching from Cardo' video. No published verdict from MotoHop was found.",
+    "summary": "2026-10-13 refresh: no new official follower counts could be verified, so the earlier figures stay unverified. Nothing new beyond the 2026-10-12 EICMA 2026 announcement already recorded was found. A search for independent coverage of that announcement returned only generic EICMA event pages. Third-party TikTok creator and dealer content continues in SEA and the US.",
     "recent_posts": [
       {
         "date": "2026-09-15",
@@ -1183,6 +1183,24 @@
         "platform": "TikTok",
         "summary": "Third-party TikTok discover feed 'Reso Pilot Pro Review Speaker' (last updated 2026-10-05) shows continued creator and dealer content. Malaysian dealer Sheng Fatt Motor (@shengfattmotor) pitches the Pilot Pro at RM899 and claims about 70% battery remaining after an 8-hour ride. The feed also includes an Indonesian DuoSync unboxing and a Spanish-language review video. No new official-account TikTok data was found.",
         "url": "https://www.tiktok.com/discover/reso-pilot-pro-review-speaker"
+      },
+      {
+        "date": "2026-10-13",
+        "platform": "Instagram",
+        "summary": "Keep your device performing at its best! ⚡ A quick guide on how to perform an OTA firmware upgrade on your RESOPilot Pro. #RESOPilot #FirmwareUpdate",
+        "url": "https://www.instagram.com/p/Dea-4mEgrq2/"
+      },
+      {
+        "date": "2026-10-13",
+        "platform": "Instagram",
+        "summary": "Chasing roads, taking in the views, and enjoying every mile. 🏍️\nSome rides are better solo. Some are better together.\nWherever you ride, RESOPilot rides with you.\n #RESOPilot #MotorcycleLife #RideOut",
+        "url": "https://www.instagram.com/p/Dea6TqQj2C2/"
+      },
+      {
+        "date": "2026-10-13",
+        "platform": "Instagram",
+        "summary": "See the ride.\nHear the moment.\nRemember the journey.\n#RESOPilot #RealRide #MotorcycleLife #GroupRide #MotoAdventure #RideConnected #MotorcycleCommunity",
+        "url": "https://www.instagram.com/p/Dea_WWyFA1b/"
       }
     ]
   },
@@ -1352,7 +1370,7 @@
     ],
     "awards": [],
     "overall_tone": "Enthusiastic in Philippine/SEA moto media, where Reso is framed as a legitimate 'Cardo killer' value disruptor with DJI pedigree; now also gaining a genuinely enthusiastic wave of Japanese trade/consumer press following Daytona's June 2026 distribution launch (Webike, Bikebros, Response.jp, Motomegane, Dirtbikeplus, autoby.jp, and — found this refresh — WEB Young Machine, a major established Japanese motorcycle magazine) — first time Reso has broken into a major developed-market motorcycle-parts trade press ecosystem. Still effectively invisible in major English-language Western motorcycle press — no reviews or news found from MCN, Cycle World, RideApart, webBikeWorld, Bennetts BikeSocial, RevZilla Common Tread, or Motorcyclist as of July 2026 (this refresh re-checked all of these plus Motorcycle.com and found only unrelated content, e.g. a Facebook comment on an MCN Sena 50S review post where a reader mentions switching to a Reso Pilot Pro -- organic word-of-mouth, not editorial coverage). NEW (2026-07-21): Reso's first documented racing/motorsport sponsorship (QJMOTOR Factory Team, WSBK) signals a marketing push toward performance/track credibility beyond its existing touring/adventure and community-event positioning. This refresh (2026-09-14) again found no new coverage from MCN, Cycle World, RideApart, webBikeWorld, Bennetts BikeSocial, RevZilla Common Tread, FortNine, or Motorcycle.com. The most notable development is operational rather than editorial -- a confirmed, price-matched official Amazon.com storefront ('RESOPILOT' brand store) for Pro/Neo/Lite -- alongside a newly-discovered Singapore retail channel (CandyMotor) and an official TikTok account (@resopilotglobal). The closest thing to a Western editorial lead this cycle is non-editorial: independent US creator Matt Hopkins (@motohop_, Cardo owner) publicly announced (2026-09-09) that he received a Pro unit and intends to test its cross-brand-connectivity, SOS, and tracking claims -- no published verdict yet.",
-    "summary": "This refresh (2026-10-12) again found no new editorial coverage from MCN, Cycle World, RideApart, webBikeWorld, Bennetts BikeSocial, RevZilla or FortNine. The search surfaced no new independent reviews, and the existing reviews (TopGear PH, phtoll, Ridebuy, MotoMelody, Living Off The Slab) are unchanged. resopilot.com still shows the third-party 'Is the ResoPilot Pro a Cardo Killer?' video on its homepage and a Judge.me widget with 10 reviews on the Pro page. The 'Cross-Brand Connectivity' claim is still unverified by independent testing."
+    "summary": "2026-10-13 refresh: no new editorial coverage found from MCN, Cycle World, RideApart, webBikeWorld, Bennetts, RevZilla or FortNine. A fresh search for Reso Pilot Pro reviews turned up only reviews already tracked (TopGear PH, phtoll, Ridebuy). The 'Cross-Brand Connectivity' claim is still without independent verification."
   },
   "sources": [
     "https://resosport.com/pages/contact",
