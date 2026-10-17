@@ -1,6 +1,6 @@
 {
  "complete": true,
- "generated": "2026-10-12 20:29",
+ "generated": "2026-10-17 03:32",
  "demo": false,
  "notes": [],
  "sources": [
@@ -9,7 +9,7 @@
    "state": "read",
    "label": "connected",
    "detail": "Patent details and legal status from the European Patent Office. 431 lookups this run.",
-   "technical": "x-registeredquotaperweek-used: 44305487, x-individualquotaperhour-used: 14780629"
+   "technical": "x-registeredquotaperweek-used: 59098309, x-individualquotaperhour-used: 14792822"
   },
   {
    "name": "Google Patents",
@@ -20307,18 +20307,21 @@
      "country": "CN",
      "doc_number": "122527902",
      "kind": "A",
-     "title": "一种蓝牙耳机终端故障检测与远程维护方法",
+     "title": "Bluetooth earphone terminal fault detection and remote maintenance method",
      "jurisdiction": "CN",
      "filing_date": "2026-06-17",
      "pub_date": "2026-08-07",
      "priority_date": "2026-06-17",
      "family_id": "100752903",
      "applicants": [
-      "深圳市纵贯无限科技有限公司"
+      "深圳市纵贯无限科技有限公司",
+      "SHENZHEN ZONGGUAN WUXIAN TECH CO LTD"
      ],
      "inventors": [
       "王鹏",
-      "何华"
+      "何华",
+      "WANG PENG",
+      "HE HUA"
      ],
      "cpc": [
       "G06F 18/2431",
@@ -20366,19 +20369,23 @@
      "country": "CN",
      "doc_number": "122602199",
      "kind": "A",
-     "title": "骑行对讲耳机自动升级方法、装置、电子设备及计算机可读存储介质",
+     "title": "Automatic upgrading method and device for riding talkback earphone, electronic equipment and computer readable storage medium",
      "jurisdiction": "CN",
      "filing_date": "2026-07-21",
      "pub_date": "2026-08-18",
      "priority_date": "2026-07-21",
      "family_id": "100869873",
      "applicants": [
-      "深圳市纵贯无限科技有限公司"
+      "深圳市纵贯无限科技有限公司",
+      "SHENZHEN ZONGGUAN WUXIAN TECH CO LTD"
      ],
      "inventors": [
       "王鹏",
       "罗成",
-      "张晓红"
+      "张晓红",
+      "WANG PENG",
+      "LUO CHENG",
+      "ZHANG XIAOHONG"
      ],
      "cpc": [
       "H04R 1/1041",
